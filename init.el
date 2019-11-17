@@ -185,6 +185,7 @@
        magit
        yaml
        json
+       cmake
        )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
