@@ -184,6 +184,7 @@
        (helm +fuzzy)
        magit
        yaml
+       json
        )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
