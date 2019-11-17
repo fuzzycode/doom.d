@@ -74,8 +74,10 @@
     (map! (:leader
           :desc "M-X" :g "<SPC>" 'helm-M-x
           (:prefix ("h" . "Help")
+            :desc "Apropos" :g "a" 'helm-apropos
+            :desc "Info at Point" :g "i" 'helm-info-at-point
+            :desc "Man/Woman" :g "m" 'helm-man-woman
             (:prefix ("d" . "Describe")
-              :desc "Apropos" :g "a" 'helm-apropos
               :desc "Function" :g "f" 'describe-function
               :desc "Key" :g "k" 'describe-key
               :desc "Mode" :g "m" 'describe-mode
@@ -83,6 +85,10 @@
               :desc "Theme" :g "t" 'describe-theme
               :desc "Variable" :g "v" 'describe-variable))
           (:prefix ("f" . "files")
+            :desc "Find File" :g "f" 'helm-find-files-1
+            :desc "Find Files" :g "F" 'helm-find-files
+            :desc "Locate" :g "l" 'helm-locate
+            :desc "Recent Files" :g "r" 'helm-recentf
             )
           ))
 
