@@ -10,3 +10,5 @@
 (package! mwim)
 (package! open-junk-file)
 (package! winum)
+(package! winner)
+(package! deadgrep)

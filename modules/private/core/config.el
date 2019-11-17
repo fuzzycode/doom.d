@@ -56,6 +56,31 @@
           ("M-8" . 'winum-select-window-8)
           ("M-9" . 'winum-select-window-9)))
 
+(use-package! winner
+  :defer 2
+  :init
+  (setq +core/winner-boring-buffers '("*Completions*"
+                                   "*Compile-Log*"
+                                   "*inferior-lisp*"
+                                   "*Fuzzy Completions*"
+                                   "*Apropos*"
+                                   "*Help*"
+                                   "*cvs*"
+                                   "*Buffer List*"
+                                   "*Ibuffer*"
+                                   "*esh command on file*"
+                                   ))
+  :config
+  (setq winner-boring-buffers
+        (append winner-boring-buffers +core/winner-boring-buffers))
+  (winner-mode t))
+
+(use-package! deadgrep
+  :defer t
+  :init (map! (:leader
+                (:prefix ("s" . "search")
+                  :desc "Deadgrep" :g "d" 'deadgrep))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extras
 (load! "+bindings")
