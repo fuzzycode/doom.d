@@ -15,6 +15,14 @@
         mac-right-command-modifier nil
         mac-right-option-modifier nil))
 
+
 (load! "+core")
 (load! "+elisp")
 (load! "+projectile")
+
+;; Allow for machine local customizations
+(load! "~/.doom.local.el" "" t)
+
+;; Use a dedicated file for custom settings
+(setq custom-file (concat doom-private-dir "custom.el"))
+(load! custom-file "" t)
