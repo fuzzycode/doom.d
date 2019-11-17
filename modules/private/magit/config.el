@@ -58,14 +58,13 @@
   ;; Close transient with ESC
   (define-key transient-map [escape] #'transient-quit-one))
 
-(use-package! gitattributes-mode
-  :after magit)
+(use-package! gitattributes-mode)
 
 (use-package! gitconfig-mode
-  :after magit)
+  :mode ("\.?gitconfig$" . gitconfig-mode))
 
 (use-package! gitignore-mode
-  :after magit)
+  :mode ("\.?gitignore$" . gitignore-mode))
 
 (use-package! git-commit
   :after magit
