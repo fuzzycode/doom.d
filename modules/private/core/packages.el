@@ -9,3 +9,4 @@
 (package! proced)
 (package! mwim)
 (package! open-junk-file)
+(package! winum)
