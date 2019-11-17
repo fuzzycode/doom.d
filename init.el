@@ -182,9 +182,8 @@
        core
        completion
        (helm +fuzzy)
-       cc
-       org
        magit
+       yaml
        )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
