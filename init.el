@@ -36,10 +36,10 @@
        ;;tabs              ; an tab bar for Emacs
        ;; treemacs          ; a project drawer, like neotree but cooler
        ;; unicode           ; extended unicode support for various languages
-       ;; vc-gutter         ; vcs diff in the fringe
+       vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;; window-select     ; visually switch windows
-       ;; workspaces        ; tab emulation, persistence & separate workspaces
+       workspaces        ; tab emulation, persistence & separate workspaces
 
        ;:editor
        ;;(evil +everywhere); come to the dark side, we have cookies
@@ -55,8 +55,8 @@
        ;; snippets          ; my elves. They type so I don't have to
        ;;word-wrap         ; soft wrapping with language-aware indent
 
-       ;:emacs
-       ;; (dired +ranger +icons)             ; making dired pretty [functional]
+       :emacs
+       (dired +ranger +icons)             ; making dired pretty [functional]
        ;; electric          ; smarter, keyword-based electric-indent
        ;; ibuffer           ; interactive buffer management
        ;; vc                ; version-control and Emacs, sitting in a tree
@@ -80,7 +80,7 @@
        ;;gist              ; interacting with github gists
        ;; (lookup           ; helps you navigate your code and documentation
         ;; +docsets)        ; ...or in Dash docsets locally
-       ;; lsp
+       lsp
        ;;macos             ; MacOS-specific commands
        ;magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
@@ -96,7 +96,7 @@
        :lang
        ;;agda              ; types of types of types of types...
        ;;assembly          ; assembly for fun or debugging
-       ;; (cc +lsp)                ; C/C++/Obj-C madness
+       (cc +lsp)                ; C/C++/Obj-C madness
        ;; clojure           ; java with a lisp
        ;; common-lisp       ; if you've seen one lisp, you've seen them all
        ;;coq               ; proofs-as-programs
@@ -118,7 +118,7 @@
        ;;javascript        ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
        ;;kotlin            ; a better, slicker Java(Script)
-       ;; (latex +latexmk)            ; writing papers in Emacs has never been so fun
+       (latex +latexmk)            ; writing papers in Emacs has never been so fun
        ;;lean
        ;;ledger            ; an accounting system in Emacs
        ;; lua               ; one-based indices? one-based indices
@@ -126,13 +126,13 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       ;; (org              ; organize your plain life in plain text
-        ;; +dragndrop       ; drag & drop files/images into org buffers
-        ;;+hugo            ; use Emacs for hugo blogging
-        ;; +ipython         ; ipython/jupyter support for babel
-        ;; +pandoc          ; export-with-pandoc support
+       (org              ; organize your plain life in plain text
+        +dragndrop       ; drag & drop files/images into org buffers
+        +hugo            ; use Emacs for hugo blogging
+        +ipython         ; ipython/jupyter support for babel
+        +pandoc          ; export-with-pandoc support
         ;;+pomodoro        ; be fruitful with the tomato technique
-        ;; +present)        ; using org-mode for presentations
+        +present)        ; using org-mode for presentations
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
        ;; plantuml          ; diagrams for confusing people more
@@ -187,16 +187,3 @@
        json
        cmake
        )
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(paradox-github-token t)
- '(safe-local-variable-values (quote ((checkdoc-package-keywords-flag)))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
