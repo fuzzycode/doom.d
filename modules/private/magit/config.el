@@ -1,4 +1,7 @@
 
+(setq-hook! git-commit-mode
+  fill-column 72)
+
 (use-package! magit
   :defer t
   :commands (magit-status
@@ -90,3 +93,6 @@
   :init (map! (:leader (:prefix "g" :desc "Git Messenger" :g "M" 'git-messenger:popup-message)))
   :bind (:map git-messenger-map
           ([escape] . git-messenger:popup-close)))
+
+(after! git-commit
+  (add-hook 'git-commit-mode-hook 'fci-mode))

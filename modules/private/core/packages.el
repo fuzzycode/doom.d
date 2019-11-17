@@ -12,3 +12,4 @@
 (package! winum)
 (package! winner)
 (package! deadgrep)
+(package! fill-column-indicator)

@@ -81,6 +81,9 @@
                 (:prefix ("s" . "search")
                   :desc "Deadgrep" :g "d" 'deadgrep))))
 
+(use-package! fill-column-indicator
+  :defer t)
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extras
 (load! "+bindings")
