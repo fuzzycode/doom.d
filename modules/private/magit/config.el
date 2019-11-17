@@ -14,7 +14,9 @@
          git-commit-turn-on-flyspell t
          git-commit-turn-on-auto-fill t
          magit-section-visibility-indicator nil
-         magit-wip-merge-branch t)
+         magit-wip-merge-branch t
+         magit-refs-primary-column-width '(16 . 52)
+         magit-process-finish-apply-ansi-colors t)
 
   (setq transient-enable-popup-navigation t)
 
@@ -24,6 +26,7 @@
           (:prefix ("g" . "git")
             :desc "Magit Status" :g "s" 'magit-status
             :desc "Dispatch" :g "m" 'magit-dispatch
+            :desc "Log File" :g "l" 'magit-log-buffer-file
             :desc "Stage File" :g "S" 'magit-stage-file
             :desc "Unstage File" :g "U" 'magit-unstage-file)))
   :config
@@ -65,7 +68,12 @@
   :after magit)
 
 (use-package! git-commit
-  :after magit)
+  :after magit
+  :hook ((find-file . (lambda ()
+                       (when (string-suffix-p "COMMIT_EDITMSG" buffer-file-name)
+                         (+magit/goto-first-empty-line t))))
+         (git-commit-mode . (lambda ()
+                              (define-key git-commit-mode-map (kbd "TAB") '+magit/goto-first-empty-line)))))
 
 (use-package magit-imerge
   :after magit)
