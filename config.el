@@ -7,6 +7,12 @@
 (setq doom-leader-alt-key "M-<SPC>"
       doom-localleader-alt-key "M-<SPC> m")
 
+(setq eval-expression-print-length nil
+      eval-expression-print-level nil)
+
+(setq bidi-display-reordering nil)
+(setq bidi-paragraph-direction 'left-to-right)
+
 (when IS-MAC
   (setq mac-option-key-is-meta nil
         mac-command-key-is-meta t
