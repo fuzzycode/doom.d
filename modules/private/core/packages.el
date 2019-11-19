@@ -13,3 +13,4 @@
 (package! winner)
 (package! deadgrep)
 (package! fill-column-indicator)
+(package! expand-region)

@@ -84,6 +84,13 @@
 (use-package! fill-column-indicator
   :defer t)
 
+(use-package! expand-region
+  :defer t
+  :init (setq expand-region-contract-fast-key "V"
+              expand-region-reset-fast-key "r")
+  (map! (:leader
+          :desc "Expand Region" :g "v" 'er/expand-region)))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extras
 (load! "+bindings")
