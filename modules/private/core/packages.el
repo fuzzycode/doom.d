@@ -14,3 +14,4 @@
 (package! deadgrep)
 (package! fill-column-indicator)
 (package! expand-region)
+(package! insert-shebang)

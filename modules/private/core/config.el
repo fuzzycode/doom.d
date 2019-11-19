@@ -91,6 +91,12 @@
   (map! (:leader
           :desc "Expand Region" :g "v" 'er/expand-region)))
 
+(use-package! insert-shebang
+  :defer t
+  :init
+  (map! (:leader (:prefix ("i" . "insert") :desc "Insert shebang" :g "!" 'insert-shebang)))
+  (remove-hook 'find-file-hook 'insert-shebang))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Extras
 (load! "+bindings")
