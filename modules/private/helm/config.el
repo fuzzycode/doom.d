@@ -151,3 +151,10 @@
                 (:prefix ("s" . "search")
                   :desc "Swoop" :g "s" 'helm-swoop-without-pre-input
                   :desc "Swoop w. Input" :g "S" 'helm-swoop))))
+
+(use-package! helm-descbinds
+  :defer t
+  :init (map! (:leader
+                (:prefix ("h" . "help")
+                  (:prefix ("d" . "describe")
+                    :desc "Bindings" :g "?" 'helm-descbinds)))))
