@@ -152,3 +152,15 @@
                 (:prefix ("x" . "text")
                   (:prefix ("w" . "words")
                     :desc "Search Dictionary" :g "d" 'osx-dictionary-search-word-at-point)))))
+
+(use-package! string-inflection
+  :defer t
+  :init (map! (:leader
+                (:prefix ("x" . "text")
+                  (:prefix ("i" . "inflection")
+                    :desc "Cycle Style" :g [tab] '+core/inflection-cycle-dwim
+                    :desc "Underscore" :g "u" 'string-inflection-underscore
+                    :desc "Uppercase" :g "U" 'string-inflection-upcase
+                    :desc "Kebab Case" :g "k" 'string-inflection-kebab-case
+                    :desc "Lower Camel Case" :g "c" 'string-inflection-lower-camelcase
+                    :desc "Camel Case" :g "C" 'string-inflection-camelcase)))))

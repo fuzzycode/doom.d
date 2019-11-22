@@ -19,6 +19,7 @@
 (package! dash-at-point)
 (package! helm-dash)
 (package! lorem-ipsum)
+(package! string-inflection)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)
