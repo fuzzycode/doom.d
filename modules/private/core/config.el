@@ -164,3 +164,7 @@
                     :desc "Kebab Case" :g "k" 'string-inflection-kebab-case
                     :desc "Lower Camel Case" :g "c" 'string-inflection-lower-camelcase
                     :desc "Camel Case" :g "C" 'string-inflection-camelcase)))))
+
+
+;; EXTRAS
+(load! "+bindings")
