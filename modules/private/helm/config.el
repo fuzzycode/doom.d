@@ -135,7 +135,6 @@
              helm-projectile-switch-to-buffer)
   :init
   (setq projectile-completion-system 'helm)
-  ;(defvar helm-projectile-find-file-map (make-sparse-keymap))
   (map! (:leader (:prefix ("p" . "project")
                    :desc "Find Directory" :g "d" 'helm-projectile-find-dir
                    :desc "Find file" :g "f" 'helm-projectile-find-file
@@ -143,8 +142,6 @@
                    :desc "Switch Project" :g "p" 'helm-projectile-switch-project
                    :desc "Buffer" :g "b" 'helm-projectile-switch-to-buffer)))
   )
-                                        ;:config
-  ;(set-keymap-parent helm-projectile-find-file-map helm-map))
 
 (use-package! helm-swoop
   :defer t
