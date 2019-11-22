@@ -88,8 +88,9 @@
             :desc "Find File" :g "f" 'helm-find-files-1
             :desc "Find Files" :g "F" 'helm-find-files
             :desc "Locate" :g "l" 'helm-locate
-            :desc "Recent Files" :g "r" 'helm-recentf
-            )
+            :desc "Recent Files" :g "r" 'helm-recentf)
+          (:prefix ("i" . "insert")
+            :desc "Unicode Char" :g "U" 'helm-ucs)
           ))
 
     (add-hook 'helm-minibuffer-set-up-hook
