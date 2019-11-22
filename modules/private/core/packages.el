@@ -15,3 +15,6 @@
 (package! fill-column-indicator)
 (package! expand-region)
 (package! insert-shebang)
+(package! crux)
+(package! dash-at-point)
+(package! helm-dash)

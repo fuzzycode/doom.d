@@ -97,6 +97,35 @@
   (map! (:leader (:prefix ("i" . "insert") :desc "Insert shebang" :g "!" 'insert-shebang)))
   (remove-hook 'find-file-hook 'insert-shebang))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Extras
-(load! "+bindings")
+(use-package! crux
+  :defer t
+  :commands crux-top-join-line
+  :init
+  (global-set-key (kbd "<A-up>") 'join-line)
+  (global-set-key (kbd "<A-down>") 'crux-top-join-line)
+  (map! (:leader
+          (:prefix ("f" . "file")
+                   :desc "Delete Buffer and File" :g "K" 'crux-delete-file-and-buffer
+                   :desc "Rename Buffer and File" :g "R" 'crux-rename-file-and-buffer
+                   :desc "Find Shell init file" :g "S" 'crux-find-shell-init-file
+                   :desc "Find USer Custom File" :g "C" 'crux-find-user-custom-file)
+          (:prefix ("x" . "text")
+            :desc "Capitalize Region" :g "C" 'crux-capitalize-region
+            (:prefix ("l" . "lines")
+              :desc "Duplicate Line Or Region" :g "d" 'crux-duplicate-current-line-or-region
+              :desc "Duplicate And Comment Line Or Region" :g "D" 'crux-duplicate-and-comment-current-line-or-region)))))
+
+(use-package! dash-at-point
+  :defer t
+  :init
+  (map! (:leader
+          (:prefix ("d" . "documentation")
+            :desc "Dash @ Point" :g "d" 'dash-at-point
+            :desc "Dash @ Point With Docset" :g "D" 'dash-at-point-with-docset))))
+
+(use-package! helm-dash
+  :defer t
+  :init(map! (:leader
+               (:prefix ("d" . "documentation")
+                 :desc "Helm Dash @ Point" :g "h" 'helm-dash-at-point
+                 :desc "Helm Dash" :g "H" 'helm-dash))))
