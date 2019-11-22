@@ -34,21 +34,21 @@
         )       ; default popup rules
        ;;pretty-code       ; replace bits of code with pretty symbols
        ;;tabs              ; an tab bar for Emacs
-       ;; treemacs          ; a project drawer, like neotree but cooler
+       treemacs          ; a project drawer, like neotree but cooler
        ;; unicode           ; extended unicode support for various languages
        vc-gutter         ; vcs diff in the fringe
        vi-tilde-fringe   ; fringe tildes to mark beyond EOB
        ;; window-select     ; visually switch windows
        workspaces        ; tab emulation, persistence & separate workspaces
 
-       ;:editor
+       :editor
        ;;(evil +everywhere); come to the dark side, we have cookies
        ;; file-templates    ; auto-snippets for empty files
        ;; fold              ; (nigh) universal code folding
        ;; (format +onsave)  ; automated prettiness
        ;;god               ; run Emacs commands without modifier keys
        ;;lispy             ; vim for lisp, for people who don't like vim
-       ;; multiple-cursors  ; editing in many places at once
+       multiple-cursors  ; editing in many places at once
        ;;objed             ; text object editing for the innocent
        ;;parinfer          ; turn lisp into python, sort of
        ;; rotate-text       ; cycle region at point between text candidates
@@ -71,7 +71,7 @@
        ;;ansible
        ;; debugger          ; FIXME stepping through code, to help you add bugs
        ;;direnv
-       ;;docker
+       docker
        editorconfig      ; let someone else argue about tabs vs spaces
        ;;ein               ; tame Jupyter notebooks with emacs
        ;; (eval +overlay)     ; run code, run (also, repls)
@@ -135,7 +135,7 @@
         +present)        ; using org-mode for presentations
        ;;perl              ; write code no one else can comprehend
        ;;php               ; perl's insecure younger brother
-       ;; plantuml          ; diagrams for confusing people more
+       plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        ;; (python +pyenv +lsp)            ; beautiful is better than ugly
        qt                ; the 'cutest' gui framework ever
@@ -145,7 +145,7 @@
        ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        ;;scala             ; java, but good
        ;;scheme            ; a fully conniving family of lisps
-       ;; sh                ; she sells {ba,z,fi}sh shells on the C xor
+       sh                ; she sells {ba,z,fi}sh shells on the C xor
        ;;solidity          ; do you need a blockchain? No.
        ;;swift             ; who asked for emoji variables?
        ;;terra             ; Earth and Moon in alignment for performance.
@@ -159,10 +159,10 @@
        ;; Applications are complex and opinionated modules that transform Emacs
        ;; toward a specific purpose. They may have additional dependencies and
        ;; should be loaded late.
-       ;:app
+       :app
        ;;calendar
        ;;irc               ; how neckbeards socialize
-       ;;(rss +org)        ; emacs as an RSS reader
+       (rss +org)        ; emacs as an RSS reader
        ;;twitter           ; twitter client https://twitter.com/vnought
        ;;(write            ; emacs for writers (fiction, notes, papers, etc.)
        ;; +wordnut         ; wordnet (wn) search
