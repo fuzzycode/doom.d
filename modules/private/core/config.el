@@ -125,7 +125,30 @@
 
 (use-package! helm-dash
   :defer t
-  :init(map! (:leader
+  :init (map! (:leader
                (:prefix ("d" . "documentation")
                  :desc "Helm Dash @ Point" :g "h" 'helm-dash-at-point
                  :desc "Helm Dash" :g "H" 'helm-dash))))
+
+(use-package! lorem-ipsum
+  :defer t
+  :init (map! (:leader
+                (:prefix ("i" . "insert")
+                  (:prefix ("l" . "lorem/ipsum")
+                    :desc "Paragraphs" :g "p" 'lorem-ipsum-insert-paragraphs
+                    :desc "Sentences" :g "s" 'lorem-ipsum-insert-sentences
+                    :desc "List" :g "l" 'lorem-ipsum-insert-list)))))
+
+(use-package! reveal-in-osx-finder
+  :when IS-MAC
+  :defer t
+  :init (map! (:leader
+                (:prefix ("f" . "files")
+                  :desc "Reveal in Finder" :g "F" 'reveal-in-osx-finder))))
+
+(use-package! osx-dictionary
+  :when IS-MAC
+  :init (map! (:leader
+                (:prefix ("x" . "text")
+                  (:prefix ("w" . "words")
+                    :desc "Search Dictionary" :g "d" 'osx-dictionary-search-word-at-point)))))

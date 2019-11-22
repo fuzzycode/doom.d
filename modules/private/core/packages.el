@@ -18,3 +18,8 @@
 (package! crux)
 (package! dash-at-point)
 (package! helm-dash)
+(package! lorem-ipsum)
+
+(when IS-MAC
+  (package! reveal-in-osx-finder)
+  (package! osx-dictionary))
