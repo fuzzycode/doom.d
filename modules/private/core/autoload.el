@@ -59,3 +59,15 @@
   (delete-region (point-min) (point-max))
   (clipboard-yank)
   (deactivate-mark))
+
+;;;###autoload
+(defun +core/switch-to-scratch-buffer ()
+  "Switch to the `*scratch*' buffer. Create it first if needed."
+  (interactive)
+  (switch-to-buffer (get-buffer-create "*scratch*")))
+
+;;;###autoload
+(defun +core/switch-to-message-buffer ()
+  "Switch to the `*Messages*' buffer. Create it first if needed."
+  (interactive)
+  (switch-to-buffer (get-buffer-create "*Messages*")))
