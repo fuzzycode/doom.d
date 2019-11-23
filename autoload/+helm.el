@@ -11,3 +11,8 @@
 
 ;;;###autoload
 (add-hook 'helm-minibuffer-set-up-hook '+helm/helm-hide-minibuffer-maybe)
+
+;;;###autoload
+(defun +helm/helm-search-project-default ()
+  (interactive)
+  (+helm/project-search nil (regexp-quote (thing-at-point 'symbol))))

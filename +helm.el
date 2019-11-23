@@ -1,39 +1,43 @@
 
-(map! (:leader (:prefix ("p" . "project")
+(map! (:leader
+        (:prefix "s"
+          :desc "Search Project" :g "p" #'+helm/project-search
+          :desc "Search Project (input)" :g "P" #'+helm/helm-search-project-default)
+        (:prefix ("p" . "project")
                  :desc "Find Directory" :g "d" #'helm-projectile-find-dir
                  :desc "Find file" :g "f" #'helm-projectile-find-file
                  :desc "Recent Files" :g "F" #'helm-projectile-recentf
                  :desc "Switch Project" :g "p" #'helm-projectile-switch-project
-                 :desc "Buffer" :g "b" #'helm-projectile-switch-to-buffer)))
+                 :desc "Switch Buffer" :g "b" #'helm-projectile-switch-to-buffer)))
 
 (map! (:after helm
         (:leader
-          :desc "M-X" :g "<SPC>" 'helm-M-x
+          :desc "M-X" :g "<SPC>" #'helm-M-x
           (:prefix ("h" . "help")
-            :desc "Apropos" :g "a" 'helm-apropos
-            :desc "Info at Point" :g "i" 'helm-info-at-point
-            :desc "Man/Woman" :g "m" 'helm-man-woman
+            :desc "Apropos" :g "a" #'helm-apropos
+            :desc "Info at Point" :g "i" #'helm-info-at-point
+            :desc "Man/Woman" :g "m" #'helm-man-woman
             (:prefix ("d" . "describe")
-              :desc "Function" :g "f" 'describe-function
-              :desc "Key" :g "k" 'describe-key
-              :desc "Mode" :g "m" 'describe-mode
-              :desc "Package" :g "p" 'describe-package
-              :desc "Theme" :g "t" 'describe-theme
-              :desc "Variable" :g "v" 'describe-variable))
+              :desc "Function" :g "f" #'describe-function
+              :desc "Key" :g "k" #'describe-key
+              :desc "Mode" :g "m" #'describe-mode
+              :desc "Package" :g "p" #'describe-package
+              :desc "Theme" :g "t" #'describe-theme
+              :desc "Variable" :g "v" #'describe-variable))
           (:prefix ("f" . "files")
-            :desc "Find File" :g "f" 'helm-find-files-1
-            :desc "Find Files" :g "F" 'helm-find-files
-            :desc "Locate" :g "l" 'helm-locate
-            :desc "Recent Files" :g "r" 'helm-recentf)
+            :desc "Find File" :g "f" #'helm-find-files-1
+            :desc "Find Files" :g "F" #'helm-find-files
+            :desc "Locate" :g "l" #'helm-locate
+            :desc "Recent Files" :g "r" #'helm-recentf)
           (:prefix ("i" . "insert")
-            :desc "Unicode Char" :g "U" 'helm-ucs))))
+            :desc "Unicode Char" :g "U" #'helm-ucs))))
 
 (map! (:after helm
         :map helm-find-files-map
-        "<tab>"  'helm-execute-persistent-action
-        "C-<tab>"  'helm-find-files-up-one-level
+        "<tab>"  #'helm-execute-persistent-action
+        "C-<tab>"  #'helm-find-files-up-one-level
         :map helm-map
-        "C-z"  'helm-select-action))
+        "C-z"  #'helm-select-action))
 
 
 (set-popup-rule! "^\\*helm" :vslot -100 :size 0.35 :ttl nil)
