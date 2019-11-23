@@ -1,4 +1,5 @@
 
+;;;###package
 (use-package! paradox
   :defer t
   :init (map! (:leader (:prefix "a"
@@ -6,14 +7,17 @@
   (setq paradox-column-width-package 30
         paradox-column-width-version 15))
 
+;;;###package
 (use-package! beginend
   :defer 5
   :diminish beginend-global-mode
   :config (beginend-global-mode 1))
 
+;;;###package
 (use-package! visual-regexp-steroids
   :after visual-regexp)
 
+;;;###package
 (use-package! visual-regexp
   :bind (([remap replace-regexp] . 'vr/replace)
          ([remap query-replace-regexp] . 'vr/query-replace)
@@ -21,12 +25,15 @@
          ("C-c q" . 'vr/query-replace)
          ("C-c m" . 'vr/mc-mark)))
 
+;;;###package
 (use-package! comment-dwim-2
   :bind ([remap comment-dwim] . comment-dwim-2))
 
+;;;###package
 (use-package! smart-backspace
   :bind ([remap backward-delete-char-untabify] . smart-backspace))
 
+;;;###package
 (use-package! proced
    :defer t
    :hook (proced-mode . (lambda () (proced-toggle-auto-update +1)))
@@ -36,10 +43,12 @@
    (setq proced-auto-update-interval 1)
    (set-popup-rule! "*Proced*" :size 0.4 :side 'bottom :select t :autosave t))
 
+;;;###package
 (use-package! mwim
   :bind (("C-a" . 'mwim-beginning-of-code-or-line)
          ("C-e" . 'mwim-end-of-code-or-line)))
 
+;;;###package
 (use-package! winum
   :init (setq winum-auto-assign-0-to-minibuffer nil
               winum-auto-setup-mode-line nil
@@ -56,6 +65,7 @@
           ("M-8" . 'winum-select-window-8)
           ("M-9" . 'winum-select-window-9)))
 
+;;;###package
 (use-package! winner
   :defer 2
   :init
@@ -75,15 +85,18 @@
         (append winner-boring-buffers +core/winner-boring-buffers))
   (winner-mode t))
 
+;;;###package
 (use-package! deadgrep
   :defer t
   :init (map! (:leader
                 (:prefix ("s" . "search")
                   :desc "Deadgrep" :g "d" 'deadgrep))))
 
+;;;###package
 (use-package! fill-column-indicator
   :defer t)
 
+;;;###package
 (use-package! expand-region
   :defer t
   :init (setq expand-region-contract-fast-key "V"
@@ -91,12 +104,14 @@
   (map! (:leader
           :desc "Expand Region" :g "v" 'er/expand-region)))
 
+;;;###package
 (use-package! insert-shebang
   :defer t
   :init
   (map! (:leader (:prefix ("i" . "insert") :desc "Insert shebang" :g "!" 'insert-shebang)))
   (remove-hook 'find-file-hook 'insert-shebang))
 
+;;;###package
 (use-package! crux
   :defer t
   :commands crux-top-join-line
@@ -104,17 +119,19 @@
   (global-set-key (kbd "<A-up>") 'join-line)
   (global-set-key (kbd "<A-down>") 'crux-top-join-line)
   (map! (:leader
+          (:prefix "b"
+            :desc "Delete Buffer and File" :g "K" 'crux-delete-file-and-buffer
+            :desc "Rename Buffer and File" :g "R" 'crux-rename-file-and-buffer)
           (:prefix ("f" . "file")
-                   :desc "Delete Buffer and File" :g "K" 'crux-delete-file-and-buffer
-                   :desc "Rename Buffer and File" :g "R" 'crux-rename-file-and-buffer
                    :desc "Find Shell init file" :g "S" 'crux-find-shell-init-file
-                   :desc "Find USer Custom File" :g "C" 'crux-find-user-custom-file)
+                   :desc "Find User Custom File" :g "C" 'crux-find-user-custom-file)
           (:prefix ("x" . "text")
             :desc "Capitalize Region" :g "C" 'crux-capitalize-region
             (:prefix ("l" . "lines")
               :desc "Duplicate Line Or Region" :g "d" 'crux-duplicate-current-line-or-region
               :desc "Duplicate And Comment Line Or Region" :g "D" 'crux-duplicate-and-comment-current-line-or-region)))))
 
+;;;###package
 (use-package! dash-at-point
   :defer t
   :init
@@ -123,6 +140,7 @@
             :desc "Dash @ Point" :g "d" 'dash-at-point
             :desc "Dash @ Point With Docset" :g "D" 'dash-at-point-with-docset))))
 
+;;;###package
 (use-package! helm-dash
   :defer t
   :init (map! (:leader
@@ -130,6 +148,7 @@
                  :desc "Helm Dash @ Point" :g "h" 'helm-dash-at-point
                  :desc "Helm Dash" :g "H" 'helm-dash))))
 
+;;;###package
 (use-package! lorem-ipsum
   :defer t
   :init (map! (:leader
@@ -139,13 +158,15 @@
                     :desc "Sentences" :g "s" 'lorem-ipsum-insert-sentences
                     :desc "List" :g "l" 'lorem-ipsum-insert-list)))))
 
+;;;###package
 (use-package! reveal-in-osx-finder
   :when IS-MAC
   :defer t
   :init (map! (:leader
-                (:prefix ("f" . "files")
-                  :desc "Reveal in Finder" :g "F" 'reveal-in-osx-finder))))
+                (:prefix "f"
+                  :desc "Reveal in Finder" :g "F" #'reveal-in-osx-finder))))
 
+;;;###package
 (use-package! osx-dictionary
   :when IS-MAC
   :init (map! (:leader
@@ -153,6 +174,7 @@
                   (:prefix ("w" . "words")
                     :desc "Search Dictionary" :g "d" 'osx-dictionary-search-word-at-point)))))
 
+;;;###package
 (use-package! string-inflection
   :defer t
   :init (map! (:leader
@@ -165,6 +187,13 @@
                     :desc "Lower Camel Case" :g "c" 'string-inflection-lower-camelcase
                     :desc "Camel Case" :g "C" 'string-inflection-camelcase)))))
 
+;;;###package
+(use-package! alert
+  :defer t
+  :config
+  (if (executable-find "terminal-notifier")
+      (setq alert-default-style 'notifier)
+    (setq alert-default-style 'osx-notifier)))
 
 ;; EXTRAS
 (load! "+bindings")

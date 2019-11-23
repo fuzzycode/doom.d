@@ -6,11 +6,9 @@
 (package! comment-dwim-2)
 (package! ace-isearch)
 (package! smart-backspace)
-(package! proced)
 (package! mwim)
 (package! open-junk-file)
 (package! winum)
-(package! winner)
 (package! deadgrep)
 (package! fill-column-indicator)
 (package! expand-region)
@@ -20,6 +18,7 @@
 (package! helm-dash)
 (package! lorem-ipsum)
 (package! string-inflection)
+(package! alert)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)

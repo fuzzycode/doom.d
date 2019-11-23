@@ -7,24 +7,17 @@
 (setq doom-leader-alt-key "M-<SPC>"
       doom-localleader-alt-key "M-<SPC> m")
 
-(setq eval-expression-print-length nil
-      eval-expression-print-level nil)
-
-(setq bidi-display-reordering nil)
-(setq bidi-paragraph-direction 'left-to-right)
-
-(when IS-MAC
-  (setq mac-option-key-is-meta nil
-        mac-command-key-is-meta t
-        mac-command-modifier 'meta
-        mac-option-modifier 'alt
-        mac-right-command-modifier nil
-        mac-right-option-modifier nil))
-
-
+(load! "+builtin")
 (load! "+core")
 (load! "+elisp")
 (load! "+projectile")
+(load! "+sh")
+(load! "+ui")
+(load! "+helm")
+(load! "+git")
+
+(when IS-MAC
+  (load! "+osx"))
 
 ;; Allow for machine local customizations
 (load! "~/.doom.local.el" "" t)

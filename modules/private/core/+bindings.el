@@ -1,5 +1,13 @@
 
 (map! (:leader
+        (:prefix ("a" . "applications")
+          (:prefix ("s" . "shell")
+            (:when (featurep! :term vterm)
+              :desc "Toggle vterm popup"    "v" #'+vterm/toggle
+              :desc "Open vterm here"       "V" #'+vterm/here)
+            (:when (featurep! :term eshell)
+              :desc "Toggle eshell popup"   "e" #'+eshell/toggle
+              :desc "Open eshell here"      "E" #'+eshell/here)))
         (:prefix ("x" . "text")
           :desc "Count Region" :g "c" 'count-words-region
           :desc "Indent Rigidly" :g "TAB" 'indent-rigidly
@@ -18,9 +26,20 @@
           :desc "Previous Buffer" :g "p" 'previous-buffer
           :desc "Doom Dashboard" :g "d" '+doom-dashboard/open
           :desc "Ibuffer" :g "I" 'ibuffer)
+        (:prefix ("i" . "insert")
+          :desc "Snippet" :g "s" #'yas-insert-snippet)
         (:prefix ("j" . "jump")
-          :desc "Find Function" :g "f" 'find-function
-          :desc "Find Variable" :g "v" 'find-variable)
+          (:prefix ("D" . "doom")
+            :desc "Packages File" :g "p" #'doom/goto-packages-file
+            :desc "Config File" :g "c" #'doom/goto-config-file
+            :desc "Init file" :g "i" #'doom/goto-doomblock))
+        (:prefix "h"
+          :desc "Version" :g "V" #'doom/version
+          (:prefix "d"
+            :desc "Language Environment" :g "L" #'describe-language-environment
+            :desc "Minor Mode(s)" :g "M" #'doom/describe-active-minor-mode
+            :desc "DOOM Packages" :g "P" #'doom/help-packages
+            :desc "DOOM Modules" :g "D" #'doom/help-modules))
         (:prefix ("w" . "windows")
           :desc "Make Frame" :g "F" 'make-frame
           :desc "Other Frame" :g "o" 'other-frame
