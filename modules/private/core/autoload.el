@@ -100,3 +100,8 @@
         (require 'helm)
         (let (helm-ff-newfile-prompt-p)
           (helm-find-files-1 fname))))
+
+;;;###autoload
+(defun +core/browse-junk-files ()
+  (interactive)
+  (dired (concat doom-private-dir "junk/")))

@@ -206,7 +206,8 @@
   :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
   (map! (:leader
           (:prefix "f"
-            :desc "Open Junk File" :g "J" #'+core/open-junk-file))))
+            :desc "Browse Junk Files" :g "J" #'+core/browse-junk-files
+            :desc "Open Junk File" :g "j" #'+core/open-junk-file))))
 
 ;;;###package
 (use-package! key-chord
