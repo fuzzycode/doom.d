@@ -18,6 +18,7 @@
 (package! idle-org-agenda)
 (package! org-projectile)
 (package! org-super-agenda)
+(package! org-sticky-header)
 
 ;;ELISP
 (package! elisp-format)

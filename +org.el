@@ -149,3 +149,7 @@
           (:name "Todo" :todo "TODO" :order 7)
           (:name "In Progress" :todo "IN-PROGRESS" :order 6)
           (:name "Due today" :deadline today :order 1))))
+
+;;;###package
+(use-package! org-sticky-header
+  :hook org-mode)
