@@ -20,6 +20,7 @@
 (package! string-inflection)
 (package! alert)
 (package! pandoc-mode)
+(package! key-chord)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)

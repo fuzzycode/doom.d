@@ -208,5 +208,13 @@
           (:prefix "f"
             :desc "Open Junk File" :g "J" #'+core/open-junk-file))))
 
+;;;###package
+(use-package! key-chord
+  :defer 2
+  :init
+  (key-chord-define-global "uu" #'undo-tree-undo)
+  (key-chord-define-global "jj" #'avy-goto-word-or-subword-1)
+  (key-chord-define-global "kk" #'just-one-space)
+  :config (shut-up (key-chord-mode +1)))
 ;; EXTRAS
 (load! "+bindings")
