@@ -18,3 +18,8 @@
 
 (after! tabulated-list
   (define-key tabulated-list-mode-map "q" #'quit-window))
+
+(setq x-stretch-cursor t)
+
+(setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB"))
+(setq ispell-dictionary "english")

@@ -1,3 +1,4 @@
+;; DOOM Settings
 (setq user-full-name "Björnf Larsson"
       user-mail-address "develop@bjornlarsson.net")
 
@@ -7,6 +8,9 @@
 (setq doom-leader-alt-key "M-<SPC>"
       doom-localleader-alt-key "M-<SPC> m")
 
+(map! (:leader (:prefix ("m" . "Mode Leader"))))
+
+;; Load Specific files
 (load! "+builtin")
 (load! "+core")
 (load! "+elisp")
@@ -15,6 +19,8 @@
 (load! "+ui")
 (load! "+helm")
 (load! "+git")
+(load! "+org")
+(load! "+lsp")
 
 (when IS-MAC
   (load! "+osx"))

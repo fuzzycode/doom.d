@@ -9,4 +9,6 @@
           :desc "Configure" :g "C" 'projectile-configure-project
           :desc "Dired" :g "d" 'projectile-dired
           :desc "Kill Buffers" :g "k" 'projectile-kill-buffers
-          :desc "Test Project" :g "t" 'projectile-test-project))))
+          :desc "Test Project" :g "t" 'projectile-test-project
+          :desc "Find file in other project" :g "O" #'doom/find-file-in-other-project
+          :desc "Project Scratch Buffer" :g "x" #'doom/open-project-scratch-buffer))))

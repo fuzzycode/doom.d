@@ -71,3 +71,32 @@
   "Switch to the `*Messages*' buffer. Create it first if needed."
   (interactive)
   (switch-to-buffer (get-buffer-create "*Messages*")))
+
+;;;###autoload
+(defun +core/uniquify-lines-buffer ()
+  "Uniwuify lines in whole buffer"
+  (interactive)
+  (save-excursion
+    (set-mark (point-min))
+    (goto-char (point-max))
+    (activate-mark)
+    (delete-duplicate-lines)))
+
+;;;###autoload
+(defun +core/uniquify-lines-dwim ()
+  "Uniquify lines in region if active and in buffer if not."
+  (interactive)
+  (if (region-active-p)
+      (delete-duplicate-lines)
+    (+core/uniquify-lines-buffer)))
+
+;;;###autoload
+(defun +core/open-junk-file ()
+      (interactive)
+      (let* ((fname (format-time-string open-junk-file-format (current-time)))
+             (junk-dir (file-name-directory fname))
+             (default-directory junk-dir))
+
+        (require 'helm)
+        (let (helm-ff-newfile-prompt-p)
+          (helm-find-files-1 fname))))

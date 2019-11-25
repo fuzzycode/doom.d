@@ -8,3 +8,8 @@
 
   (forward-char)
   (re-search-forward "^$"))
+
+;;;###autoload
+(add-hook 'find-file-hook (lambda ()
+                             (when (string-suffix-p "COMMIT_EDITMSG" buffer-file-name)
+                               (+magit/goto-first-empty-line t))))

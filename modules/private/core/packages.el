@@ -19,6 +19,7 @@
 (package! lorem-ipsum)
 (package! string-inflection)
 (package! alert)
+(package! pandoc-mode)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)

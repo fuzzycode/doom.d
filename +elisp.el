@@ -1,11 +1,4 @@
 
-(map! (:localleader
-        :map emacs-lisp-mode-map
-        (:prefix ("=" . "format")
-          :desc "Indent Region or Buffer" :g "=" '+elisp/indent-region-or-buffer
-          :desc "Indent Region" :g "r" 'indent-region
-          :desc "Indent Buffer" :g "b" '+elisp/indent-buffer)))
-
 (map! :localleader
         :map emacs-lisp-mode-map
         :desc "Expand macro" "m" #'macrostep-expand
@@ -22,3 +15,12 @@
           :desc "Find Function" "f" #'find-function
           :desc "Find Variable" "v" #'find-variable
           :desc "Find Library" "l" #'find-library))
+
+(use-package! elisp-format
+  :defer t
+  :init (map! (:localleader
+                :map emacs-lisp-mode-map
+                (:prefix ("=" . "format")
+                  :desc "Format Region or Buffer" :g "=" #'+elisp/format-region-or-buffer
+                  :desc "Format Region" :g "r" #'elisp-format-region
+                  :desc "Format Buffer" :g "b" #'elisp-format-buffer))))

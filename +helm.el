@@ -10,27 +10,30 @@
                  :desc "Switch Project" :g "p" #'helm-projectile-switch-project
                  :desc "Switch Buffer" :g "b" #'helm-projectile-switch-to-buffer)))
 
-(map! (:after helm
-        (:leader
-          :desc "M-X" :g "<SPC>" #'helm-M-x
-          (:prefix ("h" . "help")
-            :desc "Apropos" :g "a" #'helm-apropos
-            :desc "Info at Point" :g "i" #'helm-info-at-point
-            :desc "Man/Woman" :g "m" #'helm-man-woman
-            (:prefix ("d" . "describe")
-              :desc "Function" :g "f" #'describe-function
-              :desc "Key" :g "k" #'describe-key
-              :desc "Mode" :g "m" #'describe-mode
-              :desc "Package" :g "p" #'describe-package
-              :desc "Theme" :g "t" #'describe-theme
-              :desc "Variable" :g "v" #'describe-variable))
-          (:prefix ("f" . "files")
-            :desc "Find File" :g "f" #'helm-find-files-1
-            :desc "Find Files" :g "F" #'helm-find-files
-            :desc "Locate" :g "l" #'helm-locate
-            :desc "Recent Files" :g "r" #'helm-recentf)
-          (:prefix ("i" . "insert")
-            :desc "Unicode Char" :g "U" #'helm-ucs))))
+(map! (:leader
+        :desc "M-X" :g "<SPC>" #'helm-M-x
+        :desc "M-X" :g "M-<SPC>" #'helm-M-x
+        (:prefix ("h" . "help")
+          :desc "Apropos" :g "a" #'helm-apropos
+          :desc "Info at Point" :g "i" #'helm-info-at-point
+          :desc "Man/Woman" :g "m" #'helm-man-woman
+          (:prefix ("d" . "describe")
+            :desc "Function" :g "f" #'describe-function
+            :desc "Key" :g "k" #'describe-key
+            :desc "Mode" :g "m" #'describe-mode
+            :desc "Package" :g "p" #'describe-package
+            :desc "Theme" :g "t" #'describe-theme
+            :desc "Variable" :g "v" #'describe-variable))
+        (:prefix ("f" . "files")
+          :desc "Find File" :g "f" #'helm-find-files-1
+          :desc "Find Files" :g "F" #'helm-find-files
+          :desc "Locate" :g "l" #'helm-locate
+          :desc "Recent Files" :g "r" #'helm-recentf)
+        (:prefix ("r" . "resume/registers")
+          :desc "Resume Search" :g "l" #'helm-resume
+          :desc "Registers" :g "r" #'helm-register)
+        (:prefix ("i" . "insert")
+          :desc "Unicode Char" :g "U" #'helm-ucs)))
 
 (map! (:after helm
         :map helm-find-files-map
@@ -44,7 +47,9 @@
 
 
 (after! helm
-  (setq helm-prevent-escaping-from-minibuffer t
+  (setq helm-buffer-max-length 45
+        helm-candidate-number-limit 100
+        helm-prevent-escaping-from-minibuffer t
         helm-move-to-line-cycle-in-source     t
         helm-bookmark-show-location t
         helm-display-header-line nil
@@ -53,6 +58,7 @@
         helm-echo-input-in-header-line t
         helm-imenu-execute-action-at-once-if-one nil
         helm-org-format-outline-path t
+        helm-move-to-line-cycle-in-source nil
         helm-ff-lynx-style-map nil))
 
 ;; Packages

@@ -18,39 +18,42 @@
         magit-process-finish-apply-ansi-colors t
         transient-enable-popup-navigation t))
 
-(map! (:after magit
-        (:leader
-          (:prefix ("g" . "git")
-            :desc "Magit Status" :g "s" #'magit-status
-            :desc "Magit Dispatch" :g "m" #'magit-dispatch
-            :desc "Forge Dispatch" :g "F" #'forge-dispatch
-            :desc "Log File" :g "l" #'magit-log-buffer-file
-            :desc "Stage File" :g "S" #'magit-stage-file
-            :desc "Unstage File" :g "U" #'magit-unstage-file
-            (:prefix ("b" . "browse")
-              (:when (featurep! :emacs vc)
-                :desc "Browse region or line" :g "." #'+vc/git-browse-region-or-line)
-              :desc "Browse remote" :g "r" #'forge-browse-remote
-              :desc "Browse commit" :g "c" #'forge-browse-commit
-              :desc "Browse an issue" :g "i" #'forge-browse-issue
-              :desc "Browse a pull request" :g "p" #'forge-browse-pullreq
-              :desc "Browse issues" :g "I" #'forge-browse-issues
-              :desc "Browse pull requests" :g "P" #'forge-browse-pullreqs)
-            (:prefix ("c" . "create")
-              :desc "Initialize repo" :g "r"   #'magit-init
-              :desc "Clone repo" :g "R" #'magit-clone
-              :desc "Commit" :g "c" #'magit-commit-create
-              :desc "Fixup" :g "f" #'magit-commit-fixup
-              :desc "Issue" :g "i" #'forge-create-issue
-              :desc "Pull request" :g "p" #'forge-create-pullreq)
-            (:prefix ("L" . "list")
-              (:when (featurep! :tools gist)
-                :desc "List gists" :g "g" #'+gist:list)
-              :desc "List repositories" :g "r" #'magit-list-repositories
-              :desc "List submodules" :g "s" #'magit-list-submodules
-              :desc "List issues":g "i" #'forge-list-issues
-              :desc "List pull requests" :g "p" #'forge-list-pullreqs
-              :desc "List notifications" :g "n" #'forge-list-notifications)))))
+(map! (:leader
+        (:prefix ("g" . "git")
+          :desc "Magit Status" :g "s" #'magit-status
+          :desc "Magit Dispatch" :g "m" #'magit-dispatch
+          :desc "Forge Dispatch" :g "F" #'forge-dispatch
+          :desc "Log File" :g "l" #'magit-log-buffer-file
+          :desc "Stage File" :g "S" #'magit-stage-file
+          :desc "Unstage File" :g "U" #'magit-unstage-file
+          :desc "Time Machine" :g "T" #'+magit/timemachine-hydra/body
+          :desc "Git Blame" :g "B" #'+magit/blame-hydra/body
+          :desc "Magit Refresh" :g "r" #'magit-refresh
+          :desc "Magit Refresh All" :g "R" #'magit-refresh-all
+          (:prefix ("b" . "browse")
+            (:when (featurep! :emacs vc)
+              :desc "Browse region or line" :g "." #'+vc/git-browse-region-or-line)
+            :desc "Browse remote" :g "r" #'forge-browse-remote
+            :desc "Browse commit" :g "c" #'forge-browse-commit
+            :desc "Browse an issue" :g "i" #'forge-browse-issue
+            :desc "Browse a pull request" :g "p" #'forge-browse-pullreq
+            :desc "Browse issues" :g "I" #'forge-browse-issues
+            :desc "Browse pull requests" :g "P" #'forge-browse-pullreqs)
+          (:prefix ("c" . "create")
+            :desc "Initialize repo" :g "r"   #'magit-init
+            :desc "Clone repo" :g "R" #'magit-clone
+            :desc "Commit" :g "c" #'magit-commit-create
+            :desc "Fixup" :g "f" #'magit-commit-fixup
+            :desc "Issue" :g "i" #'forge-create-issue
+            :desc "Pull request" :g "p" #'forge-create-pullreq)
+          (:prefix ("L" . "list")
+            (:when (featurep! :tools gist)
+              :desc "List gists" :g "g" #'+gist:list)
+            :desc "List repositories" :g "r" #'magit-list-repositories
+            :desc "List submodules" :g "s" #'magit-list-submodules
+            :desc "List issues":g "i" #'forge-list-issues
+            :desc "List pull requests" :g "p" #'forge-list-pullreqs
+            :desc "List notifications" :g "n" #'forge-list-notifications))))
 
 (map! :map git-commit-mode-map
       [tab] #'+magit/goto-first-empty-line)
@@ -64,8 +67,6 @@
 (after! gitignore
   (add-to-list 'auto-mode-alist '("\.?gitignore$" . gitignore-mode)))
 
-(add-hook! git-commit-mode (lambda ()
-                             (+magit/goto-first-empty-line t)))
 
 ;;;###package
 (use-package! gitattributes-mode)

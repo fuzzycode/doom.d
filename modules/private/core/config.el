@@ -195,5 +195,18 @@
       (setq alert-default-style 'notifier)
     (setq alert-default-style 'osx-notifier)))
 
+;;;###package
+(use-package! pandoc-mode
+  :defer t)
+
+;;;###package
+(use-package! open-junk-file
+  :defer t
+  :commands (open-junk-file)
+  :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
+  (map! (:leader
+          (:prefix "f"
+            :desc "Open Junk File" :g "J" #'+core/open-junk-file))))
+
 ;; EXTRAS
 (load! "+bindings")
