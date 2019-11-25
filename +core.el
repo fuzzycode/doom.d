@@ -31,3 +31,5 @@
           :desc "Restart Emacs"                "R" #'doom/restart)))
 
 (setq which-key-sort-order 'which-key-key-order-alpha)
+
+(global-set-key (kbd "C-c u") 'undo)
