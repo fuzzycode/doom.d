@@ -11,6 +11,7 @@
 (package! git-messenger)
 (package! magit-todos)
 (package! rigid-tabs)
+(package! git-walktree)
 
 ;;ORG
 (package! demo-it)

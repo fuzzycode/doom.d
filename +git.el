@@ -82,3 +82,10 @@
   :init (map! (:leader (:prefix "g" :desc "Git Messenger" :g "M" 'git-messenger:popup-message)))
   :bind (:map git-messenger-map
           ([escape] . git-messenger:popup-close)))
+
+;;;###package
+(use-package! git-walktree
+  :defer t
+  :init (map! (:leader
+                (:prefix ("g" . "git")
+                  :desc "Walk Tree" :g "w" #'git-walktree))))
