@@ -216,5 +216,13 @@
   (key-chord-define-global "jj" #'avy-goto-word-or-subword-1)
   (key-chord-define-global "kk" #'just-one-space)
   :config (shut-up (key-chord-mode +1)))
+
+;;;###package
+(use-package! avy
+  :init (map! (:leader
+                (:prefix ("j" . "jump")
+                  :desc "Jump to Word" :g "j" #'avy-goto-word-or-subword-1
+                  :desc "Jump to Line" :g "l" #'avy-goto-line))))
+
 ;; EXTRAS
 (load! "+bindings")

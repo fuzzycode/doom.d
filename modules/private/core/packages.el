@@ -21,6 +21,7 @@
 (package! alert)
 (package! pandoc-mode)
 (package! key-chord)
+(package! avy)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)
