@@ -22,6 +22,7 @@
 (package! pandoc-mode)
 (package! key-chord)
 (package! avy)
+(package! goto-last-change)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)

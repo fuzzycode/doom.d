@@ -221,9 +221,16 @@
 ;;;###package
 (use-package! avy
   :init (map! (:leader
-                (:prefix ("j" . "jump")
+                (:prefix ("j" . "jump/join")
                   :desc "Jump to Word" :g "j" #'avy-goto-word-or-subword-1
                   :desc "Jump to Line" :g "l" #'avy-goto-line))))
+
+;;;###package
+(use-package! goto-last-change
+  :defer t
+  :commands goto-last-change
+  :init (map! (:leader (:prefix ("j" "jump/join")
+                         :desc "Goto Last Change" :g "c" #'goto-last-change))))
 
 ;; EXTRAS
 (load! "+bindings")
