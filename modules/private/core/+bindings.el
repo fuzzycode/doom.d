@@ -21,6 +21,7 @@
         (:prefix ("l" . "lines")
           :desc "Uniquify Lines" :g "u" #'+core/uniquify-lines-dwim)
         (:prefix ("b" . "buffer")
+          :desc "Save" :g "s" #'save-buffer
           :desc "Scratch Buffer" :g "S" '+core/switch-to-scratch-buffer
           :desc "Messages Buffer" :g "M" '+core/switch-to-message-buffer
           :desc "New Buffer" :g "N" '+core/new-empty-buffer
@@ -30,11 +31,14 @@
           :desc "Next Buffer" :g "n" 'next-buffer
           :desc "Previous Buffer" :g "p" 'previous-buffer
           :desc "Doom Dashboard" :g "d" '+doom-dashboard/open
-          :desc "Ibuffer" :g "I" 'ibuffer)
+          :desc "Ibuffer" :g "I" 'ibuffer
+          :desc "Kill Buffer and Window" :g "x" #'kill-buffer-and-window
+          :desc "Kill Matching Buffers" :g "C-d" #'kill-matching-buffers)
         (:prefix ("i" . "insert")
           :desc "Snippet" :g "s" #'yas-insert-snippet)
-        (:prefix ("j" . "jump")
-          :desc "Imenu" :g "i" #'imenu)
+        (:prefix ("j" . "jump/join")
+          :desc "Open Line" :g "o" #'open-line
+          :desc "New Line" :g "n" #'sp-newline)
         (:prefix ("f" . "file")
           (:prefix ("D" . "doom")
             :desc "Packages File" :g "p" #'doom/goto-packages-file
@@ -43,6 +47,8 @@
             :desc "User Config" :g "c" #'doom/open-private-config))
         (:prefix "h"
           :desc "Version" :g "V" #'doom/version
+          (:prefix ("t" . "tutorials")
+            :desc "Emacs Tutorial" :g "e" #'help-with-tutorial)
           (:prefix "d"
             :desc "Language Environment" :g "L" #'describe-language-environment
             :desc "Minor Mode(s)" :g "M" #'doom/describe-active-minor-mode

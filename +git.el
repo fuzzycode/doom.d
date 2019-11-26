@@ -46,6 +46,17 @@
             :desc "Fixup" :g "f" #'magit-commit-fixup
             :desc "Issue" :g "i" #'forge-create-issue
             :desc "Pull request" :g "p" #'forge-create-pullreq)
+          (:when (featurep! :tools gist)
+            (:prefix ("g" . "gist")
+              :desc "Gist Buffer" :g "b" #'gist-buffer
+              :desc "Gist Buffer (private)" :g "B" #'gist-buffer-private
+              :desc "Gist Region" :g "r" #'gist-region
+              :desc "Gist Region (private)" :g "R" #'gist-region-private
+              :desc "Gist dwim" :g "d" #'gist-region-or-buffer
+              :desc "Gist dwim (private)" :g "D" #'gist-region-or-buffer-private))
+          (:prefix ("n" . "link")
+            :desc "Git Link" :g "l" #'git-link
+            :desc "Git Link Commit" :g "c" #'git-link-commit)
           (:prefix ("L" . "list")
             (:when (featurep! :tools gist)
               :desc "List gists" :g "g" #'+gist:list)

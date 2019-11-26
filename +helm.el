@@ -24,6 +24,8 @@
             :desc "Package" :g "p" #'describe-package
             :desc "Theme" :g "t" #'describe-theme
             :desc "Variable" :g "v" #'describe-variable))
+        (:prefix ("b" "buffer")
+          :desc "Buffer List" :g "b" #'helm-buffer-list)
         (:prefix ("f" . "files")
           :desc "Find File" :g "f" #'helm-find-files-1
           :desc "Find Files" :g "F" #'helm-find-files
@@ -33,7 +35,10 @@
           :desc "Resume Search" :g "l" #'helm-resume
           :desc "Registers" :g "r" #'helm-register)
         (:prefix ("i" . "insert")
-          :desc "Unicode Char" :g "U" #'helm-ucs)))
+          :desc "Unicode Char" :g "U" #'helm-ucs)
+        (:prefix ("j" "jump/join")
+          :desc "Imenu" :g "i" #'helm-imenu
+          :desc "Imenu all Buffers" :g "I" #'helm-imenu-in-all-buffers)))
 
 (map! (:after helm
         :map helm-find-files-map
