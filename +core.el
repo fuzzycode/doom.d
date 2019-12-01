@@ -2,6 +2,13 @@
 (map! (:leader
         :desc "Shell Command" :g "!" 'shell-command
         :desc "Eval" :g ":" 'eval-expression
+        (:when (featurep! :tools ein)
+          (:prefix ("a" . "applications")
+            (:prefix ("y" . "jupyter notebooks")
+              :desc "Login" :g "l" #'ein:notebooklist-login
+              :desc "Open" :g "o" #'ein:notebooklist-open
+              :desc "Run" :g "r" #'ein:run
+              :desc "Stop" :g "s" #'ein:stop)))
         (:prefix ("S" . "spelling")
             (:when (featurep! :tools flyspell)
               :desc "Correct previous word" :g "c" #'flyspell-correct-previous-word-generic
