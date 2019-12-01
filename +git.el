@@ -23,13 +23,16 @@
           :desc "Magit Status" :g "s" #'magit-status
           :desc "Magit Dispatch" :g "m" #'magit-dispatch
           :desc "Forge Dispatch" :g "F" #'forge-dispatch
-          :desc "Log File" :g "l" #'magit-log-buffer-file
           :desc "Stage File" :g "S" #'magit-stage-file
           :desc "Unstage File" :g "U" #'magit-unstage-file
           :desc "Time Machine" :g "T" #'+magit/timemachine-hydra/body
           :desc "Git Blame" :g "B" #'+magit/blame-hydra/body
           :desc "Magit Refresh" :g "r" #'magit-refresh
           :desc "Magit Refresh All" :g "R" #'magit-refresh-all
+          (:prefix ("f" . "file")
+            :desc "Log File" :g "l" #'magit-log-buffer-file
+            :desc "Diff" :g "d" #'magit-diff
+            :desc "Magit Find File" :g "f" #'magit-find-file)
           (:prefix ("b" . "browse")
             (:when (featurep! :emacs vc)
               :desc "Browse region or line" :g "." #'+vc/git-browse-region-or-line)
@@ -54,7 +57,7 @@
               :desc "Gist Region (private)" :g "R" #'gist-region-private
               :desc "Gist dwim" :g "d" #'gist-region-or-buffer
               :desc "Gist dwim (private)" :g "D" #'gist-region-or-buffer-private))
-          (:prefix ("n" . "link")
+          (:prefix ("l" . "link")
             :desc "Git Link" :g "l" #'git-link
             :desc "Git Link Commit" :g "c" #'git-link-commit)
           (:prefix ("L" . "list")
