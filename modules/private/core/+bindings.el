@@ -35,10 +35,12 @@
           :desc "Kill Buffer and Window" :g "x" #'kill-buffer-and-window
           :desc "Kill Matching Buffers" :g "C-d" #'kill-matching-buffers)
         (:prefix ("i" . "insert")
-          :desc "Snippet" :g "s" #'yas-insert-snippet)
+          :desc "Insert Snippet" :g "s" #'yas-insert-snippet
+          :desc "Insert Buffer" :g "b" #'insert-buffer)
         (:prefix ("j" . "jump/join")
           :desc "Open Line" :g "o" #'open-line
-          :desc "New Line" :g "n" #'sp-newline)
+          :desc "New Line" :g "n" #'sp-newline
+          :desc "Deer" :g "d" #'deer)
         (:prefix ("f" . "file")
           (:prefix ("D" . "doom")
             :desc "Packages File" :g "p" #'doom/goto-packages-file
@@ -65,4 +67,86 @@
           :desc "Split Window Right & Focus" :g "V" 'split-window-right-and-focus
           :desc "Split Window Below" :g "s" 'split-window-below
           :desc "Split Window Below & Focus" :g "S" 'split-window-below-and-focus
-          :desc "Balance Windows" :g "=" 'balance-windows)))
+          :desc "Balance Windows" :g "=" 'balance-windows)
+        (:prefix ("K" . "keyboard macros")
+          :desc "Start or Insert Counter" :g "(" #'kmacro-start-macro-or-insert-counter
+          :desc "End or Call Macro" :g ")" #'kmacro-end-or-call-macro-repeat
+          :desc "Add Counter" :g "a" #'kmacro-add-counter
+          :desc "Bind to Key" :g "b" #'kmacro-bind-to-key
+          :desc "Call Macro" :g "c" #'kmacro-call-macro
+          :desc "Delete Ring Head" :g "d" #'kmacro-delete-ring-head
+          :desc "Insert Counter" :g "i" #'kmacro-insert-counter
+          :desc "End Call Mouse" :g "m" #'kmacro-end-call-mouse
+          :desc "Cycle Ring Next" :g "n" #'kmacro-cycle-ring-next
+          :desc "Name Last Macro" :g "N" #'kmacro-name-last-macro
+          :desc "Cycle Ring Previous" :g "p" #'kmacro-cycle-ring-previous
+          :desc "View Macro" :g "v" #'kmacro-view-macro
+          :desc "View Macro Repeat" :g "V" #'kmacro-view-macro-repeat
+          :desc "Macro to Register" :g "w" #'kmacro-to-register
+          :desc "Jump to Register" :g "y" #'jump-to-register
+          (:prefix ("2" . "2nd")
+            :desc "Call Ring 2nd" :g "c" #'kmacro-call-ring-2nd
+            :desc "Call Ring 2nd Repeat" :g "C" #'kmacro-call-ring-2nd-repeat
+            :desc "View Ring 2nd" :g "v" #'kmacro-view-ring-2nd)
+          (:prefix ("e" . "edit")
+            :desc "Edit Lossage" :g "l" #'kmacro-edit-lossage
+            :desc "Edit Macro" :g "m" #'kmacro-edit-macro
+            :desc "Edit Macro Repeat" :g "r" #'kmacro-edit-macro-repeat
+            :desc "Step Edit Macro" :g "t" #'kmacro-step-edit-macro)
+          (:prefix ("s" . "set")
+            :desc "Set Counter" :g "c" #'kmacro-set-counter
+            :desc "Set Format" :g "f" #'kmacro-set-format
+            :desc "Swap Ring" :g "r" #'kmacro-swap-ring))
+        (:prefix ("R" . "rectangles")
+          :desc "Clear Rectangle" :g "!" #'clear-rectangle
+          :desc "Close Rectangle" :g "c" #'close-rectangle
+          :desc "Delete Rectangle" :g "d" #'delete-rectangle
+          :desc "Exchange Point & Mark" :g "e" #'rectangle-exchange-point-and-mark
+          :desc "Copy To Register" :g "i" #'copy-rectangle-to-register
+          :desc "Kill Rectangle" :g "k" #'kill-rectangle
+          :desc "Left Char" :g "l" #'rectangle-left-char
+          :desc "Mark Mode" :g "m" #'rectangle-mark-mode
+          :desc "Next Line" :g "n" #'rectangle-next-line
+          :desc "Number Lines" :g "N" #'rectangle-number-lines
+          :desc "Open Rectangle" :g "o" #'open-rectangle
+          :desc "Previous Line" :g "p" #'rectangle-previous-line
+          :desc "Right Char" :g "r" #'rectangle-right-char
+          :desc "String Rectangle" :g "s" #'string-rectangle
+          :desc "Transpose Regions" :g "t" #'transpose-regions
+          :desc "Yank Rectangle" :g "y" #'yank-rectangle)
+        (:prefix ("E" . "ediff")
+          (:prefix ("b" . "buffers")
+            :desc "Buffers 3 Way" :g "3" #'ediff-buffers3
+            :desc "Buffers" :g "b" #'ediff-buffers
+            :desc "Patch Buffer" :g "p" #'ediff-patch-buffer)
+          (:prefix ("d" . "directories")
+            :desc "Directories 3 Way" :g "3" #'ediff-directories3
+            :desc "Directories" :g "d" #'ediff-directories
+            :desc "Directory Revisions" :g "r" #'ediff-directory-revisions)
+          (:prefix ("f" . "files")
+            :desc "File 3 Way" :g "3" #'ediff-files3
+            :desc "Files" :g "f" #'ediff-files
+            :desc "Patch File" :g "p" #'ediff-patch-file)
+          (:prefix ("m" . "merge")
+            (:prefix ("b" . "buffers")
+              :desc "Merge Buffers with Ancestor" :g "3" #'ediff-merge-buffers-with-ancestor
+              :desc "Merge Buffers" :g "b" #'ediff-merge-buffers)
+            (:prefix ("d" . "directories")
+              :desc "Merge Directories With Ancestor" :g "3" #'ediff-merge-directories-with-ancestor
+              :desc "Merge Directories" :g "d" #'ediff-merge-directories)
+            (:prefix ("f" . "files")
+              :desc "Merge Files With Ancestor" :g "3" #'ediff-merge-files-with-ancestor
+              :desc "Merge Files" :g "" #'ediff-merge-files)
+            (:prefix ("r" . "revisions")
+              :desc "Merge Revisions With Ancestor" :g "3" #'ediff-merge-revisions-with-ancestor
+              :desc "Merge Revisions" :g "r" #'ediff-merge-revisions))
+          (:prefix ("r" . "regions")
+            :desc "Diff Regions Linewise" :g "l" #'ediff-regions-linewise
+            :desc "Diff Regions Wordwise" :g "w" #'ediff-regions-wordwise)
+          (:prefix ("w" . "windows")
+            :desc "Diff Windows Linewise" :g "l" #'ediff-windows-linewise
+            :desc "Diff Windows Wordwise" :g "w" #'ediff-windows-wordwise)
+          :desc "Backup" :g "B" #'ediff-backup
+          :desc "Documentation" :g "h" #'ediff-documentation
+          :desc "Show Registry" :g "s" #'ediff-show-registry
+          :desc "Revisions" :g "r" #'ediff-revision)))
