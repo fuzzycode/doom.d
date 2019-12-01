@@ -21,6 +21,7 @@
 (load! "+git")
 (load! "+org")
 (load! "+lsp")
+(load! "+cc")
 
 (when IS-MAC
   (load! "+osx"))
