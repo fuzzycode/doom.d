@@ -1,5 +1,5 @@
 ;; DOOM Settings
-(setq user-full-name "Björnf Larsson"
+(setq user-full-name "Björn Larsson"
       user-mail-address "develop@bjornlarsson.net")
 
 (setq doom-font (font-spec :family "Inconsolata" :size 16)
