@@ -1,5 +1,5 @@
 (map! (:localleader
-        :mode cpp-mode
+        :mode (c++-mode python-mode)
         (:prefix ("d" . "debug")
           :desc "DAP REPL" :g "'" #'dap-ui-repl
           :desc "DAP Hydra" :g "." #'dap-hydra
@@ -39,5 +39,12 @@
             :desc "Breakpoints" :g "b" #'dap-ui-breakpoints
             :desc "Locals" :g "l" #'dap-ui-locals
             :desc "Go to Output Buffer" :g "o" #'dap-go-to-output-buffer
-            :desc "Sessions" :g "s" #'dap-ui-sessions)
-          )))
+            :desc "Sessions" :g "s" #'dap-ui-sessions))))
+
+(map! (:localleader
+        :mode 'lsp-mode
+        (:prefix ("=" . "format")
+          :desc "Format Buffer" :g "b" #'lsp-format-buffer
+          :desc "Format Region" :g "r" #'lsp-format-region)
+        (:prefix ("r" . "refactor")
+          :desc "Rename" :g "r" #'lsp-rename)))
