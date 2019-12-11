@@ -152,4 +152,9 @@
 
 ;;;###package
 (use-package! org-sticky-header
+  :disabled t
   :hook org-mode)
+
+;;;###package
+(use-package! org-bullets
+  :hook (org-mode . org-bullets-mode))

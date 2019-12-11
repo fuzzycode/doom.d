@@ -19,6 +19,7 @@
 (package! org-projectile)
 (package! org-super-agenda)
 (package! org-sticky-header)
+(package! org-bullets)
 
 ;;ELISP
 (package! elisp-format)
