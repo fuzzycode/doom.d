@@ -42,9 +42,13 @@
             :desc "Sessions" :g "s" #'dap-ui-sessions))))
 
 (map! (:localleader
-        :mode 'lsp-mode
+        :mode (c++-mode python-mode)
         (:prefix ("=" . "format")
+          :desc "Format Dwim" :g "=" #'+lsp/lsp-format-region-or-buffer
           :desc "Format Buffer" :g "b" #'lsp-format-buffer
           :desc "Format Region" :g "r" #'lsp-format-region)
         (:prefix ("r" . "refactor")
           :desc "Rename" :g "r" #'lsp-rename)))
+
+(after! lsp-mode
+  (define-key lsp-mode-map (kbd "<A-return>") #'lsp-execute-code-action))
