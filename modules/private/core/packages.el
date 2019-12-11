@@ -1,3 +1,5 @@
+;; -*- no-byte-compile: t; -*-
+
 (package! paradox)
 (package! beginend)
 (package! visual-regexp-steroids)
@@ -23,6 +25,8 @@
 (package! key-chord)
 (package! avy)
 (package! goto-last-change)
+(package! use-package-chords)
+(package! buffer-flip)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)

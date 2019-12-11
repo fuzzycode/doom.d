@@ -1,5 +1,8 @@
 
 ;;;###package
+(use-package! use-package-chords)
+
+;;;###package
 (use-package! paradox
   :defer t
   :init (map! (:leader (:prefix "a"
@@ -214,12 +217,13 @@
   :defer 2
   :init
   (key-chord-define-global "uu" #'undo-tree-undo)
-  (key-chord-define-global "jj" #'avy-goto-word-or-subword-1)
+  ;; (key-chord-define-global "jj" #'avy-goto-word-or-subword-1)
   (key-chord-define-global "kk" #'just-one-space)
   :config (shut-up (key-chord-mode +1)))
 
 ;;;###package
 (use-package! avy
+  :chords ("jj" . #'avy-goto-word-or-subword-1)
   :init (map! (:leader
                 (:prefix ("j" . "jump/join")
                   :desc "Jump to Word" :g "j" #'avy-goto-word-or-subword-1
@@ -231,6 +235,14 @@
   :commands goto-last-change
   :init (map! (:leader (:prefix ("j" "jump/join")
                          :desc "Goto Last Change" :g "c" #'goto-last-change))))
+
+;;;###package
+(use-package! buffer-flip
+  :chords (("u8" . buffer-flip))
+  :bind  (:map buffer-flip-map
+           ( "8" .   buffer-flip-forward)
+           ( "*" .   buffer-flip-backward)
+           ( "C-g" . buffer-flip-abort)))
 
 ;; EXTRAS
 (load! "+bindings")
