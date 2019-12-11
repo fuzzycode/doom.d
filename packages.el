@@ -25,3 +25,6 @@
 
 ;; CPP MODE
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
+
+;; SHELL SCRIPT
+;(package! sh-script :built-in)
