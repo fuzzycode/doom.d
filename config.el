@@ -22,6 +22,7 @@
 (load! "+org")
 (load! "+lsp")
 (load! "+cc")
+(load! "+python")
 
 (when IS-MAC
   (load! "+osx"))
