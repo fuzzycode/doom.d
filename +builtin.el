@@ -2,9 +2,6 @@
 (setq eval-expression-print-length nil
       eval-expression-print-level nil)
 
-(setq bidi-display-reordering nil)
-(setq bidi-paragraph-direction 'left-to-right)
-
 (setq ibuffer-formats '((mark modified read-only locked " "
                               (name 35 35 :left :elide)
                               " "
@@ -19,7 +16,8 @@
 (after! tabulated-list
   (define-key tabulated-list-mode-map "q" #'quit-window))
 
-(setq x-stretch-cursor t)
+(setq x-stretch-cursor t
+      ns-pop-up-frames nil)
 
 (setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB"))
 (setq ispell-dictionary "english")
