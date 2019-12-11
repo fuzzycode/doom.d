@@ -158,7 +158,7 @@
 
        :private
        core
-       yaml
+       (yaml +lsp)
        json
        cmake
        )
