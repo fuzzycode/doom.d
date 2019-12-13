@@ -1,4 +1,5 @@
 
+
 ;;;###package
 (use-package! use-package-chords)
 
@@ -246,3 +247,4 @@
 
 ;; EXTRAS
 (load! "+bindings")
+(load! "+popups")
