@@ -1,4 +1,4 @@
-
+;;; ~/.doom.d/modules/private/core/config.el -*- lexical-binding: t; -*-
 
 ;;;###package
 (use-package! use-package-chords)
@@ -218,7 +218,6 @@
   :defer 2
   :init
   (key-chord-define-global "uu" #'undo-tree-undo)
-  ;; (key-chord-define-global "jj" #'avy-goto-word-or-subword-1)
   (key-chord-define-global "kk" #'just-one-space)
   :config (shut-up (key-chord-mode +1)))
 
