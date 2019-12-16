@@ -27,6 +27,7 @@
 (package! goto-last-change)
 (package! use-package-chords)
 (package! buffer-flip)
+(package! alert)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)
