@@ -18,6 +18,8 @@
             :desc "Chars" :g "c" 'transpose-chars
             :desc "Lines" :g "l" 'transpose-lines
             :desc "Words" :g "w" 'transpose-words))
+        (:prefix ("s" . "search")
+          :desc "List Links" :g "L" #'ffap-menu)
         (:prefix ("l" . "lines")
           :desc "Uniquify Lines" :g "u" #'+core/uniquify-lines-dwim)
         (:prefix ("b" . "buffer")
