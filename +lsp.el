@@ -52,3 +52,5 @@
 
 (after! lsp-mode
   (define-key lsp-mode-map (kbd "<A-return>") #'lsp-execute-code-action))
+
+(setq dap-breakpoints-file (concat doom-local-dir "cache/dap-breakpoints"))
