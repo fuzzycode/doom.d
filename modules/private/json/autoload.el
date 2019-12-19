@@ -5,5 +5,5 @@
   ""
   (interactive)
   (if (region-active-p)
-      (call-interactively (json-pretty-print))
-    (call-interactively (json-pretty-print-buffer))))
+      (call-interactively 'json-pretty-print)
+    (call-interactively 'json-pretty-print-buffer)))
