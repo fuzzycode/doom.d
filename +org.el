@@ -48,11 +48,12 @@
 (defvar +org/calendar-file (concat (file-name-as-directory org-directory) "calendar.org"))
 
 
-(map! (:leader (:prefix ("a" . "applications")
-                 (:prefix ("o" . "org")
-                   :desc "Agenda" :g "a" #'org-agenda
-                   :desc "Capture" :g "c" #'org-capture
-                   :desc "Todo List" :g "t" #'org-todo-list))
+(map! (:leader
+        (:prefix ("a" . "applications")
+          (:prefix ("o" . "org")
+            :desc "Agenda" :g "a" #'org-agenda
+            :desc "Capture" :g "c" #'org-capture
+            :desc "Todo List" :g "t" #'org-todo-list))
         (:prefix "s"
           :desc "Search Org Directory" :g "n" #'+default/org-notes-search)
         (:prefix "f"
