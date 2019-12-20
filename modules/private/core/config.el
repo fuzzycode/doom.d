@@ -245,5 +245,6 @@
            ( "C-g" . buffer-flip-abort)))
 
 ;; EXTRAS
+(load! "+configs")
 (load! "+bindings")
 (load! "+popups")
