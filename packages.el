@@ -1,9 +1,13 @@
 
 ;; HELM
-(package! helm-swoop)
-(package! helm-mode-manager)
-(package! helm-descbinds)
-(package! helm-gitignore)
+(when (featurep! :completion helm)
+  (package! helm-swoop)
+  (package! helm-mode-manager)
+  (package! helm-descbinds)
+  (package! helm-gitignore))
+
+;; IVY
+(when (featurep! :completion ivy))
 
 ;; GIT
 (package! magit-imerge)

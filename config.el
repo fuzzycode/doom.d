@@ -17,7 +17,13 @@
 (load! "+projectile")
 (load! "+sh")
 (load! "+ui")
-(load! "+helm")
+
+(when (featurep! :completion helm)
+       (load! "+helm"))
+
+(when (featurep! :completion ivy)
+  (load! "+ivy"))
+
 (load! "+git")
 (load! "+org")
 (load! "+lsp")
