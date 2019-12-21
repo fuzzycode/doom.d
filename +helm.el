@@ -29,7 +29,7 @@
           :desc "Registers" :g "r" #'helm-register)
         (:prefix ("i" . "insert")
           :desc "Unicode Char" :g "U" #'helm-ucs)
-        (:prefix ("j" "jump/join")
+        (:prefix ("j" . "jump/join")
           :desc "Imenu" :g "i" #'helm-imenu
           :desc "Imenu all Buffers" :g "I" #'helm-imenu-in-all-buffers)))
 

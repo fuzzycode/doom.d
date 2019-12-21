@@ -129,6 +129,7 @@
 
 (set-popup-rule! "^\\*org" :side 'right :size 80 :select nil)
 
+
 ;;;###package
 (use-package! demo-it
   :after org)
