@@ -23,6 +23,7 @@
 (load! "+lsp")
 (load! "+cc")
 (load! "+python")
+(load! "+bindings")
 
 (when IS-MAC
   (load! "+osx"))

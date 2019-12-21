@@ -16,15 +16,8 @@
         (:prefix ("h" . "help")
           :desc "Apropos" :g "a" #'helm-apropos
           :desc "Info at Point" :g "i" #'helm-info-at-point
-          :desc "Man/Woman" :g "m" #'helm-man-woman
-          (:prefix ("d" . "describe")
-            :desc "Function" :g "f" #'describe-function
-            :desc "Key" :g "k" #'describe-key
-            :desc "Mode" :g "m" #'describe-mode
-            :desc "Package" :g "p" #'describe-package
-            :desc "Theme" :g "t" #'describe-theme
-            :desc "Variable" :g "v" #'describe-variable))
-        (:prefix ("b" "buffer")
+          :desc "Man/Woman" :g "m" #'helm-man-woman)
+        (:prefix ("b" . "buffer")
           :desc "Buffer List" :g "b" #'helm-buffer-list)
         (:prefix ("f" . "files")
           :desc "Find File" :g "f" #'helm-find-files-1
