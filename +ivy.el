@@ -28,3 +28,7 @@
         ivy-fixed-height-minibuffer t
         ivy-display-style 'plain))
 
+(after! ivy-prescient
+  (setq ivy-prescient-sort-commands
+        '(:not swiper ivy-switch-buffer counsel-switch-buffer)))
+
