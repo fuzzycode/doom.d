@@ -17,7 +17,6 @@
 (package! insert-shebang)
 (package! crux)
 (package! dash-at-point)
-(package! helm-dash)
 (package! lorem-ipsum)
 (package! string-inflection)
 (package! alert)
@@ -32,3 +31,6 @@
 (when IS-MAC
   (package! reveal-in-osx-finder)
   (package! osx-dictionary))
+
+(when (featurep! :completion helm)
+  (package! helm-dash))

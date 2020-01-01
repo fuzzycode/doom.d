@@ -146,6 +146,7 @@
 
 ;;;###package
 (use-package! helm-dash
+  :when (featurep! :completion helm)
   :defer t
   :init (map! (:leader
                (:prefix ("d" . "documentation")
