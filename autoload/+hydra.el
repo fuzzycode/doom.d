@@ -1,6 +1,6 @@
 ;;;###if (featurep! :ui hydra)
 
-;;;###autoload (autoload '+magit/timemachine-hydra/body' "autoload/+hydra" nil t)
+;;;###autoload (autoload '+magit/timemachine-hydra/body "autoload/+hydra" nil t)
 (defhydra +magit/timemachine-hydra (:hint nil
                                           :color magenta
                                           :pre (unless (bound-and-true-p git-timemachine-mode)
@@ -18,7 +18,7 @@
   ("Y" git-timemachine-kill-revision)
   ("q" nil :color blue))
 
-;;;###autoload (autoload '+magit/blame-hydra/body' "autoload/+hydra" nil t)
+;;;###autoload (autoload '+magit/blame-hydra/body "autoload/+hydra" nil t)
 (defhydra +magit/blame-hydra (:hint nil
                                     :color magenta
                                     :pre (unless (bound-and-true-p magit-blame-mode)
