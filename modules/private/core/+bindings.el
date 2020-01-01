@@ -1,5 +1,6 @@
 
 (map! (:leader
+        :desc "Universal Argument" :g "u" #'universal-argument
         (:prefix ("a" . "applications")
           :desc "Undo Tree" :g "u" #'undo-tree-visualize
           (:when (featurep! :email mu4e)
