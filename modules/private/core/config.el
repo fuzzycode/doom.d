@@ -239,6 +239,7 @@
 
 ;;;###package
 (use-package! buffer-flip
+  :init (map! (:leader :desc "Flip Buffer" :g [tab] #'buffer-flip))
   :chords (("u8" . buffer-flip))
   :bind  (:map buffer-flip-map
            ( "8" .   buffer-flip-forward)
