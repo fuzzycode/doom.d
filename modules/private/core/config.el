@@ -7,7 +7,7 @@
 (use-package! paradox
   :defer t
   :init (map! (:leader (:prefix "a"
-                         :desc "Paradox List Packages" :g "l" 'paradox-list-packages)))
+                         :desc "Paradox List Packages" :g "l" #'paradox-list-packages)))
   (setq paradox-column-width-package 30
         paradox-column-width-version 15))
 
@@ -23,11 +23,11 @@
 
 ;;;###package
 (use-package! visual-regexp
-  :bind (([remap replace-regexp] . 'vr/replace)
-         ([remap query-replace-regexp] . 'vr/query-replace)
-         ("C-c r" . 'vr/replace)
-         ("C-c q" . 'vr/query-replace)
-         ("C-c m" . 'vr/mc-mark)))
+  :bind (([remap replace-regexp] . #'vr/replace)
+         ([remap query-replace-regexp] . #'vr/query-replace)
+         ("C-c r" . #'vr/replace)
+         ("C-c q" . #'vr/query-replace)
+         ("C-c m" . #'vr/mc-mark)))
 
 ;;;###package
 (use-package! comment-dwim-2
@@ -35,14 +35,14 @@
 
 ;;;###package
 (use-package! smart-backspace
-  :bind ([remap backward-delete-char-untabify] . smart-backspace))
+  :bind ([remap backward-delete-char-untabify] . #'smart-backspace))
 
 ;;;###package
 (use-package! proced
    :defer t
    :hook (proced-mode . (lambda () (proced-toggle-auto-update +1)))
    :init (map! (:leader (:prefix ("a" . "applications")
-                          :desc "Proced" :g "P" 'proced)))
+                          :desc "Proced" :g "P" #'proced)))
    :config
    (setq proced-auto-update-interval 1)
    (set-popup-rule! "*Proced*" :size 0.4 :side 'bottom :select t :autosave t))
