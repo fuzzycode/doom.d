@@ -31,7 +31,7 @@
 
 ;;;###package
 (use-package! comment-dwim-2
-  :bind ([remap comment-dwim] . comment-dwim-2))
+  :bind ([remap comment-dwim] . #'+core/comment-uncomment-dwim))
 
 ;;;###package
 (use-package! smart-backspace
