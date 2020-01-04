@@ -49,8 +49,8 @@
 
 ;;;###package
 (use-package! mwim
-  :bind (("C-a" . 'mwim-beginning-of-code-or-line)
-         ("C-e" . 'mwim-end-of-code-or-line)))
+  :bind (("C-a" . #'mwim-beginning-of-code-or-line)
+         ("C-e" . #'mwim-end-of-code-or-line)))
 
 ;;;###package
 (use-package! winum
@@ -59,15 +59,15 @@
               winum-ignored-buffers '(" *which-key*"))
   :config (winum-mode)
   :bind (:map winum-keymap
-          ("M-1" . 'winum-select-window-1)
-          ("M-2" . 'winum-select-window-2)
-          ("M-3" . 'winum-select-window-3)
-          ("M-4" . 'winum-select-window-4)
-          ("M-5" . 'winum-select-window-5)
-          ("M-6" . 'winum-select-window-6)
-          ("M-7" . 'winum-select-window-7)
-          ("M-8" . 'winum-select-window-8)
-          ("M-9" . 'winum-select-window-9)))
+          ("M-1" . #'winum-select-window-1)
+          ("M-2" . #'winum-select-window-2)
+          ("M-3" . #'winum-select-window-3)
+          ("M-4" . #'winum-select-window-4)
+          ("M-5" . #'winum-select-window-5)
+          ("M-6" . #'winum-select-window-6)
+          ("M-7" . #'winum-select-window-7)
+          ("M-8" . #'winum-select-window-8)
+          ("M-9" . #'winum-select-window-9)))
 
 ;;;###package
 (use-package! winner
@@ -94,7 +94,7 @@
   :defer t
   :init (map! (:leader
                 (:prefix ("s" . "search")
-                  :desc "Deadgrep" :g "d" 'deadgrep))))
+                  :desc "Deadgrep" :g "d" #'deadgrep))))
 
 ;;;###package
 (use-package! fill-column-indicator
@@ -106,34 +106,34 @@
   :init (setq expand-region-contract-fast-key "V"
               expand-region-reset-fast-key "r")
   (map! (:leader
-          :desc "Expand Region" :g "v" 'er/expand-region)))
+          :desc "Expand Region" :g "v" #'er/expand-region)))
 
 ;;;###package
 (use-package! insert-shebang
   :defer t
   :init
   (map! (:leader (:prefix ("i" . "insert") :desc "Insert shebang" :g "!" 'insert-shebang)))
-  (remove-hook 'find-file-hook 'insert-shebang))
+  (remove-hook 'find-file-hook #'insert-shebang))
 
 ;;;###package
 (use-package! crux
   :defer t
   :commands crux-top-join-line
   :init
-  (global-set-key (kbd "<A-up>") 'join-line)
-  (global-set-key (kbd "<A-down>") 'crux-top-join-line)
+  (global-set-key (kbd "<A-up>") #'join-line)
+  (global-set-key (kbd "<A-down>") #'crux-top-join-line)
   (map! (:leader
           (:prefix "b"
-            :desc "Delete Buffer and File" :g "K" 'crux-delete-file-and-buffer
-            :desc "Rename Buffer and File" :g "R" 'crux-rename-file-and-buffer)
+            :desc "Delete Buffer and File" :g "K" #'crux-delete-file-and-buffer
+            :desc "Rename Buffer and File" :g "R" #'crux-rename-file-and-buffer)
           (:prefix ("f" . "file")
-                   :desc "Find Shell init file" :g "S" 'crux-find-shell-init-file
-                   :desc "Find User Custom File" :g "C" 'crux-find-user-custom-file)
+                   :desc "Find Shell init file" :g "S" #'crux-find-shell-init-file
+                   :desc "Find User Custom File" :g "C" #'crux-find-user-custom-file)
           (:prefix ("x" . "text")
-            :desc "Capitalize Region" :g "C" 'crux-capitalize-region
+            :desc "Capitalize Region" :g "C" #'crux-capitalize-region
             (:prefix ("l" . "lines")
-              :desc "Duplicate Line Or Region" :g "d" 'crux-duplicate-current-line-or-region
-              :desc "Duplicate And Comment Line Or Region" :g "D" 'crux-duplicate-and-comment-current-line-or-region)))))
+              :desc "Duplicate Line Or Region" :g "d" #'crux-duplicate-current-line-or-region
+              :desc "Duplicate And Comment Line Or Region" :g "D" #'crux-duplicate-and-comment-current-line-or-region)))))
 
 ;;;###package
 (use-package! dash-at-point
@@ -141,8 +141,8 @@
   :init
   (map! (:leader
           (:prefix ("d" . "documentation")
-            :desc "Dash @ Point" :g "d" 'dash-at-point
-            :desc "Dash @ Point With Docset" :g "D" 'dash-at-point-with-docset))))
+            :desc "Dash @ Point" :g "d" #'dash-at-point
+            :desc "Dash @ Point With Docset" :g "D" #'dash-at-point-with-docset))))
 
 ;;;###package
 (use-package! helm-dash
@@ -150,8 +150,8 @@
   :defer t
   :init (map! (:leader
                (:prefix ("d" . "documentation")
-                 :desc "Helm Dash @ Point" :g "h" 'helm-dash-at-point
-                 :desc "Helm Dash" :g "H" 'helm-dash))))
+                 :desc "Helm Dash @ Point" :g "h" #'helm-dash-at-point
+                 :desc "Helm Dash" :g "H" #'helm-dash))))
 
 ;;;###package
 (use-package! lorem-ipsum
@@ -159,9 +159,9 @@
   :init (map! (:leader
                 (:prefix ("i" . "insert")
                   (:prefix ("l" . "lorem/ipsum")
-                    :desc "Paragraphs" :g "p" 'lorem-ipsum-insert-paragraphs
-                    :desc "Sentences" :g "s" 'lorem-ipsum-insert-sentences
-                    :desc "List" :g "l" 'lorem-ipsum-insert-list)))))
+                    :desc "Paragraphs" :g "p" #'lorem-ipsum-insert-paragraphs
+                    :desc "Sentences" :g "s" #'lorem-ipsum-insert-sentences
+                    :desc "List" :g "l" #'lorem-ipsum-insert-list)))))
 
 ;;;###package
 (use-package! reveal-in-osx-finder
@@ -177,7 +177,7 @@
   :init (map! (:leader
                 (:prefix ("x" . "text")
                   (:prefix ("w" . "words")
-                    :desc "Search Dictionary" :g "d" 'osx-dictionary-search-word-at-point)))))
+                    :desc "Search Dictionary" :g "d" #'osx-dictionary-search-word-at-point)))))
 
 ;;;###package
 (use-package! string-inflection
@@ -185,12 +185,12 @@
   :init (map! (:leader
                 (:prefix ("x" . "text")
                   (:prefix ("i" . "inflection")
-                    :desc "Cycle Style" :g [tab] '+core/inflection-cycle-dwim
-                    :desc "Underscore" :g "u" 'string-inflection-underscore
-                    :desc "Uppercase" :g "U" 'string-inflection-upcase
-                    :desc "Kebab Case" :g "k" 'string-inflection-kebab-case
-                    :desc "Lower Camel Case" :g "c" 'string-inflection-lower-camelcase
-                    :desc "Camel Case" :g "C" 'string-inflection-camelcase)))))
+                    :desc "Cycle Style" :g [tab] #'+core/inflection-cycle-dwim
+                    :desc "Underscore" :g "u" #'string-inflection-underscore
+                    :desc "Uppercase" :g "U" #'string-inflection-upcase
+                    :desc "Kebab Case" :g "k" #'string-inflection-kebab-case
+                    :desc "Lower Camel Case" :g "c" #'string-inflection-lower-camelcase
+                    :desc "Camel Case" :g "C" #'string-inflection-camelcase)))))
 
 ;;;###package
 (use-package! alert
