@@ -3,6 +3,10 @@
 ;; Setup undo-tree
 (setq undo-tree-visualizer-timestamps t
       undo-tree-visualizer-diff t)
+
+(after! projectile
+  (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
+
 (use-package flyspell-correct-ivy
   :when (featurep! :completion ivy)
   :bind (:map flyspell-mode-map ("C-;" . #'flyspell-correct-wrapper))
