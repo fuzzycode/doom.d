@@ -224,10 +224,17 @@
 
 ;;;###package
 (use-package! avy
-  :chords ("jj" . #'avy-goto-word-or-subword-1)
-  :init (map! (:leader
+  :commands (avy-goto-word-or-subword-1 avy-goto-line avy-goto-char-timer)
+  :init
+  ;; Integrate avy with better-jumper, might be a better way to cover all avy jump functions
+  (advice-add #'avy-goto-word-or-subword-1 :around #'doom-set-jump-a)
+  (advice-add #'avy-goto-char-timer :around #'doom-set-jump-a)
+  (advice-add #'avy-goto-line :around #'doom-set-jump-a)
+
+  (key-chord-define-global "jj" #'avy-goto-word-or-subword-1)
+  (map! (:leader
                 (:prefix ("j" . "jump/join")
-                  :desc "Jump to Word" :g "j" #'avy-goto-word-or-subword-1
+                  :desc "Jump to Word" :g "j" #'avy-goto-char-timer
                   :desc "Jump to Line" :g "l" #'avy-goto-line))))
 
 ;;;###package
