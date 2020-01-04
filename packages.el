@@ -1,4 +1,7 @@
 
+;;DISABLED
+(package! drag-stuff :disable t)
+
 ;; HELM
 (when (featurep! :completion helm)
   (package! helm-swoop)
