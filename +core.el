@@ -11,7 +11,6 @@
               :desc "Stop" :g "s" #'ein:stop)))
         (:prefix ("S" . "spelling")
             (:when (featurep! :tools flyspell)
-              :desc "Correct previous word" :g "c" #'flyspell-correct-previous-word-generic
               :desc "Check Buffer" :g "b" #'flyspell-buffer
               :desc "Change Dictionary" :g "C" #'ispell-change-dictionary))
         (:prefix ("e" . "errors")
