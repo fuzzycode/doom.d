@@ -11,7 +11,7 @@
 (doom!
        :completion
        company          ; the ultimate code completion backend
-       (ivy +icons +prescient +fuzzy)
+       (ivy +prescient +fuzzy)
        ;; (helm +fuzzy)              ; the *other* search engine for love and life
 
        :ui
