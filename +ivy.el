@@ -24,7 +24,7 @@
 (after! ivy
   (setq ivy-count-format "(%d/%d) "
         ivy-wrap nil
-        ivy-use-virtual-buffers t
+        ivy-use-virtual-buffers nil
         ivy-fixed-height-minibuffer t
         ivy-display-style 'plain))
 
