@@ -15,11 +15,15 @@
           :desc "Find Directory" :g "d" #'counsel-projectile-find-dir
           :desc "Find File" :g "f" #'counsel-projectile-find-file
           :desc "Switch Project" :g "p" #'counsel-projectile-switch-project
-          :desc "Switch Buffer" :g "b" #'counsel-projectile-switch-to-buffer)
+          :desc "Switch Buffer" :g "b" #'counsel-projectile-switch-to-buffer
+          :desc "Search Project From CWD" :g "D" #'+ivy/project-search-from-cwd)
         (:prefix ("r" . "resume")
           :desc "Ivy Resume Last" :g "l" #'ivy-resume)
         (:prefix ("s" . "search")
-          :desc "Swiper" :g "s" #'swiper)))
+          :desc "Swiper" :g "s" #'swiper
+          :desc "Locate" :g "l" #'counsel-locate
+          :desc "Search Project" :g "p" #'+ivy/project-search
+          :desc "Search Project (input)" :g "P" #'+ivy/ivy-search-project-default)))
 
 (after! ivy
   (setq ivy-count-format "(%d/%d) "
