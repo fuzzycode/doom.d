@@ -3,8 +3,9 @@
 (map! (:leader
         :desc "M-X" :g "<SPC>" #'counsel-M-x
         :desc "M-X" :g "M-<SPC>" #'counsel-M-x
+        :desc "Ripgrep" :g "/" #'counsel-rg
         (:prefix ("b" . "buffer/bookmarks")
-          :desc "Buffer List" :g "b" #'counsel-buffer-or-recentf
+          :desc "Buffer List" :g "b" #'counsel-switch-buffer
           :desc "Bookmarks" :g "B" #'counsel-bookmark)
         (:prefix ("f" . "files")
           :desc "Find File" :g "f" #'counsel-find-file
