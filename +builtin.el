@@ -13,6 +13,9 @@
                               (name 16 -1)
                               " " filename)))
 
+;; Show the location of the sym-link and not the actual file
+(setq find-file-visit-truename nil)
+
 (after! tabulated-list
   (define-key tabulated-list-mode-map "q" #'quit-window))
 
