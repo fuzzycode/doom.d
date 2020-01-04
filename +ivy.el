@@ -32,3 +32,41 @@
   (setq ivy-prescient-sort-commands
         '(:not swiper ivy-switch-buffer counsel-switch-buffer)))
 
+
+(after! (ivy ivy-rich counsel)
+  (plist-put ivy-rich-display-transformers-list
+              'ivy-switch-buffer
+              '(:columns
+                ((+ivy-rich-buffer-name (:width 70))
+                 (ivy-rich-switch-buffer-size (:width 7))
+                 (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
+                 (ivy-rich-switch-buffer-major-mode (:width 20 :face warning))
+                 (ivy-rich-switch-buffer-project (:width 20 :face success))
+                 (ivy-rich-switch-buffer-path (:width
+                                               (lambda (x)
+                                                 (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
+                :predicate
+                (lambda
+                  (cand)
+                  (get-buffer cand))))
+
+  (plist-put ivy-rich-display-transformers-list
+              'counsel-M-x
+              '(:columns
+                ((counsel-M-x-transformer (:width 70))
+                 (ivy-rich-counsel-function-docstring (:face font-lock-doc-face)))))
+
+  (plist-put ivy-rich-display-transformers-list
+              'counsel-describe-function
+              '(:columns
+                ((counsel-describe-function-transformer (:width 70))
+                 (ivy-rich-counsel-function-docstring (:face font-lock-doc-face)))))
+
+  (plist-put ivy-rich-display-transformers-list
+              'counsel-describe-variable
+              '(:columns
+                ((counsel-describe-variable-transformer (:width 70))
+                 (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face)))))
+
+  (ivy-rich-reload))
+
