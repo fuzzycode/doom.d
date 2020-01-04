@@ -98,9 +98,8 @@
              (junk-dir (file-name-directory fname))
              (default-directory junk-dir))
 
-        (require 'helm)
-        (let (helm-ff-newfile-prompt-p)
-          (helm-find-files-1 fname))))
+        (require 'counsel)
+        (counsel-find-file rel-fname)))
 
 ;;;###autoload
 (defun +core/browse-junk-files ()
