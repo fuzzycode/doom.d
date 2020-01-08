@@ -22,6 +22,7 @@
           :desc "Ivy Resume Last" :g "l" #'ivy-resume)
         (:prefix ("s" . "search")
           :desc "Swiper" :g "s" #'swiper
+          :desc "Swiper (input)" :g "S" #'+swiper/swiper-default
           :desc "Locate" :g "l" #'counsel-locate
           :desc "Search Project" :g "p" #'+ivy/project-search
           :desc "Search Project (input)" :g "P" #'+ivy/ivy-search-project-default)))
