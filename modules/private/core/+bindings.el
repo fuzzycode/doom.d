@@ -71,7 +71,9 @@
           :desc "Split Window Right & Focus" :g "V" 'split-window-right-and-focus
           :desc "Split Window Below" :g "s" 'split-window-below
           :desc "Split Window Below & Focus" :g "S" 'split-window-below-and-focus
-          :desc "Balance Windows" :g "=" 'balance-windows)
+          :desc "Balance Windows" :g "=" 'balance-windows
+          (:when (featurep! :ui window-select)
+            :desc "Ace Window" :g "w" #'ace-window))
         (:prefix ("K" . "keyboard macros")
           :desc "Start or Insert Counter" :g "(" #'kmacro-start-macro-or-insert-counter
           :desc "End or Call Macro" :g ")" #'kmacro-end-or-call-macro-repeat
