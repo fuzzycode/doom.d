@@ -1,6 +1,5 @@
 
 ;; https://emacs.stackexchange.com/questions/62/hide-compilation-window
-;;;###autoload
 (defun bl-edit/bury-compile-buffer-if-successful (buffer string)
   (if (and
        (null (string-match ".*exited abnormally.*" string))
@@ -11,7 +10,6 @@
          (format "%d sec" bl-edit-compile-auto-close-time) nil 'delete-windows-on
          (get-buffer-create "*compilation*")))))
 
-;;;###autoload
 (defun bl-edit/maybe-notify-compile-finish (buffer string)
   "Show an alert when compilation finished, like XCode does"
   (spacemacs|require 'alert)
@@ -21,7 +19,7 @@
       (alert "Compilation Failed" :title "Compilation Failed" :category 'compile :id 'compile-fail))))
 
 ;;;###autoload
-(add-hook 'compilation-finish-functions 'bl-edit/bury-compile-buffer-if-successful)
+(add-hook 'compilation-finish-functions #'bl-edit/bury-compile-buffer-if-successful)
 
 ;;;###autoload
-(add-hook 'compilation-finish-functions 'bl-edit/maybe-notify-compile-finish)
+(add-hook 'compilation-finish-functions #'bl-edit/maybe-notify-compile-finish)

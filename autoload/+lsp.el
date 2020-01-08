@@ -1,5 +1,4 @@
 
-;;;###autoload
 (defun +lsp/dim-lsp-sideline (&rest args)
   (mapcar (lambda (face)
            (when (facep face)
@@ -7,7 +6,7 @@
           '(lsp-ui-sideline-code-action lsp-ui-sideline-current-symbol lsp-ui-sideline-symbol lsp-ui-sideline-symbol-info)))
 
 ;;;###autoload
-(add-hook 'lsp-ui-mode-hook '+lsp/dim-lsp-sideline)
+(add-hook 'lsp-ui-mode-hook #'+lsp/dim-lsp-sideline)
 
 ;;;###autoload
 (defun +lsp/lsp-format-region-or-buffer ()
@@ -38,7 +37,8 @@
 
 ;; References w/ Role::Role
 ;;;###autoload
-(defun +lsp/ccls/references-read () (interactive)
+(defun +lsp/ccls/references-read ()
+  (interactive)
   (lsp-ui-peek-find-custom "textDocument/references"
     (plist-put (lsp--text-document-position-params) :role 8)))
 
@@ -51,12 +51,14 @@
 
 ;; References w/ Role::Dynamic bit (macro expansions)
 ;;;###autoload
-(defun +lsp/ccls/references-macro () (interactive)
+(defun +lsp/ccls/references-macro ()
+  (interactive)
   (lsp-ui-peek-find-custom "textDocument/references"
    (plist-put (lsp--text-document-position-params) :role 64)))
 
 ;; References w/o Role::Call bit (e.g. where functions are taken addresses)
 ;;;###autoload
-(defun +lsp/ccls/references-not-call () (interactive)
+(defun +lsp/ccls/references-not-call ()
+  (interactive)
   (lsp-ui-peek-find-custom "textDocument/references"
    (plist-put (lsp--text-document-position-params) :excludeRole 32)))

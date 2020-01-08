@@ -93,7 +93,7 @@
 (use-package git-messenger
   :defer t
   :commands git-messenger:popup-close
-  :init (map! (:leader (:prefix "g" :desc "Git Messenger" :g "M" 'git-messenger:popup-message)))
+  :init (map! (:leader (:prefix "g" :desc "Git Messenger" :g "M" #'git-messenger:popup-message)))
   :bind (:map git-messenger-map
           ([escape] . git-messenger:popup-close)))
 
