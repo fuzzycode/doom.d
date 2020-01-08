@@ -11,8 +11,7 @@
 (doom!
        :completion
        company          ; the ultimate code completion backend
-       (ivy +prescient +fuzzy)
-       ;; (helm +fuzzy)              ; the *other* search engine for love and life
+       (ivy +prescient +fuzzy +childframe)
 
        :ui
        deft              ; notational velocity for Emacs
