@@ -170,3 +170,16 @@ single line regions. Mostly used to comment/UN-comment function paramaters"
     (set-mark (goto-char pt))
     (avy-forward-item)
     (call-interactively #'+core/comment-uncomment-dwim)))
+
+;;;###autoload
+(defun +core/disable-all-themes ()
+  "disable all active themes."
+  (dolist (i custom-enabled-themes)
+    (disable-theme i)))
+
+;;;###autoload
+(defun +core/disable-themes (&rest args)
+  (+core/disable-all-themes))
+
+;;;###autoload
+(advice-add #'load-theme :before #'+core/disable-themes)
