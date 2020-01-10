@@ -235,7 +235,10 @@
   (map! (:leader
                 (:prefix ("j" . "jump/join")
                   :desc "Jump to Word" :g "j" #'avy-goto-char-timer
-                  :desc "Jump to Line" :g "l" #'avy-goto-line))))
+                  :desc "Jump to Line" :g "l" #'avy-goto-line)))
+  :config
+  (add-to-list 'avy-dispatch-alist
+               '(?c . avy-comment-word)))
 
 ;;;###package
 (use-package! goto-last-change

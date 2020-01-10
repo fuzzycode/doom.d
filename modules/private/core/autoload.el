@@ -162,3 +162,11 @@ single line regions. Mostly used to comment/UN-comment function paramaters"
             (comment-padding ""))
         (comment-dwim-2))
     (comment-dwim-2)))
+
+;;;###autoload
+(defun avy-comment-word (pt)
+  "Comments a word at PT using avy."
+  (save-excursion
+    (set-mark (goto-char pt))
+    (avy-forward-item)
+    (call-interactively #'+core/comment-uncomment-dwim)))
