@@ -256,6 +256,12 @@
            ( "*" .   buffer-flip-backward)
            ( "C-g" . buffer-flip-abort)))
 
+;;;###package
+(use-package! centered-cursor-mode
+  :defer t
+  :commands centered-cursor-mode
+  :init (map! (:leader (:prefix ("t" . "toggle")
+                         :desc "Centered Cursor" :g "c" #'centered-cursor-mode))))
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")

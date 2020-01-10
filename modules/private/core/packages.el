@@ -27,6 +27,7 @@
 (package! use-package-chords)
 (package! buffer-flip)
 (package! alert)
+(package! centered-cursor-mode)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)
