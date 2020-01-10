@@ -7,6 +7,8 @@
 (after! projectile
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
 
+(setq ws-butler-convert-leading-tabs-or-spaces t)
+
 (use-package flyspell-correct-ivy
   :when (featurep! :completion ivy)
   :bind (:map flyspell-mode-map ("C-;" . #'flyspell-correct-wrapper))
