@@ -272,6 +272,11 @@
   :hook (doom-load-theme . (lambda () (set-face-background 'highlight-doxygen-comment (face-background 'hl-line))))
   :config (highlight-doxygen-global-mode 1))
 
+;;;###package
+(use-package! easy-kill
+  :commands easy-kill
+  :bind (([remap kill-ring-save] . #'easy-kill)))
+
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")

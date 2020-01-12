@@ -29,6 +29,7 @@
 (package! alert)
 (package! centered-cursor-mode)
 (package! highlight-doxygen)
+(package! easy-kill)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)
