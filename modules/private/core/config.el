@@ -265,6 +265,13 @@
   :commands centered-cursor-mode
   :init (map! (:leader (:prefix ("t" . "toggle")
                          :desc "Centered Cursor" :g "c" #'centered-cursor-mode))))
+
+;;;###package
+(use-package! highlight-doxygen
+  :after hl-line
+  :hook (doom-load-theme . (lambda () (set-face-background 'highlight-doxygen-comment (face-background 'hl-line))))
+  :config (highlight-doxygen-global-mode 1))
+
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")

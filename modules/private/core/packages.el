@@ -28,6 +28,7 @@
 (package! buffer-flip)
 (package! alert)
 (package! centered-cursor-mode)
+(package! highlight-doxygen)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)
