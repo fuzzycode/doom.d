@@ -27,7 +27,10 @@
          ([remap query-replace-regexp] . #'vr/query-replace)
          ("C-c r" . #'vr/replace)
          ("C-c q" . #'vr/query-replace)
-         ("C-c m" . #'vr/mc-mark)))
+         ("C-c m" . #'vr/mc-mark))
+  :init (map! (:leader (:prefix ("x" . "text")
+                         :desc "Replace" :g "r" #'vr/replace
+                         :desc "Query Replace" :g "q" #'vr/query-replace))))
 
 ;;;###package
 (use-package! comment-dwim-2
