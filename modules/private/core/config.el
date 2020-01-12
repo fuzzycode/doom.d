@@ -270,6 +270,7 @@
 (use-package! highlight-doxygen
   :after hl-line
   :hook (doom-load-theme . (lambda () (set-face-background 'highlight-doxygen-comment (face-background 'hl-line))))
+  :init (map! (:leader (:prefix ("t" . "toggle") :desc "Highlight Doxygen" :g "d" #'highlight-doxygen-mode)))
   :config (highlight-doxygen-global-mode 1))
 
 ;;;###package
