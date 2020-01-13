@@ -278,6 +278,15 @@
   :commands easy-kill
   :bind (([remap kill-ring-save] . #'easy-kill)))
 
+;;;###package
+(use-package! super-save
+  :defer 6
+  :init (setq super-save-auto-save-when-idle t
+              super-save-remote-files nil)
+  :config
+  (setq auto-save-default nil)
+  (super-save-mode +1))
+
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")

@@ -30,6 +30,8 @@
 (package! centered-cursor-mode)
 (package! highlight-doxygen)
 (package! easy-kill)
+(package! super-save)
+
 
 (when IS-MAC
   (package! reveal-in-osx-finder)
