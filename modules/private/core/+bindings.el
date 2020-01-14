@@ -60,6 +60,9 @@
             :desc "Minor Mode(s)" :g "M" #'doom/describe-active-minor-mode
             :desc "DOOM Packages" :g "P" #'doom/help-packages
             :desc "DOOM Modules" :g "D" #'doom/help-modules))
+        (:prefix ("j" . "jump/join")
+          (:when (featurep! :ui window-select)
+            :desc "Jump to Window" :g "w" #'ace-window))
         (:prefix ("w" . "windows")
           :desc "Save Session" :g "q" #'doom/quicksave-session
           :desc "Load Session" :g "Q" #'doom/quickload-session
