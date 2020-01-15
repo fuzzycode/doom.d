@@ -24,3 +24,6 @@
               :desc "Insert Numbers" :g "n" #'mc/insert-numbers
               :desc "Sort Regions" :g "s" #'mc/sort-regions
               :desc "Reverse Regions" :g "t" #'mc/reverse-regions)))))
+
+(map! (:leader (:prefix ("x" . "text")
+                 :desc "Zoom Text" :g "z" #'+hydra/text-zoom/body)))
