@@ -4,6 +4,8 @@
         :desc "M-X" :g "<SPC>" #'counsel-M-x
         :desc "M-X" :g "M-<SPC>" #'counsel-M-x
         :desc "Ripgrep" :g "/" #'counsel-rg
+        (:prefix ("a" . "applications")
+          :desc "Load Theme" :g "T" #'counsel-load-theme)
         (:prefix ("b" . "buffer/bookmarks")
           :desc "Buffer List" :g "b" #'counsel-switch-buffer
           :desc "Bookmarks" :g "B" #'counsel-bookmark)
