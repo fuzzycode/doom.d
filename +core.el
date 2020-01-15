@@ -41,3 +41,5 @@
 (global-set-key (kbd "C-c u") 'undo)
 
 (add-hook 'help-mode-hook #'rainbow-mode)
+
+(setq projectile-enable-caching nil)
