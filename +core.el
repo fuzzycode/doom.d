@@ -14,10 +14,11 @@
               :desc "Check Buffer" :g "b" #'flyspell-buffer
               :desc "Change Dictionary" :g "C" #'ispell-change-dictionary))
         (:prefix ("e" . "errors")
-          (:when (featurep! :tools flycheck)
+          (:when (featurep! :checkers syntax)
             :desc "Next Error" :g "n" #'flycheck-next-error
             :desc "Previous Error" :g "p" #'flycheck-previous-error
-            :desc "List Errors" :g "l" #'flycheck-list-errors))
+            :desc "List Errors" :g "l" #'flycheck-list-errors
+            :desc "Verify Setup" :g "v" #'flycheck-verify-setup))
         (:prefix ("x" . "text")
           :desc "Downcase Region" :g "d" 'downcase-region
           :desc "Upcase Region" :g "u" 'upcase-region
