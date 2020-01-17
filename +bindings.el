@@ -27,3 +27,5 @@
 
 (map! (:leader (:prefix ("x" . "text")
                  :desc "Zoom Text" :g "z" #'+hydra/text-zoom/body)))
+
+(global-set-key (kbd "C-x C-b") #'ibuffer)
