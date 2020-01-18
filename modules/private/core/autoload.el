@@ -115,7 +115,7 @@
 
 ;; https://emacs.stackexchange.com/questions/62/hide-compilation-window
 ;;;###autoload
-(defun +core/bury-compile-buffer-if-successful (buffer string)
+(defun +core/bury-compile-buffer-if-successful (_buffer string)
   (if (and
        (null (string-match ".*exited abnormally.*" string))
        (bound-and-true-p  bl-edit-close-compile-on-success))
@@ -129,7 +129,7 @@
 (add-hook 'compilation-finish-functions #'+core/bury-compile-buffer-if-successful)
 
 ;;;###autoload
-(defun +core/maybe-notify-compile-finish (buffer string)
+(defun +core/maybe-notify-compile-finish (_buffer string)
   "Show an alert when compilation finished, like XCode does"
   (require 'alert)
   (if (string-match "^finished" string)
@@ -151,7 +151,7 @@
 ;;;###autoload
 (defun +core/comment-uncomment-dwim (arg)
   "A thin wrapper around `comment-dwim-2` that will create a block comment around
-single line regions. Mostly used to comment/UN-comment function paramaters"
+single line regions. Mostly used to comment/un-comment function parameters"
   (interactive "P")
   (require 'comment-dwim-2)
   (if (and (derived-mode-p 'c-mode 'c++-mode)
@@ -178,7 +178,7 @@ single line regions. Mostly used to comment/UN-comment function paramaters"
     (disable-theme i)))
 
 ;;;###autoload
-(defun +core/disable-themes (&rest args)
+(defun +core/disable-themes (&rest _args)
   (+core/disable-all-themes))
 
 ;;;###autoload
