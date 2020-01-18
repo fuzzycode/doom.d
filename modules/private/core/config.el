@@ -256,9 +256,10 @@
   :init (map! (:leader :desc "Flip Buffer" :g [tab] #'buffer-flip))
   :chords (("u8" . buffer-flip))
   :bind  (:map buffer-flip-map
-           ( "8" .   buffer-flip-forward)
-           ( "*" .   buffer-flip-backward)
-           ( "C-g" . buffer-flip-abort)))
+           ([tab] . buffer-flip-backward)
+           ("8" .   buffer-flip-forward)
+           ("*" .   buffer-flip-backward)
+           ("C-g" . buffer-flip-abort)))
 
 ;;;###package
 (use-package! centered-cursor-mode
