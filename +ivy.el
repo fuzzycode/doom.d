@@ -34,7 +34,7 @@
         ivy-wrap nil
         ivy-use-virtual-buffers nil
         ivy-fixed-height-minibuffer t
-        ivy-display-style 'plain))
+        ivy-display-style 'fancy))
 
 (after! ivy-prescient
   (setq ivy-prescient-sort-commands
