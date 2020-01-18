@@ -183,3 +183,6 @@ single line regions. Mostly used to comment/un-comment function parameters"
 
 ;;;###autoload
 (advice-add #'load-theme :before #'+core/disable-themes)
+
+;;;###autoload
+(add-hook #'doom-load-theme-hook (lambda () (set-face-underline 'show-paren-match t))) ;; Always underline matching parens
