@@ -289,6 +289,20 @@
   (setq auto-save-default nil)
   (super-save-mode +1))
 
+;;;###package
+(use-package! flyspell-correct-ivy
+  :when (featurep! :completion ivy)
+  :bind (:map flyspell-mode-map ("C-;" . #'flyspell-correct-wrapper))
+  :init (setq flyspell-correct-interface #'flyspell-correct-ivy)
+  (map! (:leader
+          (:prefix ("S" . "spelling")
+            (:when (featurep! :checkers spell)
+              :desc "Correct Next" :g "n" #'flyspell-correct-next
+              :desc "Correct Previous" :g "p" #'flyspell-correct-previous
+              :desc "Correct At Point" :g "c" #'flyspell-correct-at-point
+              :desc "Correct DWIM" :g "s" #'flyspell-correct-wrapper)))))
+
+
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")
