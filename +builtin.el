@@ -20,7 +20,11 @@
   (define-key tabulated-list-mode-map "q" #'quit-window))
 
 (setq x-stretch-cursor t
-      ns-pop-up-frames nil)
+      ns-pop-up-frames nil
+      create-lockfiles nil
+      require-final-newline t
+      use-dialog-box nil
+      use-file-dialog nil)
 
 (setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB"))
 (setq ispell-dictionary "english")
