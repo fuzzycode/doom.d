@@ -9,7 +9,8 @@
             :desc "Mode" :g "m" #'describe-mode
             :desc "Package" :g "p" #'describe-package
             :desc "Theme" :g "t" #'describe-theme
-            :desc "Variable" :g "v" #'describe-variable))))
+            :desc "Variable" :g "v" #'describe-variable
+            :desc "Text Properties" :g "T" #'describe-text-properties))))
 
 (map! (:leader
         (:prefix ("s" . "search")
