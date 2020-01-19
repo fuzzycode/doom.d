@@ -259,7 +259,14 @@
            ([tab] . buffer-flip-backward)
            ("8" .   buffer-flip-forward)
            ("*" .   buffer-flip-backward)
-           ("C-g" . buffer-flip-abort)))
+           ("C-g" . buffer-flip-abort))
+  :config
+  (setq buffer-flip-skip-patterns
+        '("^\\*helm\\b"
+          "^\\*swiper\\*$"
+          "^magit-diff.*$"
+          "^magit-process.*$"
+          "^\\*direnv\\*$")))
 
 ;;;###package
 (use-package! centered-cursor-mode
