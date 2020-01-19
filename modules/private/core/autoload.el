@@ -96,6 +96,7 @@
       (interactive)
       (let* ((fname (format-time-string open-junk-file-format (current-time)))
              (junk-dir (file-name-directory fname))
+             (rel-fname (file-relative-name fname junk-dir))
              (default-directory junk-dir))
 
         (require 'counsel)
