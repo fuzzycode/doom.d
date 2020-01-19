@@ -302,6 +302,10 @@
               :desc "Correct At Point" :g "c" #'flyspell-correct-at-point
               :desc "Correct DWIM" :g "s" #'flyspell-correct-wrapper)))))
 
+;;;###package
+(use-package! auto-dictionary
+  :defer t
+  :hook (flyspell-mode . auto-dictionary))
 
 ;; EXTRAS
 (load! "+configs")
