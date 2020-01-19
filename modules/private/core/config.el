@@ -210,7 +210,6 @@
 ;;;###package
 (use-package! open-junk-file
   :defer t
-  :commands (open-junk-file)
   :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
   (map! (:leader
           (:prefix "f"
