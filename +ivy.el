@@ -37,6 +37,10 @@
         ivy-display-style 'fancy))
 
 (after! ivy-prescient
+  ;; Sort recent files by date
+  (add-to-list 'ivy-sort-functions-alist
+               '(counsel-recentf . file-newer-than-file-p))
+
   (setq ivy-prescient-sort-commands
         '(:not swiper ivy-switch-buffer counsel-switch-buffer)))
 
