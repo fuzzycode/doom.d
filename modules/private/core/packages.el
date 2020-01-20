@@ -31,7 +31,6 @@
 (package! highlight-doxygen)
 (package! easy-kill)
 (package! super-save)
-(package! auto-dictionary)
 
 (when IS-MAC
   (package! reveal-in-osx-finder)

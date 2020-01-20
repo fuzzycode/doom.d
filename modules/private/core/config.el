@@ -308,11 +308,6 @@
               :desc "Correct DWIM" :g "s" #'flyspell-correct-wrapper
               :desc "Change Dictionary" :g "d" #'ispell-change-dictionary))))
 
-;;;###package
-(use-package! auto-dictionary
-  :defer t
-  :hook (flyspell-mode . auto-dictionary))
-
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")
