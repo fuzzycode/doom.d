@@ -35,3 +35,7 @@
       kept-old-versions 0   ;; Number of oldest versions to keep.
       delete-old-versions t ;; Don't ask to delete excess backup versions.
       backup-by-copying t)  ;; Copy all files, don't rename them.
+
+;; Compilation
+(setq compilation-auto-jump-to-first-error t
+      compilation-skip-threshold 2)
