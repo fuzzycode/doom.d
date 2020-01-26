@@ -262,10 +262,9 @@
   :config
   (setq buffer-flip-skip-patterns
         '("^\\*helm\\b"
-          "^\\*swiper\\*$"
+          "^\\*.*\\*$"
           "^magit-diff.*$"
-          "^magit-process.*$"
-          "^\\*direnv\\*$")))
+          "^magit-process.*$")))
 
 ;;;###package
 (use-package! centered-cursor-mode
