@@ -44,3 +44,8 @@
 (add-hook 'help-mode-hook #'rainbow-mode)
 
 (setq projectile-enable-caching nil)
+
+(after! yasnippet
+  (when (file-exists-p "~/.snippets")
+    (add-to-list 'yas-snippet-dirs "~/.snippets")
+    (yas-reload-all)))
