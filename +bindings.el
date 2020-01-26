@@ -2,6 +2,8 @@
 
 (map! (:leader
         (:prefix ("h" . "help")
+          :desc "help map" :g "h" help-map
+          :desc "Info" :g "i" #'info
           (:prefix ("d" . "describe")
             :desc "Function" :g "f" #'describe-function
             :desc "Face" :g "F" #'describe-face
