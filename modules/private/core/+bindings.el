@@ -75,6 +75,8 @@
           :desc "Split Window Below" :g "s" 'split-window-below
           :desc "Split Window Below & Focus" :g "S" 'split-window-below-and-focus
           :desc "Balance Windows" :g "=" 'balance-windows
+          :desc "Close Window" :g "k" #'+workspace/close-window-or-workspace
+          :desc "Delete Other Windows" :g "K" #'delete-other-windows
           (:when (featurep! :ui window-select)
             :desc "Ace Window" :g "w" #'ace-window))
         (:prefix ("K" . "keyboard macros")
