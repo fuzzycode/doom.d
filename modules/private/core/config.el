@@ -315,6 +315,12 @@
   :init (map! :leader (:prefix ("i" . "insert")
                         :desc "Doxygen Snippet" :g "S" #'counsel-doxygen-snippets)))
 
+;;;###package
+(use-package! flycheck-clazy
+  :when (featurep! :checkers syntax)
+  :after flycheck
+  :init (flycheck-clazy-setup))
+
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")
