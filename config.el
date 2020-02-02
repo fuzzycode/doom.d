@@ -2,8 +2,9 @@
 (setq user-full-name "Björn Larsson"
       user-mail-address "develop@bjornlarsson.net")
 
-(setq doom-font (font-spec :family "Inconsolata" :size 16)
-      doom-big-font (font-spec :family "Inconsolata" :size 36))
+(setq doom-font (font-spec :family "JetBrains Mono" :size 15)
+      doom-big-font (font-spec :family "JetBrains Mono" :size 36)
+      line-spacing 1.5)
 
 (setq doom-leader-alt-key "M-<SPC>"
       doom-localleader-alt-key "M-<SPC> m")
