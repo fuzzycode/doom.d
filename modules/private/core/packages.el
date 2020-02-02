@@ -32,6 +32,9 @@
 (package! easy-kill)
 (package! super-save)
 
+(package! counsel-doxygen-snippets
+  :recipe (:host github :repo "fuzzycode/counsel-doxygen-snippets"))
+
 (when IS-MAC
   (package! reveal-in-osx-finder)
   (package! osx-dictionary))

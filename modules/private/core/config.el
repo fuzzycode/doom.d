@@ -307,6 +307,14 @@
               :desc "Correct DWIM" :g "s" #'flyspell-correct-wrapper
               :desc "Change Dictionary" :g "d" #'ispell-change-dictionary))))
 
+;;;###package
+(use-package! counsel-doxygen-snippets
+  :when (featurep! :completion ivy)
+  :after counsel
+  :commands counsel-doxygen-snippets
+  :init (map! :leader (:prefix ("i" . "insert")
+                        :desc "Doxygen Snippet" :g "S" #'counsel-doxygen-snippets)))
+
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")
