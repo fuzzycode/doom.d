@@ -320,6 +320,15 @@
   :when (featurep! :checkers syntax)
   :after flycheck)
 
+;;;###package
+(use-package! uuidgen
+  :commands (uuidgen-1 uuidgen-4)
+  :init (map! :leader (:prefix ("i" . "insert")
+                        (:prefix ("U" . "uuid")
+                          :desc "Time based UUID (1)" :g "t" (lambda! ()  (insert (uuidgen-1)))
+                          :desc "Random based UUID (4)" :g "r" (lambda! () (insert (uuidgen-4)))
+                          :desc "UUID" :g "U" (lambda! () (insert (uuidgen-4)))))))
+
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")

@@ -31,6 +31,7 @@
 (package! highlight-doxygen)
 (package! easy-kill)
 (package! super-save)
+(package! uuidgen)
 
 (package! counsel-doxygen-snippets
   :recipe (:host github :repo "fuzzycode/counsel-doxygen-snippets"))
