@@ -1,6 +1,10 @@
 ;;; private/core/autoload.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
+(defvar +core/compile-auto-close-time 2
+  "Time in seconds to leave a successful compile buffer open.")
+
+;;;###autoload
 (defun +core/inflection-cycle-dwim ()
   "switching by major-mode"
   (interactive)
@@ -117,13 +121,11 @@
 ;; https://emacs.stackexchange.com/questions/62/hide-compilation-window
 ;;;###autoload
 (defun +core/bury-compile-buffer-if-successful (_buffer string)
-  (if (and
-       (null (string-match ".*exited abnormally.*" string))
-       (bound-and-true-p  bl-edit-close-compile-on-success))
+  (if (null (string-match ".*exited abnormally.*" string))
       ;;no errors, make the compilation window go away in a few seconds
       (progn
         (run-at-time
-         (format "%d sec" bl-edit-compile-auto-close-time) nil 'delete-windows-on
+         (format "%d sec" +core/compile-auto-close-time) nil 'delete-windows-on
          (get-buffer-create "*compilation*")))))
 
 ;;;###autoload
