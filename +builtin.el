@@ -37,5 +37,5 @@
       backup-by-copying t)  ;; Copy all files, don't rename them.
 
 ;; Compilation
-(setq compilation-auto-jump-to-first-error t
+(setq compilation-auto-jump-to-first-error nil
       compilation-skip-threshold 2)
