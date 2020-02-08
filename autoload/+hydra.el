@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;;;###if (featurep! :ui hydra)
 
 ;;;###autoload (autoload '+magit/timemachine-hydra/body "autoload/+hydra" nil t)
