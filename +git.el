@@ -26,14 +26,14 @@
           :desc "Stage File" :g "S" #'magit-stage-file
           :desc "Unstage File" :g "U" #'magit-unstage-file
           :desc "Time Machine" :g "T" #'+magit/timemachine-hydra/body
-          :desc "Git Blame" :g "B" #'+magit/blame-hydra/body
+          :desc "Git Blame" :g "b" #'+magit/blame-hydra/body
           :desc "Magit Refresh" :g "r" #'magit-refresh
           :desc "Magit Refresh All" :g "R" #'magit-refresh-all
           (:prefix ("f" . "file")
             :desc "Log File" :g "l" #'magit-log-buffer-file
             :desc "Diff" :g "d" #'magit-diff
             :desc "Magit Find File" :g "f" #'magit-find-file)
-          (:prefix ("b" . "browse")
+          (:prefix ("B" . "browse")
             (:when (featurep! :emacs vc)
               :desc "Browse region or line" :g "." #'+vc/git-browse-region-or-line)
             :desc "Browse remote" :g "r" #'forge-browse-remote
