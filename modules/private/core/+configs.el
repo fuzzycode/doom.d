@@ -12,3 +12,7 @@
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
 
 (setq ws-butler-convert-leading-tabs-or-spaces t)
+
+(after! yasnippet
+  (add-to-list 'yas-snippet-dirs (expand-file-name "external/" +snippets-dir))
+  (add-to-list 'yas-snippet-dirs (expand-file-name "personal/" +snippets-dir)))
