@@ -318,8 +318,7 @@
 ;;;###package
 (use-package! flycheck-clazy
   :when (featurep! :checkers syntax)
-  :after flycheck
-  :init (flycheck-clazy-setup))
+  :after flycheck)
 
 ;; EXTRAS
 (load! "+configs")
