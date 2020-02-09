@@ -15,7 +15,8 @@
 
 (after! yasnippet
   (add-to-list 'yas-snippet-dirs (expand-file-name "external/" +snippets-dir))
-  (add-to-list 'yas-snippet-dirs (expand-file-name "personal/" +snippets-dir)))
+  (add-to-list 'yas-snippet-dirs (expand-file-name "personal/" +snippets-dir))
+  (yas-reload-all))
 
 (after! smartparens
   (show-smartparens-global-mode +1))
