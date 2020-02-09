@@ -58,8 +58,7 @@
                                                (lambda (x)
                                                  (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
                 :predicate
-                (lambda
-                  (cand)
+                (lambda (cand)
                   (get-buffer cand))))
 
   (plist-put ivy-rich-display-transformers-list
@@ -81,4 +80,3 @@
                  (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face)))))
 
   (ivy-rich-reload))
-
