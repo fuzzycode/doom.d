@@ -13,3 +13,8 @@
           :desc "Shell" :g "s" #'projectile-run-vterm
           :desc "Find file in other project" :g "O" #'doom/find-file-in-other-project
           :desc "Project Scratch Buffer" :g "x" #'doom/open-project-scratch-buffer))))
+
+(map! (:after persp-mode
+        (:leader
+          (:prefix ("p" . "project")
+                   :desc "Switch Perspective" :g "P" #'persp-switch))))
