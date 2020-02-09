@@ -26,8 +26,15 @@
       use-dialog-box nil
       use-file-dialog nil)
 
+;; iSpell
 (setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB"))
 (setq ispell-dictionary "english")
+
+;; iSeach
+(setq isearch-lax-whitespace t
+      search-whitespace-regexp ".*?"
+      isearch-regexp-lax-whitespace nil
+      isearch-lazy-highlight t)
 
 ;; Backups
 (setq version-control t     ;; Use version numbers for backups.
