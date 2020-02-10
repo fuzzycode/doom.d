@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 
 (map! (:leader
         :desc "Universal Argument" :g "u" #'universal-argument
