@@ -25,8 +25,8 @@
 (package! idle-org-agenda)
 (package! org-projectile)
 (package! org-super-agenda)
-(package! org-sticky-header)
 (package! org-bullets)
+(package! doct :recipe (:host github :repo "progfolio/doct" :branch "master"))
 
 ;;ELISP
 (package! elisp-format)

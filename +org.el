@@ -68,10 +68,17 @@
           (:name "Due today" :deadline today :order 1))))
 
 ;;;###package
-(use-package! org-sticky-header
-  :disabled t
-  :hook org-mode)
-
-;;;###package
 (use-package! org-bullets
   :hook (org-mode . org-bullets-mode))
+
+;;;###package
+(use-package! org-tempo ;; for <s templates etc.
+  :after org)
+
+;;;###package
+(use-package! doct
+  :after org)
+
+;;;###package
+(use-package! org-projectile
+  :after (org projectile))
