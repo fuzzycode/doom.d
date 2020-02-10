@@ -2,6 +2,11 @@
 
 (defvar +org/org-directory "~/Documents/Org")
 
+(defvar +org/created-property-string "
+  :PROPERTIES:
+  :CREATED: %U
+  :END:")
+
 (after! org
   (setq org-src-preserve-indentation t
       org-src-fontify-natively t
@@ -117,8 +122,11 @@
 
 ;;;###package
 (use-package! org-projectile
-  :after org
+  :after (org projectile)
   :bind (("C-c c" . #'org-capture))
-  :init (setq org-link-elisp-confirm-function nil
+  :init (setq org-projectile-capture-template (format "%s%s" "* TODO %?" +org/created-property-string)
+              org-link-elisp-confirm-function nil
               org-projectile-projects-file +org/projects-file)
-  :config (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
+  :config (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+  (add-to-list 'org-capture-templates (org-projectile-project-todo-entry
+                                       :capture-character "p")))
