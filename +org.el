@@ -1,5 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
+(defvar +org/org-directory "~/Documents/Org")
+
 (after! org
   (setq org-src-preserve-indentation t
       org-src-fontify-natively t
@@ -9,7 +11,11 @@
       org-log-reschedule 'time
       org-treat-insert-todo-heading-as-state-change t
 
-      org-directory "~/Documents/Org"
+      org-archive-location (format "%s::%s" +org/archive-file "* From %s" )
+
+      org-refile-target-verify-function #'+org/verify-refile-target
+
+      org-directory +org/org-directory
       org-id-method 'uuidgen
       org-clone-delete-id t
       org-timeline-show-empty-dates t
@@ -34,6 +40,26 @@
       org-outline-path-complete-in-steps nil
       org-todo-keywords '((sequence "IDEA(i!)" "TODO(t!)" "IN-PROGRESS(p!)"  "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELED(c@/!)"))))
 
+;; Define my different files
+(defvar +org/todo-file (concat (file-name-as-directory +org/org-directory) "todo.org"))
+(defvar +org/notes-file (concat (file-name-as-directory +org/org-directory) "notes.org"))
+(defvar +org/archive-file (concat (file-name-as-directory +org/org-directory) "archive.org"))
+(defvar +org/inbox-file (concat (file-name-as-directory +org/org-directory) "inbox.org"))
+(defvar +org/calendar-file (concat (file-name-as-directory +org/org-directory) "calendar.org"))
+(defvar +org/projects-file (concat (file-name-as-directory +org/org-directory) "projects.org"))
+
+;; Add agenda files
+;; (after! org
+;;   (setq org-refile-targets (quote ((+org/todo-file :maxlevel . 2)
+;;                                    (+org/notes-file :level . 2))))
+  
+;;   (when (file-exists-p +org/calendar-file)
+;;     (setq org-agenda-files (append org-agenda-files +org/calendar-file)))
+
+;;   (when (file-exists-p +org/todo-file)
+;;     (setq org-agenda-files (append org-agenda-files +org/todo-file))))
+
+
 (map! (:leader
         (:prefix ("a" . "applications")
           (:prefix ("o" . "org")
@@ -41,7 +67,16 @@
             :desc "Capture" :g "c" #'org-capture
             :desc "Todo List" :g "t" #'org-todo-list))
         (:prefix "s"
-          :desc "Search Org Directory" :g "o" #'+default/org-notes-search)))
+          :desc "Search Org Directory" :g "o" #'+default/org-notes-search)
+        (:prefix "f"
+          (:prefix ("o" . "org")
+            :desc "Browse Org files" :g "b" #'+default/browse-notes
+            :desc "Todo File" :g "t" (lambda! () (find-file +org/todo-file))
+            :desc "Notes File" :g "n" (lambda! () (find-file +org/notes-file))
+            :desc "Calendar File" :g "c" (lambda! () (find-file +org/calendar-file))
+            :desc "Inbox File" :g "i" (lambda! () (find-file +org/inbox-file))
+            :desc "Archive File" :g "a" (lambda! () (find-file +org/archive-file))
+            :desc "Projects File" :g "p" (lambda! () (find-file +org/projects-file))))))
 
 ;;;###package
 (use-package! demo-it
@@ -77,8 +112,13 @@
 
 ;;;###package
 (use-package! doct
-  :after org)
+  :after org
+  :init (setq org-capture-templates '()))
 
 ;;;###package
 (use-package! org-projectile
-  :after (org projectile))
+  :after org
+  :bind (("C-c c" . #'org-capture))
+  :init (setq org-link-elisp-confirm-function nil
+              org-projectile-projects-file +org/projects-file)
+  :config (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files))))
