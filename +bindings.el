@@ -32,3 +32,7 @@
                  :desc "Zoom Text" :g "z" #'+hydra/text-zoom/body)))
 
 (global-set-key (kbd "C-x C-b") #'ibuffer)
+
+;; Remove binding, I did not need it and it was colliding with org mode keys
+(after! pyenv-mode
+  (define-key pyenv-mode-map (kbd "C-c C-s") nil))

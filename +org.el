@@ -2,10 +2,7 @@
 
 (defvar +org/org-directory "~/Documents/Org")
 
-(defvar +org/created-property-string "
-  :PROPERTIES:
-  :CREATED: %U
-  :END:")
+(defvar +org/created-property-string ":PROPERTIES:\n:CREATED: %U\n:END:")
 
 (after! org
   (setq org-src-preserve-indentation t
@@ -39,11 +36,16 @@
       org-lowest-priority ?E
       org-default-priority ?C
 
+      org-agenda-time-grid '((daily today) (800 1000 1200 1400 1600 1800 2000) "......" "----------------")
+
       org-refile-use-outline-path 'file
       org-refile-allow-creating-parent-nodes t
       org-refile-allow-creating-parent-nodes 'confirm
       org-outline-path-complete-in-steps nil
       org-todo-keywords '((sequence "IDEA(i!)" "TODO(t!)" "IN-PROGRESS(p!)"  "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELED(c@/!)"))))
+
+(set-popup-rule! "^\\*org" :side 'right :size 80 :select nil :modeline t)
+
 
 ;; Define my different files
 (defvar +org/todo-file (concat (file-name-as-directory +org/org-directory) "todo.org"))
@@ -54,15 +56,15 @@
 (defvar +org/projects-file (concat (file-name-as-directory +org/org-directory) "projects.org"))
 
 ;; Add agenda files
-;; (after! org
-;;   (setq org-refile-targets (quote ((+org/todo-file :maxlevel . 2)
-;;                                    (+org/notes-file :level . 2))))
-  
-;;   (when (file-exists-p +org/calendar-file)
-;;     (setq org-agenda-files (append org-agenda-files +org/calendar-file)))
+(after! org
+  (setq org-refile-targets (quote ((+org/todo-file :maxlevel . 2)
+                                   (+org/notes-file :level . 2))))
 
-;;   (when (file-exists-p +org/todo-file)
-;;     (setq org-agenda-files (append org-agenda-files +org/todo-file))))
+  (when (file-exists-p +org/calendar-file)
+    (add-to-list 'org-agenda-files +org/calendar-file))
+
+  (when (file-exists-p +org/todo-file)
+    (add-to-list 'org-agenda-files +org/todo-file)))
 
 
 (map! (:leader
@@ -118,15 +120,28 @@
 ;;;###package
 (use-package! doct
   :after org
-  :init (setq org-capture-templates '()))
+  :init (setq org-capture-templates '())
+  :config (setq org-capture-templates
+                (append org-capture-templates
+                        (doct '(("Tasks"
+                                 :keys "t"
+                                 :file +org/todo-file
+                                 :template (lambda () (format "* %s %%^{description}\n%s\n%%?" "%doct(todo)" +org/created-property-string))
+                                 :children (("Task" :keys "t" :todo "TODO")
+                                            ("Idea" :keys "i" :todo "IDEA")))
+                                ("Notes"
+                                 :keys "n"
+                                 :file +org/notes-file
+                                 :template (lambda () (format "* %%?\n%s" +org/created-property-string))))))))
 
 ;;;###package
 (use-package! org-projectile
   :after (org projectile)
   :bind (("C-c c" . #'org-capture))
-  :init (setq org-projectile-capture-template (format "%s%s" "* TODO %?" +org/created-property-string)
+  :init (setq org-projectile-capture-template (format "%s\n%s" "* TODO %?" +org/created-property-string)
               org-link-elisp-confirm-function nil
               org-projectile-projects-file +org/projects-file)
+  (map! :leader (:prefix ("p" . "project") :desc "Project Todo Compleating Read" :g "r" #'org-projectile-project-todo-completing-read))
   :config (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
   (add-to-list 'org-capture-templates (org-projectile-project-todo-entry
                                        :capture-character "p")))
