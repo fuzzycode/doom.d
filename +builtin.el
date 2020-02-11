@@ -49,4 +49,5 @@
       compilation-skip-threshold 2)
 
 ;; TODO(Björn Larsson): Remove the need for a hard coded path parts
-(add-to-list 'recentf-exclude (concat ".*?" "\\.emacs\\.d/\\.local" ".*"))
+(after! recentf
+  (add-to-list 'recentf-exclude (concat ".*?" "\\.emacs\\.d/\\.local" ".*")))
