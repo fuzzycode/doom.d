@@ -47,3 +47,6 @@
 ;; Compilation
 (setq compilation-auto-jump-to-first-error nil
       compilation-skip-threshold 2)
+
+;; TODO(Björn Larsson): Remove the need for a hard coded path parts
+(add-to-list 'recentf-exclude (concat ".*?" "\\.emacs\\.d/\\.local" ".*"))
