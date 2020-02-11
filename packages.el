@@ -16,7 +16,6 @@
 (package! magit-imerge)
 (package! gitattributes-mode)
 (package! git-messenger)
-(package! magit-todos)
 (package! rigid-tabs)
 (package! git-walktree)
 

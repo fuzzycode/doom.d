@@ -98,6 +98,13 @@
   (add-to-list 'auto-mode-alist '("\.?gitignore$" . gitignore-mode)))
 
 
+(after! magit-todos
+  (setq magit-todos-recursive t
+        magit-todos-require-colon nil)
+  (custom-set-variables
+   '(magit-todos-keywords (list "TODO(Björn Larsson)" "HACK" "FIXME" "XXX" "???")))
+  (shut-up (magit-todos-mode)))
+
 ;;;###package
 (use-package! gitattributes-mode)
 
