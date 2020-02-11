@@ -19,3 +19,6 @@
         (:leader
           (:prefix ("p" . "project")
             :desc "Switch Perspective" :g "P" #'persp-switch))))
+
+(after! projectile
+  (global-set-key (kbd "M-o") #'projectile-find-file-dwim))
