@@ -44,6 +44,13 @@
   (setq ivy-prescient-sort-commands
         '(:not swiper ivy-switch-buffer counsel-switch-buffer)))
 
+(after! counsel
+  (defun +counsel/counsel-compile-projectile (&optional dir)
+    "Add `'projectile-compilation-command to the list of compilation commands."
+    (when (boundp 'projectile-project-compilation-cmd)
+      projectile-project-compilation-cmd))
+
+  (add-to-list 'counsel-compile-local-builds #'+counsel/counsel-compile-projectile))
 
 (after! (ivy ivy-rich counsel)
   (plist-put ivy-rich-display-transformers-list
