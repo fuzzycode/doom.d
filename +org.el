@@ -129,9 +129,15 @@
                                  :template (lambda () (format "* %s %%^{description}\n%s\n%%?" "%doct(todo)" +org/created-property-string))
                                  :children (("Task" :keys "t" :todo "TODO")
                                             ("Idea" :keys "i" :todo "IDEA")))
+                                ("Feedback"
+                                 :keys "f"
+                                 :file +org/notes-file
+                                 :heading "Feedback"
+                                 :template (lambda () (format "* %%? \n%s" +org/created-property-string)))
                                 ("Notes"
                                  :keys "n"
                                  :file +org/notes-file
+                                 :heading "Notes"
                                  :template (lambda () (format "* %%?\n%s" +org/created-property-string))))))))
 
 ;;;###package
@@ -141,7 +147,12 @@
   :init (setq org-projectile-capture-template (format "%s\n%s" "* TODO %?" +org/created-property-string)
               org-link-elisp-confirm-function nil
               org-projectile-projects-file +org/projects-file)
-  (map! :leader (:prefix ("p" . "project") :desc "Project Todo Compleating Read" :g "r" #'org-projectile-project-todo-completing-read))
-  :config (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+  (map! :leader (:prefix ("p" . "project") :desc "Project Todo" :g "r" #'org-projectile-project-todo-completing-read))
+  :config
+  (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
   (add-to-list 'org-capture-templates (org-projectile-project-todo-entry
-                                       :capture-character "p")))
+                                       :capture-character "p"))
+  (add-to-list 'org-capture-templates (org-projectile-project-todo-entry
+                                       :capture-heading "Project Idea"
+                                       :capture-template (format "%s\n%s" "* IDEA %?" +org/created-property-string)
+                                       :capture-character "P")))
