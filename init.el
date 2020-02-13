@@ -56,7 +56,7 @@
        vterm             ; another terminals in Emacs
 
        :tools
-       debugger          ; FIXME stepping through code, to help you add bugs
+       debugger
        direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
@@ -70,7 +70,7 @@
        magit             ; a git porcelain for Emacs
        ;;make              ; run make tasks from Emacs
        pdf               ; pdf enhancements
-       prodigy           ; FIXME managing external services & code builders
+       prodigy
        rgb               ; creating color strings
        ;;terraform         ; infrastructure as code
        ;;tmux              ; an API for interacting with tmux
