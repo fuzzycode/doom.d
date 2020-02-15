@@ -117,6 +117,12 @@
 (use-package! org-tempo ;; for <s templates etc.
   :after org)
 
+(after! org
+  (use-package! org-expiry
+    :config (setq org-expiry-inactive-timestamps t)
+     (add-hook 'org-capture-before-finalize-hook #'+org/insert-creation)
+     (add-hook 'org-insert-heading-hook #'+org/insert-creation)))
+
 ;;;###package
 (use-package! doct
   :after org
@@ -126,25 +132,25 @@
                         (doct '(("Tasks"
                                  :keys "t"
                                  :file +org/todo-file
-                                 :template (lambda () (format "* %s %%^{description}\n%s\n%%?" "%doct(todo)" +org/created-property-string))
+                                 :template "* %doct(todo) %^{description}\n%?"
                                  :children (("Task" :keys "t" :todo "TODO")
                                             ("Idea" :keys "i" :todo "IDEA")))
                                 ("Feedback"
                                  :keys "f"
                                  :file +org/notes-file
                                  :heading "Feedback"
-                                 :template (lambda () (format "* %%? \n%s" +org/created-property-string)))
+                                 :template "* %?"
                                 ("Notes"
                                  :keys "n"
                                  :file +org/notes-file
                                  :heading "Notes"
-                                 :template (lambda () (format "* %%?\n%s" +org/created-property-string))))))))
+                                 :template "* %?")))))))
 
 ;;;###package
 (use-package! org-projectile
   :after (org projectile)
-  :bind (("C-c c" . #'org-capture))
-  :init (setq org-projectile-capture-template (format "%s\n%s" "* TODO %?" +org/created-property-string)
+  :bind (("C-c C-c" . #'org-capture))
+  :init (setq org-projectile-capture-template "* TODO %?"
               org-link-elisp-confirm-function nil
               org-projectile-projects-file +org/projects-file)
   (map! :leader (:prefix ("p" . "project") :desc "Project Todo" :g "r" #'org-projectile-project-todo-completing-read))
@@ -154,5 +160,5 @@
                                        :capture-character "p"))
   (add-to-list 'org-capture-templates (org-projectile-project-todo-entry
                                        :capture-heading "Project Idea"
-                                       :capture-template (format "%s\n%s" "* IDEA %?" +org/created-property-string)
+                                       :capture-template "* IDEA %?"
                                        :capture-character "P")))

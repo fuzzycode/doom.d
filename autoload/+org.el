@@ -22,4 +22,11 @@
   (org-map-entries '+org/org-archive-if-completed))
 
 ;;;###autoload
+(defun +org/insert-creation ()
+  (save-excursion
+    (org-back-to-heading)
+    (org-expiry-insert-created)))
+
+
+;;;###autoload
 (add-hook 'org-mode-hook #'flyspell-mode)
