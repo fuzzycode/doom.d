@@ -22,7 +22,6 @@
 ;;ORG
 (package! demo-it)
 (package! idle-org-agenda)
-(package! org-projectile)
 (package! org-super-agenda)
 (package! org-bullets)
 (package! doct :recipe (:host github :repo "progfolio/doct" :branch "master"))

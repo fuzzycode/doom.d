@@ -2,8 +2,6 @@
 
 (defvar +org/org-directory "~/Documents/Org")
 
-(defvar +org/created-property-string ":PROPERTIES:\n:CREATED: %U\n:END:")
-
 (after! org
   (setq org-src-preserve-indentation t
       org-src-fontify-natively t
@@ -53,7 +51,6 @@
 (defvar +org/archive-file (concat (file-name-as-directory +org/org-directory) "archive.org"))
 (defvar +org/inbox-file (concat (file-name-as-directory +org/org-directory) "inbox.org"))
 (defvar +org/calendar-file (concat (file-name-as-directory +org/org-directory) "calendar.org"))
-(defvar +org/projects-file (concat (file-name-as-directory +org/org-directory) "projects.org"))
 
 ;; Add agenda files
 (after! org
@@ -65,6 +62,16 @@
 
   (when (file-exists-p +org/todo-file)
     (add-to-list 'org-agenda-files +org/todo-file)))
+
+;; Functions
+(defun +org/project-org-file-name ()
+  (concat (string-remove-prefix "." (projectile-project-name)) ".org"))
+
+(defun +org/projects-directory ()
+  (concat org-directory "/projects/"))
+
+(defun +org/project-org-file-path ()
+  (concat (+org/projects-directory) (+org/project-org-file-name)))
 
 
 (map! (:leader
@@ -82,8 +89,9 @@
             :desc "Notes File" :g "n" (lambda! () (find-file +org/notes-file))
             :desc "Calendar File" :g "c" (lambda! () (find-file +org/calendar-file))
             :desc "Inbox File" :g "i" (lambda! () (find-file +org/inbox-file))
-            :desc "Archive File" :g "a" (lambda! () (find-file +org/archive-file))
-            :desc "Projects File" :g "p" (lambda! () (find-file +org/projects-file))))))
+            :desc "Archive File" :g "a" (lambda! () (find-file +org/archive-file))))
+        (:prefix "p"
+          :desc "Open Org File" :g "o" (lambda! () (find-file (+org/project-org-file-path))))))
 
 ;;;###package
 (use-package! demo-it
@@ -118,7 +126,10 @@
   :after org)
 
 (after! org
+;;;###package
   (use-package! org-expiry
+    :bind (:map org-mode-map
+            ("C-c C-e" . #'org-expiry-insert-expiry))
     :config (setq org-expiry-inactive-timestamps t)
      (add-hook 'org-capture-before-finalize-hook #'+org/insert-creation)
      (add-hook 'org-insert-heading-hook #'+org/insert-creation)))
@@ -126,39 +137,33 @@
 ;;;###package
 (use-package! doct
   :after org
-  :init (setq org-capture-templates '())
-  :config (setq org-capture-templates
-                (append org-capture-templates
-                        (doct '(("Tasks"
-                                 :keys "t"
-                                 :file +org/todo-file
-                                 :template "* %doct(todo) %^{description}\n%?"
-                                 :children (("Task" :keys "t" :todo "TODO")
-                                            ("Idea" :keys "i" :todo "IDEA")))
-                                ("Feedback"
-                                 :keys "f"
-                                 :file +org/notes-file
-                                 :heading "Feedback"
-                                 :template "* %?"
-                                ("Notes"
-                                 :keys "n"
-                                 :file +org/notes-file
-                                 :heading "Notes"
-                                 :template "* %?")))))))
-
-;;;###package
-(use-package! org-projectile
-  :after (org projectile)
   :bind (("C-c C-c" . #'org-capture))
-  :init (setq org-projectile-capture-template "* TODO %?"
-              org-link-elisp-confirm-function nil
-              org-projectile-projects-file +org/projects-file)
-  (map! :leader (:prefix ("p" . "project") :desc "Project Todo" :g "r" #'org-projectile-project-todo-completing-read))
-  :config
-  (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
-  (add-to-list 'org-capture-templates (org-projectile-project-todo-entry
-                                       :capture-character "p"))
-  (add-to-list 'org-capture-templates (org-projectile-project-todo-entry
-                                       :capture-heading "Project Idea"
-                                       :capture-template "* IDEA %?"
-                                       :capture-character "P")))
+  :init (setq org-capture-templates '())
+  :config (add-to-list 'org-agenda-files (+org/projects-directory))
+  (setq org-capture-templates
+        (append org-capture-templates
+                (doct '(("Tasks"
+                         :keys "t"
+                         :file +org/todo-file
+                         :template "* %doct(todo) %^{Description}\n%?"
+                         :children (("Task" :keys "t" :todo "TODO")
+                                    ("Idea" :keys "i" :todo "IDEA")))
+                        ("Project"
+                         :keys "p"
+                         :template "* %doct(todo) %?"
+                         :file (lambda () (+org/project-org-file-path))
+                         :contexts ((:function (lambda () (projectile-project-p (buffer-file-name (current-buffer))))))
+                         :children (("Task" :keys "p" :todo "TODO" :headline "Tasks")
+                                    ("Idea" :keys "i" :todo "IDEA" :headline "Tasks")
+                                    ("Note" :keys "n" :template "* %?" :headline "Notes")
+                                    ("Snippet" :keys "s" :headline "Notes" :template "* %^{Description}\nCaptured From: [[file:%F][%f]]\n#+BEGIN_SRC %^{Language}\n%i\n#+END_SRC\n%?")))
+                        ("Feedback"
+                         :keys "f"
+                         :file +org/notes-file
+                         :heading "Feedback"
+                         :template "* %?")
+                        ("Notes"
+                         :keys "n"
+                         :file +org/notes-file
+                         :heading "Notes"
+                         :template "* %?"))))))
