@@ -11,7 +11,7 @@
 (doom!
        :completion
        company          ; the ultimate code completion backend
-       (ivy +prescient +childframe)
+       (ivy +prescient)
 
        :ui
        deft              ; notational velocity for Emacs
