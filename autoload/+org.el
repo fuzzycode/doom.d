@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; http://doc.norang.ca/org-mode.html
 ;;;###autoload
 (defun +org/verify-refile-target ()
@@ -20,6 +22,16 @@
 (defun +org/org-archive-completed-in-buffer ()
   (interactive)
   (org-map-entries '+org/org-archive-if-completed))
+
+;;;###autoload
+(defun +org/cancel-expired-tasks ()
+  (when (boundp 'org-expiry-add-keyword)
+    (org-expiry-add-keyword "CANCELED")))
+
+;;;###autoload
+(defun +org/expire-and-archive-tasks ()
+  (+org/cancel-expired-tasks)
+  (+org/org-archive-completed-in-buffer))
 
 ;;;###autoload
 (defun +org/insert-creation ()

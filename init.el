@@ -101,13 +101,15 @@
        ;;nim               ; python + lisp at the speed of c
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
-       (org              ; organize your plain life in plain text
-        +dragndrop       ; drag & drop files/images into org buffers
-        +hugo            ; use Emacs for hugo blogging
-        +ipython         ; ipython/jupyter support for babel
-        +pandoc          ; export-with-pandoc support
+       (org
+        +dragndrop
+        +hugo
+        +brain
+        +gnuplot
+        +jupyter
+        +pandoc
         +journal
-        +present)        ; using org-mode for presentations
+        +present)
        ;;perl              ; write code no one else can comprehend
        plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
