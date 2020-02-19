@@ -24,13 +24,22 @@
   (org-map-entries '+org/org-archive-if-completed))
 
 ;;;###autoload
-(defun +org/cancel-expired-tasks ()
-  (when (boundp 'org-expiry-add-keyword)
-    (org-expiry-add-keyword "CANCELED")))
+(defun +org/try-close-expired-task ()
+  (unless (org-entry-is-done-p)
+    (org-expiry-add-keyword)))
 
 ;;;###autoload
-(defun +org/expire-and-archive-tasks ()
-  (+org/cancel-expired-tasks)
+(defun +org/close-expired-in-buffer ()
+  ""
+  (interactive)
+  (org-map-entries '+org/try-close-expired-task))
+
+;;;###autoload
+(defun +org/expire-and-archive-tasks-in-buffer ()
+  ""
+  (interactive)
+  (+org/close-expired-in-buffer)
+  (save-buffer)
   (+org/org-archive-completed-in-buffer))
 
 ;;;###autoload

@@ -28,6 +28,9 @@
       org-insert-heading-respect-content t
       org-archive-mark-done t
 
+      org-id-track-globally t
+      org-id-locations-file (concat +org/org-directory "/.orgids")
+
       org-return-follows-link t
 
       org-highest-priority ?A
@@ -40,7 +43,12 @@
       org-refile-allow-creating-parent-nodes t
       org-refile-allow-creating-parent-nodes 'confirm
       org-outline-path-complete-in-steps nil
-      org-todo-keywords '((sequence "IDEA(i!)" "TODO(t!)" "IN-PROGRESS(p!)"  "BLOCKED(b@/!)" "|" "DONE(d!)" "CANCELED(c@/!)"))))
+      org-todo-keywords '((sequence "IDEA(i!)" "TODO(t!)" "IN-PROGRESS(p!)"  "BLOCKED(b@/!)" "|" "DONE(d!)")
+                          (sequence "|" "CANCELED(c@/!)" "EXPIRED(!)")))
+
+  ;; Assure that the id file exists, it will crash if the file does not exist
+  (unless (file-exists-p org-id-locations-file)
+    (with-temp-buffer (write-file org-id-locations-file))))
 
 (set-popup-rule! "^\\*org" :side 'right :size 80 :select nil :modeline t)
 
@@ -54,8 +62,8 @@
 
 ;; Add agenda files
 (after! org
-  (setq org-refile-targets (quote ((+org/todo-file :maxlevel . 2)
-                                   (+org/notes-file :level . 2))))
+  ;; (setq org-refile-targets (quote ((+org/todo-file :maxlevel . 2)
+  ;;                                  (+org/notes-file :level . 2))))
 
   (when (file-exists-p +org/calendar-file)
     (add-to-list 'org-agenda-files +org/calendar-file))
@@ -162,8 +170,9 @@
 
         (:prefix ("a" . "agenda")
           :desc "Agenda" :g "a" #'org-agenda
-          :desc "Expire And Archive Tasks" :g "e" #'+org/expire-and-archive-tasks
-          :desc "Archive Completed" :g "E" #'+org/org-archive-completed-in-buffer)
+          :desc "Expire And Archive Tasks" :g "e" #'+org/expire-and-archive-tasks-in-buffer
+          :desc "Archive Completed" :g "E" #'+org/org-archive-completed-in-buffer
+          :desc "Close Expired Tasks" :g "c" #'+org/close-expired-in-buffer)
         (:prefix ("i" . "insert")
           :desc "Drawer" :g "d" #'org-insert-drawer
           :desc "Item" :g "i" #'org-insert-item
@@ -177,7 +186,7 @@
             (:prefix ("D" . "download")
               :desc "Yank" :g "y" #'org-download-yank
               :desc "Screenshot" :g "s" #'org-download-screenshot)))
-        (:prefix ("d" . "deadline")
+        (:prefix ("d" . "dates")
           :desc "Schedule" :g "s" #'org-schedule
           :desc "Deadline" :g "d" #'org-deadline
           :desc "Expiry" :g "e" #'org-expiry-insert-expiry
