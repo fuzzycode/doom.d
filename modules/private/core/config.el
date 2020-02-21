@@ -297,7 +297,9 @@
 ;;;###package
 (use-package! flyspell-correct-ivy
   :when (and (featurep! :completion ivy) (featurep! :checkers spell))
-  :bind (:map flyspell-mode-map ("C-;" . #'flyspell-correct-wrapper))
+  :bind (:map flyspell-mode-map
+          ("C-;" . #'flyspell-correct-wrapper)
+          ("M-i" . #'flyspell-correct-wrapper))
   :init (setq flyspell-correct-interface #'flyspell-correct-ivy)
   (map! (:leader
           (:prefix ("S" . "spelling")
