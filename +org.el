@@ -323,7 +323,7 @@
 ;;;###package
 (use-package! doct
   :after org
-  :bind (("C-c C-c" . #'org-capture))
+  :bind (("C-c c" . #'org-capture))
   :init (setq org-capture-templates '())
   :config (add-to-list 'org-agenda-files (+org/projects-directory))
   (setq org-capture-templates
