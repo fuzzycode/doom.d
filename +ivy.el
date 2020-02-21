@@ -52,6 +52,25 @@
 
   (add-to-list 'counsel-compile-local-builds #'+counsel/counsel-compile-projectile))
 
+(after! (ivy counsel-projectile)
+  (ivy-set-actions
+   'counsel-projectile-switch-project
+   '(("o" counsel-projectile-switch-project-action "Jump to a project buffer or file")
+     ("f" counsel-projectile-switch-project-action-find-file "Jump to a project file")
+     ("d" counsel-projectile-switch-project-action-find-dir "Jump to a project directory")
+     ("D" counsel-projectile-switch-project-action-dired "Open project in dired")
+     ("b" counsel-projectile-switch-project-action-switch-to-buffer "Jump to a project buffer")
+     ("m" counsel-projectile-switch-project-action-find-file-manually "Find file manually from project root")
+     ("S" counsel-projectile-switch-project-action-save-all-buffers "Save all project buffers")
+     ("k" counsel-projectile-switch-project-action-kill-buffers "Kill all project buffers")
+     ("K" counsel-projectile-switch-project-action-remove-known-project "Remove project from known projects")
+     ("c" counsel-projectile-switch-project-action-compile "Run project compilation command")
+     ("C" counsel-projectile-switch-project-action-configure "Run project configure command")
+     ("E" counsel-projectile-switch-project-action-edit-dir-locals "Edit project dir-locals")
+     ("v" counsel-projectile-switch-project-action-vc "Open project in VC")
+     ("s" counsel-projectile-switch-project-action-rg "Search project with rg")
+     ("t" counsel-projectile-switch-project-action-run-vterm "Invoke vterm from project root"))))
+
 (after! (ivy ivy-rich counsel)
   (plist-put ivy-rich-display-transformers-list
               'ivy-switch-buffer
