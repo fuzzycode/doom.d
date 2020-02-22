@@ -44,13 +44,20 @@
       org-refile-allow-creating-parent-nodes 'confirm
       org-outline-path-complete-in-steps nil
       org-todo-keywords '((sequence "IDEA(i!)" "TODO(t!)" "IN-PROGRESS(p!)"  "BLOCKED(b@/!)" "|" "DONE(d!)")
-                          (sequence "|" "CANCELED(c@/!)" "EXPIRED(!)")))
+                          (sequence "|" "CANCELED(c@/!)" "EXPIRED(!)"))
+      org-todo-keyword-faces '(("IDEA" . +org-todo-active)
+                               ("TODO" . +org-todo-active)
+                               ("IN-PROGRESS" . +org-todo-active)
+                               ("BLOCKED" . +org-todo-onhold)
+                               ("DONE" . +org-todo-onhold)
+                               ("CANCELED" . +org-todo-onhold)
+                               ("EXPIRED" . +org-todo-onhold)))
 
   ;; Assure that the id file exists, it will crash if the file does not exist
   (unless (file-exists-p org-id-locations-file)
     (with-temp-buffer (write-file org-id-locations-file))))
 
-(set-popup-rule! "^\\*org" :side 'right :size 80 :select nil :modeline t)
+;; (set-popup-rule! "^\\*org" :side 'right :size 80 :select nil :modeline t)
 
 
 ;; Define my different files
@@ -72,14 +79,15 @@
     (add-to-list 'org-agenda-files +org/todo-file)))
 
 ;; Functions
-(defun +org/project-org-file-name ()
-  (concat (string-remove-prefix "." (projectile-project-name)) ".org"))
+(defun +org/project-org-file-name (&optional project-name)
+  (let ((file (or project-name (projectile-project-name))))
+    (concat (string-remove-prefix "." file) ".org")))
 
 (defun +org/projects-directory ()
   (concat org-directory "/projects/"))
 
-(defun +org/project-org-file-path ()
-  (concat (+org/projects-directory) (+org/project-org-file-name)))
+(defun +org/project-org-file-path (&optional project-name)
+  (concat (+org/projects-directory) (+org/project-org-file-name project-name)))
 
 ;; TODO(Björn Larsson): Expand this list with more modes that should be supported
 (setq +org/major-mode-to-org-src
@@ -331,7 +339,7 @@
                 (doct '(("Tasks"
                          :keys "t"
                          :file +org/todo-file
-                         :template "* %doct(todo) %^{Description}\n%?"
+                         :template "* %doct(todo) %?"
                          :children (("Task" :keys "t" :todo "TODO")
                                     ("Idea" :keys "i" :todo "IDEA")))
                         ("Project"
