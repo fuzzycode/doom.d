@@ -11,6 +11,10 @@
   (add-to-list 'magit-no-confirm 'trash)
   (add-to-list 'magit-no-confirm 'safe-with-wip)
 
+  ;; A colour highlight is enough, no need to warn me again
+  (setq git-commit-style-convention-checks
+        (remove 'overlong-summary-line git-commit-style-convention-checks))
+
   (setq magit-save-repository-buffers nil
         magit-section-visibility-indicator nil
         magit-wip-merge-branch t
