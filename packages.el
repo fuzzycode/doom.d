@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 
 ;;DISABLED
 (package! drag-stuff :disable t)

@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 
 (map! (:leader
         :desc "Shell Command" :g "!" 'shell-command
