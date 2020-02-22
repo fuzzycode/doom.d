@@ -125,7 +125,8 @@
             :desc "Inbox File" :g "i" (lambda! () (find-file +org/inbox-file))
             :desc "Archive File" :g "a" (lambda! () (find-file +org/archive-file))))
         (:prefix "p"
-          :desc "Open Org File" :g "o" (lambda! () (find-file (+org/project-org-file-path))))))
+          :desc "Open Org File" :g "o" (lambda! () (when (projectile-project-p)
+                                                     (find-file (+org/project-org-file-path)))))))
 
 (map! :after org
       (:localleader
