@@ -199,6 +199,7 @@
           :desc "Schedule" :g "s" #'org-schedule
           :desc "Deadline" :g "d" #'org-deadline
           :desc "Expiry" :g "e" #'org-expiry-insert-expiry
+          :desc "Expire on time (dwim)" :g "E" #'+org/expire-on-time-dwim
           :desc "Time Stamp" :g "t" #'org-time-stamp
           :desc "Time Stamp (inactive)" :g "T" #'org-time-stamp-inactive)
         (:prefix ("h" . "headings")
