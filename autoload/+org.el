@@ -91,6 +91,39 @@ to be that of the scheduled date+time."
       (when schedule
         (+org/expire-on-scheduled)))))
 
+;;;###autoload
+(defun +core/capture-snippet ()
+  "Formats a capture snippet for capturing code."
+  (let ((line-number (line-number-at-pos (region-beginning)))
+         (func-name (which-function))
+         (org-src-mode (cdr (assoc major-mode +org/major-mode-to-org-src))))
+    (format "* %%?\nSource: [[file:%%F::%d][%%f (%s)]]\n#+begin_src %s\n%%i\n#+end_src" line-number func-name (or org-src-mode ""))))
+
+;; TODO(Björn Larsson): Expand this list with more modes that should be supported
+;;;###autoload
+(setq +org/major-mode-to-org-src
+      '((c++-mode . "C++")
+        (python-mode . "python")
+        (emacs-lisp-mode . "emacs-lisp")
+        (shell-mode . "sh")
+        (lua-mode . "lua")
+        (json-mode . "json")
+        (yaml-mode . "yml")
+        (cmake-mode . "cmake")))
+
+;;;###autoload
+(defun +org/project-org-file-name (&optional project-name)
+  (let ((file (or project-name (projectile-project-name))))
+    (concat (string-remove-prefix "." file) ".org")))
+
+;;;###autoload
+(defun +org/projects-directory ()
+  (concat org-directory "/projects/"))
+
+;;;###autoload
+(defun +org/project-org-file-path (&optional project-name)
+  (concat (+org/projects-directory) (+org/project-org-file-name project-name)))
+
 
 ;;;###autoload
 (add-hook 'org-mode-hook #'flyspell-mode)
