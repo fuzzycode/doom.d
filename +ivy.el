@@ -45,17 +45,28 @@
         '(:not swiper ivy-switch-buffer counsel-switch-buffer)))
 
 (after! counsel
-  (defun +counsel/counsel-compile-projectile (&optional dir)
+  (defun +counsel/counsel-compile-projectile (&optional _)
     "Add `'projectile-compilation-command to the list of compilation commands."
     (when (boundp 'projectile-project-compilation-cmd)
       projectile-project-compilation-cmd))
 
   (add-to-list 'counsel-compile-local-builds #'+counsel/counsel-compile-projectile))
 
-(after! (ivy counsel-projectile)
+(after! (ivy projectile counsel-projectile doct)
+  (defun +counsel/counsel-switch-project-action-org-capture (project)
+    (setq +counsel/counsel-switch-project-project-name (projectile-project-name project))
+    (let* ((org-capture-templates (doct '((:group
+                                           "Project"
+                                           :template "* %doct(todo) %?"
+                                           :file (lambda () (+org/project-org-file-path +counsel/counsel-switch-project-project-name))
+                                           :children (("Task" :keys "p" :todo "TODO" :headline "Tasks")
+                                                      ("Idea" :keys "i" :todo "IDEA" :headline "Tasks")
+                                                      ("Note" :keys "n" :template "* %?" :headline "Notes")))))))
+      (counsel-org-capture)))
+  
   (ivy-set-actions
    'counsel-projectile-switch-project
-   '(("o" counsel-projectile-switch-project-action "Jump to a project buffer or file")
+   '(("j" counsel-projectile-switch-project-action "Jump to a project buffer or file")
      ("f" counsel-projectile-switch-project-action-find-file "Jump to a project file")
      ("d" counsel-projectile-switch-project-action-find-dir "Jump to a project directory")
      ("D" counsel-projectile-switch-project-action-dired "Open project in dired")
@@ -69,6 +80,7 @@
      ("E" counsel-projectile-switch-project-action-edit-dir-locals "Edit project dir-locals")
      ("v" counsel-projectile-switch-project-action-vc "Open project in VC")
      ("s" counsel-projectile-switch-project-action-rg "Search project with rg")
+     ("p" +counsel/counsel-switch-project-action-org-capture "Capture to project")
      ("t" counsel-projectile-switch-project-action-run-vterm "Invoke vterm from project root"))))
 
 (after! (ivy ivy-rich counsel)
