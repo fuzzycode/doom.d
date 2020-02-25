@@ -31,6 +31,16 @@
 (map! (:leader (:prefix ("x" . "text")
                  :desc "Zoom Text" :g "z" #'+hydra/text-zoom/body)))
 
+(map! (:leader (:prefix ("x" . "text")
+                 (:prefix ("f" . "folding")
+                   :when (featurep! :editor fold)
+                   :desc "Close All" :g "C" #'+fold/close-all
+                   :desc "Open All" :g "O" #'+fold/open-all
+                   :desc "Close" :g "c" #'+fold/close
+                   :desc "Open" :g "o" #'+fold/open
+                   :desc "Toggle" :g "t" #'+fold/toggle
+                   :desc "Next" :g "n" #'+fold/next
+                   :desc "Previous" :g "p" #'+fold/previous))))
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
 ;; Remove binding, I did not need it and it was colliding with org mode keys
