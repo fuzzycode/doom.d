@@ -55,7 +55,9 @@
 
   ;; Assure that the id file exists, it will crash if the file does not exist
   (unless (file-exists-p org-id-locations-file)
-    (with-temp-buffer (write-file org-id-locations-file))))
+    (with-temp-buffer (write-file org-id-locations-file)))
+
+  (add-to-list 'recentf-exclude org-id-locations-file))
 
 ;; (set-popup-rule! "^\\*org" :side 'right :size 80 :select nil :modeline t)
 
@@ -69,8 +71,6 @@
 
 ;; Add agenda files
 (after! org
-  ;; (setq org-refile-targets (quote ((+org/todo-file :maxlevel . 2)
-  ;;                                  (+org/notes-file :level . 2))))
 
   (when (file-exists-p +org/calendar-file)
     (add-to-list 'org-agenda-files +org/calendar-file))
