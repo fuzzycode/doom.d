@@ -48,6 +48,9 @@
 (setq compilation-auto-jump-to-first-error nil
       compilation-skip-threshold 2)
 
+;; Enable advanced features without asking
+(put 'narrow-to-region 'disabled nil)
+
 ;; TODO(Björn Larsson): Remove the need for a hard coded path parts
 (after! recentf
   (add-to-list 'recentf-exclude (concat ".*?" "\\.emacs\\.d/\\.local" ".*")))

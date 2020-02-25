@@ -41,6 +41,13 @@
                    :desc "Toggle" :g "t" #'+fold/toggle
                    :desc "Next" :g "n" #'+fold/next
                    :desc "Previous" :g "p" #'+fold/previous))))
+
+(map! (:leader (:prefix ("n" . "narrow")
+                 :desc "Narrow To Region" :g "r" #'narrow-to-region
+                 :desc "Narrow To Defun" :g "d" #'narrow-to-defun
+                 :desc "Narrow To Page" :g "p" #'narrow-to-page
+                 :desc "Widen" :g "w" #'widen)))
+
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
 ;; Remove binding, I did not need it and it was colliding with org mode keys
