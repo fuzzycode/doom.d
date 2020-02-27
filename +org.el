@@ -83,6 +83,8 @@
           (:prefix ("o" . "org")
             :desc "Agenda" :g "a" #'org-agenda
             :desc "Capture" :g "c" #'org-capture
+            :desc "Tags View" :g "m" #'org-tags-view
+            :desc "Search View" :g "s" #'org-search-view
             :desc "Todo List" :g "t" #'org-todo-list))
         (:prefix "s"
           :desc "Search Org Directory" :g "o" #'+default/org-notes-search)
