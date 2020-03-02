@@ -50,3 +50,24 @@
   (when (file-exists-p "~/.snippets")
     (add-to-list 'yas-snippet-dirs "~/.snippets")
     (yas-reload-all)))
+
+(after! flycheck
+  (setq flycheck-error-list-format `[("File" 25)
+                                     ("Line" 5 flycheck-error-list-entry-< :right-align t)
+                                     ("Col" 3 nil :right-align t)
+                                     ("Level" 8 flycheck-error-list-entry-level-<)
+                                     ("ID" 6 t)
+                                     (#("Message (Checker)" 9 16
+                                        (face flycheck-error-list-checker-name))
+                                      0 t)]))
+
+(setq ibuffer-formats '((mark modified read-only locked " "
+                              (name 35 35 :left :elide)
+                              " "
+                              (size 9 -1 :right)
+                              " "
+                              (mode 16 16 :left :elide)
+                              " " filename-and-process)
+                        (mark " "
+                              (name 16 -1)
+                              " " filename)))
