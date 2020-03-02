@@ -11,7 +11,7 @@
         doom-modeline-buffer-file-name-style 'truncate-with-project
         doom-modeline-env-version t
         doom-modeline-mu4e t
-        doom-modeline-vcs-max-length 25)
+        doom-modeline-vcs-max-length 45)
 
   (doom-modeline-def-modeline 'main
     '(bar workspace-name window-number modals matches buffer-info remote-host buffer-position word-count parrot selection-info)
