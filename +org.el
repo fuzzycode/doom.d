@@ -159,14 +159,16 @@
           :desc "Item" :g "i" #'org-insert-item
           :desc "Note" :g "n" #'org-add-note
           :desc "Property" :g "p" #'org-set-property
-          :desc "Tags" :g "t" #'org-set-tags
+          :desc "Tags" :g "t" #'org-set-tags-command
           :desc "Attach" :g "a" #'org-attach
           :desc "Link" :g "l" #'org-insert-link
           :desc "New Footnote" :g "f" #'org-footnote-new
           (:when (featurep! :lang org +dragndrop)
             (:prefix ("D" . "download")
               :desc "Yank" :g "y" #'org-download-yank
-              :desc "Screenshot" :g "s" #'org-download-screenshot)))
+              :desc "Screenshot" :g "s" #'org-download-screenshot))
+          (:when (featurep! :completion ivy)
+            :desc "Counsel Tag" :g "T" #'counsel-org-tag))
         (:prefix ("d" . "dates")
           :desc "Schedule" :g "s" #'org-schedule
           :desc "Deadline" :g "d" #'org-deadline
