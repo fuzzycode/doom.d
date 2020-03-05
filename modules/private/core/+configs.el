@@ -20,3 +20,9 @@
 
 (after! smartparens
   (show-smartparens-global-mode +1))
+
+;; Add extensionless file modes
+(add-to-list 'auto-mode-alist '("\\.zshenv.local$" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.zshrc.local$" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.ignore$" . gitignore-mode))
+(add-to-list 'auto-mode-alist '("\\.fdignore$" . gitignore-mode))
