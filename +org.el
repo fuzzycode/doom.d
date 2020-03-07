@@ -295,6 +295,11 @@
 (use-package! org-tempo ;; for <s templates etc.
   :after org)
 
+;;;###package
+(use-package! org-id
+  :after org
+  :hook (org-capture-prepare-finalize . org-id-get-create))
+
 (after! org
 ;;;###package
   (use-package! org-expiry
