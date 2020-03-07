@@ -337,6 +337,11 @@
                          :file +org/notes-file
                          :heading "Feedback"
                          :template "* %?")
+                        ("Reminder"
+                         :keys "r"
+                         :file +org/todo-file
+                         :heading "Reminders"
+                         :template "* %?\nSCHEDULED: %^t")
                         ("Notes"
                          :keys "n"
                          :file +org/notes-file
