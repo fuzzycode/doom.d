@@ -149,7 +149,7 @@ to be that of the scheduled date+time."
       (let* ((id-parts (assoc custom-id all-ids))
              (name (car id-parts))
              (id (cdr id-parts)))
-        (org-insert-link nil (concat "id:" (car id)) name)))))
+        (org-insert-link nil (concat "id:" (car id)) (read-string "Description: " name))))))
 
 ;;;###autoload
 (add-hook 'org-mode-hook #'flyspell-mode)
