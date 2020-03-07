@@ -161,7 +161,8 @@
           :desc "Property" :g "p" #'org-set-property
           :desc "Tags" :g "t" #'org-set-tags-command
           :desc "Attach" :g "a" #'org-attach
-          :desc "Link" :g "l" #'org-insert-link
+          :desc "Id Link" :g "l" #'+org/org-insert-custom-id-link
+          :desc "Link" :g "L" #'org-insert-link
           :desc "New Footnote" :g "f" #'org-footnote-new
           (:when (featurep! :lang org +dragndrop)
             (:prefix ("D" . "download")
