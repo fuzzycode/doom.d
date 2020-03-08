@@ -120,6 +120,7 @@
         :g "g" nil
         :g "h" nil
         :g "i" nil
+        :g "l" nil
         :g "n" nil
         :g "o" nil
         :g "p" nil
@@ -225,6 +226,15 @@
           :desc "Refile" :g "r" #'org-refile
           :desc "Sparse Tree" :g "s" #'org-sparse-tree
           :desc "Sort" :g "S" #'org-sort)
+        (:prefix ("l" . "links")
+          :desc "Store Link" :g "s" #'org-store-link
+          :desc "Insert Link" :g "l" #'org-insert-link
+          :desc "Id Link" :g "i" #'+org/org-insert-custom-id-link
+          :desc "Remove Link" :g "k" #'+org/remove-link
+          :desc "Insert All Links" :g "L" #'org-insert-all-links
+          :desc "Clip Link" :g "c" #'org-cliplink
+          :desc "Next Link" :g "n" #'org-next-link
+          :desc "Previous Link" :g "p" #'org-previous-link)
         (:prefix ("t" . "tables")
           :desc "Align" :g "a" #'org-table-align
           :desc "Blank Field" :g "b" #'org-table-blank-field
@@ -301,6 +311,7 @@
   ;; Enable org-id
   (require 'org-id)
   (add-hook 'org-capture-prepare-finalize-hook 'org-id-get-create)
+  (org-link-set-parameters "id" :store #'org-id-store-link) ;; Make sure that we can create id links
 
 ;;;###package
   (use-package! org-expiry
