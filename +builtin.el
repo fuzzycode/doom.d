@@ -54,4 +54,5 @@
 
 ;; TODO(Björn Larsson): Remove the need for a hard coded path parts
 (after! recentf
+  (add-to-list 'recentf-exclude (expand-file-name  user-emacs-directory ".local/etc/workspaces/autosave"))
   (add-to-list 'recentf-exclude (concat ".*?" "\\.emacs\\.d/\\.local" ".*")))
