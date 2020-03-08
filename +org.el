@@ -332,6 +332,7 @@
                 (doct '(("Tasks"
                          :keys "t"
                          :file +org/todo-file
+                         :headline "Tasks"
                          :template "* %doct(todo) %?"
                          :children (("Task" :keys "t" :todo "TODO")
                                     ("Idea" :keys "i" :todo "IDEA")))
@@ -347,15 +348,15 @@
                         ("Feedback"
                          :keys "f"
                          :file +org/notes-file
-                         :heading "Feedback"
+                         :headline "Feedback"
                          :template "* %?")
                         ("Reminder"
                          :keys "r"
                          :file +org/todo-file
-                         :heading "Reminders"
+                         :headline "Reminders"
                          :template "* %?\nSCHEDULED: %^t")
                         ("Notes"
                          :keys "n"
                          :file +org/notes-file
-                         :heading "Notes"
+                         :headline "Notes"
                          :template "* %?"))))))
