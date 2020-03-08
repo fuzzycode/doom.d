@@ -63,8 +63,7 @@
   "Sets the expiry date and time to be the same as the scheduled date+time of the entry."
   (interactive)
   (require 'org-expiry)
-  (let* ((properties (org-entry-properties))
-         (schedule (assoc "SCHEDULED" properties)))
+  (let* ((schedule (org-entry-get nil "SCHEDULED")))
     (when schedule
       (org-set-property org-expiry-keyword (+org/prepare-time (cdr schedule))))))
 
@@ -73,8 +72,7 @@
   "Sets the expiry date and time to be the same as the deadline date+time of the entry."
   (interactive)
   (require 'org-expiry)
-  (let* ((properties (org-entry-properties))
-         (deadline (assoc "DEADLINE" properties)))
+  (let* ((deadline (org-entry-get nil "DEADLINE")))
     (when deadline
       (org-set-property org-expiry-keyword (+org/prepare-time (cdr deadline))))))
 
@@ -83,9 +81,8 @@
   "If there is a deadline for this entry, set the expiry to be the same as the deadline, otherwise set the expiry
 to be that of the scheduled date+time."
   (interactive)
-  (let* ((properties (org-entry-properties))
-         (schedule (assoc "SCHEDULED" properties))
-         (deadline (assoc "DEADLINE" properties)))
+  (let* ((schedule (org-entry-get nil "SCHEDULED"))
+         (deadline (org-entry-get nil "DEADLINE")))
     (if deadline
         (+org/expire-on-deadline)
       (when schedule
