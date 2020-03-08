@@ -31,13 +31,13 @@
 
 ;;;###autoload
 (defun +org/close-expired-in-buffer ()
-  ""
+  "Close all tasks that have expired in the current buffer."
   (interactive)
   (org-map-entries '+org/try-close-expired-task))
 
 ;;;###autoload
 (defun +org/expire-and-archive-tasks-in-buffer ()
-  ""
+  "Expire all expired tasks in buffer and archive all completed tasks in current buffer."
   (interactive)
   (+org/close-expired-in-buffer)
   (save-buffer)
