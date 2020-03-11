@@ -65,7 +65,7 @@
   (require 'org-expiry)
   (let* ((schedule (org-entry-get nil "SCHEDULED")))
     (when schedule
-      (org-set-property org-expiry-keyword (+org/prepare-time (cdr schedule))))))
+      (org-set-property org-expiry-keyword (+org/prepare-time schedule)))))
 
 ;;;###autoload
 (defun +org/expire-on-deadline ()
@@ -74,7 +74,7 @@
   (require 'org-expiry)
   (let* ((deadline (org-entry-get nil "DEADLINE")))
     (when deadline
-      (org-set-property org-expiry-keyword (+org/prepare-time (cdr deadline))))))
+      (org-set-property org-expiry-keyword (+org/prepare-time deadline)))))
 
 ;;;###autoload
 (defun +org/expire-on-time-dwim ()
