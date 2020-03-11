@@ -49,6 +49,9 @@
           :desc "Git Blame" :g "b" #'+magit/blame-hydra/body
           :desc "Magit Refresh" :g "r" #'magit-refresh
           :desc "Magit Refresh All" :g "R" #'magit-refresh-all
+          (:prefix ("d" . "diff")
+            :desc "File...Mainline" :g "f" #'+org/diff-file-against-mainline
+            :desc "Worktree...Mainline" :g "w" #'+org/diff-worktree-against-mainline)
           (:prefix ("f" . "file")
             :desc "Log File" :g "l" #'magit-log-buffer-file
             :desc "Diff" :g "d" #'magit-diff
