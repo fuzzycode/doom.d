@@ -48,6 +48,17 @@
                  :desc "Narrow To Page" :g "p" #'narrow-to-page
                  :desc "Widen" :g "w" #'widen)))
 
+(map! (:leader (:prefix ("k" . "pairs")
+        :desc "Barf Forward" :g "b" #'sp-forward-barf-sexp
+        :desc "Barf Backward" :g "B" #'sp-backward-barf-sexp
+        :desc "Slurp Forward" :g "s" #'sp-forward-slurp-sexp
+        :desc "Slurp Backward" :g "S" #'sp-backward-slurp-sexp
+        :desc "Absorb Sexp" :g "a" #'sp-absorb-sexp
+        :desc "Convolute Sexp" :g "c" #'sp-convolute-sexp
+        :desc "Previous Sexp" :g "p" #'sp-previous-sexp
+        :desc "Next Sexp" :g "n" #'sp-next-sexp
+        :desc "Transpose Sexp" :g "t" #'sp-transpose-sexp)))
+
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
 ;; Remove binding, I did not need it and it was colliding with org mode keys
