@@ -57,7 +57,9 @@
         :desc "Convolute Sexp" :g "c" #'sp-convolute-sexp
         :desc "Previous Sexp" :g "p" #'sp-previous-sexp
         :desc "Next Sexp" :g "n" #'sp-next-sexp
-        :desc "Transpose Sexp" :g "t" #'sp-transpose-sexp)))
+        :desc "Transpose Sexp" :g "t" #'sp-transpose-sexp
+        :desc "Split Sexp" :g "s" #'sp-split-sexp
+        :desc "Splice Sexp" :g "S" #'sp-splice-sexp)))
 
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
