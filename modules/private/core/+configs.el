@@ -19,6 +19,9 @@
   (yas-reload-all))
 
 (after! smartparens
+
+  (sp-local-pair 'c++-mode "/**" "*/" :actions '(navigate)) ;; Handle doxygen comment "pairs"
+
   (show-smartparens-global-mode +1))
 
 ;; Add extensionless file modes
