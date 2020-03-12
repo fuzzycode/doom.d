@@ -60,8 +60,11 @@
           :desc "Magit Refresh" :g "r" #'magit-refresh
           :desc "Magit Refresh All" :g "R" #'magit-refresh-all
           (:prefix ("d" . "diff")
+            :desc "Diff dwim" :g "d" #'magit-diff-dwim
             :desc "File...Mainline" :g "f" #'+org/diff-file-against-mainline
-            :desc "Worktree...Mainline" :g "w" #'+org/diff-worktree-against-mainline)
+            :desc "Worktree...Mainline" :g "w" #'+org/diff-worktree-against-mainline
+            :desc "Diff Paths" :g "p" #'magit-diff-paths
+            :desc "Diff Range" :g "r" #'magit-diff-range)
           (:prefix ("f" . "file")
             :desc "Log File" :g "l" #'magit-log-buffer-file
             :desc "Diff" :g "d" #'magit-diff
