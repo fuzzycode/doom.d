@@ -12,11 +12,6 @@
   :mode "\\.json\\'")
 
 ;;;###package
-(use-package! json-snatcher
-  :defer t
-  :init (map! :localleader :map json-mode-map :desc "Print Path" :g "p" #'jsons-print-path))
-
-;;;###package
 (use-package! jq-mode
   :defer t
   :mode "\\.jq$"
