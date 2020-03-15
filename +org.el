@@ -172,12 +172,12 @@
           (:when (featurep! :completion ivy)
             :desc "Counsel Tag" :g "T" #'counsel-org-tag))
         (:prefix ("d" . "dates")
-          :desc "Schedule" :g "s" #'org-schedule
-          :desc "Deadline" :g "d" #'org-deadline
-          :desc "Expiry" :g "e" #'org-expiry-insert-expiry
-          :desc "Expire on time (dwim)" :g "E" #'+org/expire-on-time-dwim
-          :desc "Time Stamp" :g "t" #'org-time-stamp
-          :desc "Time Stamp (inactive)" :g "T" #'org-time-stamp-inactive)
+          :desc "Set Schedule" :g "s" #'org-schedule
+          :desc "Set Deadline" :g "d" #'org-deadline
+          :desc "Set Expiry" :g "e" #'org-expiry-insert-expiry
+          :desc "Set Expire on time (dwim)" :g "E" #'+org/expire-on-time-dwim
+          :desc "Set Time Stamp" :g "t" #'org-time-stamp
+          :desc "Set Time Stamp (inactive)" :g "T" #'org-time-stamp-inactive)
         (:prefix ("h" . "headings")
           :desc "Insert Heading After Current" :g "i" #'org-insert-heading-after-current
           :desc "Insert Heading" :g "I" #'org-insert-heading
@@ -326,7 +326,8 @@
   :after org
   :bind (("C-c c" . #'org-capture))
   :init (setq org-capture-templates '())
-  :config (add-to-list 'org-agenda-files (+org/projects-directory))
+  :config
+  (add-to-list 'org-agenda-files (+org/projects-directory))
   (setq org-capture-templates
         (append org-capture-templates
                 (doct '(("Tasks"
@@ -339,12 +340,12 @@
                         ("Project"
                          :keys "p"
                          :template "* %doct(todo) %?"
-                         :file (lambda () (+org/project-org-file-path))
+                         :file +org/project-org-file-path
                          :contexts ((:function (lambda () (projectile-project-p (buffer-file-name (current-buffer))))))
                          :children (("Task" :keys "p" :todo "TODO" :headline "Tasks")
                                     ("Idea" :keys "i" :todo "IDEA" :headline "Tasks")
                                     ("Note" :keys "n" :template "* %?" :headline "Notes")
-                                    ("Snippet" :keys "s" :headline "Notes" :template (lambda () (+core/capture-snippet)))))
+                                    ("Snippet" :keys "s" :headline "Notes" :template +core/capture-snippet)))
                         ("Feedback"
                          :keys "f"
                          :file +org/notes-file
