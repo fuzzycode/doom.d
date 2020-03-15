@@ -29,6 +29,7 @@
 
 ;;ELISP
 (package! elisp-format)
+(package! eval-sexp-fu)
 
 ;; CPP MODE
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))

@@ -16,6 +16,7 @@
           :desc "Find Variable" "v" #'find-variable
           :desc "Find Library" "l" #'find-library))
 
+;;;###package
 (use-package! elisp-format
   :defer t
   :init (map! (:localleader
@@ -24,3 +25,8 @@
                   :desc "Format Region or Buffer" :g "=" #'+elisp/format-region-or-buffer
                   :desc "Format Region" :g "r" #'elisp-format-region
                   :desc "Format Buffer" :g "b" #'elisp-format-buffer))))
+
+;;;###package
+(use-package! eval-sexp-fu
+  :defer t
+  :hook ((emacs-lisp-mode . eval-sexp-fu-flash-mode)))
