@@ -314,6 +314,10 @@
   (org-link-set-parameters "id" :store #'org-id-store-link) ;; Make sure that we can create id links
 
 ;;;###package
+  (use-package! org-make-toc
+    :hook (org-mode . org-make-toc-mode))
+
+;;;###package
   (use-package! org-expiry
     :bind (:map org-mode-map
             ("C-c C-e" . #'org-expiry-insert-expiry))

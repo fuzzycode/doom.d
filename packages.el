@@ -27,6 +27,7 @@
 (package! org-super-agenda)
 (package! org-bullets)
 (package! doct :recipe (:host github :repo "progfolio/doct" :branch "master"))
+(package! org-make-toc)
 
 ;;ELISP
 (package! elisp-format)
