@@ -331,6 +331,13 @@
                           :desc "Random based UUID (4)" :g "r" (lambda! () (insert (uuidgen-4)))
                           :desc "UUID" :g "U" (lambda! () (insert (uuidgen-4)))))))
 
+
+
+;;;###package
+(use-package! smart-newline
+  :defer 1
+  :bind ("RET" . #'smart-newline))
+
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")
