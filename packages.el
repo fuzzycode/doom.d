@@ -19,6 +19,7 @@
 (package! git-messenger)
 (package! rigid-tabs)
 (package! git-walktree)
+(package! gitignore-templates)
 
 ;;ORG
 (package! demo-it)

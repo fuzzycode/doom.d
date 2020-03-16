@@ -146,3 +146,9 @@
   :init (map! (:leader
                 (:prefix ("g" . "git")
                   :desc "Walk Tree" :g "w" #'git-walktree))))
+;;;###package
+(use-package! gitignore-templates
+  :commands (gitignore-templates-insert gitignore-templates-new-file)
+  :init (map! :leader (:prefix "g"
+                        :desc "Insert Ignore Template" :g "i" #'gitignore-templates-insert
+                        :desc "New Ignore File" :g "I" #'gitignore-templates-new-file)))
