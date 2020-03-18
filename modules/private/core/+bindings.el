@@ -81,8 +81,8 @@
           (:when (featurep! :ui window-select)
             :desc "Ace Window" :g "w" #'ace-window))
         (:prefix ("K" . "keyboard macros")
-          :desc "Start or Insert Counter" :g "(" #'kmacro-start-macro-or-insert-counter
-          :desc "End or Call Macro" :g ")" #'kmacro-end-or-call-macro-repeat
+          :desc "Start or Insert Counter" :g "s" #'kmacro-start-macro-or-insert-counter
+          :desc "End or Call Macro" :g "e" #'kmacro-end-or-call-macro-repeat
           :desc "Add Counter" :g "a" #'kmacro-add-counter
           :desc "Bind to Key" :g "b" #'kmacro-bind-to-key
           :desc "Call Macro" :g "c" #'kmacro-call-macro
