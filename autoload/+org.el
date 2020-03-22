@@ -43,12 +43,23 @@
   (save-buffer)
   (+org/org-archive-completed-in-buffer))
 
+
+(defun +org/capture-properties-p ()
+  "Check if we should auto capture properties or not"
+  (not (derived-mode-p 'org-journal-mode)))
+
 ;;;###autoload
 (defun +org/insert-creation ()
-  (require 'org-expiry)
-  (save-excursion
-    (org-back-to-heading)
-    (org-expiry-insert-created)))
+  (when (+org/capture-properties-p)
+    (require 'org-expiry)
+    (save-excursion
+      (org-back-to-heading)
+      (org-expiry-insert-created))))
+
+;;;###autoload
+(defun +org/insert-id ()
+  (when (+org/capture-properties-p)
+    (org-id-get-create)))
 
 ;;;###autoload
 (defun +org/prepare-time (time)
@@ -147,6 +158,36 @@ to be that of the scheduled date+time."
              (name (car id-parts))
              (id (cdr id-parts)))
         (org-insert-link nil (concat "id:" (car id)) (read-string "Description: " name))))))
+
+;;;###autoload
+(defun +org/org-journal-file-header-func ()
+  "Custom function to create journal header."
+  (concat
+    (pcase org-journal-file-type
+      (`daily "#+TITLE: Daily Journal\n#+STARTUP: showeverything\n")
+      (`weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded\n")
+      (`monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded\n")
+      (`yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded\n"))))
+
+;;;###autoload
+(defun +org/org-journal-find-location ()
+  (org-journal-new-entry t)
+  (goto-char (point-max)))
+
+;;;###autoload
+(defun +org/org-journal-today ()
+  ""
+  (let ((file-name (format-time-string org-journal-file-format)))
+    (expand-file-name file-name org-journal-dir)))
+
+;;;###autoload
+(defun +org/open-todays-journal ()
+  "Opens todays journal if it exists."
+  (interactive)
+  (let ((file-name (+org/org-journal-today)))
+    (if (file-exists-p file-name)
+        (find-file file-name)
+      (message "No journal found for today."))))
 
 ;;;###autoload
 (add-hook 'org-mode-hook #'flyspell-mode)

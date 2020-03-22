@@ -80,6 +80,15 @@
   (when (file-exists-p +org/todo-file)
     (add-to-list 'org-agenda-files +org/todo-file)))
 
+;; org journal
+(setq org-journal-file-format "%Y-%m-%d"
+      org-journal-date-format "%A, %Y-%m-%d"
+      org-journal-file-header #'+org/org-journal-file-header-func)
+
+(map! :localleader :map org-journal-mode-map
+      :desc "Previous Entry" :g "p" #'org-journal-previous-entry
+      :desc "Next Entry" :g "n" #'org-journal-next-entry)
+
 (map! (:leader
         (:prefix ("a" . "applications")
           (:prefix ("o" . "org")
@@ -87,7 +96,10 @@
             :desc "Capture" :g "c" #'org-capture
             :desc "Tags View" :g "m" #'org-tags-view
             :desc "Search View" :g "s" #'org-search-view
-            :desc "Todo List" :g "t" #'org-todo-list))
+            :desc "Todo List" :g "t" #'org-todo-list
+            (:prefix ("j" . "journal")
+              :desc "New Entry" :g "j" #'org-journal-new-entry
+              :desc "Open Journal" :g "o" #'+org/open-todays-journal)))
         (:prefix "s"
           :desc "Search Org Directory" :g "o" #'+default/org-notes-search)
         (:prefix "f"
@@ -310,9 +322,9 @@
 
 (after! org
 
-  ;; Enable org-id
-  (require 'org-id)
-  (add-hook 'org-capture-prepare-finalize-hook 'org-id-get-create)
+  (use-package! org-id)
+
+  (add-hook 'org-capture-prepare-finalize-hook #'+org/insert-id)
   (org-link-set-parameters "id" :store #'org-id-store-link) ;; Make sure that we can create id links
 
 ;;;###package
@@ -324,8 +336,8 @@
     :bind (:map org-mode-map
             ("C-c C-e" . #'org-expiry-insert-expiry))
     :config (setq org-expiry-inactive-timestamps t)
-     (add-hook 'org-capture-before-finalize-hook #'+org/insert-creation)
-     (add-hook 'org-insert-heading-hook #'+org/insert-creation)))
+    (add-hook 'org-capture-before-finalize-hook #'+org/insert-creation)
+    (add-hook 'org-insert-heading-hook #'+org/insert-creation)))
 
 ;;;###package
 (use-package! doct
@@ -339,10 +351,10 @@
                 (doct '(("Tasks"
                          :keys "t"
                          :file +org/todo-file
-                         :headline "Tasks"
                          :template "* %doct(todo) %?"
                          :children (("Task" :keys "t" :todo "TODO")
-                                    ("Idea" :keys "i" :todo "IDEA")))
+                                    ("Idea" :keys "i" :todo "IDEA")
+                                    ("Reminder" :keys "r" :template "* TODO %?\nSCHEDULED: %^t")))
                         ("Project"
                          :keys "p"
                          :template "* %doct(todo) %?"
@@ -352,16 +364,16 @@
                                     ("Idea" :keys "i" :todo "IDEA" :headline "Tasks")
                                     ("Note" :keys "n" :template "* %?" :headline "Notes")
                                     ("Snippet" :keys "s" :headline "Notes" :template +core/capture-snippet)))
+                        ("Journal Entry"
+                         :keys "j"
+                         :type plain
+                         :template "** %(format-time-string org-journal-time-format) %?"
+                         :function +org/org-journal-find-location)
                         ("Feedback"
                          :keys "f"
                          :file +org/notes-file
                          :headline "Feedback"
                          :template "* %?")
-                        ("Reminder"
-                         :keys "r"
-                         :file +org/todo-file
-                         :headline "Reminders"
-                         :template "* %?\nSCHEDULED: %^t")
                         ("Notes"
                          :keys "n"
                          :file +org/notes-file
