@@ -2,6 +2,8 @@
 
 (defvar +org/org-directory "~/Documents/Org")
 
+(setq org-directory +org/org-directory)
+
 (after! org
   (setq org-src-preserve-indentation t
       org-src-fontify-natively t
