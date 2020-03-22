@@ -102,13 +102,13 @@
        ;;nix               ; I hereby declare "nix geht mehr!"
        ;;ocaml             ; an objective camel
        (org
-        +dragndrop
-        +hugo
         +brain
+        +dragndrop
         +gnuplot
+        +hugo
+        +journal
         +jupyter
         +pandoc
-        +journal
         +present)
        ;;perl              ; write code no one else can comprehend
        plantuml          ; diagrams for confusing people more
