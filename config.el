@@ -31,6 +31,7 @@
 (load! "+cc")
 (load! "+python")
 (load! "+bindings")
+(load! "+config")
 
 (when IS-MAC
   (load! "+osx"))
