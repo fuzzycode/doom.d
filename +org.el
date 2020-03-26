@@ -73,7 +73,6 @@
 
 ;; Add agenda files
 (after! org
-
   (when (file-exists-p +org/calendar-file)
     (add-to-list 'org-agenda-files +org/calendar-file))
 
@@ -109,7 +108,8 @@
             :desc "Notes File" :g "n" (lambda! () (find-file +org/notes-file))
             :desc "Calendar File" :g "c" (lambda! () (find-file +org/calendar-file))
             :desc "Inbox File" :g "i" (lambda! () (find-file +org/inbox-file))
-            :desc "Archive File" :g "a" (lambda! () (find-file +org/archive-file))))
+            :desc "Archive File" :g "a" (lambda! () (find-file +org/archive-file))
+            :desc "Today's Journal" :g "j" #'+org/open-todays-journal))
         (:prefix "p"
           :desc "Open Org File" :g "o" (lambda! () (when (projectile-project-p)
                                                      (find-file (+org/project-org-file-path)))))))
@@ -186,6 +186,7 @@
           (:when (featurep! :completion ivy)
             :desc "Counsel Tag" :g "T" #'counsel-org-tag))
         (:prefix ("d" . "dates")
+          :desc "Toggle Timestamp Type" :g "c" #'org-toggle-timestamp-type
           :desc "Set Schedule" :g "s" #'org-schedule
           :desc "Set Deadline" :g "d" #'org-deadline
           :desc "Set Expiry" :g "e" #'org-expiry-insert-expiry
