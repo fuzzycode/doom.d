@@ -177,6 +177,7 @@ to be that of the scheduled date+time."
 ;;;###autoload
 (defun +org/org-journal-today ()
   ""
+  (require 'org-journal)
   (let ((file-name (format-time-string org-journal-file-format)))
     (expand-file-name file-name org-journal-dir)))
 
