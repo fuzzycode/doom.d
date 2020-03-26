@@ -2,4 +2,4 @@
 
 (use-package! authinfo-mode
   :defer t
-  :mode "authinfo")
+  :mode "authinfo\\(\\.gpg\\)?$")
