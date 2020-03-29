@@ -352,13 +352,13 @@
                 (doct '(("Tasks"
                          :keys "t"
                          :file +org/todo-file
-                         :template "* %doct(todo) %?"
+                         :template "* %{todo} %?"
                          :children (("Task" :keys "t" :todo "TODO")
                                     ("Idea" :keys "i" :todo "IDEA")
                                     ("Reminder" :keys "r" :template "* TODO %?\nSCHEDULED: %^t")))
                         ("Project"
                          :keys "p"
-                         :template "* %doct(todo) %?"
+                         :template "* %{todo} %?"
                          :file +org/project-org-file-path
                          :contexts ((:function (lambda () (projectile-project-p (buffer-file-name (current-buffer))))))
                          :children (("Task" :keys "p" :todo "TODO" :headline "Tasks")
