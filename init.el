@@ -133,7 +133,6 @@
        ;;calendar
        ;;irc               ; how neckbeards socialize
        rss        ; emacs as an RSS reader
-       regex
        ;;twitter           ; twitter client https://twitter.com/vnought
        ;;(write            ; emacs for writers (fiction, notes, papers, etc.)
        ;; +wordnut         ; wordnet (wn) search
