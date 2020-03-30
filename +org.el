@@ -338,11 +338,11 @@
             ("C-c C-e" . #'org-expiry-insert-expiry))
     :config (setq org-expiry-inactive-timestamps t)
     (add-hook 'org-capture-before-finalize-hook #'+org/insert-creation)
-    (add-hook 'org-insert-heading-hook #'+org/insert-creation)))
+    (add-hook 'org-insert-heading-hook #'+org/insert-creation))
 
 ;;;###package
 (use-package! doct
-  :after org
+  :after org-capture
   :bind (("C-c c" . #'org-capture))
   :init (setq org-capture-templates '())
   :config
@@ -379,4 +379,4 @@
                          :keys "n"
                          :file +org/notes-file
                          :headline "Notes"
-                         :template "* %?"))))))
+                         :template "* %?")))))))
