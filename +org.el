@@ -295,7 +295,7 @@
 
 ;;;###package
 (use-package! idle-org-agenda
-  :defer 5
+  :after-call pre-command-hook
   :config (idle-org-agenda-mode))
 
 ;;;###package
