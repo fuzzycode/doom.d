@@ -90,11 +90,7 @@
                 ((+ivy-rich-buffer-name (:width 70))
                  (ivy-rich-switch-buffer-size (:width 7))
                  (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-                 (ivy-rich-switch-buffer-major-mode (:width 20 :face warning))
-                 (ivy-rich-switch-buffer-project (:width 20 :face success))
-                 (ivy-rich-switch-buffer-path (:width
-                                               (lambda (x)
-                                                 (ivy-rich-switch-buffer-shorten-path x (ivy-rich-minibuffer-width 0.3))))))
+                 (ivy-rich-switch-buffer-major-mode (:width 20 :face warning)))
                 :predicate
                 (lambda (cand)
                   (get-buffer cand))))
