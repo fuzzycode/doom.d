@@ -25,7 +25,7 @@
 (package! demo-it)
 (package! idle-org-agenda)
 (package! org-super-agenda)
-(package! org-bullets)
+(package! org-superstar :recipe (:host github :repo "integral-dw/org-superstar-mode" :branch "master"))
 (package! doct :recipe (:host github :repo "progfolio/doct" :branch "master"))
 (package! org-make-toc)
 
