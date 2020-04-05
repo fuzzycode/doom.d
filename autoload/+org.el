@@ -76,7 +76,7 @@
   (require 'org-expiry)
   (let* ((schedule (org-entry-get nil "SCHEDULED")))
     (when schedule
-      (org-set-property org-expiry-keyword (+org/prepare-time schedule)))))
+      (org-set-property org-expiry-expiry-property-name (+org/prepare-time schedule)))))
 
 ;;;###autoload
 (defun +org/expire-on-deadline ()
