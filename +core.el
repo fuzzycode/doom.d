@@ -56,7 +56,7 @@
                                      ("Line" 5 flycheck-error-list-entry-< :right-align t)
                                      ("Col" 3 nil :right-align t)
                                      ("Level" 8 flycheck-error-list-entry-level-<)
-                                     ("ID" 25 t)
+                                     ("ID" 35 t)
                                      (#("Message (Checker)" 9 16
                                         (face flycheck-error-list-checker-name))
                                       0 t)]))
