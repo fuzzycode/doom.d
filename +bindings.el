@@ -5,10 +5,12 @@
           :desc "help map" :g "h" help-map
           :desc "Info" :g "i" #'info
           (:prefix ("d" . "describe")
+            :desc "Char" :g "c" #'describe-char
             :desc "Function" :g "f" #'describe-function
             :desc "Face" :g "F" #'describe-face
             :desc "Key" :g "k" #'describe-key
             :desc "Mode" :g "m" #'describe-mode
+            :desc "Symbol" :g "s" #'describe-symbol
             :desc "Package" :g "p" #'describe-package
             :desc "Theme" :g "t" #'describe-theme
             :desc "Variable" :g "v" #'describe-variable
