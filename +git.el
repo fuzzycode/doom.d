@@ -18,7 +18,7 @@
   (setq magit-save-repository-buffers nil
         magit-section-visibility-indicator nil
         magit-wip-merge-branch t
-        magit-refs-primary-column-width '(16 . 52)
+        magit-refs-primary-column-width '(16 . 92)
         magit-process-finish-apply-ansi-colors t
         transient-enable-popup-navigation t)
 
@@ -49,7 +49,7 @@
                           'magit-insert-unpulled-from-upstream))
 
 (map! (:leader
-        (:prefix ("g" . "git")
+        (:prefix "g"
           :desc "Magit Status" :g "s" #'magit-status
           :desc "Magit Dispatch" :g "m" #'magit-dispatch
           :desc "Forge Dispatch" :g "F" #'forge-dispatch
@@ -144,7 +144,7 @@
 (use-package! git-walktree
   :defer t
   :init (map! (:leader
-                (:prefix ("g" . "git")
+                (:prefix "g"
                   :desc "Walk Tree" :g "w" #'git-walktree))))
 ;;;###package
 (use-package! gitignore-templates
