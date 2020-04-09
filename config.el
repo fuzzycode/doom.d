@@ -9,7 +9,32 @@
 (setq doom-leader-alt-key "M-<SPC>"
       doom-localleader-alt-key "M-<SPC> m")
 
-(map! (:leader (:prefix ("m" . "Mode Leader"))))
+;; Setup all standard prefixes
+(map! (:leader
+        (:prefix ("a" . "applications"))
+        (:prefix ("b" . "buffer/bookmarks"))
+        (:prefix ("d" . "documentation"))
+        (:prefix ("e" . "errors"))
+        (:prefix ("E" . "ediff"))
+        (:prefix ("f" . "files"))
+        (:prefix ("g" . "git"))
+        (:prefix ("h" . "help"))
+        (:prefix ("i" . "insert"))
+        (:prefix ("j" . "jump/join"))
+        (:prefix ("k" . "pairs"))
+        (:prefix ("K" . "keyboard macros"))
+        (:prefix ("l" . "lines"))
+        (:prefix ("m" . "mode leader"))
+        (:prefix ("n" . "narrow"))
+        (:prefix ("p" . "project"))
+        (:prefix ("q" . "quit/reload"))
+        (:prefix ("r" . "resume"))
+        (:prefix ("R" . "rectangles"))
+        (:prefix ("s" . "search"))
+        (:prefix ("S" . "spelling"))
+        (:prefix ("t" . "toggle"))
+        (:prefix ("w" . "windows"))
+        (:prefix ("x" . "text"))))
 
 ;; Load Specific files
 (load! "+builtin")

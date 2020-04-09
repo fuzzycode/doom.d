@@ -10,29 +10,35 @@
               :desc "Open" :g "o" #'ein:notebooklist-open
               :desc "Run" :g "r" #'ein:run
               :desc "Stop" :g "s" #'ein:stop)))
-        (:prefix ("S" . "spelling")
+        (:prefix "S"
             (:when (featurep! :tools flyspell)
               :desc "Check Buffer" :g "b" #'flyspell-buffer
               :desc "Change Dictionary" :g "C" #'ispell-change-dictionary))
-        (:prefix ("e" . "errors")
+        (:prefix "e"
           (:when (featurep! :checkers syntax)
             :desc "Next Error" :g "n" #'flycheck-next-error
             :desc "Previous Error" :g "p" #'flycheck-previous-error
             :desc "List Errors" :g "l" #'flycheck-list-errors
             :desc "Verify Setup" :g "v" #'flycheck-verify-setup))
-        (:prefix ("x" . "text")
+        (:prefix "x"
           :desc "Downcase Region" :g "d" 'downcase-region
           :desc "Upcase Region" :g "u" 'upcase-region
           (:prefix ("i" . "indent")
             :desc "Indent Buffer" :g "b" #'+text/indent-buffer
             :desc "Indent Region" :g "r" #'indent-region
             :desc "Indent Region Or Buffer" :g "i" #'+text/indent-region-or-buffer))
-        (:prefix ("h" . "help")
+        (:prefix "h"
           :desc "Emacs News" :g "n" 'emacs-news
           :desc "Doom Manual" :g "D" 'doom/help)
-        (:prefix ("q" . "quit/reload")
+        (:prefix "q"
           :desc "Quit Emacs"                   "q" #'kill-emacs
           :desc "Save and quit Emacs"          "Q" #'save-buffers-kill-terminal
+          :desc "Quick save current session"   "s" #'doom/quicksave-session
+          :desc "Restore last session"         "l" #'doom/quickload-session
+          :desc "Restart emacs server"         "d" #'+default/restart-server
+          :desc "Delete frame"                 "f" #'delete-frame
+          :desc "Clear current frame"          "F" #'doom/kill-all-buffers
+          :desc "Kill Emacs (and daemon)"      "K" #'save-buffers-kill-emacs
           (:when (featurep! :ui workspaces)
             :desc "Quit Emacs & forget session"  "X" #'+workspace/kill-session-and-quit)
           :desc "Restart & restore Emacs"      "r" #'doom/restart-and-restore

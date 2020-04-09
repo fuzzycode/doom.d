@@ -2,8 +2,8 @@
 
 (map! (:leader
         :desc "Universal Argument" :g "u" #'universal-argument
-        (:prefix ("a" . "applications")
         :desc "Undo" :g "." #'undo-fu-only-undo
+        (:prefix "a"
           (:when (featurep! :email mu4e)
             :desc "Mail" :g "m" #'mu4e)
           (:prefix ("s" . "shell")
@@ -13,18 +13,18 @@
             (:when (featurep! :term eshell)
               :desc "Toggle eshell popup"   "e" #'+eshell/toggle
               :desc "Open eshell here"      "E" #'+eshell/here)))
-        (:prefix ("x" . "text")
+        (:prefix "x"
           :desc "Count Region" :g "c" 'count-words-region
           :desc "Indent Rigidly" :g "TAB" 'indent-rigidly
           (:prefix ("t" . "transpose")
             :desc "Chars" :g "c" 'transpose-chars
             :desc "Lines" :g "l" 'transpose-lines
             :desc "Words" :g "w" 'transpose-words))
-        (:prefix ("s" . "search")
+        (:prefix "s"
           :desc "List Links" :g "L" #'ffap-menu)
-        (:prefix ("l" . "lines")
+        (:prefix "l"
           :desc "Uniquify Lines" :g "u" #'+core/uniquify-lines-dwim)
-        (:prefix ("b" . "buffer")
+        (:prefix "b"
           :desc "Save" :g "s" #'save-buffer
           :desc "Scratch Buffer" :g "S" '+core/switch-to-scratch-buffer
           :desc "Messages Buffer" :g "M" '+core/switch-to-message-buffer
@@ -39,14 +39,14 @@
           :desc "Kill Buffer and Window" :g "x" #'kill-buffer-and-window
           :desc "Kill Matching Buffers" :g "C-d" #'kill-matching-buffers
           :desc "Show and Copy Buffer Filename" :g "C" #'+core/show-and-copy-buffer-filename)
-        (:prefix ("i" . "insert")
+        (:prefix "i"
           :desc "Insert Snippet" :g "s" #'yas-insert-snippet
           :desc "Insert Buffer" :g "b" #'insert-buffer)
-        (:prefix ("j" . "jump/join")
+        (:prefix "j"
           :desc "Open Line" :g "o" #'open-line
           :desc "New Line" :g "n" #'sp-newline
           :desc "Deer" :g "d" #'deer)
-        (:prefix ("f" . "file")
+        (:prefix "f"
           (:prefix ("D" . "doom")
             :desc "Packages File" :g "p" #'doom/goto-packages-file
             :desc "Config File" :g "C" #'doom/goto-config-file
@@ -61,10 +61,10 @@
             :desc "Minor Mode(s)" :g "M" #'doom/describe-active-minor-mode
             :desc "DOOM Packages" :g "P" #'doom/help-packages
             :desc "DOOM Modules" :g "D" #'doom/help-modules))
-        (:prefix ("j" . "jump/join")
+        (:prefix "j"
           (:when (featurep! :ui window-select)
             :desc "Jump to Window" :g "w" #'ace-window))
-        (:prefix ("w" . "windows")
+        (:prefix "w"
           :desc "Save Session" :g "q" #'doom/quicksave-session
           :desc "Load Session" :g "Q" #'doom/quickload-session
           :desc "Make Frame" :g "F" 'make-frame
@@ -80,7 +80,7 @@
           :desc "Delete Other Windows" :g "K" #'delete-other-windows
           (:when (featurep! :ui window-select)
             :desc "Ace Window" :g "w" #'ace-window))
-        (:prefix ("K" . "keyboard macros")
+        (:prefix "K"
           :desc "Start or Insert Counter" :g "r" #'kmacro-start-macro-or-insert-counter
           :desc "End or Call Macro" :g "f" #'kmacro-end-or-call-macro-repeat
           :desc "Add Counter" :g "a" #'kmacro-add-counter
@@ -109,7 +109,7 @@
             :desc "Set Counter" :g "c" #'kmacro-set-counter
             :desc "Set Format" :g "f" #'kmacro-set-format
             :desc "Swap Ring" :g "r" #'kmacro-swap-ring))
-        (:prefix ("R" . "rectangles")
+        (:prefix "R"
           :desc "Clear Rectangle" :g "!" #'clear-rectangle
           :desc "Close Rectangle" :g "c" #'close-rectangle
           :desc "Delete Rectangle" :g "d" #'delete-rectangle
@@ -126,7 +126,7 @@
           :desc "String Rectangle" :g "s" #'string-rectangle
           :desc "Transpose Regions" :g "t" #'transpose-regions
           :desc "Yank Rectangle" :g "y" #'yank-rectangle)
-        (:prefix ("E" . "ediff")
+        (:prefix "E"
           (:prefix ("b" . "buffers")
             :desc "Buffers 3 Way" :g "3" #'ediff-buffers3
             :desc "Buffers" :g "b" #'ediff-buffers

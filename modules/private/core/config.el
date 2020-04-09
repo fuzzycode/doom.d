@@ -160,7 +160,7 @@
 (use-package! lorem-ipsum
   :defer t
   :init (map! (:leader
-                (:prefix ("i" . "insert")
+                (:prefix "i"
                   (:prefix ("l" . "lorem/ipsum")
                     :desc "Paragraphs" :g "p" #'lorem-ipsum-insert-paragraphs
                     :desc "Sentences" :g "s" #'lorem-ipsum-insert-sentences
@@ -178,7 +178,7 @@
 (use-package! osx-dictionary
   :when IS-MAC
   :init (map! (:leader
-                (:prefix ("x" . "text")
+                (:prefix "x"
                   (:prefix ("w" . "words")
                     :desc "Search Dictionary" :g "d" #'osx-dictionary-search-word-at-point)))))
 
@@ -186,7 +186,7 @@
 (use-package! string-inflection
   :defer t
   :init (map! (:leader
-                (:prefix ("x" . "text")
+                (:prefix "x"
                   (:prefix ("i" . "inflection")
                     :desc "Cycle Style" :g [tab] #'+core/inflection-cycle-dwim
                     :desc "Underscore" :g "u" #'string-inflection-underscore
@@ -235,7 +235,7 @@
 
   (key-chord-define-global "jj" #'avy-goto-word-or-subword-1)
   (map! (:leader
-                (:prefix ("j" . "jump/join")
+                (:prefix "j"
                   :desc "Jump to Word" :g "j" #'avy-goto-char-timer
                   :desc "Jump to Line" :g "l" #'avy-goto-line
                   :desc "Jump to Symbol" :g "s" #'avy-goto-symbol-1)))
@@ -247,7 +247,7 @@
 (use-package! goto-last-change
   :defer t
   :commands goto-last-change
-  :init (map! (:leader (:prefix ("j" "jump/join")
+  :init (map! (:leader (:prefix "j"
                          :desc "Goto Last Change" :g "c" #'goto-last-change))))
 
 ;;;###package

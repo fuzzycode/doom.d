@@ -4,25 +4,25 @@
         :desc "M-X" :g "<SPC>" #'counsel-M-x
         :desc "M-X" :g "M-<SPC>" #'counsel-M-x
         :desc "Ripgrep" :g "/" #'counsel-rg
-        (:prefix ("a" . "applications")
+        (:prefix "a"
           :desc "Load Theme" :g "T" #'counsel-load-theme)
-        (:prefix ("b" . "buffer/bookmarks")
+        (:prefix "b"
           :desc "Buffer List" :g "b" #'counsel-switch-buffer
           :desc "Bookmarks" :g "B" #'counsel-bookmark)
-        (:prefix ("f" . "files")
+        (:prefix "f"
           :desc "Find File" :g "f" #'counsel-find-file
           :desc "Recent Files" :g "r" #'counsel-recentf)
-        (:prefix ("j" . "jump/join")
+        (:prefix "j"
           :desc "iMenu" :g "i" #'counsel-imenu)
-        (:prefix ("p" . "project")
+        (:prefix "p"
           :desc "Find Directory" :g "d" #'counsel-projectile-find-dir
           :desc "Find File" :g "f" #'counsel-projectile-find-file
           :desc "Switch Project" :g "p" #'counsel-projectile-switch-project
           :desc "Switch Buffer" :g "b" #'counsel-projectile-switch-to-buffer
           :desc "Search Project From CWD" :g "D" #'+ivy/project-search-from-cwd)
-        (:prefix ("r" . "resume")
+        (:prefix "r"
           :desc "Ivy Resume Last" :g "l" #'ivy-resume)
-        (:prefix ("s" . "search")
+        (:prefix "s"
           :desc "Swiper" :g "s" #'swiper
           :desc "Swiper (input)" :g "S" #'+swiper/swiper-default
           :desc "Locate" :g "l" #'counsel-locate

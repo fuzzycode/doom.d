@@ -1,7 +1,7 @@
 ;;; ~/.doom.d/+bindings.el -*- lexical-binding: t; -*-
 
 (map! (:leader
-        (:prefix ("h" . "help")
+        (:prefix "h"
           :desc "help map" :g "h" help-map
           :desc "Info" :g "i" #'info
           (:prefix ("d" . "describe")
@@ -17,7 +17,7 @@
             :desc "Text Properties" :g "T" #'describe-text-properties))))
 
 (map! (:leader
-        (:prefix ("s" . "search")
+        (:prefix "s"
           (:prefix ("m" . "multiple cursors")
             :desc "Mark All" :g "a" #'mc/mark-all-dwim
             :desc "Mark All Like This" :g "b" #'mc/mark-all-like-this
@@ -30,10 +30,10 @@
               :desc "Sort Regions" :g "s" #'mc/sort-regions
               :desc "Reverse Regions" :g "t" #'mc/reverse-regions)))))
 
-(map! (:leader (:prefix ("x" . "text")
+(map! (:leader (:prefix "x"
                  :desc "Zoom Text" :g "z" #'+hydra/text-zoom/body)))
 
-(map! (:leader (:prefix ("x" . "text")
+(map! (:leader (:prefix "x"
                  (:prefix ("f" . "folding")
                    :when (featurep! :editor fold)
                    :desc "Close All" :g "C" #'+fold/close-all
@@ -44,13 +44,13 @@
                    :desc "Next" :g "n" #'+fold/next
                    :desc "Previous" :g "p" #'+fold/previous))))
 
-(map! (:leader (:prefix ("n" . "narrow")
+(map! (:leader (:prefix "n"
                  :desc "Narrow To Region" :g "r" #'narrow-to-region
                  :desc "Narrow To Defun" :g "d" #'narrow-to-defun
                  :desc "Narrow To Page" :g "p" #'narrow-to-page
                  :desc "Widen" :g "w" #'widen)))
 
-(map! (:leader (:prefix ("k" . "pairs")
+(map! (:leader (:prefix "k"
         :desc "Barf Forward" :g "b" #'sp-forward-barf-sexp
         :desc "Barf Backward" :g "B" #'sp-backward-barf-sexp
         :desc "Slurp Forward" :g "s" #'sp-forward-slurp-sexp
