@@ -3,7 +3,7 @@
 (map! (:leader
         :desc "Universal Argument" :g "u" #'universal-argument
         (:prefix ("a" . "applications")
-          :desc "Undo Tree" :g "u" #'undo-tree-visualize
+        :desc "Undo" :g "." #'undo-fu-only-undo
           (:when (featurep! :email mu4e)
             :desc "Mail" :g "m" #'mu4e)
           (:prefix ("s" . "shell")

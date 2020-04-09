@@ -220,7 +220,7 @@
 (use-package! key-chord
   :defer 2
   :init
-  (key-chord-define-global "uu" #'undo)
+  (key-chord-define-global "uu" #'undo-fu-only-undo)
   (key-chord-define-global "kk" #'just-one-space)
   :config (shut-up (key-chord-mode +1)))
 

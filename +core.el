@@ -40,7 +40,7 @@
 
 (setq which-key-sort-order 'which-key-key-order-alpha)
 
-(global-set-key (kbd "C-c u") 'undo)
+(global-set-key (kbd "C-c u") #'undo-fu-only-undo)
 
 (add-hook 'help-mode-hook #'rainbow-mode)
 
