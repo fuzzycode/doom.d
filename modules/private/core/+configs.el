@@ -25,3 +25,21 @@
 (add-to-list 'auto-mode-alist '("\\.zshrc.local$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.ignore$" . gitignore-mode))
 (add-to-list 'auto-mode-alist '("\\.fdignore$" . gitignore-mode))
+
+
+;; Add toggles
+(+core/add-toggle word-wrap
+                  :mode +word-wrap-mode
+                  :bind '(:desc "Word Wrap" :key "w"))
+
+(+core/add-toggle big-font
+                  :mode doom-big-font-mode
+                  :bind '(:desc "Big Font" :key "b"))
+
+(+core/add-toggle flycheck
+                  :mode flycheck-mode
+                  :bind '(:desc "Flycheck" :key "f"))
+
+(+core/add-toggle read-only
+                  :mode read-only-mode
+                  :bind '(:desc "Read Only" :key "r"))

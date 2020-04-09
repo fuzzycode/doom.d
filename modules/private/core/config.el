@@ -1,5 +1,7 @@
 ;;; ~/.doom.d/modules/private/core/config.el -*- lexical-binding: t; -*-
 
+(load! "+functions")
+
 ;;;###package
 (use-package! use-package-chords)
 
@@ -270,14 +272,14 @@
 (use-package! centered-cursor-mode
   :defer t
   :commands centered-cursor-mode
-  :init (map! (:leader (:prefix ("t" . "toggle")
-                         :desc "Centered Cursor" :g "c" #'centered-cursor-mode))))
+  :init (+core/add-toggle centered-cursor-mode :mode centered-cursor-mode :bind '(:desc "Centered Cursor Mode" :key "c"))
+  )
 
 ;;;###package
 (use-package! highlight-doxygen
   :after hl-line
   :hook (doom-load-theme . (lambda () (set-face-background 'highlight-doxygen-comment (face-background 'hl-line))))
-  :init (map! (:leader (:prefix ("t" . "toggle") :desc "Highlight Doxygen" :g "d" #'highlight-doxygen-mode)))
+  :init (+core/add-toggle highlight-doxygen-mode :mode highlight-doxygen-mode :bind '(:desc "Highlight Doxygen" :key "d"))
   :config (highlight-doxygen-global-mode 1))
 
 ;;;###package
