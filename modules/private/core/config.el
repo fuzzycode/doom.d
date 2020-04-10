@@ -95,13 +95,6 @@
   (winner-mode t))
 
 ;;;###package
-(use-package! deadgrep
-  :defer t
-  :init (map! (:leader
-                (:prefix ("s" . "search")
-                  :desc "Deadgrep" :g "d" #'deadgrep))))
-
-;;;###package
 (use-package! fill-column-indicator
   :defer t)
 
@@ -333,12 +326,34 @@
                           :desc "Random based UUID (4)" :g "r" (lambda! () (insert (uuidgen-4)))
                           :desc "UUID" :g "U" (lambda! () (insert (uuidgen-4)))))))
 
-
-
 ;;;###package
 (use-package! smart-newline
   :defer 1
   :bind ("RET" . #'smart-newline))
+
+;;;###package
+(use-package! rg
+  :defer 2
+  :init (set-popup-rule! "^\\*rg" :side 'bottom :size 0.8 :select t :modeline t :quit t :ignore nil)
+  (setq rg-align-position-numbers t
+        rg-align-line-number-field-length 3
+        rg-align-column-number-field-length 3
+        rg-align-line-column-separator "#"
+        rg-align-position-content-separator "|")
+  :bind (:map rg-mode-map
+          ("TAB" . #'rg-toggle-command-hiding)
+          ("C-p" . #'previous-line)
+          ("C-n" . #'next-line)
+          ("M-n" . #'rg-next-file)
+          ("M-p" . #'rg-prev-file))
+  :config (map! :leader
+                (:prefix "p"
+                  :desc "Run rg in project" :g "r" #'rg-project)
+                (:prefix "s"
+                  :desc "Rg" :g "d" #'rg
+                  :desc "Rg Dwim" :g "D" #'rg-dwim
+                  :desc "Ripgrep Dispatch" :g "r" #'rg-menu
+                  :desc "List Searches" :g "R" #'rg-list-searches)))
 
 ;; EXTRAS
 (load! "+configs")

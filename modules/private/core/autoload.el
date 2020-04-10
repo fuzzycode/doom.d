@@ -135,9 +135,10 @@
 (defun +core/maybe-notify-compile-finish (_buffer string)
   "Show an alert when compilation finished, like XCode does"
   (require 'alert)
-  (if (string-match "^finished" string)
-      (alert "Compilation finished OK!" :title "Compilation Successful" :category 'compile :id 'compile-ok)
-    (alert "Compilation Failed" :title "Compilation Failed" :category 'compile :id 'compile-fail)))
+  (when (not (memq major-mode '(rg-mode))) ;; No need to alert after each search
+    (if (string-match "^finished" string)
+        (alert "Compilation finished OK!" :title "Compilation Successful" :category 'compile :id 'compile-ok)
+      (alert "Compilation Failed" :title "Compilation Failed" :category 'compile :id 'compile-fail))))
 
 ;;;###autoload
 (add-hook 'compilation-finish-functions #'+core/maybe-notify-compile-finish)

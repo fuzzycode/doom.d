@@ -11,7 +11,6 @@
 (package! mwim)
 (package! open-junk-file)
 (package! winum)
-(package! deadgrep)
 (package! fill-column-indicator)
 (package! expand-region)
 (package! insert-shebang)
@@ -33,6 +32,7 @@
 (package! super-save)
 (package! uuidgen)
 (package! smart-newline)
+(package! rg)
 
 (package! counsel-doxygen-snippets
   :recipe (:host github :repo "fuzzycode/counsel-doxygen-snippets"))
