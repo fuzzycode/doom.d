@@ -59,7 +59,8 @@
   (unless (file-exists-p org-id-locations-file)
     (with-temp-buffer (write-file org-id-locations-file)))
 
-  (add-to-list 'recentf-exclude org-id-locations-file))
+  (after! recentf
+    (add-to-list 'recentf-exclude org-id-locations-file)))
 
 ;; (set-popup-rule! "^\\*org" :side 'right :size 80 :select nil :modeline t)
 
