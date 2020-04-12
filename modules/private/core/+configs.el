@@ -27,6 +27,19 @@
 (add-to-list 'auto-mode-alist '("\\.fdignore$" . gitignore-mode))
 
 
+(after! smartparens
+
+  (define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-slurp-sexp)
+  (define-key smartparens-mode-map (kbd "C-<left>") 'sp-forward-barf-sexp)
+  (define-key smartparens-mode-map (kbd "C-M-<left>") 'sp-backward-slurp-sexp)
+  (define-key smartparens-mode-map (kbd "C-M-<right>") 'sp-backward-barf-sexp)
+
+  (smartparens-strict-mode) ;; Start out in strict mode
+
+  (+core/add-toggle sp-strict-mode
+                    :mode smartparens-strict-mode
+                    :bind '(:desc "Smartparens Strict Mode" :key "s")))
+
 ;; Add toggles
 (+core/add-toggle word-wrap
                   :mode +word-wrap-mode
