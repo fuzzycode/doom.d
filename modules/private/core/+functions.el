@@ -59,7 +59,7 @@ Currently this function infloops when the list is circular."
                       (message ,(or off-message (format "%s disabled" (symbol-name name))))))
            (progn ,@on-body
                   (when (called-interactively-p 'any)
-                    (message (or ,on-message (format "%s enabled." (symbol-name name))))))))
+                    (message ,(or on-message (format "%s enabled." (symbol-name name))))))))
 
        ;; Define the status predicate
        (defun ,status-func ()
