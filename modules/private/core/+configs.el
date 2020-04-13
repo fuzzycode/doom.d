@@ -14,12 +14,6 @@
   (add-to-list 'yas-snippet-dirs (expand-file-name "personal/" +snippets-dir))
   (yas-reload-all))
 
-(after! smartparens
-
-  (sp-local-pair 'c++-mode "/**" "*/" :actions '(navigate)) ;; Handle doxygen comment "pairs"
-
-  (show-smartparens-global-mode +1))
-
 ;; Add extensionless file modes
 (add-to-list 'auto-mode-alist '("\\.zshenv.local$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.zshrc.local$" . sh-mode))
@@ -29,10 +23,15 @@
 
 (after! smartparens
 
+  (setq sp-escape-wrapped-region t
+        sp-escape-quotes-after-insert t)
+
   (define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-slurp-sexp)
   (define-key smartparens-mode-map (kbd "C-<left>") 'sp-forward-barf-sexp)
   (define-key smartparens-mode-map (kbd "C-M-<left>") 'sp-backward-slurp-sexp)
   (define-key smartparens-mode-map (kbd "C-M-<right>") 'sp-backward-barf-sexp)
+
+  (sp-local-pair 'c++-mode "/**" "*/" :actions '(navigate)) ;; Handle doxygen comment "pairs"
 
   (bind-key "C-M-s"
             (defhydra smartparens-hydra ()
@@ -48,6 +47,7 @@
             smartparens-mode-map)
   
   (smartparens-strict-mode) ;; Start out in strict mode
+  (show-smartparens-global-mode +1)
 
   (+core/add-toggle sp-strict-mode
                     :mode smartparens-strict-mode
