@@ -190,3 +190,13 @@ single line regions. Mostly used to comment/un-comment function parameters"
 
 ;;;###autoload
 (add-hook #'doom-load-theme-hook (lambda () (set-face-underline 'show-paren-match t))) ;; Always underline matching parens
+
+;;;###autoload
+(defun +bl/special-mode-action-fn (buffer alist)
+  "Marks BUFFER as special-mode and passes BUFFER and ALIST to
+`+popup-display-buffer-stacked-side-window-fn'."
+  (with-current-buffer buffer
+    (special-mode)
+    (set (make-local-variable 'window-point-insertion-type) t)
+    (goto-char (point-max))
+    (+popup-display-buffer-stacked-side-window-fn buffer alist)))
