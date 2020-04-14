@@ -112,6 +112,7 @@
   (add-hook 'git-commit-mode-hook 'fci-mode))
 
 (after! git-config
+  (add-to-list 'auto-mode-alist '("\.?gitaliases$" . gitconfig-mode))
   (add-to-list 'auto-mode-alist '("\.?gitconfig$" . gitconfig-mode)))
 
 (after! gitignore
