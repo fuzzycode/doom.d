@@ -106,7 +106,7 @@
             :desc "List notifications" :g "n" #'forge-list-notifications))))
 
 (map! :map git-commit-mode-map
-      [tab] #'+magit/goto-first-empty-line)
+      [tab] #'+magit/move-to-next-slot)
 
 (after! git-commit
   (add-hook 'git-commit-mode-hook 'fci-mode))
