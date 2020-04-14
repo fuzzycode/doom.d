@@ -52,6 +52,8 @@
 ;; Enable advanced features without asking
 (put 'narrow-to-region 'disabled nil)
 
+(blink-cursor-mode -1) ;; We never want that
+
 ;; TODO(Björn Larsson): Remove the need for a hard coded path parts
 (after! recentf
   (add-to-list 'recentf-exclude (expand-file-name  user-emacs-directory ".local/etc/workspaces/autosave"))
