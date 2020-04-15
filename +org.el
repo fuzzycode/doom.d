@@ -315,11 +315,6 @@
           (:name "Due today" :deadline today :order 1))))
 
 ;;;###package
-(use-package! org-superstar
-  :after org
-  :hook (org-mode . org-superstar-mode))
-
-;;;###package
 (use-package! org-tempo ;; for <s templates etc.
   :after org)
 
