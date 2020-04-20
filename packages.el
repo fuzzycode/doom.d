@@ -25,7 +25,7 @@
 (package! demo-it)
 (package! idle-org-agenda)
 (package! org-super-agenda)
-(package! doct :recipe (:host github :repo "progfolio/doct" :branch "master"))
+(package! doct)
 (package! org-make-toc)
 
 ;;ELISP
