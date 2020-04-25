@@ -57,6 +57,8 @@
 (load! "+python")
 (load! "+bindings")
 (load! "+config")
+(load! "+yaml")
+(load! "+json")
 
 (when IS-MAC
   (load! "+osx"))

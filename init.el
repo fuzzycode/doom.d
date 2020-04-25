@@ -123,6 +123,8 @@
        (sh +lsp)           ; she sells {ba,z,fi}sh shells on the C xor
        ;;swift             ; who asked for emoji variables?
        web               ; the tubes
+       (yaml +lsp)
+       (json +lsp)
 
        :email
        mu4e
@@ -151,7 +153,5 @@
 
        :private
        core
-       (yaml +lsp)
-       json
        cmake
        )
