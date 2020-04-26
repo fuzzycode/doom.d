@@ -124,7 +124,7 @@
        ;;swift             ; who asked for emoji variables?
        web               ; the tubes
        (yaml +lsp)
-       (json +lsp)
+       json
 
        :email
        mu4e
