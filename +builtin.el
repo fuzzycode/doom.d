@@ -14,6 +14,9 @@
                               (name 16 -1)
                               " " filename)))
 
+(setq company-tooltip-minimum-width 60
+      company-tooltip-maximum-width 60)
+
 ;; Show the location of the sym-link and not the actual file
 (setq find-file-visit-truename nil
       vc-follow-symlinks nil)
