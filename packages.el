@@ -3,6 +3,8 @@
 ;;DISABLED
 (package! drag-stuff :disable t)
 
+(unpin! '(lsp-mode lsp-ui dap-mode))
+
 ;; HELM
 (when (featurep! :completion helm)
   (package! helm-swoop)
