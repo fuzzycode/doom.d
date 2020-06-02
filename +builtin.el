@@ -61,3 +61,6 @@
 (after! recentf
   (add-to-list 'recentf-exclude (expand-file-name  user-emacs-directory ".local/etc/workspaces/autosave"))
   (add-to-list 'recentf-exclude (concat ".*?" "\\.emacs\\.d/\\.local" ".*")))
+
+;; Configure flycheck, with lsp available there is no need for c/c++-* family
+(setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc c/c++-cppcheck))
