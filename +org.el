@@ -105,14 +105,14 @@
         (:prefix "f"
           (:prefix ("o" . "org")
             :desc "Browse Org files" :g "b" #'+default/browse-notes
-            :desc "Todo File" :g "t" (lambda! () (find-file +org/todo-file))
-            :desc "Notes File" :g "n" (lambda! () (find-file +org/notes-file))
-            :desc "Calendar File" :g "c" (lambda! () (find-file +org/calendar-file))
-            :desc "Inbox File" :g "i" (lambda! () (find-file +org/inbox-file))
-            :desc "Archive File" :g "a" (lambda! () (find-file +org/archive-file))
+            :desc "Todo File" :g "t" (cmd! () (find-file +org/todo-file))
+            :desc "Notes File" :g "n" (cmd! () (find-file +org/notes-file))
+            :desc "Calendar File" :g "c" (cmd! () (find-file +org/calendar-file))
+            :desc "Inbox File" :g "i" (cmd! () (find-file +org/inbox-file))
+            :desc "Archive File" :g "a" (cmd! () (find-file +org/archive-file))
             :desc "Today's Journal" :g "j" #'+org/open-todays-journal))
         (:prefix "p"
-          :desc "Open Org File" :g "o" (lambda! () (when (projectile-project-p)
+          :desc "Open Org File" :g "o" (cmd! () (when (projectile-project-p)
                                                      (find-file (+org/project-org-file-path)))))))
 
 (map! :after org
@@ -225,13 +225,13 @@
           :desc "Do Key Sequence In Edit Buffer" :g "x" #'org-babel-do-key-sequence-in-edit-buffer)
         (:prefix ("x" . "text")
           :desc "Open Link" :g "o" #'org-open-at-point
-          :desc "Bold" :g "b" (lambda! () (org-emphasize ?*))
-          :desc "Code" :g "c" (lambda! () (org-emphasize ?~))
-          :desc "Italic" :g "i" (lambda! () (org-emphasize ?/))
-          :desc "Clear" :g "r" (lambda! () (org-emphasize ? ))
-          :desc "Strike Through" :g "s" (lambda! () (org-emphasize ?+))
-          :desc "Underline" :g "u" (lambda! () (org-emphasize ?_))
-          :desc "Verbose" :g "v" (lambda! () (org-emphasize ?=)))
+          :desc "Bold" :g "b" (cmd! () (org-emphasize ?*))
+          :desc "Code" :g "c" (cmd! () (org-emphasize ?~))
+          :desc "Italic" :g "i" (cmd! () (org-emphasize ?/))
+          :desc "Clear" :g "r" (cmd! () (org-emphasize ? ))
+          :desc "Strike Through" :g "s" (cmd! () (org-emphasize ?+))
+          :desc "Underline" :g "u" (cmd! () (org-emphasize ?_))
+          :desc "Verbose" :g "v" (cmd! () (org-emphasize ?=)))
         (:prefix ("s" . "sub-tree")
           :desc "Toggle Archive Tag" :g "a" #'org-toggle-archive-tag
           :desc "Archive Sub-tree" :g "A" #'org-archive-subtree
