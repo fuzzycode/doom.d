@@ -69,3 +69,7 @@
 (+core/add-toggle read-only
                   :mode read-only-mode
                   :bind '(:desc "Read Only" :key "r"))
+
+(+core/add-toggle centered-cursor
+                  :mode centered-cursor-mode
+                  :bind '(:desc "Centered Cursor" :key "c"))
