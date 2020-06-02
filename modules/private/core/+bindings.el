@@ -23,7 +23,8 @@
         (:prefix "s"
           :desc "List Links" :g "L" #'ffap-menu)
         (:prefix "l"
-          :desc "Uniquify Lines" :g "u" #'+core/uniquify-lines-dwim)
+         :desc "Uniquify Lines" :g "u" #'+core/uniquify-lines-dwim
+         :desc "Center Line" :g "c" #'recenter-top-bottom)
         (:prefix "b"
           :desc "Save" :g "s" #'save-buffer
           :desc "Scratch Buffer" :g "S" '+core/switch-to-scratch-buffer
