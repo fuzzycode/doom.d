@@ -51,7 +51,6 @@
           :desc "Rename" :g "r" #'lsp-rename)))
 
 (after! lsp-mode
-  (setq lsp-enable-semantic-highlighting t)
   (define-key lsp-mode-map (kbd "<A-return>") #'lsp-execute-code-action))
 
 (after! lsp-ui
