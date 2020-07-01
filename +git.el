@@ -15,7 +15,7 @@
   (setq git-commit-style-convention-checks
         (remove 'overlong-summary-line git-commit-style-convention-checks))
 
-  (setq magit-save-repository-buffers nil
+  (setq magit-save-repository-buffers 'dontask
         magit-section-visibility-indicator nil
         magit-wip-merge-branch t
         magit-refs-primary-column-width '(16 . 92)
