@@ -73,3 +73,11 @@
 (+core/add-toggle centered-cursor
                   :mode centered-cursor-mode
                   :bind '(:desc "Centered Cursor" :key "c"))
+
+(+core/add-toggle trailing-whitespace
+                  :status show-trailing-whitespace
+                  :on (setq show-trailing-whitespace t)
+                  :off (setq show-trailing-whitespace nil)
+                  :on-message "Showing trailing whitespace"
+                  :off-message "Disabled trailing whitespace"
+                  :bind '(:desc "Trailing Whitespace" :key "w"))
