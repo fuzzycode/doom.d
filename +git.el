@@ -144,6 +144,10 @@
   :after magit)
 
 ;;;###package
+(use-package! magit-tbdiff
+  :after magit)
+
+;;;###package
 (use-package git-messenger
   :defer t
   :commands git-messenger:popup-close

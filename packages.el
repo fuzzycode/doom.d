@@ -17,6 +17,7 @@
 
 ;; GIT
 (package! magit-imerge)
+(package! magit-tbdiff)
 (package! gitattributes-mode)
 (package! git-messenger)
 (package! rigid-tabs)
