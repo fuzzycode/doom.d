@@ -46,13 +46,23 @@
                           'magit-insert-unpulled-from-upstream)
   (magit-add-section-hook 'magit-status-sections-hook
                           'magit-insert-modules-overview
-                          'magit-insert-unpulled-from-upstream))
+                          'magit-insert-unpulled-from-upstream)
+
+  (when (featurep! :tools magit +forge)
+    (magit-add-section-hook 'magit-status-sections-hook
+                            'forge-insert-assigned-pullreqs
+                            'magit-insert-modules-overview)
+
+    (magit-add-section-hook 'magit-status-sections-hook
+                            'forge-insert-requested-reviews
+                            'forge-insert-assigned-pullreqs)))
 
 (map! (:leader
         (:prefix "g"
           :desc "Magit Status" :g "s" #'magit-status
           :desc "Magit Dispatch" :g "m" #'magit-dispatch
-          :desc "Forge Dispatch" :g "F" #'forge-dispatch
+          (:when (featurep! :tools magit +forge)
+           :desc "Forge Dispatch" :g "F" #'forge-dispatch)
           :desc "Stage File" :g "S" #'magit-stage-file
           :desc "Unstage File" :g "U" #'magit-unstage-file
           :desc "Time Machine" :g "T" #'+magit/timemachine-hydra/body
