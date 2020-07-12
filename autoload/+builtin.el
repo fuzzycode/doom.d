@@ -1,6 +1,7 @@
 
 ;;;###autoload
-(add-hook 'before-save-hook #'copyright-update)
+; TODO(Björn Larsson) : This ends up in an endless loop of adding copyright years
+;; (add-hook 'before-save-hook #'copyright-update)
 
 ;;;###autoload
 (add-hook 'after-save-hook
