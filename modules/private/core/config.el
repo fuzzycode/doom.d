@@ -58,6 +58,12 @@
          ("C-e" . #'mwim-end-of-code-or-line)))
 
 ;;;###package
+(use-package! which-key
+  :init (setq which-key-sort-order 'which-key-key-order-alpha
+              which-key-add-column-padding 1
+              which-key-min-display-lines 6))
+
+;;;###package
 (use-package! treemacs
   :init (advice-add #'treemacs-visit-node-default :around #'doom-set-jump-a)
   :bind (:map treemacs-mode-map
