@@ -58,6 +58,13 @@
          ("C-e" . #'mwim-end-of-code-or-line)))
 
 ;;;###package
+(use-package! treemacs
+  :init (advice-add #'treemacs-visit-node-default :around #'doom-set-jump-a)
+  :bind (:map treemacs-mode-map
+         ("SPC" . #'treemacs-visit-node-default))
+  :config (treemacs-follow-mode +1))
+
+;;;###package
 (use-package! winum
   :init (setq winum-auto-assign-0-to-minibuffer nil
               winum-auto-setup-mode-line nil
