@@ -108,10 +108,6 @@
   (winner-mode t))
 
 ;;;###package
-(use-package! fill-column-indicator
-  :defer t)
-
-;;;###package
 (use-package! expand-region
   :defer t
   :init (setq expand-region-contract-fast-key "V"

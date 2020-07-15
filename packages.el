@@ -18,6 +18,9 @@
 ;; GIT
 (package! magit-imerge)
 (package! magit-tbdiff)
+(package! git-commit)
+(package! gitignore-mode)
+(package! gitconfig-mode)
 (package! gitattributes-mode)
 (package! git-messenger)
 (package! rigid-tabs)

@@ -115,26 +115,27 @@
             :desc "List pull requests" :g "p" #'forge-list-pullreqs
             :desc "List notifications" :g "n" #'forge-list-notifications))))
 
-(map! :map git-commit-mode-map
-      [tab] #'+magit/move-to-next-slot)
-
-(after! git-commit
-  (add-hook 'git-commit-mode-hook 'fci-mode))
-
-(after! git-config
-  (add-to-list 'auto-mode-alist '("\.?gitaliases$" . gitconfig-mode))
-  (add-to-list 'auto-mode-alist '("\.?gitconfig$" . gitconfig-mode)))
-
-(after! gitignore
-  (add-to-list 'auto-mode-alist '("\.?gitignore$" . gitignore-mode)))
-
-
 (after! magit-todos
   (setq magit-todos-recursive t
         magit-todos-require-colon nil)
   (custom-set-variables
    '(magit-todos-keywords (list "TODO(Björn Larsson)" "HACK" "FIXME" "XXX" "???")))
   (shut-up (magit-todos-mode)))
+
+;;;###package
+(use-package! git-commit
+  :init (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
+  :bind (:map git-commit-mode-map
+        ([tab] . +magit/move-to-next-slot)))
+
+;;;###package
+(use-package! gitconfig-mode
+  :mode ("\.?gitaliases$" . gitconfig-mode)
+  :mode ("\.?gitconfig$" . gitconfig-mode))
+
+;;;###package
+(use-package! gitignore-mode
+  :mode ("\.?gitignore$" . gitignore-mode))
 
 ;;;###package
 (use-package! gitattributes-mode)
