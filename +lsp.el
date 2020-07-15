@@ -54,6 +54,7 @@
   (define-key lsp-mode-map (kbd "<A-return>") #'lsp-execute-code-action))
 
 (after! lsp-ui
+  (setq lsp-ui-sideline-show-code-actions nil) ;; Prefer to have this in the mode-line
   (add-hook 'lsp-ui-mode-hook #'+lsp/dim-lsp-sideline))
 
 (setq dap-breakpoints-file (concat doom-local-dir "cache/dap-breakpoints"))
