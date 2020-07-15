@@ -7,7 +7,7 @@
         (:prefix "a"
           :desc "Load Theme" :g "T" #'counsel-load-theme)
         (:prefix "b"
-          :desc "Buffer List" :g "b" #'counsel-switch-buffer
+          :desc "Buffer List" :g "b" #'ivy-switch-buffer
           :desc "Bookmarks" :g "B" #'counsel-bookmark)
         (:prefix "f"
           :desc "Find File" :g "f" #'counsel-find-file
@@ -65,7 +65,7 @@
                                                       ("Idea" :keys "i" :todo "IDEA" :headline "Tasks")
                                                       ("Note" :keys "n" :template "* %?" :headline "Notes")))))))
       (counsel-org-capture)))
-  
+
   (ivy-set-actions
    'counsel-projectile-switch-project
    '(("j" counsel-projectile-switch-project-action "Jump to a project buffer or file")
@@ -89,30 +89,47 @@
   (plist-put ivy-rich-display-transformers-list
               'ivy-switch-buffer
               '(:columns
-                ((+ivy-rich-buffer-name (:width 70))
+                ((+ivy-rich-buffer-icon)
+                 (+ivy-rich-buffer-name (:width 0.3))
                  (ivy-rich-switch-buffer-size (:width 7))
                  (ivy-rich-switch-buffer-indicators (:width 4 :face error :align right))
-                 (ivy-rich-switch-buffer-major-mode (:width 20 :face warning)))
+                 (ivy-rich-switch-buffer-project (:width 20 :face warning))
+                 (ivy-rich-switch-buffer-path))
+
                 :predicate
                 (lambda (cand)
                   (get-buffer cand))))
 
   (plist-put ivy-rich-display-transformers-list
+             'counsel-find-file
+             '(:columns
+               ((all-the-icons-icon-for-file)
+                (ivy-read-file-transformer)
+                (ivy-rich-counsel-find-file-truename (:face font-lock-doc-face)))))
+
+  (plist-put ivy-rich-display-transformers-list
+             'counsel-recentf
+             '(:columns
+               ((all-the-icons-icon-for-file)
+                (ivy-rich-candidate (:width 0.8))
+                (ivy-rich-file-last-modified-time (:face font-lock-comment-face)))))
+
+  (plist-put ivy-rich-display-transformers-list
               'counsel-M-x
               '(:columns
-                ((counsel-M-x-transformer (:width 70))
+                ((counsel-M-x-transformer (:width 0.40))
                  (ivy-rich-counsel-function-docstring (:face font-lock-doc-face)))))
 
   (plist-put ivy-rich-display-transformers-list
               'counsel-describe-function
               '(:columns
-                ((counsel-describe-function-transformer (:width 70))
+                ((counsel-describe-function-transformer (:width 0.40))
                  (ivy-rich-counsel-function-docstring (:face font-lock-doc-face)))))
 
   (plist-put ivy-rich-display-transformers-list
               'counsel-describe-variable
               '(:columns
-                ((counsel-describe-variable-transformer (:width 70))
+                ((counsel-describe-variable-transformer (:width 0.40))
                  (ivy-rich-counsel-variable-docstring (:face font-lock-doc-face)))))
 
   (ivy-rich-reload))
