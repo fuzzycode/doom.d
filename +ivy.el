@@ -12,6 +12,8 @@
         (:prefix "f"
           :desc "Find File" :g "f" #'counsel-find-file
           :desc "Recent Files" :g "r" #'counsel-recentf)
+        (:prefix "i"
+         :desc "Unicode Character" :g "u" #'counsel-unicode-char)
         (:prefix "j"
           :desc "iMenu" :g "i" #'counsel-imenu)
         (:prefix "p"
