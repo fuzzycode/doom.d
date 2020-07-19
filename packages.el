@@ -44,5 +44,10 @@
 ;; CPP MODE
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
 
+;; MAIL
+(when (featurep! :email mu4e)
+  (package! mu4e-maildirs-extension)
+  (package! mu4e-alert))
+
 ;; SHELL SCRIPT
 ;(package! sh-script :built-in)
