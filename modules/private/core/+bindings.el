@@ -4,8 +4,10 @@
         :desc "Universal Argument" :g "u" #'universal-argument
         :desc "Undo" :g "." #'undo-fu-only-undo
         (:prefix "a"
-          (:when (featurep! :email mu4e)
-            :desc "Mail" :g "m" #'mu4e)
+         (:when (featurep! :email mu4e)
+          (:prefix ("m" "+mail")
+           :desc "Compose" :g "c" #'+mu4e/compose
+           :desc "Mail" :g "m" #'mu4e))
           (:prefix ("s" . "shell")
             (:when (featurep! :term vterm)
               :desc "Toggle vterm popup"    "v" #'+vterm/toggle
