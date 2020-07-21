@@ -13,6 +13,10 @@
                               (:from-or-to . 20)
                               (:subject))))
 
+;; Remove the private folders from recent files as that's where xwidgets stores the temp files used to render the mails as html
+(after! recentf
+  (add-to-list 'recentf-exclude "/private/var/folders/.*"))
+
 ;;;###package
 (use-package! mu4e
   :commands +mu4e/mu4e-action-view-with-xwidget
