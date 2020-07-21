@@ -36,7 +36,9 @@
         ivy-wrap nil
         ivy-use-virtual-buffers nil
         ivy-fixed-height-minibuffer t
-        ivy-display-style 'fancy))
+        ivy-display-style 'fancy)
+
+  (global-set-key (kbd "M-m") #'counsel-imenu))
 
 (after! ivy-prescient
   ;; Sort recent files by date
