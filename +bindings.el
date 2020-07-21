@@ -68,3 +68,7 @@
 ;; Remove binding, I did not need it and it was colliding with org mode keys
 (after! pyenv-mode
   (define-key pyenv-mode-map (kbd "C-c C-s") nil))
+
+;;; Make q close the window, not just the buffer
+(when (featurep 'xwidget-internal)
+  (add-hook 'xwidget-webkit-mode-hook (lambda () (define-key xwidget-webkit-mode-map  "q" #'+workspace/close-window-or-workspace))))
