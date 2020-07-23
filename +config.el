@@ -12,3 +12,10 @@
               clean-buffer-list-kill-never-regexps '("^\\*\\(doom\\|scratch\\|Messages\\)\\*$"
                                                      "^\\*lsp.*"
                                                      "^\\*clangd.*")))
+;;;###package
+(use-package! dired-x
+  :ensure nil
+  :defer t
+  :init (map! (:leader
+               (:prefix "f"
+                :desc "Find file in Dired" :g "d" #'dired-jump))))

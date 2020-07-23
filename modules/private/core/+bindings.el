@@ -4,6 +4,7 @@
         :desc "Universal Argument" :g "u" #'universal-argument
         :desc "Undo" :g "." #'undo-fu-only-undo
         (:prefix "a"
+         :desc "Dired" :g "d" #'dired
          (:when (featurep! :email mu4e)
           (:prefix ("m" "+mail")
            :desc "Compose" :g "c" #'+mu4e/compose
