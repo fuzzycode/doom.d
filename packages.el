@@ -44,6 +44,8 @@
 ;; CPP MODE
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
 
+(package! lsp-treemacs)
+
 ;; MAIL
 (when (featurep! :email mu4e)
   (package! mu4e-maildirs-extension)

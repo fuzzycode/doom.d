@@ -58,3 +58,10 @@
   (add-hook 'lsp-ui-mode-hook #'+lsp/dim-lsp-sideline))
 
 (setq dap-breakpoints-file (concat doom-local-dir "cache/dap-breakpoints"))
+
+;;;###package
+(use-package! lsp-treemacs
+  :after lsp-mode
+  :init (map! (:leader (:prefix "e"
+                        :desc "All Errors" :g "a" #'lsp-treemacs-errors-list)))
+  (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))
