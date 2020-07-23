@@ -136,10 +136,12 @@
         :g "h" nil
         :g "i" nil
         :g "l" nil
+        :g "m" nil
         :g "n" nil
         :g "o" nil
         :g "p" nil
         :g "q" nil
+        :g "r" nil
         :g "s" nil
         :g "t" nil
         :g "x" nil
