@@ -16,5 +16,13 @@
      #'lsp-format-buffer)))
 
 ;;;###autoload
+(defun +lsp/toggle-global-bredcrumb-mode-on ()
+  "Turn on global lsp breadcrumb mode"
+  (add-hook 'lsp-mode-hook #'lsp-headerline-breadcrumb-mode)
+  (lsp-headerline-breadcrumb-mode t))
 
 ;;;###autoload
+(defun +lsp/toggle-global-bredcrumb-mode-off ()
+  "Turn off global lsp breadcrumb mode"
+  (remove-hook 'lsp-mode-hook #'lsp-headerline-breadcrumb-mode)
+  (lsp-headerline-breadcrumb-mode -1))
