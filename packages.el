@@ -3,7 +3,8 @@
 ;;DISABLED
 (package! drag-stuff :disable t)
 
-(unpin! '(lsp-mode lsp-ui dap-mode))
+;; Stay on bleeding edge for lsp
+(unpin! '(lsp-mode lsp-ui dap-modes))
 
 ;; HELM
 (when (featurep! :completion helm)
@@ -44,7 +45,7 @@
 ;; CPP MODE
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
 
-(package! lsp-treemacs)
+(package! lsp-treemacs :pin nil)
 
 ;; MAIL
 (when (featurep! :email mu4e)
