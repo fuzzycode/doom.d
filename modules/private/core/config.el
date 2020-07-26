@@ -119,7 +119,7 @@
 (use-package! insert-shebang
   :defer t
   :init
-  (map! (:leader (:prefix ("i" . "insert") :desc "Insert shebang" :g "!" 'insert-shebang)))
+  (map! (:leader (:prefix "i" :desc "Insert shebang" :g "!" #'insert-shebang)))
   (remove-hook 'find-file-hook #'insert-shebang))
 
 ;;;###package
@@ -133,10 +133,11 @@
           (:prefix "b"
             :desc "Delete Buffer and File" :g "K" #'crux-delete-file-and-buffer
             :desc "Rename Buffer and File" :g "R" #'crux-rename-file-and-buffer)
-          (:prefix ("f" . "file")
-                   :desc "Find Shell init file" :g "S" #'crux-find-shell-init-file
-                   :desc "Find User Custom File" :g "C" #'crux-find-user-custom-file)
-          (:prefix ("x" . "text")
+          (:prefix "f"
+           :desc "Find User init file" :g "i" #'crux-find-user-init-file
+           :desc "Find Shell init file" :g "S" #'crux-find-shell-init-file
+           :desc "Find User Custom File" :g "C" #'crux-find-user-custom-file)
+          (:prefix "x"
             :desc "Capitalize Region" :g "C" #'crux-capitalize-region
             (:prefix ("l" . "lines")
               :desc "Duplicate Line Or Region" :g "d" #'crux-duplicate-current-line-or-region
@@ -201,7 +202,7 @@
 
 ;;;###package
 (use-package! alert
-  :defer t
+  :defer 10
   :config
   (if (executable-find "terminal-notifier")
       (setq alert-default-style 'notifier)
@@ -239,10 +240,10 @@
 
   (key-chord-define-global "jj" #'avy-goto-word-or-subword-1)
   (map! (:leader
-                (:prefix "j"
-                  :desc "Jump to Word" :g "j" #'avy-goto-char-timer
-                  :desc "Jump to Line" :g "l" #'avy-goto-line
-                  :desc "Jump to Symbol" :g "s" #'avy-goto-symbol-1)))
+         (:prefix "j"
+          :desc "Jump to Word" :g "j" #'avy-goto-char-timer
+          :desc "Jump to Line" :g "l" #'avy-goto-line
+          :desc "Jump to Symbol" :g "s" #'avy-goto-symbol-1)))
   :config
   (add-to-list 'avy-dispatch-alist
                '(?c . avy-comment-word)))
@@ -315,20 +316,20 @@
           ("M-i" . #'flyspell-correct-wrapper))
   :init (setq flyspell-correct-interface #'flyspell-correct-ivy)
   (map! (:leader
-          (:prefix ("S" . "spelling")
-              :desc "Correct Next" :g "n" #'flyspell-correct-next
-              :desc "Correct Previous" :g "p" #'flyspell-correct-previous
-              :desc "Correct At Point" :g "c" #'flyspell-correct-at-point
-              :desc "Correct DWIM" :g "s" #'flyspell-correct-wrapper
-              :desc "Change Dictionary" :g "d" #'ispell-change-dictionary))))
+          (:prefix "S"
+           :desc "Correct Next" :g "n" #'flyspell-correct-next
+           :desc "Correct Previous" :g "p" #'flyspell-correct-previous
+           :desc "Correct At Point" :g "c" #'flyspell-correct-at-point
+           :desc "Correct DWIM" :g "s" #'flyspell-correct-wrapper
+           :desc "Change Dictionary" :g "d" #'ispell-change-dictionary))))
 
 ;;;###package
 (use-package! counsel-doxygen-snippets
   :when (featurep! :completion ivy)
   :after counsel
   :commands counsel-doxygen-snippets
-  :init (map! :leader (:prefix ("i" . "insert")
-                        :desc "Doxygen Snippet" :g "S" #'counsel-doxygen-snippets)))
+  :init (map! :leader (:prefix "i"
+                       :desc "Doxygen Snippet" :g "S" #'counsel-doxygen-snippets)))
 
 ;;;###package
 (use-package! flycheck-clazy
@@ -338,11 +339,11 @@
 ;;;###package
 (use-package! uuidgen
   :commands (uuidgen-1 uuidgen-4)
-  :init (map! :leader (:prefix ("i" . "insert")
+  :init (map! :leader (:prefix "i"
                         (:prefix ("U" . "uuid")
-                          :desc "Time based UUID (1)" :g "t" (cmd! ()  (insert (uuidgen-1)))
-                          :desc "Random based UUID (4)" :g "r" (cmd! () (insert (uuidgen-4)))
-                          :desc "UUID" :g "U" (cmd! () (insert (uuidgen-4)))))))
+                         :desc "Time based UUID (1)" :g "t" (cmd! ()  (insert (uuidgen-1)))
+                         :desc "Random based UUID (4)" :g "r" (cmd! () (insert (uuidgen-4)))
+                         :desc "UUID" :g "U" (cmd! () (insert (uuidgen-4)))))))
 
 ;;;###package
 (use-package! smart-newline
