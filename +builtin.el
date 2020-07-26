@@ -44,6 +44,9 @@
       isearch-regexp-lax-whitespace nil
       isearch-lazy-highlight t)
 
+;; Don't confirm closing emacs with running processes
+(setq confirm-kill-processes nil)
+
 ;; Backups
 (setq version-control t     ;; Use version numbers for backups.
       kept-new-versions 10  ;; Number of newest versions to keep.
