@@ -1,6 +1,9 @@
 
 (after! magit
 
+  ;; Show 100 open topics and 10 closed ones, but only after they are toggled on
+  (setq forge-topic-list-limit '(100 . -10))
+
   (magit-wip-after-save-mode)
   (transient-bind-q-to-quit)
 
