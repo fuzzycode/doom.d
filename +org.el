@@ -90,7 +90,7 @@
       :desc "Next Entry" :g "n" #'org-journal-next-entry)
 
 (map! (:leader
-        (:prefix ("a" . "applications")
+        (:prefix "a"
           (:prefix ("o" . "org")
             :desc "Agenda" :g "a" #'org-agenda
             :desc "Capture" :g "c" #'org-capture
@@ -115,64 +115,66 @@
           :desc "Open Org File" :g "o" (cmd! () (when (projectile-project-p)
                                                      (find-file (+org/project-org-file-path)))))))
 
-(map! :after org
-      (:localleader
-        :map org-mode-map
-        ;; Assure that any doom bindings are first cleared
-        :g "'" nil
-        :g "," nil
-        :g "." nil
-        :g "/" nil
-        :g "A" nil
-        :g "I" nil
-        :g "T" nil
-        :g "a" nil
-        :g "b" nil
-        :g "c" nil
-        :g "d" nil
-        :g "e" nil
-        :g "f" nil
-        :g "g" nil
-        :g "h" nil
-        :g "i" nil
-        :g "l" nil
-        :g "m" nil
-        :g "n" nil
-        :g "o" nil
-        :g "p" nil
-        :g "q" nil
-        :g "r" nil
-        :g "s" nil
-        :g "t" nil
-        :g "x" nil
+(after! org
+  (map! (:localleader
+         :map org-mode-map
+         ;; Assure that any doom bindings are first cleared
+         :g "'" nil
+         :g "+" nil
+         :g "#" nil
+         :g "," nil
+         :g "." nil
+         :g "/" nil
+         :g "A" nil
+         :g "I" nil
+         :g "T" nil
+         :g "a" nil
+         :g "b" nil
+         :g "c" nil
+         :g "d" nil
+         :g "e" nil
+         :g "f" nil
+         :g "g" nil
+         :g "h" nil
+         :g "i" nil
+         :g "l" nil
+         :g "m" nil
+         :g "n" nil
+         :g "o" nil
+         :g "p" nil
+         :g "q" nil
+         :g "r" nil
+         :g "s" nil
+         :g "t" nil
+         :g "x" nil
 
-        :desc "C-c C-*" :g "*" #'org-ctrl-c-star
-        :desc "C-c C--" :g "-" #'org-ctrl-c-minus
-        :desc "C-c C-c" :g "," #'org-ctrl-c-ctrl-c
-        :desc "Edit Special" :g "'" #'org-edit-special
+         :desc "C-c C-*" :g "*" #'org-ctrl-c-star
+         :desc "C-c C--" :g "-" #'org-ctrl-c-minus
+         :desc "C-c C-c" :g "," #'org-ctrl-c-ctrl-c
+         :desc "Edit Special" :g "'" #'org-edit-special
 
-        (:prefix ("B" . "brain")
+         (:prefix ("B" . "brain")
           :when (featurep! :lang org +brain)
           :desc "Refile" :g "R" #'org-brain-refile
           :desc "Delete Entry" :g "x" #'org-brain-delete-entry
           :desc "Visualize" :g "v" #'org-brain-visualize
           (:prefix ("a" . "add")
-            :desc "Child" :g "c" #'org-brain-add-child
-            :desc "Headline Child" :g "h" #'org-brain-add-child-headline
-            :desc "Friendship" :g "f" #'org-brain-add-friendship
-            :desc "Parent" :g "p" #'org-brain-add-parent)
+           :desc "Child" :g "c" #'org-brain-add-child
+           :desc "Headline Child" :g "h" #'org-brain-add-child-headline
+           :desc "Friendship" :g "f" #'org-brain-add-friendship
+           :desc "Parent" :g "p" #'org-brain-add-parent)
           (:prefix ("g" . "goto")
-            :desc "Goto" :g "g" #'org-brain-goto
-            :desc "Child" :g "c" #'org-brain-goto-child
-            :desc "Parent" :g "p" #'org-brain-goto-parent
-            :desc "Friend<" :g "f" #'org-brain-goto-friend))
+           :desc "Goto" :g "g" #'org-brain-goto
+           :desc "Child" :g "c" #'org-brain-goto-child
+           :desc "Parent" :g "p" #'org-brain-goto-parent
+           :desc "Friend<" :g "f" #'org-brain-goto-friend))
 
-        (:prefix ("a" . "agenda")
+         (:prefix ("a" . "agenda")
           :desc "Agenda" :g "a" #'org-agenda
           :desc "Expire And Archive Tasks" :g "e" #'+org/expire-and-archive-tasks-in-buffer
           :desc "Archive Completed" :g "E" #'+org/org-archive-completed-in-buffer
           :desc "Close Expired Tasks" :g "c" #'+org/close-expired-in-buffer)
-        (:prefix ("i" . "insert")
+         (:prefix ("i" . "insert")
           :desc "Drawer" :g "d" #'org-insert-drawer
           :desc "Item" :g "i" #'org-insert-item
           :desc "Note" :g "n" #'org-add-note
@@ -183,12 +185,12 @@
           :desc "Link" :g "L" #'org-insert-link
           :desc "New Footnote" :g "f" #'org-footnote-new
           (:when (featurep! :lang org +dragndrop)
-            (:prefix ("D" . "download")
-              :desc "Yank" :g "y" #'org-download-yank
-              :desc "Screenshot" :g "s" #'org-download-screenshot))
+           (:prefix ("D" . "download")
+            :desc "Yank" :g "y" #'org-download-yank
+            :desc "Screenshot" :g "s" #'org-download-screenshot))
           (:when (featurep! :completion ivy)
-            :desc "Counsel Tag" :g "T" #'counsel-org-tag))
-        (:prefix ("d" . "dates")
+           :desc "Counsel Tag" :g "T" #'counsel-org-tag))
+         (:prefix ("d" . "dates")
           :desc "Toggle Timestamp Type" :g "c" #'org-toggle-timestamp-type
           :desc "Set Schedule" :g "s" #'org-schedule
           :desc "Set Deadline" :g "d" #'org-deadline
@@ -196,13 +198,13 @@
           :desc "Set Expire on time (dwim)" :g "E" #'+org/expire-on-time-dwim
           :desc "Set Time Stamp" :g "t" #'org-time-stamp
           :desc "Set Time Stamp (inactive)" :g "T" #'org-time-stamp-inactive)
-        (:prefix ("h" . "headings")
+         (:prefix ("h" . "headings")
           :desc "Insert Heading After Current" :g "i" #'org-insert-heading-after-current
           :desc "Insert Heading" :g "I" #'org-insert-heading
           :desc "Insert Subheading" :g "s" #'org-insert-subheading)
-        (:prefix ("e" . "export")
+         (:prefix ("e" . "export")
           :desc "Export Dispatch" :g "e" #'org-export-dispatch)
-        (:prefix ("b" . "babel")
+         (:prefix ("b" . "babel")
           :desc "Previous Source Block" :g "p" #'org-babel-previous-src-block
           :desc "Next Source Block" :g "n" #'org-babel-next-src-block
           :desc "Execute Maybe" :g "e" #'org-babel-execute-maybe
@@ -225,7 +227,7 @@
           :desc "Switch To Session With Code" :g "Z" #'org-babel-switch-to-session-with-code
           :desc "SHA1 Hash" :g "a" #'org-babel-sha1-hash
           :desc "Do Key Sequence In Edit Buffer" :g "x" #'org-babel-do-key-sequence-in-edit-buffer)
-        (:prefix ("x" . "text")
+         (:prefix ("x" . "text")
           :desc "Open Link" :g "o" #'org-open-at-point
           :desc "Bold" :g "b" (cmd! () (org-emphasize ?*))
           :desc "Code" :g "c" (cmd! () (org-emphasize ?~))
@@ -234,7 +236,7 @@
           :desc "Strike Through" :g "s" (cmd! () (org-emphasize ?+))
           :desc "Underline" :g "u" (cmd! () (org-emphasize ?_))
           :desc "Verbose" :g "v" (cmd! () (org-emphasize ?=)))
-        (:prefix ("s" . "sub-tree")
+         (:prefix ("s" . "sub-tree")
           :desc "Toggle Archive Tag" :g "a" #'org-toggle-archive-tag
           :desc "Archive Sub-tree" :g "A" #'org-archive-subtree
           :desc "Tree To Indirect Buffer" :g "b" #'org-tree-to-indirect-buffer
@@ -244,7 +246,7 @@
           :desc "Refile" :g "r" #'org-refile
           :desc "Sparse Tree" :g "s" #'org-sparse-tree
           :desc "Sort" :g "S" #'org-sort)
-        (:prefix ("l" . "links")
+         (:prefix ("l" . "links")
           :desc "Store Link" :g "s" #'org-store-link
           :desc "Insert Link" :g "l" #'org-insert-link
           :desc "Id Link" :g "i" #'+org/org-insert-custom-id-link
@@ -253,7 +255,7 @@
           :desc "Clip Link" :g "c" #'org-cliplink
           :desc "Next Link" :g "n" #'org-next-link
           :desc "Previous Link" :g "p" #'org-previous-link)
-        (:prefix ("t" . "tables")
+         (:prefix ("t" . "tables")
           :desc "Align" :g "a" #'org-table-align
           :desc "Blank Field" :g "b" #'org-table-blank-field
           :desc "Convert" :g "c" #'org-table-convert
@@ -274,23 +276,23 @@
           :desc "Sort Lines" :g "s" #'org-table-sort-lines
           :desc "Wrap Region" :g "w" #'org-table-wrap-region
           (:prefix ("i" . "insert")
-            :desc "Insert Column" :g "c" #'org-table-insert-column
-            :desc "Insert Horizontal Line" :g "h" #'org-table-insert-hline
-            :desc "Horizontal Line And Move" :g "H" #'org-table-hline-and-move)
+           :desc "Insert Column" :g "c" #'org-table-insert-column
+           :desc "Insert Horizontal Line" :g "h" #'org-table-insert-hline
+           :desc "Horizontal Line And Move" :g "H" #'org-table-hline-and-move)
           (:prefix ("t" . "toggle")
-            :desc "Formula Debugger" :g "f" #'org-table-toggle-formula-debugger
-            :desc "Coordinate Overlays" :g "o" #'org-table-toggle-coordinate-overlays)
+           :desc "Formula Debugger" :g "f" #'org-table-toggle-formula-debugger
+           :desc "Coordinate Overlays" :g "o" #'org-table-toggle-coordinate-overlays)
           (:prefix ("d" . "delete")
-            :desc "Delete Column" :g "c" #'org-table-delete-column
-            :desc "Delete Row" :g "r" #'org-table-kill-row))
-        (:prefix ("T" . "toggle")
+           :desc "Delete Column" :g "c" #'org-table-delete-column
+           :desc "Delete Row" :g "r" #'org-table-kill-row))
+         (:prefix ("T" . "toggle")
           :desc "Checkbox" :g "c" #'org-toggle-checkbox
           :desc "Pretty Entities" :g "e" #'org-toggle-pretty-entities
           :desc "Inline Images" :g "i" #'org-toggle-inline-images
           :desc "Link Display" :g "l" #'org-toggle-link-display
           :desc "Show Todo Tree" :g "t" #'org-show-todo-tree
           :desc "Org Todo" :g "T" #'org-todo
-          :desc "Preview Latex Fragment" :g "x" #'org-latex-preview)))
+          :desc "Preview Latex Fragment" :g "x" #'org-latex-preview))))
 
 ;;;###package
 (use-package! demo-it
