@@ -17,12 +17,12 @@
               :desc "Toggle eshell popup"   "e" #'+eshell/toggle
               :desc "Open eshell here"      "E" #'+eshell/here)))
         (:prefix "x"
-          :desc "Count Region" :g "c" 'count-words-region
-          :desc "Indent Rigidly" :g "TAB" 'indent-rigidly
+          :desc "Count Region" :g "c" #'count-words-region
+          :desc "Indent Rigidly" :g "TAB" #'indent-rigidly
           (:prefix ("t" . "transpose")
-            :desc "Chars" :g "c" 'transpose-chars
-            :desc "Lines" :g "l" 'transpose-lines
-            :desc "Words" :g "w" 'transpose-words))
+            :desc "Chars" :g "c" #'transpose-chars
+            :desc "Lines" :g "l" #'transpose-lines
+            :desc "Words" :g "w" #'transpose-words))
         (:prefix "s"
           :desc "List Links" :g "L" #'ffap-menu)
         (:prefix "l"
@@ -30,18 +30,18 @@
          :desc "Center Line" :g "c" #'recenter-top-bottom)
         (:prefix "b"
           :desc "Save" :g "s" #'save-buffer
-          :desc "Scratch Buffer" :g "S" '+core/switch-to-scratch-buffer
-          :desc "Messages Buffer" :g "M" '+core/switch-to-message-buffer
-          :desc "New Buffer" :g "N" '+core/new-empty-buffer
-          :desc "Buffer to Clipboard" :g "P" '+core/copy-whole-buffer-to-clipboard
-          :desc "Clipboard to Buffer" :g "Y" '+core/copy-clipboard-to-whole-buffer
-          :desc "Workspace Buffer" :g "w" '+ivy/switch-workspace-buffer
-          :desc "Read Only" :g "W" 'read-only-mode
-          :desc "Next Buffer" :g "n" 'next-buffer
-          :desc "Previous Buffer" :g "p" 'previous-buffer
-          :desc "Doom Dashboard" :g "d" '+doom-dashboard/open
-          :desc "Ibuffer" :g "I" 'ibuffer
+          :desc "Scratch Buffer" :g "S" #'+core/switch-to-scratch-buffer
+          :desc "Messages Buffer" :g "M" #'+core/switch-to-message-buffer
+          :desc "New Buffer" :g "N" #'+core/new-empty-buffer
+          :desc "Buffer to Clipboard" :g "P" #'+core/copy-whole-buffer-to-clipboard
+          :desc "Clipboard to Buffer" :g "Y" #'+core/copy-clipboard-to-whole-buffer
+          :desc "Workspace Buffer" :g "w" #'+ivy/switch-workspace-buffer
+          :desc "Read Only" :g "W" #'read-only-mode
+          :desc "Next Buffer" :g "n" #'next-buffer
+          :desc "Previous Buffer" :g "p" #'previous-buffer
+          :desc "Doom Dashboard" :g "d" #'+doom-dashboard/open
           :desc "Doom Sandbox" :g "D" #'doom/sandbox
+          :desc "Ibuffer" :g "I" #'ibuffer
           :desc "Kill Buffer and Window" :g "x" #'kill-buffer-and-window
           :desc "Kill Matching Buffers" :g "C-d" #'kill-matching-buffers
           :desc "Show and Copy Buffer Filename" :g "C" #'+core/show-and-copy-buffer-filename)
@@ -63,26 +63,26 @@
           (:prefix ("t" . "tutorials")
             :desc "Emacs Tutorial" :g "e" #'help-with-tutorial)
           (:prefix "d"
-            :desc "Language Environment" :g "L" #'describe-language-environment
-            :desc "Minor Mode(s)" :g "M" #'doom/describe-active-minor-mode
-            :desc "DOOM Packages" :g "P" #'doom/help-packages
-            :desc "DOOM Modules" :g "D" #'doom/help-modules))
            :desc "DOOM Autodefs" :g "A" #'doom/describe-autodefs
+           :desc "Language Environment" :g "L" #'describe-language-environment
+           :desc "Minor Mode(s)" :g "M" #'doom/describe-active-minor-mode
+           :desc "DOOM Packages" :g "P" #'doom/help-packages
+           :desc "DOOM Modules" :g "D" #'doom/help-modules))
         (:prefix "j"
           (:when (featurep! :ui window-select)
             :desc "Jump to Window" :g "w" #'ace-window))
         (:prefix "w"
           :desc "Save Session" :g "q" #'doom/quicksave-session
           :desc "Load Session" :g "Q" #'doom/quickload-session
-          :desc "Make Frame" :g "F" 'make-frame
-          :desc "Other Frame" :g "o" 'other-frame
-          :desc "Winner Redo" :g "U" 'winner-redo
-          :desc "Winner Undo" :g "u" 'winner-undo
-          :desc "Split Window Right" :g "v" 'split-window-right
-          :desc "Split Window Right & Focus" :g "V" 'split-window-right-and-focus
-          :desc "Split Window Below" :g "s" 'split-window-below
-          :desc "Split Window Below & Focus" :g "S" 'split-window-below-and-focus
-          :desc "Balance Windows" :g "=" 'balance-windows
+          :desc "Make Frame" :g "F" #'make-frame
+          :desc "Other Frame" :g "o" #'other-frame
+          :desc "Winner Redo" :g "U" #'winner-redo
+          :desc "Winner Undo" :g "u" #'winner-undo
+          :desc "Split Window Right" :g "v" #'split-window-right
+          :desc "Split Window Right & Focus" :g "V" #'split-window-right-and-focus
+          :desc "Split Window Below" :g "s" #'split-window-below
+          :desc "Split Window Below & Focus" :g "S" #'split-window-below-and-focus
+          :desc "Balance Windows" :g "=" #'balance-windows
           :desc "Close Window" :g "k" #'+workspace/close-window-or-workspace
           :desc "Delete Other Windows" :g "K" #'delete-other-windows
           (:when (featurep! :ui window-select)

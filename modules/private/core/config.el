@@ -74,7 +74,7 @@
 (use-package! winum
   :init (setq winum-auto-assign-0-to-minibuffer nil
               winum-auto-setup-mode-line nil
-              winum-ignored-buffers '(" *which-key*"))
+              winum-ignored-buffers '("*which-key*"))
   :config (winum-mode)
   :bind (:map winum-keymap
           ("M-1" . #'winum-select-window-1)

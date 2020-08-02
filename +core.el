@@ -4,7 +4,7 @@
         :desc "Shell Command" :g "!" 'shell-command
         :desc "Eval" :g ":" 'eval-expression
         (:when (featurep! :tools ein)
-          (:prefix ("a" . "applications")
+          (:prefix "a"
             (:prefix ("y" . "jupyter notebooks")
               :desc "Login" :g "l" #'ein:notebooklist-login
               :desc "Open" :g "o" #'ein:notebooklist-open
@@ -28,8 +28,8 @@
             :desc "Indent Region" :g "r" #'indent-region
             :desc "Indent Region Or Buffer" :g "i" #'+text/indent-region-or-buffer))
         (:prefix "h"
-          :desc "Emacs News" :g "n" 'emacs-news
-          :desc "Doom Manual" :g "D" 'doom/help)
+          :desc "Emacs News" :g "n" #'view-emacs-news
+          :desc "Doom Manual" :g "D" #'doom/help)
         (:prefix "q"
           :desc "Quit Emacs"                   "q" #'kill-emacs
           :desc "Save and quit Emacs"          "Q" #'save-buffers-kill-terminal
