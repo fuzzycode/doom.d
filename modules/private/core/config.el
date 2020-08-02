@@ -190,6 +190,7 @@
 ;;;###package
 (use-package! string-inflection
   :defer t
+  :bind ("M-u" . #'string-inflection-all-cycle)
   :init (map! (:leader
                 (:prefix "x"
                   (:prefix ("i" . "inflection")
