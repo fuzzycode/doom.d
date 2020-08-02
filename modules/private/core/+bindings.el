@@ -41,6 +41,7 @@
           :desc "Previous Buffer" :g "p" 'previous-buffer
           :desc "Doom Dashboard" :g "d" '+doom-dashboard/open
           :desc "Ibuffer" :g "I" 'ibuffer
+          :desc "Doom Sandbox" :g "D" #'doom/sandbox
           :desc "Kill Buffer and Window" :g "x" #'kill-buffer-and-window
           :desc "Kill Matching Buffers" :g "C-d" #'kill-matching-buffers
           :desc "Show and Copy Buffer Filename" :g "C" #'+core/show-and-copy-buffer-filename)
