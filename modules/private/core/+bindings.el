@@ -66,6 +66,7 @@
             :desc "Minor Mode(s)" :g "M" #'doom/describe-active-minor-mode
             :desc "DOOM Packages" :g "P" #'doom/help-packages
             :desc "DOOM Modules" :g "D" #'doom/help-modules))
+           :desc "DOOM Autodefs" :g "A" #'doom/describe-autodefs
         (:prefix "j"
           (:when (featurep! :ui window-select)
             :desc "Jump to Window" :g "w" #'ace-window))
