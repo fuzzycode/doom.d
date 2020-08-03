@@ -63,6 +63,8 @@
 
 (blink-cursor-mode -1) ;; We never want that
 
+(electric-indent-mode -1) ;; Not needed, newline and indent will take care of it
+
 ;; TODO(Björn Larsson): Remove the need for a hard coded path parts
 (after! recentf
   (add-to-list 'recentf-exclude #'directory-name-p) ;; Filter out all directories from the list
