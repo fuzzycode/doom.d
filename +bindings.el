@@ -63,6 +63,9 @@
         :desc "Split Sexp" :g "i" #'sp-split-sexp
         :desc "Splice Sexp" :g "I" #'sp-splice-sexp)))
 
+(map! (:leader (:prefix "f"
+                :desc "Find User Init File" :g "i" #'doom/goto-private-init-file)))
+
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
 ;; Remove binding, I did not need it and it was colliding with org mode keys

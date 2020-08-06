@@ -134,7 +134,6 @@
             :desc "Delete Buffer and File" :g "K" #'crux-delete-file-and-buffer
             :desc "Rename Buffer and File" :g "R" #'crux-rename-file-and-buffer)
           (:prefix "f"
-           :desc "Find User init file" :g "i" #'crux-find-user-init-file
            :desc "Find Shell init file" :g "S" #'crux-find-shell-init-file
            :desc "Find User Custom File" :g "C" #'crux-find-user-custom-file)
           (:prefix "x"
