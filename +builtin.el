@@ -67,6 +67,7 @@
 
 ;; Bump the process read limit to 3mb, helps lsp-mode perform better
 (setq read-process-output-max (* 3 1024 1024))
+(setq gc-cons-threshold 100000000)
 
 ;; TODO(Björn Larsson): Remove the need for a hard coded path parts
 (after! recentf
