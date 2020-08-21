@@ -1,20 +1,24 @@
 ;;; ../Development/GitHub/dotfiles/doom.d/autoload/+cc.el -*- lexical-binding: t; -*-
 
-;;;###autoload
-(defun find-overlays-specifying (prop)
-  "From https://www.gnu.org/software/emacs/manual/html_node/elisp/Finding-Overlays.html"
-  (let ((overlays (overlays-at (point)))
-        found)
-    (while overlays
-      (let ((overlay (car overlays)))
-        (if (overlay-get overlay prop)
-            (setq found (cons overlay found))))
-      (setq overlays (cdr overlays)))
-    found))
-
 
 ;;;###autoload
-(defun +cc-no-spell-check-includes-a (result)
-  "Make sure that include statements are not spellchecked"
+(defun inside-string-p ()
+  (nth 3 (syntax-ppss)))
+
+;;;###autoload
+(defun inside-include-p ()
+  (save-excursion
+    (or (and (inside-string-p)
+             (looking-at-p ".+\"")
+             (looking-back "^[[:blank:]]*#include[[:blank:]]+\".+")
+             )
+        (and (looking-at-p ".+>")
+             (looking-back "^[[:blank:]]*#include[[:blank:]]+<.+")))))
+
+;;;###autoload
+(defun disable-flycheck-in-includes-a (result)
   (and result
-       (not (find-overlays-specifying 'lsp-link))))
+       (not (inside-include-p))))
+
+;;;###autoload
+(advice-add #'flyspell-generic-progmode-verify :filter-return #'disable-flycheck-in-includes-a)
