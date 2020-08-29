@@ -14,8 +14,12 @@
                                                      "^\\*clangd.*")))
 ;;;###package
 (use-package! dired-x
-  :ensure nil
   :defer t
   :init (map! (:leader
                (:prefix "f"
                 :desc "Find file in Dired" :g "d" #'dired-jump))))
+
+;;;###package
+(use-package! dired
+  :defer t
+  :hook (dired-mode . auto-revert-mode))
