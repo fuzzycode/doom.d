@@ -10,10 +10,6 @@
               :desc "Open" :g "o" #'ein:notebooklist-open
               :desc "Run" :g "r" #'ein:run
               :desc "Stop" :g "s" #'ein:stop)))
-        (:prefix "S"
-            (:when (featurep! :tools flyspell)
-              :desc "Check Buffer" :g "b" #'flyspell-buffer
-              :desc "Change Dictionary" :g "C" #'ispell-change-dictionary))
         (:prefix "e"
           (:when (featurep! :checkers syntax)
             :desc "Next Error" :g "n" #'flycheck-next-error

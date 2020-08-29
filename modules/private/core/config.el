@@ -283,6 +283,8 @@
   :after hl-line
   :hook (doom-load-theme . (lambda () (set-face-background 'highlight-doxygen-comment (face-background 'hl-line))))
   :init (+core/add-toggle highlight-doxygen-mode :mode highlight-doxygen-mode :bind '(:desc "Highlight Doxygen" :key "d"))
+  (after! wucuo
+    (add-to-list 'wucuo-personal-font-faces-to-check 'highlight-doxygen-comment))
   :config (highlight-doxygen-global-mode 1))
 
 ;;;###package
@@ -308,20 +310,6 @@
   (setq auto-save-default nil)
   (super-save-mode +1))
 
-;;;###package
-(use-package! flyspell-correct-ivy
-  :when (and (featurep! :completion ivy) (featurep! :checkers spell))
-  :bind (:map flyspell-mode-map
-          ("C-;" . #'flyspell-correct-wrapper)
-          ("M-i" . #'flyspell-correct-wrapper))
-  :init (setq flyspell-correct-interface #'flyspell-correct-ivy)
-  (map! (:leader
-          (:prefix "S"
-           :desc "Correct Next" :g "n" #'flyspell-correct-next
-           :desc "Correct Previous" :g "p" #'flyspell-correct-previous
-           :desc "Correct At Point" :g "c" #'flyspell-correct-at-point
-           :desc "Correct DWIM" :g "s" #'flyspell-correct-wrapper
-           :desc "Change Dictionary" :g "d" #'ispell-change-dictionary))))
 
 ;;;###package
 (use-package! counsel-doxygen-snippets

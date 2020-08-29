@@ -34,10 +34,6 @@
       use-dialog-box nil
       use-file-dialog nil)
 
-;; iSpell
-(setq ispell-extra-args '("--sug-mode=ultra" "--lang=en_GB"))
-(setq ispell-dictionary "english")
-
 ;; iSeach
 (setq isearch-lax-whitespace t
       search-whitespace-regexp ".*?"

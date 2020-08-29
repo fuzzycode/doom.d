@@ -76,7 +76,7 @@
 
        :checkers
        syntax
-       (spell +aspell)
+       grammar
 
        :lang
        ;;assembly          ; assembly for fun or debugging
@@ -144,4 +144,5 @@
        :private
        core
        cmake
+       spelling
        )
