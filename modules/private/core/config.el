@@ -280,6 +280,7 @@
 
 ;;;###package
 (use-package! highlight-doxygen
+  :disabled
   :after hl-line
   :hook (doom-load-theme . (lambda () (set-face-background 'highlight-doxygen-comment (face-background 'hl-line))))
   :init (+core/add-toggle highlight-doxygen-mode :mode highlight-doxygen-mode :bind '(:desc "Highlight Doxygen" :key "d"))
@@ -301,15 +302,14 @@
   :config
   (setq super-save-triggers (append super-save-triggers
                                     '(+ivy/switch-buffer +ivy/switch-workspace-buffer
-                                                   +ivy/switch-buffer-other-window +ivy/switch-workspace-buffer-other-window
-                                                   ace-window winum-select-window-0 winum-select-window-1 winum-select-window-2
-                                                   winum-select-window-3 winum-select-window-4 winum-select-window-5
-                                                   winum-select-window-6 winum-select-window-7 winum-select-window-8
-                                                   winum-select-window-9 winum-select-window-0-or-10)))
+                                                         +ivy/switch-buffer-other-window +ivy/switch-workspace-buffer-other-window
+                                                         ace-window winum-select-window-0 winum-select-window-1 winum-select-window-2
+                                                         winum-select-window-3 winum-select-window-4 winum-select-window-5
+                                                         winum-select-window-6 winum-select-window-7 winum-select-window-8
+                                                         winum-select-window-9 winum-select-window-0-or-10)))
   (add-to-list 'super-save-hook-triggers 'find-file-hook)
   (setq auto-save-default nil)
   (super-save-mode +1))
-
 
 ;;;###package
 (use-package! counsel-doxygen-snippets
