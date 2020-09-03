@@ -19,31 +19,27 @@
 
 ;;;###package
 (use-package! mu4e
-  :commands +mu4e/mu4e-action-view-with-xwidget
   :init (setq mu4e-root-maildir (expand-file-name "~/.mail")
               mu4e-drafts-folder "/drafts"
               mu4e-sent-folder   "/sent"
               mu4e-trash-folder  "/trash"
               mu4e-refile-folder "/archive")
   :config (when (fboundp 'imagemagick-register-types)
-            (imagemagick-register-types))
-  (add-to-list 'mu4e-view-actions '("xView with XWidget" . +mu4e/mu4e-action-view-with-xwidget)))
+            (imagemagick-register-types)))
 
 ;;;###package
-(use-package! mu4e-view
+(use-package! mu4e-views
   :after mu4e
-  :init (setq mu4e-view-use-gnus t
-              mu4e-view-show-images t))
+  :if (featurep 'xwidget-internal) ;; Test if emacs is built with xwidget support
+  :init (setq mu4e-views-completion-method 'ivy
+              mu4e-views-default-view-method "html"
+              mu4e-views-next-previous-message-behaviour 'stick-to-current-window)
+  :config (mu4e-views-mu4e-use-view-msg-method "html"))
 
 ;;;###package
 (use-package! mu4e-icalendar
   :after mu4e
   :config (mu4e-icalendar-setup))
-
-;;;###package
-(use-package! mu4e-contrib
-  :after mu4e
-  :init (setq mu4e-html2text-command 'mu4e-shr2text))
 
 ;;;###package
 (use-package! mu4e-compose

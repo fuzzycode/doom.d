@@ -52,5 +52,9 @@
   (package! mu4e-maildirs-extension)
   (package! mu4e-alert))
 
+(when (and (featurep! :email mu4e)
+           (featurep 'xwidget-internal))
+  (package! mu4e-views :recipe (:host github :repo "lordpretzel/mu4e-views")))
+
 ;; SHELL SCRIPT
 ;(package! sh-script :built-in)
