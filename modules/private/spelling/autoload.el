@@ -9,8 +9,7 @@
   (save-excursion
     (or (and (inside-string-p)
              (looking-at-p ".+\"")
-             (looking-back "^[[:blank:]]*#include[[:blank:]]+\".+")
-             )
+             (looking-back "^[[:blank:]]*#include[[:blank:]]+\".+"))
         (and (looking-at-p ".+>")
              (looking-back "^[[:blank:]]*#include[[:blank:]]+<.+")))))
 
