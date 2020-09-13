@@ -72,3 +72,7 @@
 
 ;; Configure flycheck, with lsp available there is no need for c/c++-* family
 (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc c/c++-cppcheck))
+
+(after! git-gutter-fringe
+  ;; Fringe configuration
+  (fringe-mode '(8 . 4)))  ;; Left is full size and right is half size, makes room for break-point and tilde bitmaps
