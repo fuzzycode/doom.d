@@ -54,7 +54,6 @@
        vterm             ; another terminals in Emacs
 
        :tools
-       debugger
        direnv
        docker
        editorconfig      ; let someone else argue about tabs vs spaces
@@ -143,6 +142,7 @@
        :private
        core
        cmake
+       debugging
        spelling
        folding
        )
