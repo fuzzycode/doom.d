@@ -31,9 +31,9 @@
 (use-package! mu4e-views
   :after mu4e
   :if (featurep 'xwidget-internal) ;; Test if emacs is built with xwidget support
-  :init (setq mu4e-views-completion-method 'ivy
+  :init (setq mu4e-views-completion-method #'ivy
               mu4e-views-default-view-method "html"
-              mu4e-views-next-previous-message-behaviour 'stick-to-current-window)
+              mu4e-views-next-previous-message-behaviour #'stick-to-current-window)
   :config (mu4e-views-mu4e-use-view-msg-method "html"))
 
 ;;;###package
