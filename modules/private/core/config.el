@@ -362,6 +362,12 @@
                   :desc "Ripgrep Dispatch" :g "r" #'rg-menu
                   :desc "List Searches" :g "R" #'rg-list-searches)))
 
+;;;###package
+(use-package! hardhat
+  :defer 10
+  :init (setq hardhat-less-feedback t)
+  :config (global-hardhat-mode 1))
+
 ;; EXTRAS
 (load! "+configs")
 (load! "+bindings")

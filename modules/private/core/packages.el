@@ -32,6 +32,7 @@
 (package! uuidgen)
 (package! smart-newline)
 (package! rg)
+(package! hardhat)
 
 (package! counsel-doxygen-snippets
   :recipe (:host github :repo "fuzzycode/counsel-doxygen-snippets"))
