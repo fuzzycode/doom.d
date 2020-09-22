@@ -364,9 +364,9 @@
 
 ;;;###package
 (use-package! hardhat
-  :defer 10
+  :defer t
   :init (setq hardhat-less-feedback t)
-  :config (global-hardhat-mode 1))
+  :hook (doom-first-input . global-hardhat-mode))
 
 ;; EXTRAS
 (load! "+configs")
