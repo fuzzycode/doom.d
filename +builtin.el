@@ -68,7 +68,8 @@
 ;; TODO(Björn Larsson): Remove the need for a hard coded path parts
 (after! recentf
   (add-to-list 'recentf-exclude #'directory-name-p) ;; Filter out all directories from the list
-  (add-to-list 'recentf-exclude (concat ".*?" "\\.emacs\\.d/\\.local" ".*"))) ;; Remove all files in the .local folders
+  (add-to-list 'recentf-exclude (concat ".*?" "\\.emacs\\.d/\\.local" ".*"))  ;; Remove all files in the .local folders
+  (add-to-list 'recentf-exclude "\\.vrb$")) ;; Remove latex intermediate files
 
 ;; Configure flycheck, with lsp available there is no need for c/c++-* family
 (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc c/c++-cppcheck))
