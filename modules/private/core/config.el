@@ -298,7 +298,8 @@
   :defer 6
   :init (setq super-save-auto-save-when-idle nil
               super-save-idle-duration 30
-              super-save-remote-files nil)
+              super-save-remote-files nil
+              super-save-exclude '("\\*.+\\*"))
   :config
   (setq super-save-triggers (append super-save-triggers
                                     '(+ivy/switch-buffer +ivy/switch-workspace-buffer
