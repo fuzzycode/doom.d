@@ -39,6 +39,9 @@
 (package! elisp-format)
 (package! eval-sexp-fu)
 
+;; LATEX
+(package! ebib)
+
 ;; CSV
 (package! csv-mode)
 

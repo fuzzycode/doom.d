@@ -55,6 +55,7 @@
 (load! "+lsp")
 (load! "+cc")
 (load! "+python")
+(load! "+latex")
 (load! "+bindings")
 (load! "+config")
 (load! "+yaml")
