@@ -13,8 +13,6 @@
       org-log-reschedule 'time
       org-treat-insert-todo-heading-as-state-change t
 
-      org-archive-location (format "%s::%s" +org/archive-file "* From %s" )
-
       org-refile-target-verify-function #'+org/verify-refile-target
 
       org-directory +org/org-directory
@@ -71,6 +69,8 @@
 (defvar +org/archive-file (concat (file-name-as-directory +org/org-directory) "archive.org"))
 (defvar +org/inbox-file (concat (file-name-as-directory +org/org-directory) "inbox.org"))
 (defvar +org/calendar-file (concat (file-name-as-directory +org/org-directory) "calendar.org"))
+
+(setq org-archive-location (format "%s::%s" +org/archive-file "* From %s" ))
 
 ;; Add agenda files
 (after! org
