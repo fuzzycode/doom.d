@@ -67,6 +67,7 @@
                 :desc "Find User Init File" :g "i" #'doom/goto-private-init-file)))
 
 (global-set-key (kbd "C-x C-b") #'ibuffer)
+(global-set-key (kbd "C-c l") #'recenter)
 
 ;; Remove binding, I did not need it and it was colliding with org mode keys
 (after! pyenv-mode
