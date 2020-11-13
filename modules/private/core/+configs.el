@@ -4,6 +4,7 @@
   (add-to-list 'projectile-project-root-files-bottom-up "compile_commands.json")
   (add-to-list 'projectile-project-root-files-bottom-up ".lsp-cache")
   (add-to-list 'projectile-project-root-files-bottom-up ".ccls-cache")
+  (add-to-list 'projectile-project-root-files-bottom-up ".cache")
 
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
 
