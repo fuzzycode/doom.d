@@ -19,7 +19,7 @@
 (add-to-list 'auto-mode-alist '("\\.zshrc.local$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.ignore$" . gitignore-mode))
 (add-to-list 'auto-mode-alist '("\\.fdignore$" . gitignore-mode))
-
+(add-to-list 'auto-mode-alist '("\\.clangd$". yaml-mode))
 
 (after! smartparens
 
