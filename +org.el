@@ -301,6 +301,7 @@
 ;;;###package
 (use-package! idle-org-agenda
   :after-call pre-command-hook
+  :custom (idle-org-agenda-interval 600)
   :config (idle-org-agenda-mode))
 
 ;;;###package
