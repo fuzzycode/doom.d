@@ -1,11 +1,11 @@
 ;;; ~/.doom.d/+bindings.el -*- lexical-binding: t; -*-
 
 (map! (:leader
-        (:prefix "h"
-          :desc "help map" :g "h" help-map
+       (:prefix "h"
           :desc "Info" :g "i" #'info
           (:prefix ("d" . "describe")
             :desc "Char" :g "c" #'describe-char
+            :desc "Bindings" :g "b" #'describe-bindings
             :desc "Function" :g "f" #'describe-function
             :desc "Face" :g "F" #'describe-face
             :desc "Key" :g "k" #'describe-key
