@@ -39,6 +39,8 @@
          ("<f11>" . dap-step-in)
          ("S-<f11>" . dap-step-out))
   :init
+  (setq dap-auto-configure-features '(sessions locals tooltip))
+
   (when (executable-find "python3")
     (setq dap-python-executable "python3"))
 
