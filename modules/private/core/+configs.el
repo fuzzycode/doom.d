@@ -1,10 +1,10 @@
 ;;; private/core/+configs.el -*- lexical-binding: t; -*-
 
 (after! projectile
-  (add-to-list 'projectile-project-root-files-bottom-up "compile_commands.json")
-  (add-to-list 'projectile-project-root-files-bottom-up ".lsp-cache")
-  (add-to-list 'projectile-project-root-files-bottom-up ".ccls-cache")
-  (add-to-list 'projectile-project-root-files-bottom-up ".cache")
+  ;; Add these to the back of the list to give priority to .projectile and .git files
+  (add-to-list 'projectile-project-root-files-bottom-up "compile_commands.json" t)
+  (add-to-list 'projectile-project-root-files-bottom-up ".lsp-cache" t)
+  (add-to-list 'projectile-project-root-files-bottom-up ".cache" t)
 
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
 
