@@ -38,6 +38,8 @@
         ivy-fixed-height-minibuffer t
         ivy-display-style 'fancy)
 
+  (add-to-list 'ivy-initial-inputs-alist '(magit-checkout . "^"))
+
   (global-set-key (kbd "M-m") #'counsel-imenu))
 
 (after! ivy-prescient
