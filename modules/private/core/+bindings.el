@@ -6,7 +6,7 @@
         (:prefix "a"
          :desc "Dired" :g "d" #'dired
          (:when (featurep! :email mu4e)
-          (:prefix ("m" "+mail")
+          (:prefix ("m" . "mail")
            :desc "Compose" :g "c" #'+mu4e/compose
            :desc "Mail" :g "m" #'mu4e))
           (:prefix ("s" . "shell")
