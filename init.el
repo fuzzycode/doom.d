@@ -33,6 +33,7 @@
 
        :editor
        file-templates    ; auto-snippets for empty files
+       fold
        ;; (format +onsave)  ; automated prettiness
        ;;lispy             ; vim for lisp, for people who don't like vim
        multiple-cursors  ; editing in many places at once
@@ -143,5 +144,4 @@
 
        :private
        core
-       folding
        )
