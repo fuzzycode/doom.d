@@ -38,9 +38,12 @@
         ivy-fixed-height-minibuffer t
         ivy-display-style 'fancy)
 
-  (add-to-list 'ivy-initial-inputs-alist '(magit-checkout . "^"))
-
   (global-set-key (kbd "M-m") #'counsel-imenu))
+
+;;;###package
+(use-package! counsel
+  :config
+  (setq ivy-initial-inputs-alist '((magit-checkout . "^"))))
 
 (after! ivy-prescient
   ;; Sort recent files by date

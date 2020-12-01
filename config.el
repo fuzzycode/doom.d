@@ -53,7 +53,6 @@
 (load! "+git")
 (load! "+org")
 (load! "+lsp")
-(load! "+cc")
 (load! "+python")
 (load! "+latex")
 (load! "+bindings")

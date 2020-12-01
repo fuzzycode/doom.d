@@ -141,7 +141,6 @@
 
        :private
        core
-       cmake
        debugging
        spelling
        folding
