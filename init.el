@@ -76,6 +76,7 @@
        :checkers
        syntax
        grammar
+       spell
 
        :lang
        ;;assembly          ; assembly for fun or debugging
@@ -142,6 +143,5 @@
 
        :private
        core
-       spelling
        folding
        )
