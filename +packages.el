@@ -1,6 +1,4 @@
-;;; ~/.doom.d/modules/private/core/config.el -*- lexical-binding: t; -*-
-
-(load! "+functions")
+;;; ../Development/GitHub/dotfiles/doom.d/+packages.el -*- lexical-binding: t; -*-
 
 ;;;###package
 (use-package! use-package-chords)
@@ -368,8 +366,3 @@
   :defer t
   :init (setq hardhat-less-feedback t)
   :hook (doom-first-input . global-hardhat-mode))
-
-;; EXTRAS
-(load! "+configs")
-(load! "+bindings")
-(load! "+popups")

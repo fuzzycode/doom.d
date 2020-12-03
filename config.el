@@ -62,6 +62,7 @@
 (load! "+config")
 (load! "+yaml")
 (load! "+json")
+(load! "+packages")
 
 (when IS-MAC
   (load! "+osx"))
