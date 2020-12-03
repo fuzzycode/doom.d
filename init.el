@@ -141,7 +141,4 @@
 
        :config
        (default +smartparens)
-
-       :private
-       core
        )
