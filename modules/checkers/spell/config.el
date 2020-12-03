@@ -19,7 +19,7 @@
          (yaml-mode . wucuo-start)
          (conf-mode . wucuo-start)
          (text-mode . +spelling//setup-text-mode))
-  :init (setq wucuo-personal-font-faces-to-check '()
+  :init (setq wucuo-personal-font-faces-to-check '(git-commit-summary)
               wucuo-spell-check-buffer-predicate
               (lambda ()
                 (not (memq major-mode
