@@ -92,3 +92,13 @@
 (defun +bl/browse-junk-files ()
   (interactive)
   (dired (concat doom-private-dir "junk/")))
+
+;;;###autoload
+(defun +bl/special-mode-action-fn (buffer alist)
+  "Marks BUFFER as special-mode and passes BUFFER and ALIST to
+`+popup-display-buffer-stacked-side-window-fn'."
+  (with-current-buffer buffer
+    (special-mode)
+    (set (make-local-variable 'window-point-insertion-type) t)
+    (goto-char (point-max))
+    (+popup-display-buffer-stacked-side-window-fn buffer alist)))
