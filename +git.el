@@ -150,6 +150,7 @@
 ;;;###package
 (use-package git-messenger
   :defer t
+  :commands (git-messenger:popup-message)
   :init (setq  git-messenger:use-magit-popup t
                git-messenger:show-detail t)
   (map! (:leader (:prefix "g" :desc "Git Messenger" :g "M" #'git-messenger:popup-message))))
@@ -157,6 +158,7 @@
 ;;;###package
 (use-package! git-walktree
   :defer t
+  :commands (git-walktree)
   :init (map! (:leader
                 (:prefix "g"
                   :desc "Walk Tree" :g "w" #'git-walktree))))
