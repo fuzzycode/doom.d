@@ -121,13 +121,6 @@
             :desc "List pull requests" :g "p" #'forge-list-pullreqs
             :desc "List notifications" :g "n" #'forge-list-notifications))))
 
-(after! magit-todos
-  (setq magit-todos-recursive t
-        magit-todos-require-colon nil)
-  (custom-set-variables
-   '(magit-todos-keywords (list "TODO(Björn Larsson)" "HACK" "FIXME" "XXX" "???")))
-  (shut-up (magit-todos-mode)))
-
 ;;;###package
 (use-package! git-commit
   :init (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
