@@ -42,7 +42,6 @@
 (load! "+builtin")
 (load! "+core")
 (load! "+projectile")
-(load! "+ui")
 (load! "+ivy")
 (load! "+git")
 (load! "+org")

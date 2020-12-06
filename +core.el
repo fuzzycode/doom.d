@@ -1,17 +1,15 @@
 ;; -*- lexical-binding: t; -*-
 
-(setq which-key-sort-order 'which-key-key-order-alpha)
-
 (global-set-key (kbd "C-c u") #'undo-fu-only-undo)
 
 (add-hook 'help-mode-hook #'rainbow-mode)
 
 (setq projectile-enable-caching nil)
 
-(after! yasnippet
-  (when (file-exists-p "~/.snippets")
-    (add-to-list 'yas-snippet-dirs "~/.snippets")
-    (yas-reload-all)))
+;; (after! yasnippet
+;;   (when (file-exists-p "~/.snippets")
+;;     (add-to-list 'yas-snippet-dirs "~/.snippets")
+;;     (yas-reload-all)))
 
 (after! flycheck
   (setq flycheck-error-list-format `[("File" 25)
@@ -116,3 +114,17 @@
                   :on-message "Showing trailing whitespace"
                   :off-message "Disabled trailing whitespace"
                   :bind '(:desc "Trailing Whitespace" :key "w"))
+
+(after! doom-modeline
+  (setq doom-modeline-major-mode-icon t
+        doom-modeline-indent-info t
+        doom-modeline-minor-modes nil
+        doom-modeline-enable-word-count nil
+        doom-modeline-checker-simple-format nil
+        doom-modeline-persp-name t
+        doom-modeline-persp-name-icon t
+        doom-modeline-lsp t
+        doom-modeline-buffer-file-name-style 'truncate-with-project
+        doom-modeline-env-version t
+        doom-modeline-mu4e t
+        doom-modeline-vcs-max-length 45))
