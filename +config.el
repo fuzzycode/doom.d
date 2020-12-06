@@ -17,7 +17,7 @@
   :defer t
   :init (map! (:leader
                (:prefix "f"
-                :desc "Find file in Dired" :g "d" #'dired-jump))))
+                :desc "Find file in Dired" :nvg "d" #'dired-jump))))
 
 ;;;###package
 (use-package! dired

@@ -32,6 +32,7 @@
        workspaces        ; tab emulation, persistence & separate workspaces
 
        :editor
+       (evil +everywhere)
        file-templates    ; auto-snippets for empty files
        fold
        ;; (format +onsave)  ; automated prettiness

@@ -1,35 +1,34 @@
 ;;; ~/.doom.d/+ivy.el -*- lexical-binding: t; -*-
 
 (map! (:leader
-        :desc "M-X" :g "<SPC>" #'counsel-M-x
-        :desc "M-X" :g "M-<SPC>" #'counsel-M-x
-        :desc "Ripgrep" :g "/" #'counsel-rg
+        :desc "M-X" :nvg "<SPC>" #'counsel-M-x
+        :desc "Ripgrep" :nvg "/" #'counsel-rg
         (:prefix "a"
-          :desc "Load Theme" :g "T" #'counsel-load-theme)
+          :desc "Load Theme" :nvg "T" #'counsel-load-theme)
         (:prefix "b"
-          :desc "Buffer List" :g "b" #'ivy-switch-buffer
-          :desc "Bookmarks" :g "B" #'counsel-bookmark)
+          :desc "Buffer List" :nvg "b" #'ivy-switch-buffer
+          :desc "Bookmarks" :nvg "B" #'counsel-bookmark)
         (:prefix "f"
-          :desc "Find File" :g "f" #'counsel-find-file
-          :desc "Recent Files" :g "r" #'counsel-recentf)
+          :desc "Find File" :nvg "f" #'counsel-find-file
+          :desc "Recent Files" :nvg "r" #'counsel-recentf)
         (:prefix "i"
-         :desc "Unicode Character" :g "u" #'counsel-unicode-char)
+         :desc "Unicode Character" :nvg "u" #'counsel-unicode-char)
         (:prefix "j"
-          :desc "iMenu" :g "i" #'counsel-imenu)
+          :desc "iMenu" :nvg "i" #'counsel-imenu)
         (:prefix "p"
-          :desc "Find Directory" :g "d" #'counsel-projectile-find-dir
-          :desc "Find File" :g "f" #'counsel-projectile-find-file
-          :desc "Switch Project" :g "p" #'counsel-projectile-switch-project
-          :desc "Switch Buffer" :g "b" #'counsel-projectile-switch-to-buffer
-          :desc "Search Project From CWD" :g "D" #'+ivy/project-search-from-cwd)
+          :desc "Find Directory" :nvg "d" #'counsel-projectile-find-dir
+          :desc "Find File" :nvg "f" #'counsel-projectile-find-file
+          :desc "Switch Project" :nvg "p" #'counsel-projectile-switch-project
+          :desc "Switch Buffer" :nvg "b" #'counsel-projectile-switch-to-buffer
+          :desc "Search Project From CWD" :nvg "D" #'+ivy/project-search-from-cwd)
         (:prefix "r"
-          :desc "Ivy Resume Last" :g "l" #'ivy-resume)
+          :desc "Ivy Resume Last" :nvg "l" #'ivy-resume)
         (:prefix "s"
-          :desc "Swiper" :g "s" #'swiper
-          :desc "Swiper (input)" :g "S" #'+swiper/swiper-default
-          :desc "Locate" :g "l" #'counsel-locate
-          :desc "Search Project" :g "p" #'+ivy/project-search
-          :desc "Search Project (input)" :g "P" #'+ivy/ivy-search-project-default)))
+          :desc "Swiper" :nvg "s" #'swiper
+          :desc "Swiper (input)" :nvg "S" #'+swiper/swiper-default
+          :desc "Locate" :nvg "l" #'counsel-locate
+          :desc "Search Project" :nvg "p" #'+ivy/project-search
+          :desc "Search Project (input)" :nvg "P" #'+ivy/ivy-search-project-default)))
 
 (after! ivy
   (setq ivy-count-format "(%d/%d) "

@@ -1,4 +1,4 @@
-;;; ~/Development/GitHub/dotfiles/doom.d/+mu.el -*- lexical-binding: t; -*-
+;;; +mu.el -*- lexical-binding: t; -*-
 
 ;; Some things need to be set after doom has configured mu4e
 (after! mu4e
@@ -19,6 +19,7 @@
 
 ;;;###package
 (use-package! mu4e
+  :defer t
   :init (setq mu4e-root-maildir (expand-file-name "~/.mail")
               mu4e-drafts-folder "/drafts"
               mu4e-sent-folder   "/sent"

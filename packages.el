@@ -69,7 +69,6 @@
 (package! string-inflection)
 (package! alert)
 (package! pandoc-mode)
-(package! key-chord)
 (package! avy)
 (package! goto-last-change)
 (package! use-package-chords)

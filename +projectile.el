@@ -3,22 +3,22 @@
 (map! (:after projectile
         (:leader
           (:prefix ("p" . "project")
-            :desc "Shell Command" :g "!" #'projectile-run-shell-command-in-root
-            :desc "Async Shell Command" :g "&" #'projectile-run-async-shell-command-in-root
-            :desc "Edit dir-locals" :g "e" #'projectile-edit-dir-locals
-            :desc "Compile" :g "c" #'projectile-compile-project
-            :desc "Configure" :g "C" #'projectile-configure-project
-            :desc "Dired" :g "d" #'projectile-dired
-            :desc "Kill Buffers" :g "k" #'projectile-kill-buffers
-            :desc "Test Project" :g "t" #'projectile-test-project
-            :desc "Shell" :g "s" #'projectile-run-vterm
-            :desc "Find file in other project" :g "O" #'doom/find-file-in-other-project
-            :desc "Project Scratch Buffer" :g "x" #'doom/open-project-scratch-buffer))))
+            :desc "Shell Command" :nvg "!" #'projectile-run-shell-command-in-root
+            :desc "Async Shell Command" :nvg "&" #'projectile-run-async-shell-command-in-root
+            :desc "Edit dir-locals" :nvg "e" #'projectile-edit-dir-locals
+            :desc "Compile" :nvg "c" #'projectile-compile-project
+            :desc "Configure" :nvg "C" #'projectile-configure-project
+            :desc "Dired" :nvg "d" #'projectile-dired
+            :desc "Kill Buffers" :nvg "k" #'projectile-kill-buffers
+            :desc "Test Project" :nvg "t" #'projectile-test-project
+            :desc "Shell" :nvg "s" #'projectile-run-vterm
+            :desc "Find file in other project" :nvg "O" #'doom/find-file-in-other-project
+            :desc "Project Scratch Buffer" :nvg "x" #'doom/open-project-scratch-buffer))))
 
 (map! (:after persp-mode
         (:leader
           (:prefix ("p" . "project")
-            :desc "Switch Perspective" :g "P" #'persp-switch))))
+            :desc "Switch Perspective" :nvg "P" #'persp-switch))))
 
 (after! projectile
   (global-set-key (kbd "M-o") #'projectile-find-file-dwim))

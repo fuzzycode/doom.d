@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 
 (map! :localleader
         :map emacs-lisp-mode-map
@@ -19,12 +20,13 @@
 ;;;###package
 (use-package! elisp-format
   :defer t
+  :commands (elisp-format-region elisp-format-buffer)
   :init (map! (:localleader
                 :map emacs-lisp-mode-map
                 (:prefix ("=" . "format")
-                  :desc "Format Region or Buffer" :g "=" #'+elisp/format-region-or-buffer
-                  :desc "Format Region" :g "r" #'elisp-format-region
-                  :desc "Format Buffer" :g "b" #'elisp-format-buffer))))
+                  :desc "Format Region or Buffer" :nvg "=" #'+elisp/format-region-or-buffer
+                  :desc "Format Region" :nvg "r" #'elisp-format-region
+                  :desc "Format Buffer" :nvg "b" #'elisp-format-buffer))))
 
 ;;;###package
 (use-package! eval-sexp-fu

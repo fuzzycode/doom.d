@@ -1,6 +1,6 @@
-;;; ~/Development/GitHub/dotfiles/doom.d/+yaml.el -*- lexical-binding: t; -*-
+;;; +yaml.el -*- lexical-binding: t; -*-
 
-
+;;;###package
 (use-package! yaml-mode
   :mode (("\\.clang-format\\'" . yaml-mode)
          ("\\.clang-tidy\\'" . yaml-mode))

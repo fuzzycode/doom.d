@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 
 (after! doom-modeline
   (setq doom-modeline-major-mode-icon t
