@@ -318,3 +318,89 @@
   :defer t
   :init (setq hardhat-less-feedback t)
   :hook (doom-first-input . global-hardhat-mode))
+;;;###package
+(use-package! subword
+  :hook (prog-mode . subword-mode))
+
+;;;###package
+(use-package! midnight
+  :defer t
+  :hook (doom-first-input . midnight-mode)
+  :init (setq clean-buffer-list-kill-regexps '("^\\*.*\\*$")
+              clean-buffer-list-kill-never-regexps '("^\\*\\(doom\\|scratch\\|Messages\\)\\*$"
+                                                     "^\\*lsp.*"
+                                                     "^\\*clangd.*")))
+;;;###package
+(use-package! dired-x
+  :defer t
+  :init (map! (:leader
+               (:prefix "f"
+                :desc "Find file in Dired" :nvg "d" #'dired-jump))))
+
+;;;###package
+(use-package! dired
+  :defer t
+  :hook (dired-mode . auto-revert-mode))
+
+;;;###package
+(use-package! yaml-mode
+  :mode (("\\.clang-format\\'" . yaml-mode)
+         ("\\.clang-tidy\\'" . yaml-mode))
+  :bind (:map yaml-mode-map
+          ( "\C-m" . #'newline-and-indent)))
+
+;;;###package
+(use-package! elisp-format
+  :defer t
+  :commands (elisp-format-region elisp-format-buffer)
+  :init (map! (:localleader
+                :map emacs-lisp-mode-map
+                (:prefix ("=" . "format")
+                  :desc "Format Region or Buffer" :nvg "=" #'+elisp/format-region-or-buffer
+                  :desc "Format Region" :nvg "r" #'elisp-format-region
+                  :desc "Format Buffer" :nvg "b" #'elisp-format-buffer))))
+
+;;;###package
+(use-package! eval-sexp-fu
+  :defer t
+  :hook ((emacs-lisp-mode . eval-sexp-fu-flash-mode)))
+
+;;;###package
+(use-package! sh-script
+  :defer t
+  :init (map! (:localleader
+                :map shell-mode-map
+                (:prefix ("i" . "insert")
+                  :desc "Insert Shebang" :nvg "!" #'insert-shebang
+                  :desc "Case" :nvg "c" #'sh-case
+                  :desc "If" :nvg "i" #'sh-if
+                  :desc "Function" :nvg "f" #'sh-function
+                  :desc "For" :nvg "o" #'sh-for
+                  :desc "Indexed For" :nvg "e" #'sh-indexed-loop
+                  :desc "While" :nvg "w" #'sh-while
+                  :desc "Repeat" :nvg "r" #'sh-repeat
+                  :desc "Select" :nvg "s" #'sh-select
+                  :desc "Until" :nvg "u" #'sh-until
+                  :desc "While Getopts" :nvg "g" #'sh-while-getopts))))
+
+;;;###package
+(use-package! csv-mode
+  :defer t
+  :mode "\\.csv$"
+  :init (map! :localleader :map csv-mode-map
+              :desc "Align Field" :g "a" #'csv-align-field
+              :desc "Kill Fields" :g "k" #'csv-kill-fields
+              :desc "Header Line" :g "h" #'csv-header-line
+              :desc "Toggle Invisibility" :g "" #'csv-toggle-invisibility
+              :desc "Forward Field" :g "i" #'csv-forward-field
+              :desc "Backward Field" :g "n" #'csv-backward-field
+              :desc "Reverse region" :g "p" #'csv-reverse-region
+              (:prefix ("s" . "sort")
+                :desc "Sort Fields" :g "f" #'csv-sort-fields
+                :desc "Sort Numeric Fields" :g "n" #'csv-sort-numeric-fields
+                :desc "Toggle Descending" :g "o" #'csv-toggle-descending)
+              :desc "Transpose" :g "t" #'csv-transpose
+              :desc "Unalign Fields" :g "u" #'csv-unalign-fields
+              (:prefix ("y" . "yank")
+                :desc "Yank Fields" :g "f" #'csv-yank-fields
+                :desc "Yank As New Table" :g "t" #'csv-yank-as-new-table)))

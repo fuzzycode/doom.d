@@ -276,6 +276,49 @@
           :desc "Restart & restore Emacs"      :nvg "r" #'doom/restart-and-restore
           :desc "Restart Emacs"                :nvg "R" #'doom/restart)))
 
+(map! (:localleader
+        :map json-mode-map
+        (:prefix ("=" . "format")
+          :desc "Format Region Or Buffer" :nvg "=" #'+json/pretty-print-region-or-buffer
+          :desc "Format Buffer" :nvg "b" #'json-pretty-print-buffer
+          :desc "Format Region" :nvg "r" #'json-pretty-print)))
+
+(map! :localleader
+        :map emacs-lisp-mode-map
+        :desc "Expand macro" "m" #'macrostep-expand
+        (:prefix ("d" . "debug")
+          :desc "Instrument Defun ON" "f" #'+emacs-lisp/edebug-instrument-defun-on
+          :desc "Instrument Defun OFF" "F" #'+emacs-lisp/edebug-instrument-defun-off)
+        (:prefix ("e" . "eval")
+          :desc "Eval Buffer" "b" #'eval-buffer
+          :desc "Eval Defun" "d" #'eval-defun
+          :desc "Eval Last s-exp" "e" #'eval-last-sexp
+          :desc "Eval Region" "r" #'eval-region
+          :desc "Load Library" "l" #'load-library)
+        (:prefix ("g" . "goto")
+          :desc "Find Function" "f" #'find-function
+          :desc "Find Variable" "v" #'find-variable
+          :desc "Find Library" "l" #'find-library))
+
+(map! (:after projectile
+        (:leader
+          (:prefix ("p" . "project")
+            :desc "Shell Command" :nvg "!" #'projectile-run-shell-command-in-root
+            :desc "Async Shell Command" :nvg "&" #'projectile-run-async-shell-command-in-root
+            :desc "Edit dir-locals" :nvg "e" #'projectile-edit-dir-locals
+            :desc "Compile" :nvg "c" #'projectile-compile-project
+            :desc "Configure" :nvg "C" #'projectile-configure-project
+            :desc "Dired" :nvg "d" #'projectile-dired
+            :desc "Kill Buffers" :nvg "k" #'projectile-kill-buffers
+            :desc "Test Project" :nvg "t" #'projectile-test-project
+            :desc "Shell" :nvg "s" #'projectile-run-vterm
+            :desc "Find file in other project" :nvg "O" #'doom/find-file-in-other-project
+            :desc "Project Scratch Buffer" :nvg "x" #'doom/open-project-scratch-buffer))))
+
+(map! (:after persp-mode
+        (:leader
+          (:prefix ("p" . "project")
+            :desc "Switch Perspective" :nvg "P" #'persp-switch))))
 
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 (global-set-key (kbd "C-c l") #'recenter)

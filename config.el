@@ -41,9 +41,7 @@
 ;Load Specific files
 (load! "+builtin")
 (load! "+core")
-(load! "+elisp")
 (load! "+projectile")
-(load! "+sh")
 (load! "+ui")
 (load! "+ivy")
 (load! "+git")
@@ -51,9 +49,6 @@
 (load! "+lsp")
 (load! "+latex")
 (load! "+bindings")
-(load! "+config")
-(load! "+yaml")
-(load! "+json")
 (load! "+packages")
 
 (when IS-MAC
