@@ -46,7 +46,6 @@
 (load! "+git")
 (load! "+org")
 (load! "+lsp")
-(load! "+latex")
 (load! "+bindings")
 (load! "+packages")
 
