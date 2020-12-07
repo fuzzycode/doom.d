@@ -2,11 +2,11 @@
 (map! (:localleader
         :mode (c++-mode python-mode)
         (:prefix ("=" . "format")
-          :desc "Format Dwim" :nvg "=" #'+lsp/lsp-format-region-or-buffer
-          :desc "Format Buffer" :nvg "b" #'lsp-format-buffer
-          :desc "Format Region" :nvg "r" #'lsp-format-region)
+          :desc "Format Dwim" :ng "=" #'+lsp/lsp-format-region-or-buffer
+          :desc "Format Buffer" :ng "b" #'lsp-format-buffer
+          :desc "Format Region" :ng "r" #'lsp-format-region)
         (:prefix ("r" . "refactor")
-          :desc "Rename" :nvg "r" #'lsp-rename)))
+          :desc "Rename" :ng "r" #'lsp-rename)))
 
 (after! lsp-mode
   (define-key lsp-mode-map (kbd "<A-return>") #'lsp-execute-code-action)
@@ -29,5 +29,5 @@
 (use-package! lsp-treemacs
   :after lsp-mode
   :init (map! (:leader (:prefix "e"
-                        :desc "All Errors" :nvg "a" #'lsp-treemacs-errors-list)))
+                        :desc "All Errors" :ng "a" #'lsp-treemacs-errors-list)))
   (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))

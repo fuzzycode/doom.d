@@ -86,213 +86,213 @@
       org-journal-file-header #'+org/org-journal-file-header-func)
 
 ;; (map! :localleader :map org-journal-mode-map
-;;       :desc "Previous Entry" :nvg "p" #'org-journal-previous-entry
-;;       :desc "Next Entry" :nvg "n" #'org-journal-next-entry)
+;;       :desc "Previous Entry" :ng "p" #'org-journal-previous-entry
+;;       :desc "Next Entry" :ng "n" #'org-journal-next-entry)
 
 ;; (map! (:leader
 ;;         (:prefix "a"
 ;;           (:prefix ("o" . "org")
-;;             :desc "Agenda" :nvg "a" #'org-agenda
-;;             :desc "Capture" :nvg "c" #'org-capture
-;;             :desc "Tags View" :nvg "m" #'org-tags-view
-;;             :desc "Search View" :nvg "s" #'org-search-view
-;;             :desc "Todo List" :nvg "t" #'org-todo-list
+;;             :desc "Agenda" :ng "a" #'org-agenda
+;;             :desc "Capture" :ng "c" #'org-capture
+;;             :desc "Tags View" :ng "m" #'org-tags-view
+;;             :desc "Search View" :ng "s" #'org-search-view
+;;             :desc "Todo List" :ng "t" #'org-todo-list
 ;;             (:prefix ("j" . "journal")
-;;               :desc "New Entry" :nvg "j" #'org-journal-new-entry
-;;               :desc "Open Journal" :nvg "o" #'+org/open-todays-journal)))
+;;               :desc "New Entry" :ng "j" #'org-journal-new-entry
+;;               :desc "Open Journal" :ng "o" #'+org/open-todays-journal)))
 ;;         (:prefix "s"
-;;           :desc "Search Org Directory" :nvg "o" #'+default/org-notes-search)
+;;           :desc "Search Org Directory" :ng "o" #'+default/org-notes-search)
 ;;         (:prefix "f"
 ;;           (:prefix ("o" . "org")
-;;             :desc "Browse Org files" :nvg "b" #'+default/browse-notes
-;;             :desc "Todo File" :nvg "t" (cmd! () (find-file +org/todo-file))
-;;             :desc "Notes File" :nvg "n" (cmd! () (find-file +org/notes-file))
-;;             :desc "Calendar File" :nvg "c" (cmd! () (find-file +org/calendar-file))
-;;             :desc "Inbox File" :nvg "i" (cmd! () (find-file +org/inbox-file))
-;;             :desc "Archive File" :nvg "a" (cmd! () (find-file +org/archive-file))
-;;             :desc "Today's Journal" :nvg "j" #'+org/open-todays-journal))
+;;             :desc "Browse Org files" :ng "b" #'+default/browse-notes
+;;             :desc "Todo File" :ng "t" (cmd! () (find-file +org/todo-file))
+;;             :desc "Notes File" :ng "n" (cmd! () (find-file +org/notes-file))
+;;             :desc "Calendar File" :ng "c" (cmd! () (find-file +org/calendar-file))
+;;             :desc "Inbox File" :ng "i" (cmd! () (find-file +org/inbox-file))
+;;             :desc "Archive File" :ng "a" (cmd! () (find-file +org/archive-file))
+;;             :desc "Today's Journal" :ng "j" #'+org/open-todays-journal))
 ;;         (:prefix "p"
-;;           :desc "Open Org File" :nvg "o" (cmd! () (when (projectile-project-p)
+;;           :desc "Open Org File" :ng "o" (cmd! () (when (projectile-project-p)
 ;;                                                      (find-file (+org/project-org-file-path)))))))
 
 ;; (after! org
 ;;   (map! (:localleader
 ;;          :map org-mode-map
 ;;          ;; Assure that any doom bindings are first cleared
-;;          :nvg "'" nil
-;;          :nvg "+" nil
-;;          :nvg "#" nil
-;;          :nvg "," nil
-;;          :nvg "." nil
-;;          :nvg "/" nil
-;;          :nvg "A" nil
-;;          :nvg "I" nil
-;;          :nvg "T" nil
-;;          :nvg "a" nil
-;;          :nvg "b" nil
-;;          :nvg "c" nil
-;;          :nvg "d" nil
-;;          :nvg "e" nil
-;;          :nvg "f" nil
-;;          :nvg "g" nil
-;;          :nvg "h" nil
-;;          :nvg "i" nil
-;;          :nvg "l" nil
-;;          :nvg "m" nil
-;;          :nvg "n" nil
-;;          :nvg "o" nil
-;;          :nvg "p" nil
-;;          :nvg "q" nil
-;;          :nvg "r" nil
-;;          :nvg "s" nil
-;;          :nvg "t" nil
-;;          :nvg "x" nil
+;;          :ng "'" nil
+;;          :ng "+" nil
+;;          :ng "#" nil
+;;          :ng "," nil
+;;          :ng "." nil
+;;          :ng "/" nil
+;;          :ng "A" nil
+;;          :ng "I" nil
+;;          :ng "T" nil
+;;          :ng "a" nil
+;;          :ng "b" nil
+;;          :ng "c" nil
+;;          :ng "d" nil
+;;          :ng "e" nil
+;;          :ng "f" nil
+;;          :ng "g" nil
+;;          :ng "h" nil
+;;          :ng "i" nil
+;;          :ng "l" nil
+;;          :ng "m" nil
+;;          :ng "n" nil
+;;          :ng "o" nil
+;;          :ng "p" nil
+;;          :ng "q" nil
+;;          :ng "r" nil
+;;          :ng "s" nil
+;;          :ng "t" nil
+;;          :ng "x" nil
 
-;;          :desc "C-c C-*" :nvg "*" #'org-ctrl-c-star
-;;          :desc "C-c C--" :nvg "-" #'org-ctrl-c-minus
-;;          :desc "C-c C-c" :nvg "," #'org-ctrl-c-ctrl-c
-;;          :desc "Edit Special" :nvg "'" #'org-edit-special
+;;          :desc "C-c C-*" :ng "*" #'org-ctrl-c-star
+;;          :desc "C-c C--" :ng "-" #'org-ctrl-c-minus
+;;          :desc "C-c C-c" :ng "," #'org-ctrl-c-ctrl-c
+;;          :desc "Edit Special" :ng "'" #'org-edit-special
 
 ;;          (:prefix ("B" . "brain")
 ;;           :when (featurep! :lang org +brain)
-;;           :desc "Refile" :nvg "R" #'org-brain-refile
-;;           :desc "Delete Entry" :nvg "x" #'org-brain-delete-entry
-;;           :desc "Visualize" :nvg "v" #'org-brain-visualize
+;;           :desc "Refile" :ng "R" #'org-brain-refile
+;;           :desc "Delete Entry" :ng "x" #'org-brain-delete-entry
+;;           :desc "Visualize" :ng "v" #'org-brain-visualize
 ;;           (:prefix ("a" . "add")
-;;            :desc "Child" :nvg "c" #'org-brain-add-child
-;;            :desc "Headline Child" :nvg "h" #'org-brain-add-child-headline
-;;            :desc "Friendship" :nvg "f" #'org-brain-add-friendship
-;;            :desc "Parent" :nvg "p" #'org-brain-add-parent)
+;;            :desc "Child" :ng "c" #'org-brain-add-child
+;;            :desc "Headline Child" :ng "h" #'org-brain-add-child-headline
+;;            :desc "Friendship" :ng "f" #'org-brain-add-friendship
+;;            :desc "Parent" :ng "p" #'org-brain-add-parent)
 ;;           (:prefix ("g" . "goto")
-;;            :desc "Goto" :nvg "g" #'org-brain-goto
-;;            :desc "Child" :nvg "c" #'org-brain-goto-child
-;;            :desc "Parent" :nvg "p" #'org-brain-goto-parent
-;;            :desc "Friend<" :nvg "f" #'org-brain-goto-friend))
+;;            :desc "Goto" :ng "g" #'org-brain-goto
+;;            :desc "Child" :ng "c" #'org-brain-goto-child
+;;            :desc "Parent" :ng "p" #'org-brain-goto-parent
+;;            :desc "Friend<" :ng "f" #'org-brain-goto-friend))
 
 ;;          (:prefix ("a" . "agenda")
-;;           :desc "Agenda" :nvg "a" #'org-agenda
-;;           :desc "Expire And Archive Tasks" :nvg "e" #'+org/expire-and-archive-tasks-in-buffer
-;;           :desc "Archive Completed" :nvg "E" #'+org/org-archive-completed-in-buffer
-;;           :desc "Close Expired Tasks" :nvg "c" #'+org/close-expired-in-buffer)
+;;           :desc "Agenda" :ng "a" #'org-agenda
+;;           :desc "Expire And Archive Tasks" :ng "e" #'+org/expire-and-archive-tasks-in-buffer
+;;           :desc "Archive Completed" :ng "E" #'+org/org-archive-completed-in-buffer
+;;           :desc "Close Expired Tasks" :ng "c" #'+org/close-expired-in-buffer)
 ;;          (:prefix ("i" . "insert")
-;;           :desc "Drawer" :nvg "d" #'org-insert-drawer
-;;           :desc "Item" :nvg "i" #'org-insert-item
-;;           :desc "Note" :nvg "n" #'org-add-note
-;;           :desc "Property" :nvg "p" #'org-set-property
-;;           :desc "Tags" :nvg "t" #'org-set-tags-command
-;;           :desc "Attach" :nvg "a" #'org-attach
-;;           :desc "Id Link" :nvg "l" #'+org/org-insert-custom-id-link
-;;           :desc "Link" :nvg "L" #'org-insert-link
-;;           :desc "New Footnote" :nvg "f" #'org-footnote-new
+;;           :desc "Drawer" :ng "d" #'org-insert-drawer
+;;           :desc "Item" :ng "i" #'org-insert-item
+;;           :desc "Note" :ng "n" #'org-add-note
+;;           :desc "Property" :ng "p" #'org-set-property
+;;           :desc "Tags" :ng "t" #'org-set-tags-command
+;;           :desc "Attach" :ng "a" #'org-attach
+;;           :desc "Id Link" :ng "l" #'+org/org-insert-custom-id-link
+;;           :desc "Link" :ng "L" #'org-insert-link
+;;           :desc "New Footnote" :ng "f" #'org-footnote-new
 ;;           (:when (featurep! :lang org +dragndrop)
 ;;            (:prefix ("D" . "download")
-;;             :desc "Yank" :nvg "y" #'org-download-yank
-;;             :desc "Screenshot" :nvg "s" #'org-download-screenshot))
+;;             :desc "Yank" :ng "y" #'org-download-yank
+;;             :desc "Screenshot" :ng "s" #'org-download-screenshot))
 ;;           (:when (featurep! :completion ivy)
-;;            :desc "Counsel Tag" :nvg "T" #'counsel-org-tag))
+;;            :desc "Counsel Tag" :ng "T" #'counsel-org-tag))
 ;;          (:prefix ("d" . "dates")
-;;           :desc "Toggle Timestamp Type" :nvg "c" #'org-toggle-timestamp-type
-;;           :desc "Set Schedule" :nvg "s" #'org-schedule
-;;           :desc "Set Deadline" :nvg "d" #'org-deadline
-;;           :desc "Set Expiry" :nvg "e" #'org-expiry-insert-expiry
-;;           :desc "Set Expire on time (dwim)" :nvg "E" #'+org/expire-on-time-dwim
-;;           :desc "Set Time Stamp" :nvg "t" #'org-time-stamp
-;;           :desc "Set Time Stamp (inactive)" :nvg "T" #'org-time-stamp-inactive)
+;;           :desc "Toggle Timestamp Type" :ng "c" #'org-toggle-timestamp-type
+;;           :desc "Set Schedule" :ng "s" #'org-schedule
+;;           :desc "Set Deadline" :ng "d" #'org-deadline
+;;           :desc "Set Expiry" :ng "e" #'org-expiry-insert-expiry
+;;           :desc "Set Expire on time (dwim)" :ng "E" #'+org/expire-on-time-dwim
+;;           :desc "Set Time Stamp" :ng "t" #'org-time-stamp
+;;           :desc "Set Time Stamp (inactive)" :ng "T" #'org-time-stamp-inactive)
 ;;          (:prefix ("h" . "headings")
-;;           :desc "Insert Heading After Current" :nvg "i" #'org-insert-heading-after-current
-;;           :desc "Insert Heading" :nvg "I" #'org-insert-heading
-;;           :desc "Insert Subheading" :nvg "s" #'org-insert-subheading)
+;;           :desc "Insert Heading After Current" :ng "i" #'org-insert-heading-after-current
+;;           :desc "Insert Heading" :ng "I" #'org-insert-heading
+;;           :desc "Insert Subheading" :ng "s" #'org-insert-subheading)
 ;;          (:prefix ("e" . "export")
-;;           :desc "Export Dispatch" :nvg "e" #'org-export-dispatch)
+;;           :desc "Export Dispatch" :ng "e" #'org-export-dispatch)
 ;;          (:prefix ("b" . "babel")
-;;           :desc "Previous Source Block" :nvg "p" #'org-babel-previous-src-block
-;;           :desc "Next Source Block" :nvg "n" #'org-babel-next-src-block
-;;           :desc "Execute Maybe" :nvg "e" #'org-babel-execute-maybe
-;;           :desc "Open Block result" :nvg "o" #'org-babel-open-src-block-result
-;;           :desc "Expand Source Block" :nvg "v" #'org-babel-expand-src-block
-;;           :desc "Goto Source Block Head" :nvg "u" #'org-babel-goto-src-block-head
-;;           :desc "Goto Named Source Block" :nvg "g" #'org-babel-goto-named-src-block
-;;           :desc "Goto Named Result" :nvg "r" #'org-babel-goto-named-result
-;;           :desc "Execute Buffer" :nvg "b" #'org-babel-execute-buffer
-;;           :desc "Execute Subtree" :nvg "s" #'org-babel-execute-subtree
-;;           :desc "Demarcate Block" :nvg "d" #'org-babel-demarcate-block
-;;           :desc "Tangle" :nvg "t" #'org-babel-tangle
-;;           :desc "Tangle File" :nvg "f" #'org-babel-tangle-file
-;;           :desc "Check Source Block" :nvg "c" #'org-babel-check-src-block
-;;           :desc "Insert Header Arg" :nvg "j" #'org-babel-insert-header-arg
-;;           :desc "Load In Session" :nvg "l" #'org-babel-load-in-session
-;;           :desc "Lob Ingest" :nvg "i" #'org-babel-lob-ingest
-;;           :desc "View Source Block Info" :nvg "I" #'org-babel-view-src-block-info
-;;           :desc "Switch To Session" :nvg "z" #'org-babel-switch-to-session
-;;           :desc "Switch To Session With Code" :nvg "Z" #'org-babel-switch-to-session-with-code
-;;           :desc "SHA1 Hash" :nvg "a" #'org-babel-sha1-hash
-;;           :desc "Do Key Sequence In Edit Buffer" :nvg "x" #'org-babel-do-key-sequence-in-edit-buffer)
+;;           :desc "Previous Source Block" :ng "p" #'org-babel-previous-src-block
+;;           :desc "Next Source Block" :ng "n" #'org-babel-next-src-block
+;;           :desc "Execute Maybe" :ng "e" #'org-babel-execute-maybe
+;;           :desc "Open Block result" :ng "o" #'org-babel-open-src-block-result
+;;           :desc "Expand Source Block" :ng "v" #'org-babel-expand-src-block
+;;           :desc "Goto Source Block Head" :ng "u" #'org-babel-goto-src-block-head
+;;           :desc "Goto Named Source Block" :ng "g" #'org-babel-goto-named-src-block
+;;           :desc "Goto Named Result" :ng "r" #'org-babel-goto-named-result
+;;           :desc "Execute Buffer" :ng "b" #'org-babel-execute-buffer
+;;           :desc "Execute Subtree" :ng "s" #'org-babel-execute-subtree
+;;           :desc "Demarcate Block" :ng "d" #'org-babel-demarcate-block
+;;           :desc "Tangle" :ng "t" #'org-babel-tangle
+;;           :desc "Tangle File" :ng "f" #'org-babel-tangle-file
+;;           :desc "Check Source Block" :ng "c" #'org-babel-check-src-block
+;;           :desc "Insert Header Arg" :ng "j" #'org-babel-insert-header-arg
+;;           :desc "Load In Session" :ng "l" #'org-babel-load-in-session
+;;           :desc "Lob Ingest" :ng "i" #'org-babel-lob-ingest
+;;           :desc "View Source Block Info" :ng "I" #'org-babel-view-src-block-info
+;;           :desc "Switch To Session" :ng "z" #'org-babel-switch-to-session
+;;           :desc "Switch To Session With Code" :ng "Z" #'org-babel-switch-to-session-with-code
+;;           :desc "SHA1 Hash" :ng "a" #'org-babel-sha1-hash
+;;           :desc "Do Key Sequence In Edit Buffer" :ng "x" #'org-babel-do-key-sequence-in-edit-buffer)
 ;;          (:prefix ("x" . "text")
-;;           :desc "Open Link" :nvg "o" #'org-open-at-point
-;;           :desc "Bold" :nvg "b" (cmd! () (org-emphasize ?*))
-;;           :desc "Code" :nvg "c" (cmd! () (org-emphasize ?~))
-;;           :desc "Italic" :nvg "i" (cmd! () (org-emphasize ?/))
-;;           :desc "Clear" :nvg "r" (cmd! () (org-emphasize ? ))
-;;           :desc "Strike Through" :nvg "s" (cmd! () (org-emphasize ?+))
-;;           :desc "Underline" :nvg "u" (cmd! () (org-emphasize ?_))
-;;           :desc "Verbose" :nvg "v" (cmd! () (org-emphasize ?=)))
+;;           :desc "Open Link" :ng "o" #'org-open-at-point
+;;           :desc "Bold" :ng "b" (cmd! () (org-emphasize ?*))
+;;           :desc "Code" :ng "c" (cmd! () (org-emphasize ?~))
+;;           :desc "Italic" :ng "i" (cmd! () (org-emphasize ?/))
+;;           :desc "Clear" :ng "r" (cmd! () (org-emphasize ? ))
+;;           :desc "Strike Through" :ng "s" (cmd! () (org-emphasize ?+))
+;;           :desc "Underline" :ng "u" (cmd! () (org-emphasize ?_))
+;;           :desc "Verbose" :ng "v" (cmd! () (org-emphasize ?=)))
 ;;          (:prefix ("s" . "sub-tree")
-;;           :desc "Toggle Archive Tag" :nvg "a" #'org-toggle-archive-tag
-;;           :desc "Archive Sub-tree" :nvg "A" #'org-archive-subtree
-;;           :desc "Tree To Indirect Buffer" :nvg "b" #'org-tree-to-indirect-buffer
-;;           :desc "Cut Sub-tree" :nvg "k" #'org-cut-subtree
-;;           :desc "Narrow To Sub-tree" :nvg "n" #'org-narrow-to-subtree
-;;           :desc "Widen" :nvg "N" #'widen
-;;           :desc "Refile" :nvg "r" #'org-refile
-;;           :desc "Sparse Tree" :nvg "s" #'org-sparse-tree
-;;           :desc "Sort" :nvg "S" #'org-sort)
+;;           :desc "Toggle Archive Tag" :ng "a" #'org-toggle-archive-tag
+;;           :desc "Archive Sub-tree" :ng "A" #'org-archive-subtree
+;;           :desc "Tree To Indirect Buffer" :ng "b" #'org-tree-to-indirect-buffer
+;;           :desc "Cut Sub-tree" :ng "k" #'org-cut-subtree
+;;           :desc "Narrow To Sub-tree" :ng "n" #'org-narrow-to-subtree
+;;           :desc "Widen" :ng "N" #'widen
+;;           :desc "Refile" :ng "r" #'org-refile
+;;           :desc "Sparse Tree" :ng "s" #'org-sparse-tree
+;;           :desc "Sort" :ng "S" #'org-sort)
 ;;          (:prefix ("l" . "links")
-;;           :desc "Store Link" :nvg "s" #'org-store-link
-;;           :desc "Insert Link" :nvg "l" #'org-insert-link
-;;           :desc "Id Link" :nvg "i" #'+org/org-insert-custom-id-link
-;;           :desc "Remove Link" :nvg "k" #'+org/remove-link
-;;           :desc "Insert All Links" :nvg "L" #'org-insert-all-links
-;;           :desc "Clip Link" :nvg "c" #'org-cliplink
-;;           :desc "Next Link" :nvg "n" #'org-next-link
-;;           :desc "Previous Link" :nvg "p" #'org-previous-link)
+;;           :desc "Store Link" :ng "s" #'org-store-link
+;;           :desc "Insert Link" :ng "l" #'org-insert-link
+;;           :desc "Id Link" :ng "i" #'+org/org-insert-custom-id-link
+;;           :desc "Remove Link" :ng "k" #'+org/remove-link
+;;           :desc "Insert All Links" :ng "L" #'org-insert-all-links
+;;           :desc "Clip Link" :ng "c" #'org-cliplink
+;;           :desc "Next Link" :ng "n" #'org-next-link
+;;           :desc "Previous Link" :ng "p" #'org-previous-link)
 ;;          (:prefix ("t" . "tables")
-;;           :desc "Align" :nvg "a" #'org-table-align
-;;           :desc "Blank Field" :nvg "b" #'org-table-blank-field
-;;           :desc "Convert" :nvg "c" #'org-table-convert
-;;           :desc "Eval Formula" :nvg "e" #'org-table-eval-formula
-;;           :desc "Export" :nvg "E" #'org-table-export
-;;           :desc "Field Info" :nvg "f" #'org-table-field-info
-;;           :desc "Previous Field" :nvg "h" #'org-table-previous-field
-;;           :desc "Move Column Left" :nvg "H" #'org-table-move-column-left
-;;           :desc "Import" :nvg "I" #'org-table-import
-;;           :desc "Next Row" :nvg "j" #'org-table-next-row
-;;           :desc "Move Row Down" :nvg "J" #'org-table-move-row-down
-;;           :desc "Move Row Up" :nvg "K" #'org-table-move-row-up
-;;           :desc "Next Field" :nvg "l" #'org-table-next-field
-;;           :desc "Move Column Right" :nvg "L" #'org-table-move-column-right
-;;           :desc "Create" :nvg "n" #'org-table-create
-;;           :desc "Create with table.el" :nvg "N" #'org-table-create-with-table.el
-;;           :desc "Re-calculate" :nvg "r" #'org-table-recalculate
-;;           :desc "Sort Lines" :nvg "s" #'org-table-sort-lines
-;;           :desc "Wrap Region" :nvg "w" #'org-table-wrap-region
+;;           :desc "Align" :ng "a" #'org-table-align
+;;           :desc "Blank Field" :ng "b" #'org-table-blank-field
+;;           :desc "Convert" :ng "c" #'org-table-convert
+;;           :desc "Eval Formula" :ng "e" #'org-table-eval-formula
+;;           :desc "Export" :ng "E" #'org-table-export
+;;           :desc "Field Info" :ng "f" #'org-table-field-info
+;;           :desc "Previous Field" :ng "h" #'org-table-previous-field
+;;           :desc "Move Column Left" :ng "H" #'org-table-move-column-left
+;;           :desc "Import" :ng "I" #'org-table-import
+;;           :desc "Next Row" :ng "j" #'org-table-next-row
+;;           :desc "Move Row Down" :ng "J" #'org-table-move-row-down
+;;           :desc "Move Row Up" :ng "K" #'org-table-move-row-up
+;;           :desc "Next Field" :ng "l" #'org-table-next-field
+;;           :desc "Move Column Right" :ng "L" #'org-table-move-column-right
+;;           :desc "Create" :ng "n" #'org-table-create
+;;           :desc "Create with table.el" :ng "N" #'org-table-create-with-table.el
+;;           :desc "Re-calculate" :ng "r" #'org-table-recalculate
+;;           :desc "Sort Lines" :ng "s" #'org-table-sort-lines
+;;           :desc "Wrap Region" :ng "w" #'org-table-wrap-region
 ;;           (:prefix ("i" . "insert")
-;;            :desc "Insert Column" :nvg "c" #'org-table-insert-column
-;;            :desc "Insert Horizontal Line" :nvg "h" #'org-table-insert-hline
-;;            :desc "Horizontal Line And Move" :nvg "H" #'org-table-hline-and-move)
+;;            :desc "Insert Column" :ng "c" #'org-table-insert-column
+;;            :desc "Insert Horizontal Line" :ng "h" #'org-table-insert-hline
+;;            :desc "Horizontal Line And Move" :ng "H" #'org-table-hline-and-move)
 ;;           (:prefix ("t" . "toggle")
-;;            :desc "Formula Debugger" :nvg "f" #'org-table-toggle-formula-debugger
-;;            :desc "Coordinate Overlays" :nvg "o" #'org-table-toggle-coordinate-overlays)
+;;            :desc "Formula Debugger" :ng "f" #'org-table-toggle-formula-debugger
+;;            :desc "Coordinate Overlays" :ng "o" #'org-table-toggle-coordinate-overlays)
 ;;           (:prefix ("d" . "delete")
-;;            :desc "Delete Column" :nvg "c" #'org-table-delete-column
-;;            :desc "Delete Row" :nvg "r" #'org-table-kill-row))
+;;            :desc "Delete Column" :ng "c" #'org-table-delete-column
+;;            :desc "Delete Row" :ng "r" #'org-table-kill-row))
 ;;          (:prefix ("T" . "toggle")
-;;           :desc "Checkbox" :nvg "c" #'org-toggle-checkbox
-;;           :desc "Pretty Entities" :nvg "e" #'org-toggle-pretty-entities
-;;           :desc "Inline Images" :nvg "i" #'org-toggle-inline-images
-;;           :desc "Link Display" :nvg "l" #'org-toggle-link-display
-;;           :desc "Show Todo Tree" :nvg "t" #'org-show-todo-tree
-;;           :desc "Org Todo" :nvg "T" #'org-todo
-;;           :desc "Preview Latex Fragment" :nvg "x" #'org-latex-preview))))
+;;           :desc "Checkbox" :ng "c" #'org-toggle-checkbox
+;;           :desc "Pretty Entities" :ng "e" #'org-toggle-pretty-entities
+;;           :desc "Inline Images" :ng "i" #'org-toggle-inline-images
+;;           :desc "Link Display" :ng "l" #'org-toggle-link-display
+;;           :desc "Show Todo Tree" :ng "t" #'org-show-todo-tree
+;;           :desc "Org Todo" :ng "T" #'org-todo
+;;           :desc "Preview Latex Fragment" :ng "x" #'org-latex-preview))))
 
 ;;;###package
 (use-package! demo-it

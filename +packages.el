@@ -20,8 +20,8 @@
          ("C-c q" . #'vr/query-replace)
          ("C-c m" . #'vr/mc-mark))
   :init (map! (:leader (:prefix "x"
-                         :desc "Replace" :nvg "r" #'vr/replace
-                         :desc "Query Replace" :nvg "q" #'vr/query-replace))))
+                         :desc "Replace" :ng "r" #'vr/replace
+                         :desc "Query Replace" :ng "q" #'vr/query-replace))))
 
 ;;;###package
 (use-package! comment-dwim-2
@@ -40,7 +40,7 @@
    :commands (proced)
    :hook (proced-mode . (lambda () (proced-toggle-auto-update +1)))
    :init (map! (:leader (:prefix "a"
-                          :desc "Proced" :nvg "P" #'proced)))
+                          :desc "Proced" :ng "P" #'proced)))
    :config
    (setq proced-auto-update-interval 1)
    (set-popup-rule! "*Proced*" :size 0.4 :side 'bottom :select t :autosave t))
@@ -104,7 +104,7 @@
   :init (setq expand-region-contract-fast-key "V"
               expand-region-reset-fast-key "r")
   (map! (:leader
-          :desc "Expand Region" :nvg "v" #'er/expand-region)))
+          :desc "Expand Region" :ng "v" #'er/expand-region)))
 
 ;;;###package
 (use-package! crux
@@ -117,16 +117,16 @@
   (global-set-key (kbd "<A-down>") #'crux-top-join-line)
   (map! (:leader
           (:prefix "b"
-            :desc "Delete Buffer and File" :nvg "K" #'crux-delete-file-and-buffer
-            :desc "Rename Buffer and File" :nvg "R" #'crux-rename-file-and-buffer)
+            :desc "Delete Buffer and File" :ng "K" #'crux-delete-file-and-buffer
+            :desc "Rename Buffer and File" :ng "R" #'crux-rename-file-and-buffer)
           (:prefix "f"
-           :desc "Find Shell init file" :nvg "S" #'crux-find-shell-init-file
-           :desc "Find User Custom File" :nvg "C" #'crux-find-user-custom-file)
+           :desc "Find Shell init file" :ng "S" #'crux-find-shell-init-file
+           :desc "Find User Custom File" :ng "C" #'crux-find-user-custom-file)
           (:prefix "x"
-            :desc "Capitalize Region" :nvg "C" #'crux-capitalize-region
+            :desc "Capitalize Region" :ng "C" #'crux-capitalize-region
             (:prefix ("l" . "lines")
-              :desc "Duplicate Line Or Region" :nvg "d" #'crux-duplicate-current-line-or-region
-              :desc "Duplicate And Comment Line Or Region" :nvg "D" #'crux-duplicate-and-comment-current-line-or-region)))))
+              :desc "Duplicate Line Or Region" :ng "d" #'crux-duplicate-current-line-or-region
+              :desc "Duplicate And Comment Line Or Region" :ng "D" #'crux-duplicate-and-comment-current-line-or-region)))))
 
 ;; ;;;###package
 (use-package! dash-at-point
@@ -135,8 +135,8 @@
   :init
   (map! (:leader
           (:prefix "d"
-            :desc "Dash @ Point" :nvg "d" #'dash-at-point
-            :desc "Dash @ Point With Docset" :nvg "D" #'dash-at-point-with-docset))))
+            :desc "Dash @ Point" :ng "d" #'dash-at-point
+            :desc "Dash @ Point With Docset" :ng "D" #'dash-at-point-with-docset))))
 
 ;;;###package
 (use-package! lorem-ipsum
@@ -145,9 +145,9 @@
   :init (map! (:leader
                 (:prefix "i"
                   (:prefix ("l" . "lorem/ipsum")
-                    :desc "Paragraphs" :nvg "p" #'lorem-ipsum-insert-paragraphs
-                    :desc "Sentences" :nvg "s" #'lorem-ipsum-insert-sentences
-                    :desc "List" :nvg "l" #'lorem-ipsum-insert-list)))))
+                    :desc "Paragraphs" :ng "p" #'lorem-ipsum-insert-paragraphs
+                    :desc "Sentences" :ng "s" #'lorem-ipsum-insert-sentences
+                    :desc "List" :ng "l" #'lorem-ipsum-insert-list)))))
 
 ;; ;;;###package
 (use-package! reveal-in-osx-finder
@@ -156,7 +156,7 @@
   :commands (reveal-in-osx-finder)
   :init (map! (:leader
                 (:prefix "f"
-                  :desc "Reveal in Finder" :nvg "F" #'reveal-in-osx-finder))))
+                  :desc "Reveal in Finder" :ng "F" #'reveal-in-osx-finder))))
 
 ;; ;;;###package
 (use-package! osx-dictionary
@@ -166,7 +166,7 @@
   :init (map! (:leader
                 (:prefix "x"
                   (:prefix ("w" . "words")
-                    :desc "Search Dictionary" :nvg "d" #'osx-dictionary-search-word-at-point)))))
+                    :desc "Search Dictionary" :ng "d" #'osx-dictionary-search-word-at-point)))))
 
 ;;;###package
 (use-package! string-inflection
@@ -177,12 +177,12 @@
   :init (map! (:leader
                 (:prefix "x"
                   (:prefix ("i" . "inflection")
-                    :desc "Cycle Style" :nvg [tab] #'+core/inflection-cycle-dwim
-                    :desc "Underscore" :nvg "u" #'string-inflection-underscore
-                    :desc "Uppercase" :nvg "U" #'string-inflection-upcase
-                    :desc "Kebab Case" :nvg "k" #'string-inflection-kebab-case
-                    :desc "Lower Camel Case" :nvg "c" #'string-inflection-lower-camelcase
-                    :desc "Camel Case" :nvg "C" #'string-inflection-camelcase)))))
+                    :desc "Cycle Style" :ng [tab] #'+core/inflection-cycle-dwim
+                    :desc "Underscore" :ng "u" #'string-inflection-underscore
+                    :desc "Uppercase" :ng "U" #'string-inflection-upcase
+                    :desc "Kebab Case" :ng "k" #'string-inflection-kebab-case
+                    :desc "Lower Camel Case" :ng "c" #'string-inflection-lower-camelcase
+                    :desc "Camel Case" :ng "C" #'string-inflection-camelcase)))))
 
 ;; ;;;###package
 (use-package! alert
@@ -202,8 +202,8 @@
   :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
   (map! (:leader
           (:prefix "f"
-            :desc "Browse Junk Files" :nvg "J" #'+core/browse-junk-files
-            :desc "Open Junk File" :nvg "j" #'+core/open-junk-file))))
+            :desc "Browse Junk Files" :ng "J" #'+core/browse-junk-files
+            :desc "Open Junk File" :ng "j" #'+core/open-junk-file))))
 
 ;;;###package
 (use-package! avy
@@ -216,9 +216,9 @@
 
   (map! (:leader
          (:prefix "j"
-          :desc "Jump to Word" :nvg "j" #'avy-goto-char-timer
-          :desc "Jump to Line" :nvg "l" #'avy-goto-line
-          :desc "Jump to Symbol" :nvg "s" #'avy-goto-symbol-1)))
+          :desc "Jump to Word" :ng "j" #'avy-goto-char-timer
+          :desc "Jump to Line" :ng "l" #'avy-goto-line
+          :desc "Jump to Symbol" :ng "s" #'avy-goto-symbol-1)))
   :config
   (add-to-list 'avy-dispatch-alist
                '(?c . avy-comment-word)))
@@ -227,7 +227,7 @@
 (use-package! buffer-flip
   :defer t
   :commands (buffer-flip)
-  :init (map! (:leader :desc "Flip Buffer" :nvg [tab] #'buffer-flip))
+  :init (map! (:leader :desc "Flip Buffer" :ng [tab] #'buffer-flip))
   :bind  (:map buffer-flip-map
            ([tab] . buffer-flip-backward)
            ("8" .   buffer-flip-forward)
@@ -277,7 +277,7 @@
   :after counsel
   :commands counsel-doxygen-snippets
   :init (map! :leader (:prefix "i"
-                       :desc "Doxygen Snippet" :nvg "S" #'counsel-doxygen-snippets)))
+                       :desc "Doxygen Snippet" :ng "S" #'counsel-doxygen-snippets)))
 
 ;;;###package
 (use-package! flycheck-clazy
@@ -290,9 +290,9 @@
   :commands (uuidgen-1 uuidgen-4)
   :init (map! :leader (:prefix "i"
                         (:prefix ("U" . "uuid")
-                         :desc "Time based UUID (1)" :nvg "t" (cmd! ()  (insert (uuidgen-1)))
-                         :desc "Random based UUID (4)" :nvg "r" (cmd! () (insert (uuidgen-4)))
-                         :desc "UUID" :nvg "U" (cmd! () (insert (uuidgen-4)))))))
+                         :desc "Time based UUID (1)" :ng "t" (cmd! ()  (insert (uuidgen-1)))
+                         :desc "Random based UUID (4)" :ng "r" (cmd! () (insert (uuidgen-4)))
+                         :desc "UUID" :ng "U" (cmd! () (insert (uuidgen-4)))))))
 
 ;; ###package
 (use-package! rg
@@ -306,12 +306,12 @@
         rg-align-position-content-separator "|")
   (map! :leader
         (:prefix "p"
-         :desc "Run rg in project" :nvg "r" #'rg-project)
+         :desc "Run rg in project" :ng "r" #'rg-project)
         (:prefix "s"
-         :desc "Rg" :nvg "d" #'rg
-         :desc "Rg Dwim" :nvg "D" #'rg-dwim
-         :desc "Ripgrep Dispatch" :nvg "r" #'rg-menu
-         :desc "List Searches" :nvg "R" #'rg-list-searches)))
+         :desc "Rg" :ng "d" #'rg
+         :desc "Rg Dwim" :ng "D" #'rg-dwim
+         :desc "Ripgrep Dispatch" :ng "r" #'rg-menu
+         :desc "List Searches" :ng "R" #'rg-list-searches)))
 
 ;;;###package
 (use-package! hardhat
@@ -335,7 +335,7 @@
   :defer t
   :init (map! (:leader
                (:prefix "f"
-                :desc "Find file in Dired" :nvg "d" #'dired-jump))))
+                :desc "Find file in Dired" :ng "d" #'dired-jump))))
 
 ;;;###package
 (use-package! dired
@@ -356,9 +356,9 @@
   :init (map! (:localleader
                 :map emacs-lisp-mode-map
                 (:prefix ("=" . "format")
-                  :desc "Format Region or Buffer" :nvg "=" #'+elisp/format-region-or-buffer
-                  :desc "Format Region" :nvg "r" #'elisp-format-region
-                  :desc "Format Buffer" :nvg "b" #'elisp-format-buffer))))
+                  :desc "Format Region or Buffer" :ng "=" #'+elisp/format-region-or-buffer
+                  :desc "Format Region" :ng "r" #'elisp-format-region
+                  :desc "Format Buffer" :ng "b" #'elisp-format-buffer))))
 
 ;;;###package
 (use-package! eval-sexp-fu
@@ -371,17 +371,17 @@
   :init (map! (:localleader
                 :map shell-mode-map
                 (:prefix ("i" . "insert")
-                  :desc "Insert Shebang" :nvg "!" #'insert-shebang
-                  :desc "Case" :nvg "c" #'sh-case
-                  :desc "If" :nvg "i" #'sh-if
-                  :desc "Function" :nvg "f" #'sh-function
-                  :desc "For" :nvg "o" #'sh-for
-                  :desc "Indexed For" :nvg "e" #'sh-indexed-loop
-                  :desc "While" :nvg "w" #'sh-while
-                  :desc "Repeat" :nvg "r" #'sh-repeat
-                  :desc "Select" :nvg "s" #'sh-select
-                  :desc "Until" :nvg "u" #'sh-until
-                  :desc "While Getopts" :nvg "g" #'sh-while-getopts))))
+                  :desc "Insert Shebang" :ng "!" #'insert-shebang
+                  :desc "Case" :ng "c" #'sh-case
+                  :desc "If" :ng "i" #'sh-if
+                  :desc "Function" :ng "f" #'sh-function
+                  :desc "For" :ng "o" #'sh-for
+                  :desc "Indexed For" :ng "e" #'sh-indexed-loop
+                  :desc "While" :ng "w" #'sh-while
+                  :desc "Repeat" :ng "r" #'sh-repeat
+                  :desc "Select" :ng "s" #'sh-select
+                  :desc "Until" :ng "u" #'sh-until
+                  :desc "While Getopts" :ng "g" #'sh-while-getopts))))
 
 ;;;###package
 (use-package! csv-mode
@@ -404,3 +404,11 @@
               (:prefix ("y" . "yank")
                 :desc "Yank Fields" :g "f" #'csv-yank-fields
                 :desc "Yank As New Table" :g "t" #'csv-yank-as-new-table)))
+
+;;;###package
+(use-package! ebib
+  :defer t
+  :commands (ebib)
+  :init (map! (:leader
+               (:prefix "a"
+                :desc "Ebib" :g "e" #'ebib))))
