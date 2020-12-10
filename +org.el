@@ -85,35 +85,35 @@
       org-journal-date-format "%A, %Y-%m-%d"
       org-journal-file-header #'+org/org-journal-file-header-func)
 
-;; (map! :localleader :map org-journal-mode-map
-;;       :desc "Previous Entry" :ng "p" #'org-journal-previous-entry
-;;       :desc "Next Entry" :ng "n" #'org-journal-next-entry)
+(map! :localleader :map org-journal-mode-map
+      :desc "Previous Entry" :ng "p" #'org-journal-previous-entry
+      :desc "Next Entry" :ng "n" #'org-journal-next-entry)
 
-;; (map! (:leader
-;;         (:prefix "a"
-;;           (:prefix ("o" . "org")
-;;             :desc "Agenda" :ng "a" #'org-agenda
-;;             :desc "Capture" :ng "c" #'org-capture
-;;             :desc "Tags View" :ng "m" #'org-tags-view
-;;             :desc "Search View" :ng "s" #'org-search-view
-;;             :desc "Todo List" :ng "t" #'org-todo-list
-;;             (:prefix ("j" . "journal")
-;;               :desc "New Entry" :ng "j" #'org-journal-new-entry
-;;               :desc "Open Journal" :ng "o" #'+org/open-todays-journal)))
-;;         (:prefix "s"
-;;           :desc "Search Org Directory" :ng "o" #'+default/org-notes-search)
-;;         (:prefix "f"
-;;           (:prefix ("o" . "org")
-;;             :desc "Browse Org files" :ng "b" #'+default/browse-notes
-;;             :desc "Todo File" :ng "t" (cmd! () (find-file +org/todo-file))
-;;             :desc "Notes File" :ng "n" (cmd! () (find-file +org/notes-file))
-;;             :desc "Calendar File" :ng "c" (cmd! () (find-file +org/calendar-file))
-;;             :desc "Inbox File" :ng "i" (cmd! () (find-file +org/inbox-file))
-;;             :desc "Archive File" :ng "a" (cmd! () (find-file +org/archive-file))
-;;             :desc "Today's Journal" :ng "j" #'+org/open-todays-journal))
-;;         (:prefix "p"
-;;           :desc "Open Org File" :ng "o" (cmd! () (when (projectile-project-p)
-;;                                                      (find-file (+org/project-org-file-path)))))))
+(map! (:leader
+        (:prefix "a"
+          (:prefix ("o" . "org")
+            :desc "Agenda" :ng "a" #'org-agenda
+            :desc "Capture" :ng "c" #'org-capture
+            :desc "Tags View" :ng "m" #'org-tags-view
+            :desc "Search View" :ng "s" #'org-search-view
+            :desc "Todo List" :ng "t" #'org-todo-list
+            (:prefix ("j" . "journal")
+              :desc "New Entry" :ng "j" #'org-journal-new-entry
+              :desc "Open Journal" :ng "o" #'+org/open-todays-journal)))
+        (:prefix "s"
+          :desc "Search Org Directory" :ng "o" #'+default/org-notes-search)
+        (:prefix "f"
+          (:prefix ("o" . "org")
+            :desc "Browse Org files" :ng "b" #'+default/browse-notes
+            :desc "Todo File" :ng "t" (cmd! () (find-file +org/todo-file))
+            :desc "Notes File" :ng "n" (cmd! () (find-file +org/notes-file))
+            :desc "Calendar File" :ng "c" (cmd! () (find-file +org/calendar-file))
+            :desc "Inbox File" :ng "i" (cmd! () (find-file +org/inbox-file))
+            :desc "Archive File" :ng "a" (cmd! () (find-file +org/archive-file))
+            :desc "Today's Journal" :ng "j" #'+org/open-todays-journal))
+        (:prefix "p"
+          :desc "Open Org File" :ng "o" (cmd! () (when (projectile-project-p)
+                                                     (find-file (+org/project-org-file-path)))))))
 
 ;; (after! org
 ;;   (map! (:localleader
