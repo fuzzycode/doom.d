@@ -49,9 +49,6 @@
 (load! "+lsp")
 (load! "+packages")
 
-(when IS-MAC
-  (load! "+osx"))
-
 (when (featurep! :email mu4e)
   (load! "+mu"))
 
