@@ -294,7 +294,7 @@
                          :desc "Random based UUID (4)" :ng "r" (cmd! () (insert (uuidgen-4)))
                          :desc "UUID" :ng "U" (cmd! () (insert (uuidgen-4)))))))
 
-;; ###package
+;;;###package
 (use-package! rg
   :defer t
   :commands (rg-project rg rg-dwim rg-menu rg-list-searches)
@@ -318,6 +318,7 @@
   :defer t
   :init (setq hardhat-less-feedback t)
   :hook (doom-first-input . global-hardhat-mode))
+
 ;;;###package
 (use-package! subword
   :hook (prog-mode . subword-mode))
