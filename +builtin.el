@@ -13,12 +13,16 @@
                         (mark " "
                               (name 16 -1)
                               " " filename)))
-
+;;;###package company
 (after! company
   (setq company-tooltip-minimum-width 80
         company-tooltip-maximum-width 80
         company-minimum-prefix-length 1
-        company-idle-delay 0.0))
+        company-idle-delay 0.0)
+
+  (define-key company-active-map (kbd "C-j") #'company-select-next-or-abort)
+  (define-key company-active-map (kbd "C-k") #'company-select-previous-or-abort)
+  (define-key company-active-map (kbd "C-l") #'company-complete-selection))
 
 ;; Show the location of the sym-link and not the actual file
 (setq find-file-visit-truename nil

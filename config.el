@@ -39,6 +39,7 @@
 (load! "+functions")
 
 ;Load Specific files
+(load! "+bindings")
 (load! "+builtin")
 (load! "+core")
 (load! "+projectile")
@@ -46,7 +47,6 @@
 (load! "+git")
 (load! "+org")
 (load! "+lsp")
-(load! "+bindings")
 (load! "+packages")
 
 (when IS-MAC
