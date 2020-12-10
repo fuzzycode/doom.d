@@ -37,9 +37,12 @@
         ivy-fixed-height-minibuffer t
         ivy-display-style 'fancy)
 
+  ;; Evilified ivy bindings
   (define-key ivy-minibuffer-map (kbd "C-j") #'ivy-next-line)
   (define-key ivy-minibuffer-map (kbd "C-k") #'ivy-previous-line)
   (define-key ivy-minibuffer-map (kbd "C-l") #'ivy-alt-done)
+  (define-key ivy-switch-buffer-map (kbd "C-k") #'ivy-previous-line)
+  (define-key ivy-switch-buffer-map (kbd "M-k") #'ivy-switch-buffer-kill)
   (global-set-key (kbd "M-m") #'counsel-imenu))
 
 ;;;###package
