@@ -301,8 +301,9 @@
           :desc "Find Library" "l" #'find-library))
 
 (map! (:after projectile
-        (:leader
-          (:prefix ("p" . "project")
+       :n "go" #'projectile-find-other-file
+       (:leader
+          (:prefix "p"
             :desc "Shell Command" :ng "!" #'projectile-run-shell-command-in-root
             :desc "Async Shell Command" :ng "&" #'projectile-run-async-shell-command-in-root
             :desc "Edit dir-locals" :ng "e" #'projectile-edit-dir-locals
@@ -317,13 +318,33 @@
 
 (map! (:after persp-mode
         (:leader
-          (:prefix ("p" . "project")
+          (:prefix "p"
             :desc "Switch Perspective" :ng "P" #'persp-switch))))
+
+(map! (:leader
+       (:prefix "c"
+        :desc "Comment/Uncomment" :ng "c" #'comment-dwim-2
+        :desc "Find Definition" :ng "d" #'+lookup/definition
+        :desc "Find References" :ng "r" #'+lookup/references
+        :desc "Evaluate buffer/region" :ng "e" #'+eval/buffer-or-region
+        :desc "Evaluate & replace region" :ng "E" #'+eval:replace-region
+        :desc "Format buffer/region" :ng "f" #'+format/region-or-buffer
+        :desc "Send to repl" :ng "s"  #'+eval/send-region-to-repl
+        :desc "Delete trailing whitespace" :ng "w" #'delete-trailing-whitespace
+        :desc "Delete trailing newlines" :ng "W" #'doom/delete-trailing-newlines
+        (:when (and (featurep! :tools lsp) (not (featurep! :tools lsp +eglot)))
+         :desc "Execute code action" :ng "a" #'lsp-execute-code-action
+         :desc "Organize imports" :ng "o" #'lsp-organize-imports
+         (:when (featurep! :completion ivy)
+         :desc "Jump to symbol in current workspace" :ng "j"   #'lsp-ivy-workspace-symbol
+         :desc "Jump to symbol in any workspace" :ng "J"   #'lsp-ivy-global-workspace-symbol))
+        (:when (featurep! :checkers syntax)
+         :desc "List errors" :ng "x" #'flycheck-list-errors))))
 
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 (global-set-key (kbd "C-c l") #'recenter)
 
-
+;; Use these for minibuffer scrolling exclusively
 (global-unset-key (kbd "C-j"))
 (global-unset-key (kbd "C-k"))
 

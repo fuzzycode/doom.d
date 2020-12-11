@@ -12,6 +12,7 @@
 (map! (:leader
        (:prefix ("a" . "applications"))
        (:prefix ("b" . "buffer/bookmarks"))
+       (:prefix ("c" . "code"))
        (:prefix ("d" . "documentation"))
        (:prefix ("e" . "errors"))
        (:prefix ("E" . "ediff"))
