@@ -67,13 +67,14 @@
 (map! :after magit
       (:leader
        (:prefix "g"
+        :desc "Magit File Dispatch" :ng "." #'magit-file-dispatch
         :desc "Magit Status" :ng "s" #'magit-status
         :desc "Magit Dispatch" :ng "m" #'magit-dispatch
         (:when (featurep! :tools magit +forge)
          :desc "Forge Dispatch" :ng "F" #'forge-dispatch)
         :desc "Stage File" :ng "S" #'magit-stage-file
         :desc "Unstage File" :ng "U" #'magit-unstage-file
-        :desc "Time Machine" :ng "T" #'+magit/timemachine-hydra/body
+        :desc "Time Machine" :ng "t" #'+magit/timemachine-hydra/body
         :desc "Git Blame" :ng "b" #'+magit/blame-hydra/body
         :desc "Magit Refresh" :ng "r" #'magit-refresh
         :desc "Magit Refresh All" :ng "R" #'magit-refresh-all
