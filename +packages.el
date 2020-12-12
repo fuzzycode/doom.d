@@ -372,7 +372,6 @@
   :init (map! (:localleader
                 :map shell-mode-map
                 (:prefix ("i" . "insert")
-                  :desc "Insert Shebang" :ng "!" #'insert-shebang
                   :desc "Case" :ng "c" #'sh-case
                   :desc "If" :ng "i" #'sh-if
                   :desc "Function" :ng "f" #'sh-function

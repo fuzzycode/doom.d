@@ -62,7 +62,6 @@
 (package! open-junk-file)
 (package! winum)
 (package! expand-region)
-(package! insert-shebang)
 (package! crux)
 (package! dash-at-point)
 (package! lorem-ipsum)
