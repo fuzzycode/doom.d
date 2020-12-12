@@ -25,6 +25,9 @@
 
 (setq dap-breakpoints-file (concat doom-local-dir "cache/dap-breakpoints"))
 
+(when (featurep! :completion ivy)
+  (setq lsp-ivy-show-symbol-filename nil)) ; remove the file path from workspace symbols
+
 ;;;###package
 (use-package! lsp-treemacs
   :after lsp-mode
