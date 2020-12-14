@@ -60,22 +60,22 @@
          ("SPC" . #'treemacs-visit-node-default))
   :config (treemacs-follow-mode +1))
 
-;; ;;;###package
-;; (use-package! winum
-;;   :init (setq winum-auto-assign-0-to-minibuffer nil
-;;               winum-auto-setup-mode-line nil
-;;               winum-ignored-buffers '("*which-key*"))
-;;   :config (winum-mode)
-;;   :bind (:map winum-keymap
-;;           ("M-1" . #'winum-select-window-1)
-;;           ("M-2" . #'winum-select-window-2)
-;;           ("M-3" . #'winum-select-window-3)
-;;           ("M-4" . #'winum-select-window-4)
-;;           ("M-5" . #'winum-select-window-5)
-;;           ("M-6" . #'winum-select-window-6)
-;;           ("M-7" . #'winum-select-window-7)
-;;           ("M-8" . #'winum-select-window-8)
-;;           ("M-9" . #'winum-select-window-9)))
+;;;###package
+(use-package! winum
+  :init (setq winum-auto-assign-0-to-minibuffer nil
+              winum-auto-setup-mode-line nil
+              winum-ignored-buffers '("*which-key*"))
+  :config (winum-mode)
+  :bind (:map winum-keymap
+          ("M-1" . #'winum-select-window-1)
+          ("M-2" . #'winum-select-window-2)
+          ("M-3" . #'winum-select-window-3)
+          ("M-4" . #'winum-select-window-4)
+          ("M-5" . #'winum-select-window-5)
+          ("M-6" . #'winum-select-window-6)
+          ("M-7" . #'winum-select-window-7)
+          ("M-8" . #'winum-select-window-8)
+          ("M-9" . #'winum-select-window-9)))
 
 ;; ;;;###package
 ;; (use-package! winner
@@ -297,8 +297,17 @@
 ;;;###package
 (use-package! rg
   :defer t
-  :commands (rg-project rg rg-dwim rg-menu rg-list-searches)
-  :init (set-popup-rule! "^\\*rg" :side 'bottom :size 0.8 :select t :modeline t :quit t :ignore nil)
+  :commands (rg-project rg rg-dwim rg-menu rg-list-searches rg-toggle-command-hiding)
+  :bind (:map rg-mode-map
+         ([tab] . #'rg-toggle-command-hiding)
+         ("l" . nil)
+         ("e" . nil)
+         ("w" . nil)
+         ("s" . nil)
+         ("S" . nil)
+         ("L" . rg-list-searches)
+         ("g" . nil))
+  :init (set-popup-rule! "^\\*rg" :side 'bottom :size 0.6 :select t :modeline t :quit t :ignore nil)
   (setq rg-align-position-numbers t
         rg-align-line-number-field-length 3
         rg-align-column-number-field-length 3
@@ -334,6 +343,7 @@
 ;;;###package
 (use-package! dired-x
   :defer t
+  :commands dired-jump
   :init (map! (:leader
                (:prefix "f"
                 :desc "Find file in Dired" :ng "d" #'dired-jump))))
