@@ -45,7 +45,7 @@
    (setq proced-auto-update-interval 1)
    (set-popup-rule! "*Proced*" :size 0.4 :side 'bottom :select t :autosave t))
 
-;; ;;;###package
+;;;###package
 (use-package! which-key
   :defer t
   :init (setq which-key-sort-order 'which-key-key-order-alpha
@@ -128,7 +128,7 @@
               :desc "Duplicate Line Or Region" :ng "d" #'crux-duplicate-current-line-or-region
               :desc "Duplicate And Comment Line Or Region" :ng "D" #'crux-duplicate-and-comment-current-line-or-region)))))
 
-;; ;;;###package
+;;;###package
 (use-package! dash-at-point
   :defer t
   :commands (dash-at-point dash-at-point-with-docset)
@@ -149,7 +149,7 @@
                     :desc "Sentences" :ng "s" #'lorem-ipsum-insert-sentences
                     :desc "List" :ng "l" #'lorem-ipsum-insert-list)))))
 
-;; ;;;###package
+;;;###package
 (use-package! reveal-in-osx-finder
   :when IS-MAC
   :defer t
@@ -158,7 +158,7 @@
                 (:prefix "f"
                   :desc "Reveal in Finder" :ng "F" #'reveal-in-osx-finder))))
 
-;; ;;;###package
+;;;###package
 (use-package! osx-dictionary
   :when IS-MAC
   :defer t
@@ -184,7 +184,7 @@
                     :desc "Lower Camel Case" :ng "c" #'string-inflection-lower-camelcase
                     :desc "Camel Case" :ng "C" #'string-inflection-camelcase)))))
 
-;; ;;;###package
+;;;###package
 (use-package! alert
   :defer 10
   :config
@@ -196,7 +196,7 @@
 (use-package! pandoc-mode
   :defer t)
 
-;; ;;;###package
+;;;###package
 (use-package! open-junk-file
   :defer t
   :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
@@ -240,7 +240,7 @@
           "^magit-diff.*$"
           "^magit-process.*$")))
 
-;; ;;;###package
+;;;###package
 (use-package! centered-cursor-mode
   :defer t
   :commands (centered-cursor-mode)
