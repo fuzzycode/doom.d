@@ -95,6 +95,8 @@
          :desc "Uniquify Lines" :ng "u" #'+bl/uniquify-lines-dwim
          :desc "Center Line" :ng "c" #'recenter-top-bottom)
         (:prefix "b"
+          :desc "Find file in emacs.d" :ng "e"  #'doom/find-file-in-emacsd
+          :desc "Browse emacs.d" :ng "E"  #'doom/browse-in-emacsd
           :desc "Save" :ng "s" #'save-buffer
           :desc "Scratch Buffer" :ng "S" #'+bl/switch-to-scratch-buffer
           :desc "Messages Buffer" :ng "M" #'+bl/switch-to-message-buffer
@@ -108,6 +110,8 @@
           :desc "Doom Dashboard" :ng "d" #'+doom-dashboard/open
           :desc "Doom Sandbox" :ng "D" #'doom/sandbox
           :desc "Ibuffer" :ng "I" #'ibuffer
+          :desc "Sudo find file" :ng "u" #'doom/sudo-find-file
+          :desc "Sudo this file" :ng "U" #'doom/sudo-this-file
           :desc "Kill Buffer and Window" :ng "x" #'kill-buffer-and-window
           :desc "Kill Matching Buffers" :ng "C-d" #'kill-matching-buffers
           :desc "Show and Copy Buffer Filename" :ng "C" #'+bl/show-and-copy-buffer-filename)
