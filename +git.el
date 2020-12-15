@@ -11,9 +11,6 @@
   (magit-wip-after-save-mode)
   (transient-bind-q-to-quit)
 
-  (transient-append-suffix 'magit-fetch "-p"
-    '("-t" "Fetch all tags" ("-t" "--tags")))
-
   (add-to-list 'magit-no-confirm 'stage-all-changes)
   (add-to-list 'magit-no-confirm 'trash)
   (add-to-list 'magit-no-confirm 'safe-with-wip)
