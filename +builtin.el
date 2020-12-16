@@ -18,11 +18,24 @@
   (setq company-tooltip-minimum-width 80
         company-tooltip-maximum-width 80
         company-minimum-prefix-length 1
-        company-idle-delay 0.0)
+        company-idle-delay 0.0))
 
-  (define-key company-active-map (kbd "C-j") #'company-select-next-or-abort)
-  (define-key company-active-map (kbd "C-k") #'company-select-previous-or-abort)
-  (define-key company-active-map (kbd "C-l") #'company-complete-selection))
+(after! (company evil)
+  (evil-collection-define-key nil 'company-active-map
+    (kbd "C-l") #'company-complete-selection
+    (kbd "C-n") #'company-select-next-or-abort
+    (kbd "C-p") #'company-select-previous-or-abort
+    (kbd "C-j") #'company-select-next-or-abort
+    (kbd "C-k") #'company-select-previous-or-abort
+    (kbd "M-j") #'company-select-next
+    (kbd "M-k") #'company-select-previous)
+
+  (evil-collection-define-key nil 'company-search-map
+    (kbd "C-j") 'company-select-next-or-abort
+    (kbd "C-k") 'company-select-previous-or-abort
+    (kbd "M-j") 'company-select-next
+    (kbd "M-k") 'company-select-previous
+    (kbd "<escape>") 'company-search-abort))
 
 ;; Show the location of the sym-link and not the actual file
 (setq find-file-visit-truename nil
