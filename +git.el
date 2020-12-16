@@ -124,7 +124,9 @@
 ;;;###package
 (use-package! git-commit
   :defer t
-  :init (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
+  :init
+  (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
+  (add-hook 'git-commit-mode-hook #'evil-insert-state)
   :bind (:map git-commit-mode-map
         ([tab] . #'+magit/move-to-next-slot)))
 
