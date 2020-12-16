@@ -299,14 +299,7 @@
   :defer t
   :commands (rg-project rg rg-dwim rg-menu rg-list-searches rg-toggle-command-hiding)
   :bind (:map rg-mode-map
-         ([tab] . #'rg-toggle-command-hiding)
-         ("l" . nil)
-         ("e" . nil)
-         ("w" . nil)
-         ("s" . nil)
-         ("S" . nil)
-         ("L" . rg-list-searches)
-         ("g" . nil))
+         ([tab] . #'rg-toggle-command-hiding))
   :init (set-popup-rule! "^\\*rg" :side 'bottom :size 0.6 :select t :modeline t :quit t :ignore nil)
   (setq rg-align-position-numbers t
         rg-align-line-number-field-length 3
@@ -321,6 +314,15 @@
          :desc "Rg Dwim" :ng "D" #'rg-dwim
          :desc "Ripgrep Dispatch" :ng "r" #'rg-menu
          :desc "List Searches" :ng "R" #'rg-list-searches)))
+
+;;;###package
+(use-package! evil-collection-rg
+  :when (featurep! :editor evil)
+  :after (rg evil)
+  :config (evil-collection-rg-setup)
+  (evil-collection-define-key 'normal 'rg-mode-map
+    (kbd "M-j") #'rg-next-file
+    (kbd "M-k") #'rg-prev-file))
 
 ;;;###package
 (use-package! hardhat

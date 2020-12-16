@@ -90,3 +90,7 @@
 (when IS-MAC
   (package! reveal-in-osx-finder)
   (package! osx-dictionary))
+
+;; Add evil packages
+(when (featurep! :editor evil)
+  (package! evil-collection-rg))
