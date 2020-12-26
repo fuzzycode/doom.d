@@ -25,10 +25,3 @@
     (string-inflection-java-style-cycle))
    (t
     (string-inflection-ruby-style-cycle))))
-
-;;;###autoload
-(defun +core/disable-key-chord-mode ()
-  (set (make-local-variable 'input-method-function) nil))
-
-;;;###autoload
-(add-hook 'minibuffer-setup-hook #'+core/disable-key-chord-mode)
