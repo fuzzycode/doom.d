@@ -348,9 +348,10 @@
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 (global-set-key (kbd "C-c l") #'recenter)
 
-;; Use these for minibuffer scrolling exclusively
-(global-unset-key (kbd "C-j"))
-(global-unset-key (kbd "C-k"))
+;; Not strictly evil like but adds nice symmetry no minibuffer navigation
+(global-set-key (kbd "C-j") #'evil-scroll-down)
+(global-set-key (kbd "C-k") #'evil-scroll-up)
+
 
 ;; Remove binding, I did not need it and it was colliding with org mode keys
 (after! pyenv-mode
