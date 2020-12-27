@@ -121,6 +121,12 @@
          :desc "List pull requests" :ng "p" #'forge-list-pullreqs
          :desc "List notifications" :ng "n" #'forge-list-notifications))))
 
+;; Better scrolling in magit buffers
+(map! :after magit
+      (:map magit-status-mode-map
+       :vng "C-j" #'magit-section-forward-sibling
+       :vng "C-k" #'magit-section-backward-sibling))
+
 ;;;###package
 (use-package! git-commit
   :defer t
