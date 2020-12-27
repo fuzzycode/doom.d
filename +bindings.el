@@ -345,6 +345,12 @@
         (:when (featurep! :checkers syntax)
          :desc "List errors" :ng "x" #'flycheck-list-errors))))
 
+(map! (:after evil
+       (:leader
+       (:prefix "j"
+        :desc "Beginning of line" :nvg "a" #'evil-beginning-of-line
+        :desc "End of line" :nvg "e" #'evil-end-of-line))))
+
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 (global-set-key (kbd "C-c l") #'recenter)
 
