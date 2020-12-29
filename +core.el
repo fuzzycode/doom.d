@@ -115,6 +115,17 @@
                   :off-message "Disabled trailing whitespace"
                   :bind '(:desc "Trailing Whitespace" :key "w"))
 
+(+core/add-toggle relative-line-numbers
+                  :status (eq display-line-numbers 'relative)
+                  :on (setq display-line-numbers-type 'relative)
+                  :off (setq display-line-numbers-type t)
+                  :on-message "Using relative line numbers"
+                  :off-message "Using normal line numbers"
+                  :bind '(:desc "Relative line numbers" :key "l"))
+
+;; Default to relative line numbers
+(add-hook 'prog-mode-hook (lambda () (setq display-line-numbers-type 'relative)))
+
 (after! doom-modeline
   (setq doom-modeline-major-mode-icon t
         doom-modeline-indent-info t
