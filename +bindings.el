@@ -355,7 +355,7 @@
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 (global-set-key (kbd "C-c l") #'recenter)
 
-;; Not strictly evil like but adds nice symmetry no minibuffer navigation
+;; Not strictly evil like but adds nice symmetry to minibuffer navigation
 (global-set-key (kbd "C-j") #'evil-scroll-down)
 (global-set-key (kbd "C-k") #'evil-scroll-up)
 
