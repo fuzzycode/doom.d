@@ -299,8 +299,9 @@
   :defer t
   :commands (rg-project rg rg-dwim rg-menu rg-list-searches rg-toggle-command-hiding)
   :bind (:map rg-mode-map
-         ([tab] . #'rg-toggle-command-hiding))
-  :init (set-popup-rule! "^\\*rg" :side 'bottom :size 0.6 :select t :modeline t :quit t :ignore nil)
+         ([tab] . #'rg-toggle-command-hiding)
+         ("C-c C-e" . #'wgrep-change-to-wgrep-mode))
+  :init (set-popup-rule! "^\\*rg" :side 'bottom :size 0.8 :select t :modeline t :quit t :ignore nil)
   (setq rg-align-position-numbers t
         rg-align-line-number-field-length 3
         rg-align-column-number-field-length 3
@@ -322,7 +323,9 @@
   :config (evil-collection-rg-setup)
   (evil-collection-define-key 'normal 'rg-mode-map
     (kbd "M-j") #'rg-next-file
-    (kbd "M-k") #'rg-prev-file))
+    (kbd "M-k") #'rg-prev-file
+    (kbd "C-j") #'evil-scroll-down
+    (kbd "C-k") #'evil-scroll-up))
 
 ;;;###package
 (use-package! hardhat
