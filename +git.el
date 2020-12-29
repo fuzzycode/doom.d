@@ -122,6 +122,7 @@
          :desc "List notifications" :ng "n" #'forge-list-notifications))))
 
 ;; Better scrolling in magit buffers
+;;;###package magit
 (map! :after magit
       (:map magit-status-mode-map
        :vng "C-j" #'magit-section-forward-sibling
