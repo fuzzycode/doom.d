@@ -317,6 +317,7 @@
             :desc "Kill Buffers" :ng "k" #'projectile-kill-buffers
             :desc "Test Project" :ng "t" #'projectile-test-project
             :desc "Shell" :ng "s" #'projectile-run-vterm
+            :desc "Save Project Files" :ng "S" #'projectile-save-project-buffers
             :desc "Find file in other project" :ng "O" #'doom/find-file-in-other-project
             :desc "Project Scratch Buffer" :ng "x" #'doom/open-project-scratch-buffer))))
 
