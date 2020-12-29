@@ -6,10 +6,10 @@
 
 (setq projectile-enable-caching nil)
 
-;; (after! yasnippet
-;;   (when (file-exists-p "~/.snippets")
-;;     (add-to-list 'yas-snippet-dirs "~/.snippets")
-;;     (yas-reload-all)))
+(after! yasnippet
+  (when (file-exists-p "~/.snippets")
+    (add-to-list 'yas-snippet-dirs "~/.snippets")
+    (yas-reload-all)))
 
 (after! flycheck
   (setq flycheck-error-list-format `[("File" 25)
