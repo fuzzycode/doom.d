@@ -361,9 +361,7 @@
 ;;;###package
 (use-package! yaml-mode
   :mode (("\\.clang-format\\'" . yaml-mode)
-         ("\\.clang-tidy\\'" . yaml-mode))
-  :bind (:map yaml-mode-map
-          ( "\C-m" . #'newline-and-indent)))
+         ("\\.clang-tidy\\'" . yaml-mode)))
 
 ;;;###package
 (use-package! elisp-format
