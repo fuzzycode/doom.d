@@ -230,8 +230,6 @@
   :init (map! (:leader :desc "Flip Buffer" :ng [tab] #'buffer-flip))
   :bind  (:map buffer-flip-map
            ([tab] . buffer-flip-backward)
-           ("8" .   buffer-flip-forward)
-           ("*" .   buffer-flip-backward)
            ("C-g" . buffer-flip-abort))
   :config
   (setq buffer-flip-skip-patterns
