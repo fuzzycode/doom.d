@@ -250,24 +250,17 @@
 ;;   :commands easy-kill
 ;;   :bind (([remap kill-ring-save] . #'easy-kill)))
 
-;; ;;;###package
-;; (use-package! super-save
-;;   :defer 6
-;;   :init (setq super-save-auto-save-when-idle nil
-;;               super-save-idle-duration 30
-;;               super-save-remote-files nil
-;;               super-save-exclude '("\\*.+\\*"))
-;;   :config
-;;   (setq super-save-triggers (append super-save-triggers
-;;                                     '(+ivy/switch-buffer +ivy/switch-workspace-buffer
-;;                                                          +ivy/switch-buffer-other-window +ivy/switch-workspace-buffer-other-window
-;;                                                          ace-window winum-select-window-0 winum-select-window-1 winum-select-window-2
-;;                                                          winum-select-window-3 winum-select-window-4 winum-select-window-5
-;;                                                          winum-select-window-6 winum-select-window-7 winum-select-window-8
-;;                                                          winum-select-window-9 winum-select-window-0-or-10)))
-;;   (add-to-list 'super-save-hook-triggers 'find-file-hook)
-;;   (setq auto-save-default nil)
-;;   (super-save-mode +1))
+;;;###package
+(use-package! super-save
+  :defer 6
+  :init (setq super-save-auto-save-when-idle t
+              super-save-idle-duration 30
+              super-save-remote-files nil
+              auto-save-default nil
+              super-save-exclude '("\\*.+\\*" "^[A-Z_]+$"))
+  :config
+  (add-to-list 'super-save-hook-triggers 'magit-status-mode-hook)
+  (super-save-mode +1))
 
 ;;;###package
 (use-package! counsel-doxygen-snippets
