@@ -291,7 +291,8 @@
   :commands (rg-project rg rg-dwim rg-menu rg-list-searches rg-toggle-command-hiding)
   :bind (:map rg-mode-map
          ([tab] . #'rg-toggle-command-hiding)
-         ("C-c C-e" . #'wgrep-change-to-wgrep-mode))
+         ("C-c C-e" . #'wgrep-change-to-wgrep-mode)
+         ("C-x C-s" . #'wgrep-finish-edit))
   :init (set-popup-rule! "^\\*rg" :side 'bottom :size 0.8 :select t :modeline t :quit t :ignore nil)
   (setq rg-align-position-numbers t
         rg-align-line-number-field-length 3
@@ -313,6 +314,7 @@
   :after (rg evil)
   :config (evil-collection-rg-setup)
   (evil-collection-define-key 'normal 'rg-mode-map
+    "i" nil
     (kbd "M-j") #'rg-next-file
     (kbd "M-k") #'rg-prev-file
     (kbd "C-j") #'evil-scroll-down
