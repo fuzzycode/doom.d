@@ -70,7 +70,6 @@
 (package! pandoc-mode)
 (package! avy)
 (package! goto-last-change)
-(package! use-package-chords)
 (package! buffer-flip)
 (package! alert)
 (package! centered-cursor-mode)
