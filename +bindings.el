@@ -359,6 +359,10 @@
 (global-set-key (kbd "C-j") #'evil-scroll-down)
 (global-set-key (kbd "C-k") #'evil-scroll-up)
 
+(after! outline
+  (evil-collection-define-key 'normal 'outline-mode-map
+    (kbd "C-j") nil
+    (kbd "C-k") nil))
 
 ;; Remove binding, I did not need it and it was colliding with org mode keys
 (after! pyenv-mode
