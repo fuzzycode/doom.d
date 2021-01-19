@@ -116,11 +116,11 @@
           :desc "Kill Matching Buffers" :ng "C-d" #'kill-matching-buffers
           :desc "Show and Copy Buffer Filename" :ng "C" #'+bl/show-and-copy-buffer-filename)
         (:prefix "i"
+          :desc "New Line" :ng "n" #'sp-newline
+          :desc "Open Line" :ng "o" #'open-line
           :desc "Insert Snippet" :ng "s" #'yas-insert-snippet
           :desc "Insert Buffer" :ng "b" #'insert-buffer)
         (:prefix "j"
-          :desc "Open Line" :ng "o" #'open-line
-          :desc "New Line" :ng "n" #'sp-newline
           :desc "Deer" :ng "d" #'deer)
         (:prefix "f"
           (:prefix ("D" . "doom")
@@ -335,7 +335,7 @@
         :desc "Evaluate & replace region" :ng "E" #'+eval:replace-region
         :desc "Format buffer/region" :ng "f" #'+format/region-or-buffer
         :desc "Send to repl" :ng "s"  #'+eval/send-region-to-repl
-        :desc "Delete trailing whitespace" :ng "w" #'delete-trailing-whitespace
+        :desc "Delete trailing white space" :ng "w" #'delete-trailing-whitespace
         :desc "Delete trailing newlines" :ng "W" #'doom/delete-trailing-newlines
         (:when (and (featurep! :tools lsp) (not (featurep! :tools lsp +eglot)))
          :desc "Execute code action" :ng "a" #'lsp-execute-code-action
@@ -359,10 +359,20 @@
 (global-set-key (kbd "C-j") #'evil-scroll-down)
 (global-set-key (kbd "C-k") #'evil-scroll-up)
 
+;; Occur mode
+(evil-collection-define-key 'normal 'occur-mode-map
+    (kbd "C-c C-e") 'occur-edit-mode)
+
+(evil-collection-define-key 'normal 'occur-edit-mode-map
+  (kbd "C-c C-c") 'occur-cease-edit)
+
 (after! outline
   (evil-collection-define-key 'normal 'outline-mode-map
     (kbd "C-j") nil
     (kbd "C-k") nil))
+
+;;; Clear q from normal map, I was never using vim macros anyway
+(define-key evil-normal-state-map (kbd "q") nil)
 
 ;; Remove binding, I did not need it and it was colliding with org mode keys
 (after! pyenv-mode
