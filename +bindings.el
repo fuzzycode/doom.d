@@ -68,7 +68,8 @@
 
 (map! (:leader
         :desc "Universal Argument" :ng "u" #'universal-argument
-        :desc "Undo" :ng "." #'undo-fu-only-undo
+        :desc "Undo" :ng "," #'undo-fu-only-undo
+        :desc "Repeat" :ng "." #'evil-repeat-pop-next
         (:prefix "a"
          :desc "Dired" :ng "d" #'dired
          (:when (featurep! :email mu4e)
@@ -331,6 +332,8 @@
         :desc "Comment/Uncomment" :ng "c" #'comment-dwim-2
         :desc "Find Definition" :ng "d" #'+lookup/definition
         :desc "Find References" :ng "r" #'+lookup/references
+        :desc "Find Implementations" :ng "i" #'+lookup/implementations
+        :desc "Find Type Definition" :ng "t" #'+lookup/type-definition
         :desc "Evaluate buffer/region" :ng "e" #'+eval/buffer-or-region
         :desc "Evaluate & replace region" :ng "E" #'+eval:replace-region
         :desc "Format buffer/region" :ng "f" #'+format/region-or-buffer
@@ -358,6 +361,8 @@
 ;; Not strictly evil like but adds nice symmetry to minibuffer navigation
 (global-set-key (kbd "C-j") #'evil-scroll-down)
 (global-set-key (kbd "C-k") #'evil-scroll-up)
+
+(map! :ng "M-." #'+lookup/definition)
 
 ;; Occur mode
 (evil-collection-define-key 'normal 'occur-mode-map
