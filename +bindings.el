@@ -365,11 +365,14 @@
 (map! :ng "M-." #'+lookup/definition)
 
 ;; Occur mode
-(evil-collection-define-key 'normal 'occur-mode-map
-    (kbd "C-c C-e") 'occur-edit-mode)
+(after! evil-collection
+  (evil-collection-define-key 'normal 'occur-mode-map
+    (kbd "C-c C-e") 'occur-edit-mode
+    (kbd "C-x C-q") nil)
 
-(evil-collection-define-key 'normal 'occur-edit-mode-map
-  (kbd "C-c C-c") 'occur-cease-edit)
+  (evil-collection-define-key 'normal 'occur-edit-mode-map
+    (kbd "C-c C-c") 'occur-cease-edit
+    (kbd "C-x C-q") nil))
 
 (after! outline
   (evil-collection-define-key 'normal 'outline-mode-map
