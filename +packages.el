@@ -202,8 +202,8 @@
   :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
   (map! (:leader
           (:prefix "f"
-            :desc "Browse Junk Files" :ng "J" #'+core/browse-junk-files
-            :desc "Open Junk File" :ng "j" #'+core/open-junk-file))))
+            :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
+            :desc "Open Junk File" :ng "j" #'+bl/open-junk-file))))
 
 ;;;###package
 (use-package! avy
