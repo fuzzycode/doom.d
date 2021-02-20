@@ -124,10 +124,11 @@
         (:prefix "j"
           :desc "Deer" :ng "d" #'deer)
         (:prefix "f"
+         :desc "Move This File" :ng "m" #'doom/move-this-file
           (:prefix ("D" . "doom")
             :desc "Packages File" :ng "p" #'doom/goto-packages-file
             :desc "Config File" :ng "C" #'doom/goto-config-file
-            :desc "Init file" :ng "i" #'doom/goto-doomblock
+            :desc "Init File" :ng "i" #'doom/goto-doomblock
             :desc "User Config" :ng "c" #'doom/open-private-config))
         (:prefix "h"
           :desc "Version" :ng "V" #'doom/version
