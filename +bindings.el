@@ -262,6 +262,7 @@
           :desc "Upcase Region" :ng "u" 'upcase-region
           (:prefix ("i" . "indent")
             :desc "Indent Buffer" :ng "b" #'+text/indent-buffer
+            :desc "Indent Defun" :ng "d" #'sp-indent-defun
             :desc "Indent Region" :ng "r" #'indent-region
             :desc "Indent Region Or Buffer" :ng "i" #'+text/indent-region-or-buffer))
         (:prefix "h"
