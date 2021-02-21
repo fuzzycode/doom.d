@@ -231,16 +231,16 @@
             (:prefix ("r" . "revisions")
               :desc "Merge Revisions With Ancestor" :ng "3" #'ediff-merge-revisions-with-ancestor
               :desc "Merge Revisions" :ng "r" #'ediff-merge-revisions))
-          (:prefix ("r" . "regions")
+          (:prefix ("r" . "regions/revisions")
             :desc "Diff Regions Linewise" :ng "l" #'ediff-regions-linewise
+            :desc "Revisions" :ng "r" #'ediff-revision
             :desc "Diff Regions Wordwise" :ng "w" #'ediff-regions-wordwise)
           (:prefix ("w" . "windows")
             :desc "Diff Windows Linewise" :ng "l" #'ediff-windows-linewise
             :desc "Diff Windows Wordwise" :ng "w" #'ediff-windows-wordwise)
           :desc "Backup" :ng "B" #'ediff-backup
           :desc "Documentation" :ng "h" #'ediff-documentation
-          :desc "Show Registry" :ng "s" #'ediff-show-registry
-          :desc "Revisions" :ng "r" #'ediff-revision)))
+          :desc "Show Registry" :ng "s" #'ediff-show-registry)))
 
 (map! (:leader
         :desc "Shell Command" :ng "!" 'shell-command
