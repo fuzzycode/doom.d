@@ -299,18 +299,10 @@
         :desc "Capture" :ng "c" #'org-capture)))
 ;;;###package
 (use-package! demo-it
-  :defer t
   :after org)
-
-;; ;;;###package
-;; ;(use-package! idle-org-agenda
-;; ;  :after-call pre-command-hook
-;; ;  :custom (idle-org-agenda-interval 600)
-;; ;  :config (idle-org-agenda-mode))
 
 ;;;###package
 (use-package! org-super-agenda
-  :defer t
   :after (org org-agenda)
   :config (shut-up (org-super-agenda-mode))
   :init
@@ -324,43 +316,26 @@
           (:name "In Progress" :todo "IN-PROGRESS" :order 6)
           (:name "Due today" :deadline today :order 1))))
 
-;;;###package
-(use-package! org-tempo ;; for <s templates etc.
-  :defer t
-  :after org)
-
 (after! org
-
-  (use-package! org-id
-    :defer t
-    :after org)
-
-  (add-hook 'org-capture-prepare-finalize-hook #'+org/insert-id)
-  (org-link-set-parameters "id" :store #'org-id-store-link) ;; Make sure that we can create id links
+  (org-link-set-parameters "id" :store #'org-id-store-link)) ;; Make sure that we can create id links
 
 ;;;###package
-  (use-package! org-make-toc
-    :defer t
-    :hook (org-mode . org-make-toc-mode))
-
-;;;###package
-  (use-package! org-expiry
-    :defer t
-    :after org
-    :commands org-expiry-insert-expiry
-    :bind (:map org-mode-map
-            ("C-c C-e" . #'org-expiry-insert-expiry))
-    :config (setq org-expiry-inactive-timestamps t)
-    (add-hook 'org-capture-before-finalize-hook #'+org/insert-creation)
-    (add-hook 'org-insert-heading-hook #'+org/insert-creation))
+(use-package! org-expiry
+  :after org
+  :commands org-expiry-insert-expiry
+  :bind (:map org-mode-map
+         ("C-c C-e" . #'org-expiry-insert-expiry))
+  :config (setq org-expiry-inactive-timestamps t)
+  (add-hook 'org-capture-before-finalize-hook #'+org/insert-creation)
+  (add-hook 'org-insert-heading-hook #'+org/insert-creation))
 
 ;;;###package
 (use-package! doct
-  :defer t
   :after org-capture
   :bind (("C-c c" . #'org-capture))
   :init (setq org-capture-templates '())
   :config
+  (add-hook 'org-capture-prepare-finalize-hook #'+org/insert-id)
   (add-to-list 'org-agenda-files (+org/projects-directory))
   (setq org-capture-templates
         (append org-capture-templates
@@ -394,4 +369,4 @@
                          :keys "n"
                          :file +org/notes-file
                          :headline "Notes"
-                         :template "* %?")))))))
+                         :template "* %?"))))))
