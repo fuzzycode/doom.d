@@ -26,6 +26,7 @@
        (:prefix ("l" . "lines"))
        (:prefix ("m" . "mode leader"))
        (:prefix ("n" . "narrow"))
+       (:prefix ("o" . "org"))
        (:prefix ("p" . "project"))
        (:prefix ("q" . "quit/reload"))
        (:prefix ("r" . "resume"))

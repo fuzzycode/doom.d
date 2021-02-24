@@ -294,6 +294,9 @@
 ;;           :desc "Org Todo" :ng "T" #'org-todo
 ;;           :desc "Preview Latex Fragment" :ng "x" #'org-latex-preview))))
 
+(map! (:leader :after org
+       (:prefix "o"
+        :desc "Capture" :ng "c" #'org-capture)))
 ;;;###package
 (use-package! demo-it
   :defer t
