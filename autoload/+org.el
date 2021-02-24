@@ -20,6 +20,7 @@
 
 ;;;###autoload
 (defun +org/org-archive-completed-in-buffer ()
+  "Archive all completed tasks in current buffer"
   (interactive)
   (org-map-entries '+org/org-archive-if-completed))
 
@@ -160,14 +161,13 @@ to be that of the scheduled date+time."
         (org-insert-link nil (concat "id:" (car id)) (read-string "Description: " name))))))
 
 ;;;###autoload
-(defun +org/org-journal-file-header-func ()
+(defun +org/org-journal-file-header-func (_)
   "Custom function to create journal header."
-  (concat
-    (pcase org-journal-file-type
-      (`daily "#+TITLE: Daily Journal\n#+STARTUP: showeverything\n")
-      (`weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded\n")
-      (`monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded\n")
-      (`yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded\n"))))
+  (concat (pcase org-journal-file-type
+            ('daily "#+TITLE: Daily Journal\n#+STARTUP: showeverything\n")
+            ('weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded\n")
+            ('monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded\n")
+            ('yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded\n"))))
 
 ;;;###autoload
 (defun +org/org-journal-find-location ()
