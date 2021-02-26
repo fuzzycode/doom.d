@@ -24,6 +24,7 @@
   (add-hook 'lsp-ui-mode-hook #'+lsp/dim-lsp-sideline))
 
 (setq dap-breakpoints-file (concat doom-local-dir "cache/dap-breakpoints"))
+(setq lsp-enable-semantic-highlighting t) ; Enable semantic highlighting by default
 
 (when (featurep! :completion ivy)
   (setq lsp-ivy-show-symbol-filename nil)) ; remove the file path from workspace symbols
