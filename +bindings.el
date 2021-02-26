@@ -366,21 +366,6 @@
 
 (map! :ng "M-." #'+lookup/definition)
 
-;; Occur mode
-(after! evil-collection
-  (evil-collection-define-key 'normal 'occur-mode-map
-    (kbd "C-c C-e") 'occur-edit-mode
-    (kbd "C-x C-q") nil)
-
-  (evil-collection-define-key 'normal 'occur-edit-mode-map
-    (kbd "C-c C-c") 'occur-cease-edit
-    (kbd "C-x C-q") nil))
-
-(after! outline
-  (evil-collection-define-key 'normal 'outline-mode-map
-    (kbd "C-j") nil
-    (kbd "C-k") nil))
-
 ;;; Clear q from normal map, I was never using vim macros anyway
 (define-key evil-normal-state-map (kbd "q") nil)
 
