@@ -23,6 +23,7 @@
                  (?j "[" . "]")
                  (?k "{" . "}")
                  (?l "<" . ">")
+                 (?t "`" . "`")
                  (?a "'" . "'")
                  (?s "\"" . "\""))))
     (prependq! evil-surround-pairs-alist pairs)
