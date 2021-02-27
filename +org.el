@@ -1,8 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 
-(defvar +org/org-directory "~/Documents/Org")
 
-(setq org-directory +org/org-directory)
+(setq org-directory (file-name-as-directory "~/Documents/Org"))
 
 (after! org
   (setq org-src-preserve-indentation t
@@ -15,8 +14,6 @@
 
       org-refile-target-verify-function #'+org/verify-refile-target
 
-      org-directory +org/org-directory
-      org-id-method 'uuidgen
       org-clone-delete-id t
       org-timeline-show-empty-dates t
       org-enforce-todo-dependencies t
@@ -29,7 +26,7 @@
       org-archive-mark-done t
 
       org-id-track-globally t
-      org-id-locations-file (concat +org/org-directory "/.orgids")
+      org-id-method 'uuidgen
 
       org-return-follows-link t
 
@@ -64,11 +61,11 @@
 
 
 ;; Define my different files
-(defvar +org/todo-file (concat (file-name-as-directory +org/org-directory) "todo.org"))
-(defvar +org/notes-file (concat (file-name-as-directory +org/org-directory) "notes.org"))
-(defvar +org/archive-file (concat (file-name-as-directory +org/org-directory) "archive.org"))
-(defvar +org/inbox-file (concat (file-name-as-directory +org/org-directory) "inbox.org"))
-(defvar +org/calendar-file (concat (file-name-as-directory +org/org-directory) "calendar.org"))
+(defvar +org/todo-file (concat (file-name-as-directory org-directory) "todo.org"))
+(defvar +org/notes-file (concat (file-name-as-directory org-directory) "notes.org"))
+(defvar +org/archive-file (concat (file-name-as-directory org-directory) "archive.org"))
+(defvar +org/inbox-file (concat (file-name-as-directory org-directory) "inbox.org"))
+(defvar +org/calendar-file (concat (file-name-as-directory org-directory) "calendar.org"))
 
 (setq org-archive-location (format "%s::%s" +org/archive-file "* From %s" ))
 
