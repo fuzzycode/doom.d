@@ -11,7 +11,7 @@
       org-log-redeadline 'time
       org-log-reschedule 'time
       org-treat-insert-todo-heading-as-state-change t
-
+      org-hide-emphasis-markers t
       org-refile-target-verify-function #'+org/verify-refile-target
 
       org-clone-delete-id t
