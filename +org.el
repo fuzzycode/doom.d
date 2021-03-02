@@ -77,10 +77,6 @@
   (when (file-exists-p +org/todo-file)
     (add-to-list 'org-agenda-files +org/todo-file)))
 
-;; org journal
-(setq org-journal-file-format "%Y-%m-%d"
-      org-journal-date-format "%A, %Y-%m-%d"
-      org-journal-file-header #'+org/org-journal-file-header-func)
 
 (map! :localleader :map org-journal-mode-map
       :desc "Previous Entry" :ng "p" #'org-journal-previous-entry
@@ -293,7 +289,25 @@
 
 (map! (:leader :after org
        (:prefix "o"
-        :desc "Capture" :ng "c" #'org-capture)))
+        :desc "Week Agenda" :ng "A" #'org-agenda-list
+        :desc "Capture" :ng "c" #'org-capture
+        (:prefix ("j" . "journal")
+         :desc "Today's Journal" :ng "j" #'org-journal-open-current-journal-file
+         :desc "Tomorrows Journal" :ng "J" #'+org/org-journal-show-journal-tomorrow
+         :desc "Yesterdays Journal" :ng "y" #'+org/org-journal-show-journal-yesterday
+         :desc "Next Journal" :ng "n" #'org-journal-next-entry
+         :desc "Previous Journal" :ng "p" #'org-journal-previous-entry))))
+
+;; org journal
+(setq org-journal-enable-agenda-integration t
+      org-journal-file-format "%Y-%m-%d"
+      org-journal-date-format "%A, %Y-%m-%d"
+      org-journal-date-prefix ""
+      org-journal-time-prefix ""
+      org-journal-time-format ""
+      org-journal-file-header #'+org/org-journal-file-header-func
+      org-journal-enable-cache t)
+
 ;;;###package
 (use-package! demo-it
   :after org)
@@ -355,8 +369,16 @@
                         ("Journal Entry"
                          :keys "j"
                          :type plain
-                         :template "** %(format-time-string org-journal-time-format) %?"
-                         :function +org/org-journal-find-location)
+                         :file +org/org-journal-date-location-today
+                         :children (("Timed Entry" :keys "j" :template "** %(format-time-string org-journal-time-format) %?"
+                                     :headline "Entries")
+                                    ("Today's Task" :keys "t" :headline "Tasks"
+                                     :template "** TODO %?\nSCHEDULED: <%(+org/org-journal--scheduled-time-string)>")
+                                    ("Tomorrows Task" :keys "T" :template "** TODO %?\nSCHEDULED: <%(+org/org-journal--scheduled-time-string)>"
+                                     :headline "Tasks" :file +org/org-journal-date-location-tomorrow)
+                                    ("Scheduled Task" :keys "s" :headline "Tasks"
+                                     :file +org/org-journal-date-location
+                                     :template "** TODO %?\nSCHEDULED: <%(+org/org-journal--scheduled-time-string)>")))
                         ("Feedback"
                          :keys "f"
                          :file +org/notes-file
@@ -365,5 +387,5 @@
                         ("Notes"
                          :keys "n"
                          :file +org/notes-file
-                         :headline "Notes"
-                         :template "* %?"))))))
+                         :headline "Note"
+                         :template "* %?")))))

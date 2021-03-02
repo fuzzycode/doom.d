@@ -161,34 +161,61 @@ to be that of the scheduled date+time."
         (org-insert-link nil (concat "id:" (car id)) (read-string "Description: " name))))))
 
 ;;;###autoload
-(defun +org/org-journal-file-header-func (_)
+(defun +org/org-journal-file-header-func (time)
   "Custom function to create journal header."
   (concat (pcase org-journal-file-type
-            ('daily "#+TITLE: Daily Journal\n#+STARTUP: showeverything\n")
-            ('weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded\n")
-            ('monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded\n")
-            ('yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded\n"))))
+            ('daily (format "#+TITLE: %s\n#+AUTHOR: %s\n#+STARTUP: content\n\n* Goals\n* Tasks\n* Entries\n* Summary\n"
+                            (format-time-string org-journal-date-format time) user-full-name))
+            ('weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded")
+            ('monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded")
+            ('yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded"))))
 
 ;;;###autoload
-(defun +org/org-journal-find-location ()
-  (org-journal-new-entry t)
-  (goto-char (point-max)))
+(defvar +org/org-journal--date-location-scheduled-time
+"Store the last selected time for journaling, used to add todo time stamps." nil)
 
 ;;;###autoload
-(defun +org/org-journal-today ()
-  ""
+(defun +org/org-journal--scheduled-time-string ()
+  "Return the scheduled time as a string."
+  (format-time-string "%Y-%m-%d" +org/org-journal--date-location-scheduled-time))
+
+;;;###autoload
+(defun +org/org-journal-date-location (&optional scheduled-time)
+  "Return the org journal file for DATE or ask user for a date. Creates the entry if missing."
   (require 'org-journal)
-  (let ((file-name (format-time-string org-journal-file-format)))
-    (expand-file-name file-name org-journal-dir)))
+  (let* ((scheduled-time (or scheduled-time (org-read-date t t nil "Date:")))
+         (file (org-journal--get-entry-path scheduled-time)))
+    (setq +org/org-journal--date-location-scheduled-time scheduled-time)
+    (unless (file-exists-p file)
+      (org-journal-new-entry t scheduled-time)
+      (save-buffer)
+      (kill-buffer (current-buffer)))
+    file))
 
 ;;;###autoload
-(defun +org/open-todays-journal ()
-  "Opens todays journal if it exists."
+(defun +org/org-journal-date-location-today ()
+  "Get journal location for today."
+  (+org/org-journal-date-location (org-read-date t t "")))
+
+;;;###autoload
+(defun +org/org-journal-date-location-tomorrow ()
+  "Get journal location for tomorrow."
+  (+org/org-journal-date-location (org-read-date t t "+1")))
+
+;;;###autoload
+(defun +org/org-journal-show-journal-tomorrow ()
+  "Show tomorrows journal."
   (interactive)
-  (let ((file-name (+org/org-journal-today)))
-    (if (file-exists-p file-name)
-        (find-file file-name)
-      (message "No journal found for today."))))
+  (org-journal-new-entry  (org-read-date t t "+1")))
 
 ;;;###autoload
+(defun +org/org-journal-show-journal-yesterday ()
+  "Show yesterdays journal"
+  (interactive)
+  (let ((path (org-journal--get-entry-path (org-read-date t t "-1"))))
+    (if (file-exists-p path)
+        (find-file path)
+      (user-error "No journal found for yesterday"))))
+
+;;;autoload
 (add-hook 'org-mode-hook #'flyspell-mode)
