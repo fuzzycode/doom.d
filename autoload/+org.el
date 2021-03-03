@@ -133,7 +133,6 @@ to be that of the scheduled date+time."
 (defun +org/project-org-file-path (&optional project-name)
   (concat (+org/projects-directory) (+org/project-org-file-name project-name)))
 
-
 ;;;###autoload
 (defun +org/extract-id-info ()
   "Extracts item and id if the item has an id."
@@ -164,8 +163,8 @@ to be that of the scheduled date+time."
 (defun +org/org-journal-file-header-func (time)
   "Custom function to create journal header."
   (concat (pcase org-journal-file-type
-            ('daily (format "#+TITLE: %s\n#+AUTHOR: %s\n#+STARTUP: content\n\n* Goals\n* Tasks\n* Entries\n* Summary\n"
-                            (format-time-string org-journal-date-format time) user-full-name))
+            ('daily (format "#+TITLE: %s\n#+WEEK: %d\n#+AUTHOR: %s\n#+STARTUP: content\n\n* Goals\n* Tasks\n* Entries\n* Summary\n"
+                            (format-time-string org-journal-date-format time) (ts-week (ts-now)) user-full-name))
             ('weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded")
             ('monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded")
             ('yearly "#+TITLE: Yearly Journal\n#+STARTUP: folded"))))
