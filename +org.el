@@ -1,54 +1,53 @@
 ;; -*- lexical-binding: t; -*-
 
-
 (setq org-directory (file-name-as-directory "~/Documents/Org"))
 
 (after! org
   (setq org-src-preserve-indentation t
-      org-src-fontify-natively t
-      org-log-into-drawer t
-      org-log-done 'time
-      org-log-redeadline 'time
-      org-log-reschedule 'time
-      org-treat-insert-todo-heading-as-state-change t
-      org-hide-emphasis-markers t
-      org-refile-target-verify-function #'+org/verify-refile-target
+        org-src-fontify-natively t
+        org-log-into-drawer t
+        org-log-done 'time
+        org-log-redeadline 'time
+        org-log-reschedule 'time
+        org-treat-insert-todo-heading-as-state-change t
+        org-hide-emphasis-markers t
+        org-refile-target-verify-function #'+org/verify-refile-target
 
-      org-clone-delete-id t
-      org-timeline-show-empty-dates t
-      org-enforce-todo-dependencies t
-      org-agenda-skip-scheduled-if-done t
-      org-agenda-skip-deadline-if-done t
-      org-agenda-inhibit-startup t
-      org-capture-templates '()
-      org-confirm-babel-evaluate nil
-      org-insert-heading-respect-content t
-      org-archive-mark-done t
+        org-clone-delete-id t
+        org-timeline-show-empty-dates t
+        org-enforce-todo-dependencies t
+        org-agenda-skip-scheduled-if-done t
+        org-agenda-skip-deadline-if-done t
+        org-agenda-inhibit-startup t
+        org-capture-templates '()
+        org-confirm-babel-evaluate nil
+        org-insert-heading-respect-content t
+        org-archive-mark-done t
 
-      org-id-track-globally t
-      org-id-method 'uuidgen
+        org-id-track-globally t
+        org-id-method 'uuidgen
 
-      org-return-follows-link t
+        org-return-follows-link t
 
-      org-highest-priority ?A
-      org-lowest-priority ?E
-      org-default-priority ?C
+        org-highest-priority ?A
+        org-lowest-priority ?E
+        org-default-priority ?C
 
-      org-agenda-time-grid '((daily today) (800 1000 1200 1400 1600 1800 2000) "......" "----------------")
+        org-agenda-time-grid '((daily today) (800 1000 1200 1400 1600 1800 2000) "......" "----------------")
 
-      org-refile-use-outline-path 'file
-      org-refile-allow-creating-parent-nodes t
-      org-refile-allow-creating-parent-nodes 'confirm
-      org-outline-path-complete-in-steps nil
-      org-todo-keywords '((sequence "IDEA(i!)" "TODO(t!)" "IN-PROGRESS(p!)"  "BLOCKED(b@/!)" "|" "DONE(d!)")
-                          (sequence "|" "CANCELED(c@/!)" "EXPIRED(!)"))
-      org-todo-keyword-faces '(("IDEA" . +org-todo-active)
-                               ("TODO" . +org-todo-active)
-                               ("IN-PROGRESS" . +org-todo-active)
-                               ("BLOCKED" . +org-todo-onhold)
-                               ("DONE" . +org-todo-onhold)
-                               ("CANCELED" . +org-todo-onhold)
-                               ("EXPIRED" . +org-todo-onhold)))
+        org-refile-use-outline-path 'file
+        org-refile-allow-creating-parent-nodes t
+        org-refile-allow-creating-parent-nodes 'confirm
+        org-outline-path-complete-in-steps nil
+        org-todo-keywords '((sequence "IDEA(i!)" "TODO(t!)" "IN-PROGRESS(p!)"  "BLOCKED(b@/!)" "|" "DONE(d!)")
+                            (sequence "|" "CANCELED(c@/!)" "EXPIRED(!)"))
+        org-todo-keyword-faces '(("IDEA" . +org-todo-active)
+                                 ("TODO" . +org-todo-active)
+                                 ("IN-PROGRESS" . +org-todo-active)
+                                 ("BLOCKED" . +org-todo-onhold)
+                                 ("DONE" . +org-todo-onhold)
+                                 ("CANCELED" . +org-todo-onhold)
+                                 ("EXPIRED" . +org-todo-onhold)))
 
   ;; Assure that the id file exists, it will crash if the file does not exist
   (unless (file-exists-p org-id-locations-file)
