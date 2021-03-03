@@ -288,17 +288,33 @@
          :desc "Tomorrows Journal" :ng "J" #'+org/org-journal-show-journal-tomorrow
          :desc "Yesterdays Journal" :ng "y" #'+org/org-journal-show-journal-yesterday
          :desc "Next Journal" :ng "n" #'org-journal-next-entry
-         :desc "Previous Journal" :ng "p" #'org-journal-previous-entry))))
+         :desc "Previous Journal" :ng "p" #'org-journal-previous-entry))
+       (:prefix "s"
+        :desc "Search Org Directory" :ng "o" #'+default/org-notes-search)
+       (:prefix "f"
+        (:prefix ("o" . "org")
+         :desc "Browse Org files" :ng "b" #'+default/browse-notes
+         :desc "Todo File" :ng "t" (cmd! () (find-file +org/todo-file))
+         :desc "Notes File" :ng "n" (cmd! () (find-file +org/notes-file))
+         :desc "Calendar File" :ng "c" (cmd! () (find-file +org/calendar-file))
+         :desc "Inbox File" :ng "i" (cmd! () (find-file +org/inbox-file))
+         :desc "Archive File" :ng "a" (cmd! () (find-file +org/archive-file))
+         :desc "Today's Journal" :ng "j" #'+org/open-todays-journal))
+       (:prefix "p"
+        :desc "Open Org File" :ng "o" (cmd! () (when (projectile-project-p)
+                                                 (find-file (+org/project-org-file-path)))))))
+;;;###package org-journal
+(after! org-journal
+  (setq org-journal-enable-agenda-integration t
+        org-journal-file-format "%Y-%m-%d"
+        org-journal-date-format "%A, %Y-%m-%d"
+        org-journal-date-prefix ""
+        org-journal-time-prefix ""
+        org-journal-file-header #'+org/org-journal-file-header-func
+        org-journal-enable-cache t)
 
-;; org journal
-(setq org-journal-enable-agenda-integration t
-      org-journal-file-format "%Y-%m-%d"
-      org-journal-date-format "%A, %Y-%m-%d"
-      org-journal-date-prefix ""
-      org-journal-time-prefix ""
-      org-journal-time-format ""
-      org-journal-file-header #'+org/org-journal-file-header-func
-      org-journal-enable-cache t)
+  (define-key org-journal-mode-map (kbd "A-j") #'org-journal-previous-entry)
+  (define-key org-journal-mode-map (kbd "A-k") #'org-journal-next-entry))
 
 ;;;###package
 (use-package! demo-it
@@ -380,4 +396,4 @@
                          :keys "n"
                          :file +org/notes-file
                          :headline "Note"
-                         :template "* %?")))))
+                         :template "* %?"))))))
