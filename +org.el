@@ -134,6 +134,8 @@
         :desc "Goto Named Result" :ng "r" #'org-babel-goto-named-result
         :desc "Execute Buffer" :ng "b" #'org-babel-execute-buffer
         :desc "Execute Subtree" :ng "s" #'org-babel-execute-subtree
+        :desc "Remove Result" :ng "k" #'org-babel-remove-result
+        :desc "Remove All Results" :ng "K" (cmd! () (org-babel-remove-result-one-or-many t))
         :desc "Demarcate Block" :ng "d" #'org-babel-demarcate-block
         :desc "Tangle" :ng "t" #'org-babel-tangle
         :desc "Tangle File" :ng "f" #'org-babel-tangle-file
