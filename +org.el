@@ -78,7 +78,8 @@
 
 
 ;;; Mode local bindings
-(map! (:localleader
+(map! :after org
+      (:localleader
        :map (org-mode-map org-journal-mode-map)
        ;; Assure that any doom bindings are first cleared
        :ng "'" nil
