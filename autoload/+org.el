@@ -163,7 +163,7 @@ to be that of the scheduled date+time."
 (defun +org/org-journal-file-header-func (time)
   "Custom function to create journal header."
   (concat (pcase org-journal-file-type
-            ('daily (format "#+TITLE: %s\n#+WEEK: %d\n#+AUTHOR: %s\n#+STARTUP: content\n\n* Goals\n* Tasks\n* Entries\n* Summary\n"
+            ('daily (format "#+TITLE: %s\n#+WEEK: %d\n#+AUTHOR: %s\n#+STARTUP: content\n\n* Expectations\n* Tasks\n* Entries\n* Summary\n"
                             (format-time-string org-journal-date-format time) (ts-week (ts-now)) user-full-name))
             ('weekly "#+TITLE: Weekly Journal\n#+STARTUP: folded")
             ('monthly "#+TITLE: Monthly Journal\n#+STARTUP: folded")
