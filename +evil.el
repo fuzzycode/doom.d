@@ -15,6 +15,7 @@
     (kbd "C-j") nil
     (kbd "C-k") nil))
 
+;;;###package evil-surround
 (after! evil-surround
   (evil-define-key 'visual evil-surround-mode-map "s" #'evil-surround-region)
 
@@ -28,3 +29,7 @@
                  (?s "\"" . "\""))))
     (prependq! evil-surround-pairs-alist pairs)
     (prependq! evil-embrace-evil-surround-keys (mapcar #'car pairs))))
+
+;;;###package evil-snipe
+(after! evil-snipe
+  (setq evil-snipe-spillover-scope 'whole-visible))
