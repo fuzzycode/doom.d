@@ -92,4 +92,5 @@
 
 ;; Add evil packages
 (when (featurep! :editor evil)
+  (package! evil-surround)
   (package! evil-collection))

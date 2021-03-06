@@ -15,21 +15,22 @@
     (kbd "C-j") nil
     (kbd "C-k") nil))
 
-;;;###package evil-surround
-(after! evil-surround
-  (evil-define-key 'visual evil-surround-mode-map "s" #'evil-surround-region)
+;;;###package evil-snipe
+(after! evil-snipe
+  (setq evil-snipe-spillover-scope 'whole-visible))
 
+;;;###package
+(use-package! evil-surround
+  :when (featurep! :editor evil)
+  :after evil-embrace
+  :config
+  (evil-define-key 'visual evil-surround-mode-map "s" #'evil-surround-region)
   (let ((pairs '((?g "$" . "$")
                  (?h "(" . ")")
                  (?j "[" . "]")
                  (?k "{" . "}")
                  (?l "<" . ">")
-                 (?t "`" . "`")
                  (?a "'" . "'")
                  (?s "\"" . "\""))))
-    (prependq! evil-surround-pairs-alist pairs)
-    (prependq! evil-embrace-evil-surround-keys (mapcar #'car pairs))))
-
-;;;###package evil-snipe
-(after! evil-snipe
-  (setq evil-snipe-spillover-scope 'whole-visible))
+    (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
+    (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
