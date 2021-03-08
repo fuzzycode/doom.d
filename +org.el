@@ -76,8 +76,8 @@
   (when (file-exists-p +org/todo-file)
     (add-to-list 'org-agenda-files +org/todo-file)))
 
-(after! org
-;;; Mode local bindings
+(defun +org/org-init-keybinds-h ()
+    ;;; Mode local bindings
   (map!
    (:localleader
     :map (org-mode-map org-journal-mode-map)
@@ -304,6 +304,9 @@
        (:prefix "p"
         :desc "Open Org File" :ng "o" (cmd! () (when (projectile-project-p)
                                                  (find-file (+org/project-org-file-path)))))))
+
+(add-hook 'org-load-hook #'+org/org-init-keybinds-h :append t)
+
 ;;;###package org-journal
 (after! org-journal
   (setq org-journal-enable-agenda-integration t
