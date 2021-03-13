@@ -282,6 +282,7 @@
           :desc "New Entry" :ng "j" #'org-journal-new-entry
           :desc "Open Journal" :ng "o" #'+org/open-todays-journal)))
        (:prefix "o"
+        :desc "Agenda Dispatch" :ng "a" #'org-agenda
         :desc "Week Agenda" :ng "A" #'org-agenda-list
         :desc "Capture" :ng "c" #'org-capture
         (:prefix ("j" . "journal")
@@ -327,17 +328,39 @@
 ;;;###package
 (use-package! org-super-agenda
   :after (org org-agenda)
-  :config (shut-up (org-super-agenda-mode))
-  :init
-  (setq org-super-agenda-groups
-        '((:name "Schedule" :time-grid t :order 4)
-          (:name "Today" :scheduled today :order 3)
-          (:name "Important" :priority "A" :order 0)
-          (:name "Overdue" :deadline past :order 2)
-          (:name "Due soon" :deadline future :order 5)
-          (:name "Todo" :todo "TODO" :order 7)
-          (:name "In Progress" :todo "IN-PROGRESS" :order 6)
-          (:name "Due today" :deadline today :order 1))))
+  :init (setq org-super-agenda-groups '((:name "Today"
+                                         :scheduled today)
+                                        (:name "Overdue"
+                                         :scheduled past)
+                                        (:name "Soon"
+                                         :scheduled future)))
+  (setq org-agenda-custom-commands
+        '(("d" "Daily Planner"
+           ((agenda "" ((org-agenda-span 1)
+                        (org-agenda-start-day nil)
+                        (org-agenda-skip-scheduled-if-done t)
+                        (org-agenda-skip-deadline-if-done t)
+                        (org-super-agenda-groups
+                         '((:name "Schedule"
+                            :time-grid t
+                            :scheduled today
+                            :order 0)
+                           (:habit t
+                            :order 1)
+                           (:name "Due Today"
+                            :deadline today
+                            :order 2)
+                           (:name "Due Soon"
+                            :deadline future
+                            :order 4)
+                         (:name "Overdue"
+                          :deadline past
+                          :order 3))
+                         )))))))
+  :config
+  ;TODO This clears the whole map and is too invasive. Used to not break j/k bindings in agenda buffer
+  (setq org-super-agenda-header-map (make-sparse-keymap))
+  (shut-up (org-super-agenda-mode)))
 
 (after! org
   (org-link-set-parameters "id" :store #'org-id-store-link)) ;; Make sure that we can create id links
