@@ -338,25 +338,24 @@
         '(("d" "Daily Planner"
            ((agenda "" ((org-agenda-span 1)
                         (org-agenda-start-day nil)
-                        (org-agenda-skip-scheduled-if-done t)
-                        (org-agenda-skip-deadline-if-done t)
+                        (org-agenda-skip-scheduled-if-done nil)
+                        (org-agenda-skip-deadline-if-done nil)
                         (org-super-agenda-groups
-                         '((:name "Schedule"
-                            :time-grid t
+                         '((:name "Tasks"
                             :scheduled today
-                            :order 0)
-                           (:habit t
                             :order 1)
+                           (:name "Habits"
+                            :habit t
+                            :order 3)
                            (:name "Due Today"
                             :deadline today
                             :order 2)
                            (:name "Due Soon"
                             :deadline future
-                            :order 4)
-                         (:name "Overdue"
-                          :deadline past
-                          :order 3))
-                         )))))))
+                            :order 5)
+                           (:name "Overdue"
+                            :deadline past
+                            :order 4)))))))))
   :config
   ;TODO This clears the whole map and is too invasive. Used to not break j/k bindings in agenda buffer
   (setq org-super-agenda-header-map (make-sparse-keymap))
