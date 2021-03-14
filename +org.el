@@ -41,7 +41,7 @@
         org-outline-path-complete-in-steps nil
         org-todo-keywords '((sequence "IDEA(i!)" "TODO(t!)" "IN-PROGRESS(p!)"  "BLOCKED(b@/!)" "|" "DONE(d!)")
                             (sequence "|" "CANCELED(c@/!)" "EXPIRED(!)")
-                            (sequence "PENDING(h)" "|" "DONE(d!)"))
+                            (sequence "PENDING(h)" "|" "COMPLETED(c!)"))
         org-todo-keyword-faces '(("IDEA" . +org-todo-active)
                                  ("TODO" . +org-todo-active)
                                  ("PENDING" . +org-todo-active)
@@ -343,21 +343,19 @@
                         (org-agenda-skip-scheduled-if-done nil)
                         (org-agenda-skip-deadline-if-done nil)
                         (org-super-agenda-groups
-                         '((:name "Tasks"
-                            :scheduled today
-                            :order 1)
-                           (:name "Habits"
-                            :habit t
-                            :order 3)
-                           (:name "Due Today"
+                         '((:name "Habits"
+                            :habit t)
+                           (:name "Tasks"
                             :deadline today
-                            :order 2)
+                            :scheduled today)
                            (:name "Due Soon"
                             :deadline future
-                            :order 5)
+                            :scheduled future)
                            (:name "Overdue"
                             :deadline past
-                            :order 4)))))))))
+                            :scheduled past)
+                           (:name "Schedule"
+                            :time-grid t)))))))))
   :config
   ;TODO This clears the whole map and is too invasive. Used to not break j/k bindings in agenda buffer
   (setq org-super-agenda-header-map (make-sparse-keymap))
