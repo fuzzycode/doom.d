@@ -126,6 +126,10 @@
 ;; Default to relative line numbers
 (add-hook 'prog-mode-hook (lambda () (setq display-line-numbers-type 'relative)))
 
+;; Open documentation in webkit buffer
+(when (featurep 'xwidget-internal)
+  (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn))
+
 (after! doom-modeline
   (setq doom-modeline-major-mode-icon t
         doom-modeline-indent-info t
