@@ -40,9 +40,11 @@
         org-refile-allow-creating-parent-nodes 'confirm
         org-outline-path-complete-in-steps nil
         org-todo-keywords '((sequence "IDEA(i!)" "TODO(t!)" "IN-PROGRESS(p!)"  "BLOCKED(b@/!)" "|" "DONE(d!)")
-                            (sequence "|" "CANCELED(c@/!)" "EXPIRED(!)"))
+                            (sequence "|" "CANCELED(c@/!)" "EXPIRED(!)")
+                            (sequence "PENDING(h)" "|" "DONE(d!)"))
         org-todo-keyword-faces '(("IDEA" . +org-todo-active)
                                  ("TODO" . +org-todo-active)
+                                 ("PENDING" . +org-todo-active)
                                  ("IN-PROGRESS" . +org-todo-active)
                                  ("BLOCKED" . +org-todo-onhold)
                                  ("DONE" . +org-todo-onhold)
