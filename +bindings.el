@@ -339,6 +339,7 @@
         :desc "Evaluate buffer/region" :ng "e" #'+eval/buffer-or-region
         :desc "Evaluate & replace region" :ng "E" #'+eval:replace-region
         :desc "Format buffer/region" :ng "f" #'+format/region-or-buffer
+        :desc "Lookup Docset" :ng "h" #'+lookup/in-docsets
         :desc "Send to repl" :ng "s"  #'+eval/send-region-to-repl
         :desc "Delete trailing white space" :ng "w" #'delete-trailing-whitespace
         :desc "Delete trailing newlines" :ng "W" #'doom/delete-trailing-newlines
