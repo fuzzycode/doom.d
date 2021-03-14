@@ -352,6 +352,14 @@
         (:when (featurep! :checkers syntax)
          :desc "List errors" :ng "x" #'flycheck-list-errors))))
 
+(map! (:leader
+       (:when (featurep! :app rss)
+        (:prefix "a"
+         :desc "News Feed" :ng "n" #'elfeed)
+        (:prefix "f"
+         (:prefix "o"
+          :desc "Open Elfeed File(s)" :ng "e" #'+org/open-efeed-files)))))
+
 (map! (:after evil
        (:leader
        (:prefix "j"

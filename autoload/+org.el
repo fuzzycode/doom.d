@@ -1,5 +1,15 @@
 ;; -*- lexical-binding: t; -*-
 
+
+;;;###autoload
+(defun +org/open-efeed-files ()
+  "Open all elfeed files."
+  (interactive)
+  (dolist (file rmh-elfeed-org-files)
+    (let ((file (expand-file-name file org-directory)))
+      (when (file-exists-p file)
+        (find-file file)))))
+
 ;; http://doc.norang.ca/org-mode.html
 ;;;###autoload
 (defun +org/verify-refile-target ()
@@ -222,5 +232,5 @@ to be that of the scheduled date+time."
         (find-file path)
       (user-error "No journal found for yesterday"))))
 
-;;;autoload
+;;;###autoload
 (add-hook 'org-mode-hook #'flyspell-mode)
