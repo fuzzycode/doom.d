@@ -320,8 +320,8 @@
         org-journal-file-header #'+org/org-journal-file-header-func
         org-journal-enable-cache t)
 
-  (define-key org-journal-mode-map (kbd "A-j") #'org-journal-previous-entry)
-  (define-key org-journal-mode-map (kbd "A-k") #'org-journal-next-entry))
+  (define-key org-journal-mode-map (kbd "A-k") #'org-journal-previous-entry)
+  (define-key org-journal-mode-map (kbd "A-j") #'org-journal-next-entry))
 
 ;;;###package
 (use-package! demo-it
