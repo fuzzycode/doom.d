@@ -221,7 +221,7 @@ to be that of the scheduled date+time."
 (defun +org/org-journal-show-journal-tomorrow ()
   "Show tomorrows journal."
   (interactive)
-  (org-journal-new-entry  (org-read-date t t "+1")))
+  (org-journal-new-entry (org-read-date t t "+1")))
 
 ;;;###autoload
 (defun +org/org-journal-show-journal-yesterday ()
