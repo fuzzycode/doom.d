@@ -6,6 +6,10 @@
   :config (set-docsets! 'cmake-mode "CMake"))
 
 ;;;###package
+(use-package! ninja-mode
+  :defer t)
+
+;;;###package
 (use-package! modern-cpp-font-lock
   :hook (c++-mode . modern-c++-font-lock-mode))
 

@@ -4,4 +4,6 @@
 (package! modern-cpp-font-lock)
 (package! cmake-mode)
 
+(package! ninja-mode)
+
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
