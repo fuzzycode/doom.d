@@ -255,16 +255,6 @@
   :after flycheck)
 
 ;;;###package
-(use-package! uuidgen
-  :defer t
-  :commands (uuidgen-1 uuidgen-4)
-  :init (map! :leader (:prefix "i"
-                        (:prefix ("U" . "uuid")
-                         :desc "Time based UUID (1)" :ng "t" (cmd! ()  (insert (uuidgen-1)))
-                         :desc "Random based UUID (4)" :ng "r" (cmd! () (insert (uuidgen-4)))
-                         :desc "UUID" :ng "U" (cmd! () (insert (uuidgen-4)))))))
-
-;;;###package
 (use-package! rg
   :defer t
   :commands (rg-project rg rg-dwim rg-menu rg-list-searches rg-toggle-command-hiding)

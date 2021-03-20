@@ -70,7 +70,6 @@
 (package! centered-cursor-mode)
 (package! highlight-doxygen)
 (package! super-save)
-(package! uuidgen)
 (package! smart-newline)
 (package! rg)
 (package! hardhat)
