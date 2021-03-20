@@ -36,9 +36,6 @@
 ;; CSV
 (package! csv-mode)
 
-;; CPP MODE
-(package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
-
 (package! lsp-treemacs :pin nil)
 
 ;; MAIL
