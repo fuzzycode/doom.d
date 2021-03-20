@@ -224,31 +224,10 @@
                '(?c . avy-comment-word)))
 
 ;;;###package
-(use-package! buffer-flip
-  :defer t
-  :commands (buffer-flip)
-  :init (map! (:leader :desc "Flip Buffer" :ng [tab] #'buffer-flip))
-  :bind  (:map buffer-flip-map
-           ([tab] . buffer-flip-backward)
-           ("C-g" . buffer-flip-abort))
-  :config
-  (setq buffer-flip-skip-patterns
-        '("^\\*helm\\b"
-          "^\\*.*\\*$"
-          "^magit-diff.*$"
-          "^magit-process.*$")))
-
-;;;###package
 (use-package! centered-cursor-mode
   :defer t
   :commands (centered-cursor-mode)
   :init (+core/add-toggle centered-cursor-mode :mode centered-cursor-mode :bind '(:desc "Centered Cursor Mode" :key "c")))
-
-
-;; ;;;###package
-;; (use-package! easy-kill
-;;   :commands easy-kill
-;;   :bind (([remap kill-ring-save] . #'easy-kill)))
 
 ;;;###package
 (use-package! super-save
