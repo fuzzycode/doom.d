@@ -78,10 +78,25 @@
   (when (file-exists-p +org/todo-file)
     (add-to-list 'org-agenda-files +org/todo-file)))
 
+
+(after! ox-latex
+  (add-to-list 'org-latex-classes
+             '("org-plain-latex"
+               "\\documentclass{article}
+           [NO-DEFAULT-PACKAGES]
+           [PACKAGES]
+           [EXTRA]"
+               ("\\section{%s}" . "\\section*{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
+               ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+               ("\\paragraph{%s}" . "\\paragraph*{%s}")
+               ("\\subparagraph{%s}" . "\\subparagraph*{%s}"))))
+
 (defun +org/org-init-keybinds-h ()
     ;;; Mode local bindings
   (map!
    (:localleader
+    :after org
     :map (org-mode-map org-journal-mode-map)
     ;; Assure that any doom bindings are first cleared
     :ng "'" nil
