@@ -56,6 +56,8 @@
 (use-package! treemacs
   :defer t
   :init (advice-add #'treemacs-visit-node-default :around #'doom-set-jump-a)
+  (with-eval-after-load 'winum
+    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
   :bind (:map treemacs-mode-map
          ("SPC" . #'treemacs-visit-node-default))
   :config (treemacs-follow-mode +1))
