@@ -76,8 +76,6 @@
 
 (package! counsel-doxygen-snippets
   :recipe (:host github :repo "fuzzycode/counsel-doxygen-snippets"))
-(package! flycheck-clazy
-  :recipe (:host github :repo "fuzzycode/flycheck-clazy"))
 
 (when IS-MAC
   (package! reveal-in-osx-finder)

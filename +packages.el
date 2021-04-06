@@ -250,11 +250,6 @@
                        :desc "Doxygen Snippet" :ng "S" #'counsel-doxygen-snippets)))
 
 ;;;###package
-(use-package! flycheck-clazy
-  :when (featurep! :checkers syntax)
-  :after flycheck)
-
-;;;###package
 (use-package! rg
   :defer t
   :commands (rg-project rg rg-dwim rg-menu rg-list-searches rg-toggle-command-hiding)
