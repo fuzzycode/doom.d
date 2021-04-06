@@ -6,6 +6,8 @@
 
 (setq projectile-enable-caching nil)
 
+(setq plantuml-indent-level 2)
+
 (after! yasnippet
   (when (file-exists-p "~/.snippets")
     (add-to-list 'yas-snippet-dirs "~/.snippets")
