@@ -44,7 +44,6 @@
 (load! "+bindings")
 (load! "+builtin")
 (load! "+core")
-(load! "+projectile")
 (load! "+ivy")
 (load! "+git")
 (load! "+org")

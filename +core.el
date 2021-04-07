@@ -4,7 +4,6 @@
 
 (add-hook 'help-mode-hook #'rainbow-mode)
 
-(setq projectile-enable-caching nil)
 
 (setq plantuml-indent-level 2)
 
@@ -35,11 +34,11 @@
                               " " filename)))
 
 (after! projectile
-  ;; Add these to the back of the list to give priority to .projectile and .git files
-  (add-to-list 'projectile-project-root-files-bottom-up "compile_commands.json" t)
-  (add-to-list 'projectile-project-root-files-bottom-up ".lsp-cache" t)
-  (add-to-list 'projectile-project-root-files-bottom-up ".cache" t)
+  (setq projectile-enable-caching nil)
+  (global-set-key (kbd "M-o") #'projectile-find-file-dwim)
 
+  ;; Add this to the back of the list to give priority to .projectile and .git files
+  (add-to-list 'projectile-project-root-files-bottom-up "compile_commands.json" t)
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
 
 (setq ws-butler-convert-leading-tabs-or-spaces t)
