@@ -14,7 +14,10 @@
             :desc "Package" :ng "p" #'describe-package
             :desc "Theme" :ng "t" #'describe-theme
             :desc "Variable" :ng "v" #'describe-variable
-            :desc "Text Properties" :ng "T" #'describe-text-properties))))
+            :desc "Text Properties" :ng "T" #'describe-text-properties)
+          (:prefix ("l" . "lookup")
+           :desc "Documentation" :ng "d" #'+lookup:dash
+           :desc "Online" :ng "o" #'+lookup:online))))
 
 (map! (:leader
         (:prefix "s"
@@ -385,3 +388,6 @@
 ;;; Make q close the window, not just the buffer
 (when (featurep 'xwidget-internal)
   (add-hook 'xwidget-webkit-mode-hook (lambda () (define-key xwidget-webkit-mode-map  "q" #'+workspace/close-window-or-workspace))))
+
+(add-hook 'prog-mode-hook (lambda ()
+                            (define-key evil-normal-state-map (kbd "J") #'+lookup:dash)))
