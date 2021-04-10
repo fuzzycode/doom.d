@@ -144,3 +144,8 @@
         doom-modeline-env-version t
         doom-modeline-mu4e t
         doom-modeline-vcs-max-length 45))
+
+(after! flyspell
+  (define-key flyspell-mode-map (kbd "M-i") #'flyspell-correct-wrapper))
+
+(set-flyspell-predicate! '(c++-mode c-mode) #'cc-flyspell-predicate-p)

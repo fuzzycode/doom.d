@@ -71,14 +71,13 @@
        pdf               ; pdf enhancements
        prodigy
        rgb               ; creating color strings
-       ;;terraform         ; infrastructure as code
        tmux              ; an API for interacting with tmux
        upload            ; map local to remote projects via ssh/ftp
 
        :checkers
        syntax
        grammar
-       spell
+       (spell +everywhere +flyspell +enchant)
 
        :lang
        ;;assembly          ; assembly for fun or debugging
@@ -90,7 +89,6 @@
        ;;ess               ; emacs speaks statistics
        ;;go                ; the hipster dialect
        ;;(haskell +intero) ; a language that's lazier than I am
-       ;;idris             ;
        (java +lsp)                ; the poster child for carpal tunnel syndrome
        javascript          ; all(hope(abandon(ye(who(enter(here))))))
        ;;julia             ; a better, faster MATLAB
@@ -110,7 +108,6 @@
         +jupyter
         +pandoc
         +present)
-       ;;perl              ; write code no one else can comprehend
        plantuml          ; diagrams for confusing people more
        ;;purescript        ; javascript, but functional
        (python +pyenv +lsp)            ; beautiful is better than ugly

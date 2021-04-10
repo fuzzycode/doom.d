@@ -13,6 +13,10 @@
                         (mark " "
                               (name 16 -1)
                               " " filename)))
+
+
+(setq ispell-dictionary "en_GB")
+
 ;;;###package company
 (after! company
   (setq company-tooltip-minimum-width 80

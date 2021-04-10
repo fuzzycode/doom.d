@@ -369,6 +369,19 @@
         :desc "Beginning of line" :nvg "a" #'evil-beginning-of-line
         :desc "End of line" :nvg "e" #'evil-end-of-line))))
 
+(map! (:after flyspell
+        (:leader
+         (:prefix "S"
+          :desc "Add Word" :ng "a" #'+spell/add-word
+          :desc "Remove Word" :ng "r" #'+spell/remove-word
+          :desc "Next Error" :ng "j" #'+spell/next-error
+          :desc "Previous Error" :ng "k" #'+spell/previous-error
+          :desc "Correct Next" :ng "n" #'flyspell-correct-next
+          :desc "Correct Previous" :ng "p" #'flyspell-correct-previous
+          :desc "Correct At Point" :ng "c" #'flyspell-correct-at-point
+          :desc "Correct DWIM" :ng "s" #'flyspell-correct-wrapper
+          :desc "Change Dictionary" :ng "d" #'ispell-change-dictionary))))
+
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 (global-set-key (kbd "C-c l") #'recenter)
 
@@ -387,7 +400,10 @@
 
 ;;; Make q close the window, not just the buffer
 (when (featurep 'xwidget-internal)
-  (add-hook 'xwidget-webkit-mode-hook (lambda () (define-key xwidget-webkit-mode-map  "q" #'+workspace/close-window-or-workspace))))
+  (add-hook 'xwidget-webkit-mode-hook (lambda ()
+                                        (define-key xwidget-webkit-mode-map (kbd "<up>") #'xwidget-webkit-scroll-up-line)
+                                        (define-key xwidget-webkit-mode-map "<down>" #'xwidget-webkit-scroll-down-line)
+                                        (define-key xwidget-webkit-mode-map  "q" #'+workspace/close-window-or-workspace))))
 
 (add-hook 'prog-mode-hook (lambda ()
                             (define-key evil-normal-state-map (kbd "J") #'+lookup:dash)))
