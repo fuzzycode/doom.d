@@ -6,6 +6,9 @@
 ;; Stay on bleeding edge for lsp
 (unpin! '(lsp-mode lsp-ui dap-modes))
 
+;; C++
+(package! ninja-mode)
+(package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
 
 ;; GIT
 (package! magit-imerge)

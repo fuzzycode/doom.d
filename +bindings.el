@@ -407,3 +407,6 @@
 
 (add-hook 'prog-mode-hook (lambda ()
                             (define-key evil-normal-state-map (kbd "J") #'+lookup:dash)))
+
+(after! (projectile cc-mode)
+  (define-key c++-mode-map (kbd "<A-tab>") #'projectile-find-other-file))

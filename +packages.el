@@ -384,3 +384,11 @@
   :init (map! (:leader
                (:prefix "a"
                 :desc "Ebib" :ng "e" #'ebib))))
+
+;;;###package
+(use-package! ninja-mode
+  :defer t)
+
+;;;###package
+(use-package! ff-c-style
+  :hook (c-mode-common . ff-add-c-style))
