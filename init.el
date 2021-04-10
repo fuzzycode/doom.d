@@ -86,7 +86,6 @@
        common-lisp       ; if you've seen one lisp, you've seen them all
        ;;csharp            ; unity, .NET, and mono shenanigans
        emacs-lisp        ; drown in parentheses
-       ;;ess               ; emacs speaks statistics
        ;;go                ; the hipster dialect
        ;;(haskell +intero) ; a language that's lazier than I am
        (java +lsp)                ; the poster child for carpal tunnel syndrome
@@ -138,5 +137,4 @@
        ;; +langtool)       ; a proofreader (grammar/style check) for Emacs
 
        :config
-       (default +smartparens)
-       )
+       (default +smartparens))
