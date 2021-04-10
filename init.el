@@ -34,11 +34,7 @@
        (evil +everywhere)
        file-templates    ; auto-snippets for empty files
        fold
-       ;; (format +onsave)  ; automated prettiness
-       ;;lispy             ; vim for lisp, for people who don't like vim
        multiple-cursors  ; editing in many places at once
-       ;;objed             ; text object editing for the innocent
-       ;;parinfer          ; turn lisp into python, sort of
        rotate-text       ; cycle region at point between text candidates
        snippets          ; my elves. They type so I don't have to
        word-wrap         ; soft wrapping with language-aware indent
@@ -66,7 +62,6 @@
         +docsets)        ; ...or in Dash docsets locally
        lsp
        magit    ; a git porcelain for Emacs
-       ;;make            ; run make tasks from Emacs
        pdf               ; pdf enhancements
        prodigy
        rgb               ; creating color strings
@@ -79,24 +74,13 @@
        (spell +everywhere +flyspell +enchant)
 
        :lang
-       ;;assembly          ; assembly for fun or debugging
        (cc +lsp)                ; C/C++/Obj-C madness
-       ;;clojure           ; java with a lisp
        common-lisp       ; if you've seen one lisp, you've seen them all
-       ;;csharp            ; unity, .NET, and mono shenanigans
        emacs-lisp        ; drown in parentheses
-       ;;go                ; the hipster dialect
-       ;;(haskell +intero) ; a language that's lazier than I am
        (java +lsp)                ; the poster child for carpal tunnel syndrome
        javascript          ; all(hope(abandon(ye(who(enter(here))))))
-       ;;julia             ; a better, faster MATLAB
-       ;;kotlin            ; a better, slicker Java(Script)
        (latex +latexmk +lsp)            ; writing papers in Emacs has never been so fun
-       ;;lua               ; one-based indices? one-based indices
        markdown          ; writing docs for people to ignore
-       ;;nim               ; python + lisp at the speed of c
-       ;;nix               ; I hereby declare "nix geht mehr!"
-       ;;ocaml             ; an objective camel
        (org
         +brain
         +dragndrop
@@ -107,33 +91,20 @@
         +pandoc
         +present)
        plantuml          ; diagrams for confusing people more
-       ;;purescript        ; javascript, but functional
        (python +pyenv +lsp)            ; beautiful is better than ugly
        qt                ; the 'cutest' gui framework ever
        rest              ; Emacs as a REST client
        rst
-       ;;ruby              ; 1.step {|i| p "Ruby is #{i.even? ? 'love' : 'life'}"}
-       ;;rust              ; Fe2O3.unwrap().unwrap().unwrap().unwrap()
        (sh +lsp)           ; she sells {ba,z,fi}sh shells on the C xor
-       ;;swift             ; who asked for emoji variables?
        web               ; the tubes
        (yaml +lsp)
        json
 
        :email
        mu4e
-       
-       ;; Applications are complex and opinionated modules that transform Emacs
-       ;; toward a specific purpose. They may have additional dependencies and
-       ;; should be loaded late.
+
        :app
-       ;;calendar
-       ;;irc               ; how neckbeards socialize
        (rss +org)        ; emacs as an RSS reader
-       ;;twitter           ; twitter client https://twitter.com/vnought
-       ;;(write            ; emacs for writers (fiction, notes, papers, etc.)
-       ;; +wordnut         ; wordnet (wn) search
-       ;; +langtool)       ; a proofreader (grammar/style check) for Emacs
 
        :config
        (default +smartparens))
