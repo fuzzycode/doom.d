@@ -62,8 +62,8 @@
 
   (define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-slurp-sexp)
   (define-key smartparens-mode-map (kbd "C-<left>") 'sp-forward-barf-sexp)
-  (define-key smartparens-mode-map (kbd "C-M-<left>") 'sp-backward-slurp-sexp)
-  (define-key smartparens-mode-map (kbd "C-M-<right>") 'sp-backward-barf-sexp)
+  (define-key smartparens-mode-map (kbd "C-M-<left>") 'sp-backward-barf-sexp)
+  (define-key smartparens-mode-map (kbd "C-M-<right>") 'sp-backward-slurp-sexp)
 
   (sp-local-pair 'c++-mode "/**" "*/" :actions '(navigate)) ;; Handle doxygen comment "pairs"
 
@@ -103,8 +103,5 @@
         doom-modeline-env-version t
         doom-modeline-mu4e t
         doom-modeline-vcs-max-length 45))
-
-(after! flyspell
-  (define-key flyspell-mode-map (kbd "M-i") #'flyspell-correct-wrapper))
 
 (set-flyspell-predicate! '(c++-mode c-mode) #'cc-flyspell-predicate-p)
