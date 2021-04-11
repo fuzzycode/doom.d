@@ -423,3 +423,6 @@
 
 (after! (projectile cc-mode)
   (define-key c++-mode-map (kbd "<A-tab>") #'projectile-find-other-file))
+
+(after! flyspell
+  (define-key flyspell-mode-map (kbd "M-i") #'flyspell-correct-wrapper))
