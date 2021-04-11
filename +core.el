@@ -81,48 +81,7 @@
             smartparens-mode-map)
 
   (smartparens-strict-mode) ;; Start out in strict mode
-  (show-smartparens-global-mode +1)
-
-  (+core/add-toggle sp-strict-mode
-                    :mode smartparens-strict-mode
-                    :bind '(:desc "Smartparens Strict Mode" :key "s")))
-
-;; Add toggles
-(+core/add-toggle word-wrap
-                  :mode +word-wrap-mode
-                  :bind '(:desc "Word Wrap" :key "w"))
-
-(+core/add-toggle big-font
-                  :mode doom-big-font-mode
-                  :bind '(:desc "Big Font" :key "b"))
-
-(+core/add-toggle flycheck
-                  :mode flycheck-mode
-                  :bind '(:desc "Flycheck" :key "f"))
-
-(+core/add-toggle read-only
-                  :mode read-only-mode
-                  :bind '(:desc "Read Only" :key "r"))
-
-(+core/add-toggle centered-cursor
-                  :mode centered-cursor-mode
-                  :bind '(:desc "Centered Cursor" :key "c"))
-
-(+core/add-toggle trailing-whitespace
-                  :status show-trailing-whitespace
-                  :on (setq show-trailing-whitespace t)
-                  :off (setq show-trailing-whitespace nil)
-                  :on-message "Showing trailing whitespace"
-                  :off-message "Disabled trailing whitespace"
-                  :bind '(:desc "Trailing Whitespace" :key "w"))
-
-(+core/add-toggle relative-line-numbers
-                  :status (eq display-line-numbers 'relative)
-                  :on (setq display-line-numbers-type 'relative)
-                  :off (setq display-line-numbers-type t)
-                  :on-message "Using relative line numbers"
-                  :off-message "Using normal line numbers"
-                  :bind '(:desc "Relative line numbers" :key "l"))
+  (show-smartparens-global-mode +1))
 
 ;; Default to relative line numbers
 (add-hook 'prog-mode-hook (lambda () (setq display-line-numbers-type 'relative)))

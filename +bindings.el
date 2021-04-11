@@ -382,6 +382,19 @@
           :desc "Correct DWIM" :ng "s" #'flyspell-correct-wrapper
           :desc "Change Dictionary" :ng "d" #'ispell-change-dictionary))))
 
+(map! (:leader
+       (:prefix "t"
+        :desc "Word Wrap" :ng "w" #'+word-wrap-mode
+        :desc "Big Font" :ng "b" #'doom-big-font-mode
+        :desc "Flycheck" :ng "f" #'flycheck-mode
+        :desc "Read Only" :ng "r" #'read-only-mode
+        :desc "Trailing Whitespace" :ng "w" (cmd! (setq show-trailing-whitespace (not show-trailing-whitespace)))
+        :desc "Relative Line Numbers" :ng "l" #'toggle-relative-line-numbers
+        (:after lsp-mode
+         :desc "Breadcrumb Mode" :ng "h" #'lsp-headerline-breadcrumb-mode )
+        (:after smartparens
+         :desc "Smartparens Strict Mode" :ng "s" #'smartparens-strict-mode))))
+
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 (global-set-key (kbd "C-c l") #'recenter)
 

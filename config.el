@@ -37,9 +37,6 @@
        (:prefix ("w" . "windows"))
        (:prefix ("x" . "text"))))
 
-;Generic things shared by all sub configs, need to be loaded early
-(load! "+functions")
-
 ;Load Specific files
 (load! "+bindings")
 (load! "+builtin")

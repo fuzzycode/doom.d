@@ -229,7 +229,8 @@
 (use-package! centered-cursor-mode
   :defer t
   :commands (centered-cursor-mode)
-  :init (+core/add-toggle centered-cursor-mode :mode centered-cursor-mode :bind '(:desc "Centered Cursor Mode" :key "c")))
+  :init (map! (:leader (:prefix "t"
+                        :desc "Centered Cursor Mode" :g "c" #'centered-cursor-mode))))
 
 ;;;###package
 (use-package! super-save

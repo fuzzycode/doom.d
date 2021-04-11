@@ -1,14 +1,12 @@
-
-;;;###autoload
-; TODO(Björn Larsson) : This ends up in an endless loop of adding copyright years
-;; (add-hook 'before-save-hook #'copyright-update)
+;;; -*- lexical-binding: t; -*-
 
 ;;;###autoload
 (add-hook 'after-save-hook
             #'executable-make-buffer-file-executable-if-script-p)
 
 ;;;###autoload
-(add-hook 'prog-mode-hook #'flyspell-prog-mode)
-
-;;;###autoload
-(add-hook 'text-mode-hook #'flyspell-mode)
+(defun toggle-relative-line-numbers ()
+  "Toggles between 'normal' and relative line numbers"
+  (if (eq display-line-numbers 'relative)
+      (setq display-line-numbers t)
+    (setq display-line-numbers 'relative)))

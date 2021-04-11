@@ -9,15 +9,7 @@
           :desc "Rename" :ng "r" #'lsp-rename)))
 
 (after! lsp-mode
-  (define-key lsp-mode-map (kbd "<A-return>") #'lsp-execute-code-action)
-
-  (+core/add-toggle breadcrum-headline
-                    :status lsp-headerline-breadcrumb-mode
-                    :on (+lsp/toggle-global-bredcrumb-mode-on)
-                    :on-message "Global Breadcrumb enabled"
-                    :off (+lsp/toggle-global-bredcrumb-mode-off)
-                    :off-message "Global Breadcrumb disabled"
-                    :bind '(:desc "Breadcrumb Mode" :key "h")))
+  (define-key lsp-mode-map (kbd "<A-return>") #'lsp-execute-code-action))
 
 (after! lsp-ui
   (setq lsp-ui-sideline-show-code-actions nil) ;; Prefer to have this in the mode-line
