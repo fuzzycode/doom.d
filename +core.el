@@ -2,8 +2,6 @@
 
 (global-set-key (kbd "C-c u") #'undo-fu-only-undo)
 
-(add-hook 'help-mode-hook #'rainbow-mode)
-
 
 (setq plantuml-indent-level 2)
 
@@ -84,7 +82,6 @@
   (show-smartparens-global-mode +1))
 
 ;; Default to relative line numbers
-(add-hook 'prog-mode-hook (lambda () (setq display-line-numbers-type 'relative)))
 
 ;; Open documentation in webkit buffer
 (when (featurep 'xwidget-internal)
