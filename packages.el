@@ -2,6 +2,7 @@
 
 ;;DISABLED
 (package! drag-stuff :disable t)
+(package! ccls :disable t)
 
 ;; Stay on bleeding edge for lsp
 (unpin! '(lsp-mode lsp-ui dap-modes))
