@@ -395,17 +395,21 @@
         (:after smartparens
          :desc "Smartparens Strict Mode" :ng "s" #'smartparens-strict-mode))))
 
-(global-set-key (kbd "C-x C-b") #'ibuffer)
-(global-set-key (kbd "C-c l") #'recenter)
+(map! :ng "M-." #'+lookup/definition
+      :ng "C-x C-b" #'ibuffer
+      :ng "C-c l" #'recenter
 
-;; Not strictly evil like but adds nice symmetry to minibuffer navigation
-(global-set-key (kbd "C-j") #'evil-scroll-down)
-(global-set-key (kbd "C-k") #'evil-scroll-up)
+      (:after flyspell
+       (:map flyspell-mode-map
+        :ng "M-i" #'flyspell-correct-wrapper))
+      (:after (projectile cc-mode)
+       (:map c++-mode-map
+        :ng "<A-tab>" #'projectile-find-other-file))
 
-(map! :ng "M-." #'+lookup/definition)
-
-;;; Clear q from normal map, I was never using vim macros anyway
-(define-key evil-normal-state-map (kbd "q") nil)
+      :n "q" nil
+      :n "J" #'+lookup:dash
+      :n "C-j" #'evil-scroll-down
+      :n "C-k" #'evil-scroll-up)
 
 ;; Remove binding, I did not need it and it was colliding with org mode keys
 (after! pyenv-mode
@@ -417,12 +421,3 @@
                                         (define-key xwidget-webkit-mode-map (kbd "<up>") #'xwidget-webkit-scroll-up-line)
                                         (define-key xwidget-webkit-mode-map "<down>" #'xwidget-webkit-scroll-down-line)
                                         (define-key xwidget-webkit-mode-map  "q" #'+workspace/close-window-or-workspace))))
-
-(add-hook 'prog-mode-hook (lambda ()
-                            (define-key evil-normal-state-map (kbd "J") #'+lookup:dash)))
-
-(after! (projectile cc-mode)
-  (define-key c++-mode-map (kbd "<A-tab>") #'projectile-find-other-file))
-
-(after! flyspell
-  (define-key flyspell-mode-map (kbd "M-i") #'flyspell-correct-wrapper))
