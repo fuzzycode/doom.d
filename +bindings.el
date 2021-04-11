@@ -398,6 +398,7 @@
 (map! :ng "M-." #'+lookup/definition
       :ng "C-x C-b" #'ibuffer
       :ng "C-c l" #'recenter
+      :ngi "C-c u" #'undo-fu-only-undo
 
       (:after flyspell
        (:map flyspell-mode-map
@@ -405,6 +406,15 @@
       (:after (projectile cc-mode)
        (:map c++-mode-map
         :ng "<A-tab>" #'projectile-find-other-file))
+      (:after projectile
+       :ng "M-o" #'projectile-find-file-dwim)
+      (:after smartparens
+       (:map smartparens-mode-map
+        :ngi "C-<right>" #'sp-forward-slurp-sexp
+        :ngi "C-<left>" #'sp-forward-barf-sexp
+        :ngi "C-M-<right>" #'sp-backward-slurp-sexp
+        :ngi "C-M-<left>" #'sp-backward-barf-sexp
+        :ngi "C-M-s" #'smartparens-hydra/body))
 
       :n "q" nil
       :n "J" #'+lookup:dash

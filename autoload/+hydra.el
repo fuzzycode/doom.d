@@ -32,3 +32,15 @@
                    (when (bound-and-true-p magit-blame-mode)
                      (magit-blame-quit))
                    (not (bound-and-true-p magit-blame-mode)))))
+
+;;;###autoload (autoload 'smartparens-hydra/body "autoload/+hydra" nil t)
+(defhydra smartparens-hydra ()
+              "Smartparens"
+              ("d" sp-down-sexp "Down")
+              ("e" sp-up-sexp "Up")
+              ("u" sp-backward-up-sexp "Up")
+              ("a" sp-backward-down-sexp "Down")
+              ("f" sp-forward-sexp "Forward")
+              ("b" sp-backward-sexp "Backward")
+              ("k" sp-kill-sexp "Kill" :color blue)
+              ("q" nil "Quit" :color blue))

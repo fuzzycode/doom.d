@@ -1,8 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-(global-set-key (kbd "C-c u") #'undo-fu-only-undo)
-
-
 (setq plantuml-indent-level 2)
 
 (after! yasnippet
@@ -33,7 +30,6 @@
 
 (after! projectile
   (setq projectile-enable-caching nil)
-  (global-set-key (kbd "M-o") #'projectile-find-file-dwim)
 
   ;; Add this to the back of the list to give priority to .projectile and .git files
   (add-to-list 'projectile-project-root-files-bottom-up "compile_commands.json" t)
@@ -54,34 +50,13 @@
 (add-to-list 'auto-mode-alist '("\\.clangd$". yaml-mode))
 
 (after! smartparens
-
   (setq sp-escape-wrapped-region t
         sp-escape-quotes-after-insert t)
 
-  (define-key smartparens-mode-map (kbd "C-<right>") 'sp-forward-slurp-sexp)
-  (define-key smartparens-mode-map (kbd "C-<left>") 'sp-forward-barf-sexp)
-  (define-key smartparens-mode-map (kbd "C-M-<left>") 'sp-backward-barf-sexp)
-  (define-key smartparens-mode-map (kbd "C-M-<right>") 'sp-backward-slurp-sexp)
-
   (sp-local-pair 'c++-mode "/**" "*/" :actions '(navigate)) ;; Handle doxygen comment "pairs"
-
-  (bind-key "C-M-s"
-            (defhydra smartparens-hydra ()
-              "Smartparens"
-              ("d" sp-down-sexp "Down")
-              ("e" sp-up-sexp "Up")
-              ("u" sp-backward-up-sexp "Up")
-              ("a" sp-backward-down-sexp "Down")
-              ("f" sp-forward-sexp "Forward")
-              ("b" sp-backward-sexp "Backward")
-              ("k" sp-kill-sexp "Kill" :color blue)
-              ("q" nil "Quit" :color blue))
-            smartparens-mode-map)
 
   (smartparens-strict-mode) ;; Start out in strict mode
   (show-smartparens-global-mode +1))
-
-;; Default to relative line numbers
 
 ;; Open documentation in webkit buffer
 (when (featurep 'xwidget-internal)
