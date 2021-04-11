@@ -415,6 +415,9 @@
         :ngi "C-M-<right>" #'sp-backward-slurp-sexp
         :ngi "C-M-<left>" #'sp-backward-barf-sexp
         :ngi "C-M-s" #'smartparens-hydra/body))
+      (:after lsp-mode
+       (:map lsp-mode-map
+        :ngi "A-return" #'lsp-execute-code-action))
 
       :n "q" nil
       :n "J" #'+lookup:dash
