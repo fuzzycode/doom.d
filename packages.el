@@ -38,8 +38,6 @@
 ;; CSV
 (package! csv-mode)
 
-(package! lsp-treemacs :pin nil)
-
 ;; MAIL
 (when (featurep! :email mu4e)
   (package! mu4e-maildirs-extension)

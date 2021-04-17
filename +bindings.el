@@ -395,6 +395,11 @@
         (:after smartparens
          :desc "Smartparens Strict Mode" :ng "s" #'smartparens-strict-mode))))
 
+(map! (:leader
+       (:when (featurep! :ui treemacs +lsp)
+        (:prefix "e"
+         :desc "All Errors" :ng "a" #'lsp-treemacs-errors-list))))
+
 (map! :ng "M-." #'+lookup/definition
       :ng "C-x C-b" #'ibuffer
       :ng "C-c l" #'recenter
