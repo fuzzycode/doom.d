@@ -8,6 +8,7 @@
 ;; C++
 (package! ninja-mode)
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
+(package! sourcetrail)
 
 ;; GIT
 (package! magit-imerge)

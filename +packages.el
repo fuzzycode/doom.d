@@ -393,3 +393,11 @@
 ;;;###package
 (use-package! ff-c-style
   :hook (c-mode-common . ff-add-c-style))
+
+;;;###package
+(use-package! sourcetrail
+  :defer t
+  :commands (sourcetrail-send-location)
+  :init (map! (:leader
+               (:prefix "c"
+                :desc "Send Location (SourceTrail)" :ng "u" #'sourcetrail-send-location))))
