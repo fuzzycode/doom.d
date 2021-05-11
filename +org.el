@@ -51,9 +51,6 @@
                                  ("CANCELED" . +org-todo-onhold)
                                  ("EXPIRED" . +org-todo-onhold)))
 
-  ;; Assure that the id file exists, it will crash if the file does not exist
-  (unless (file-exists-p org-id-locations-file)
-    (with-temp-buffer (write-file org-id-locations-file)))
 
   (after! recentf
     (add-to-list 'recentf-exclude org-id-locations-file)))
