@@ -31,6 +31,9 @@
 (after! projectile
   (setq projectile-enable-caching nil)
 
+  (put 'projectile-project-name 'safe-local-variable #'stringp)
+  (put 'projectile-project-compilation-dir 'safe-local-variable #'file-directory-p)
+
   ;; Add this to the back of the list to give priority to .projectile and .git files
   (add-to-list 'projectile-project-root-files-bottom-up "compile_commands.json" t)
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
