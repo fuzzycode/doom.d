@@ -301,8 +301,6 @@
         :desc "Capture" :ng "c" #'org-capture
         (:prefix ("j" . "journal")
          :desc "Today's Journal" :ng "j" #'+org/org-journal-show-journal-today
-         :desc "Tomorrows Journal" :ng "J" #'+org/org-journal-show-journal-tomorrow
-         :desc "Yesterdays Journal" :ng "y" #'+org/org-journal-show-journal-yesterday
          :desc "Next Journal" :ng "n" #'org-journal-next-entry
          :desc "Previous Journal" :ng "p" #'org-journal-previous-entry))
        (:prefix "s"

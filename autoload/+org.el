@@ -218,19 +218,4 @@ to be that of the scheduled date+time."
   (org-journal-new-entry (org-read-date t t "")))
 
 ;;;###autoload
-(defun +org/org-journal-show-journal-tomorrow ()
-  "Show tomorrows journal."
-  (interactive)
-  (org-journal-new-entry (org-read-date t t "+1")))
-
-;;;###autoload
-(defun +org/org-journal-show-journal-yesterday ()
-  "Show yesterdays journal"
-  (interactive)
-  (let ((path (org-journal--get-entry-path (org-read-date t t "-1"))))
-    (if (file-exists-p path)
-        (find-file path)
-      (user-error "No journal found for yesterday"))))
-
-;;;###autoload
 (add-hook 'org-mode-hook #'flyspell-mode)
