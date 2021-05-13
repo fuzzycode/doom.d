@@ -53,7 +53,3 @@
 
 ;; Allow for machine local customizations
 (load! "~/.doom.local.el" "" t)
-
-;; Use a dedicated file for custom settings
-(setq custom-file (concat doom-private-dir "custom.el"))
-(load! custom-file "" t)
