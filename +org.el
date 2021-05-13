@@ -94,7 +94,7 @@
   (map!
    (:localleader
     :after org
-    :map (org-mode-map org-journal-mode-map)
+    :map org-mode-map
     ;; Assure that any doom bindings are first cleared
     :ng "'" nil
     :ng "+" nil
@@ -291,18 +291,11 @@
          :desc "Capture" :ng "c" #'org-capture
          :desc "Tags View" :ng "m" #'org-tags-view
          :desc "Search View" :ng "s" #'org-search-view
-         :desc "Todo List" :ng "t" #'org-todo-list
-         (:prefix ("j" . "journal")
-          :desc "New Entry" :ng "j" #'org-journal-new-entry
-          :desc "Open Journal" :ng "o" #'+org/open-todays-journal)))
+         :desc "Todo List" :ng "t" #'org-todo-list))
        (:prefix "o"
         :desc "Agenda Dispatch" :ng "a" #'org-agenda
         :desc "Week Agenda" :ng "A" #'org-agenda-list
-        :desc "Capture" :ng "c" #'org-capture
-        (:prefix ("j" . "journal")
-         :desc "Today's Journal" :ng "j" #'+org/org-journal-show-journal-today
-         :desc "Next Journal" :ng "n" #'org-journal-next-entry
-         :desc "Previous Journal" :ng "p" #'org-journal-previous-entry))
+        :desc "Capture" :ng "c" #'org-capture)
        (:prefix "s"
         :desc "Search Org Directory" :ng "o" #'+default/org-notes-search)
        (:prefix "f"
@@ -312,8 +305,7 @@
          :desc "Notes File" :ng "n" (cmd! () (find-file +org/notes-file))
          :desc "Calendar File" :ng "c" (cmd! () (find-file +org/calendar-file))
          :desc "Inbox File" :ng "i" (cmd! () (find-file +org/inbox-file))
-         :desc "Archive File" :ng "a" (cmd! () (find-file +org/archive-file))
-         :desc "Today's Journal" :ng "j" #'+org/open-todays-journal))
+         :desc "Archive File" :ng "a" (cmd! () (find-file +org/archive-file))))
        (:prefix "p"
         :desc "Open Org File" :ng "o" (cmd! () (when (projectile-project-p)
                                                  (find-file (+org/project-org-file-path)))))))
@@ -399,6 +391,8 @@
                          :file +org/todo-file
                          :template "* %{todo} %?"
                          :children (("Task" :keys "t" :todo "TODO")
+                                    ("Task (Today)" :keys "d" :template "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"\")>")
+                                    ("Task (Tomorrow)" :keys "D" :template "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+1\")>")
                                     ("Idea" :keys "i" :todo "IDEA")
                                     ("Reminder" :keys "r" :template "* TODO %?\nSCHEDULED: %^t")))
                         ("Project"
@@ -410,19 +404,6 @@
                                     ("Idea" :keys "i" :todo "IDEA" :headline "Tasks")
                                     ("Note" :keys "n" :template "* %?" :headline "Notes")
                                     ("Snippet" :keys "s" :headline "Notes" :template +core/capture-snippet)))
-                        ("Journal Entry"
-                         :keys "j"
-                         :type plain
-                         :file +org/org-journal-date-location-today
-                         :children (("Timed Entry" :keys "j" :template "** %(format-time-string org-journal-time-format) %?"
-                                     :headline "Entries")
-                                    ("Today's Task" :keys "t" :headline "Tasks"
-                                     :template "** TODO %?\nSCHEDULED: <%(+org/org-journal--scheduled-time-string)>")
-                                    ("Tomorrows Task" :keys "T" :template "** TODO %?\nSCHEDULED: <%(+org/org-journal--scheduled-time-string)>"
-                                     :headline "Tasks" :file +org/org-journal-date-location-tomorrow)
-                                    ("Scheduled Task" :keys "s" :headline "Tasks"
-                                     :file +org/org-journal-date-location
-                                     :template "** TODO %?\nSCHEDULED: <%(+org/org-journal--scheduled-time-string)>")))
                         ("Feedback"
                          :keys "f"
                          :file +org/notes-file
