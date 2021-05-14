@@ -127,6 +127,7 @@
         (:prefix "j"
           :desc "Deer" :ng "d" #'deer)
         (:prefix "f"
+         :desc "Copy This File" :ng "c" #'doom/copy-this-file
          :desc "Move This File" :ng "m" #'doom/move-this-file
           (:prefix ("D" . "doom")
             :desc "Packages File" :ng "p" #'doom/goto-packages-file
