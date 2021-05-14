@@ -86,7 +86,6 @@
         +dragndrop
         +gnuplot
         +hugo
-        +journal
         +jupyter
         +pandoc
         +present)

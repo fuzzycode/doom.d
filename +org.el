@@ -64,6 +64,7 @@
 (defvar +org/archive-file (concat (file-name-as-directory org-directory) "archive.org"))
 (defvar +org/inbox-file (concat (file-name-as-directory org-directory) "inbox.org"))
 (defvar +org/calendar-file (concat (file-name-as-directory org-directory) "calendar.org"))
+(defvar +org/journal-file (concat (file-name-as-directory org-directory) "journal.org"))
 
 (setq org-archive-location (format "%s::%s" +org/archive-file "* From %s" ))
 
@@ -312,19 +313,6 @@
 
 (add-hook 'org-load-hook #'+org/org-init-keybinds-h :append t)
 
-;;;###package org-journal
-(after! org-journal
-  (setq org-journal-enable-agenda-integration t
-        org-journal-file-format "%Y-%m-%d"
-        org-journal-date-format "%A, %Y-%m-%d"
-        org-journal-date-prefix ""
-        org-journal-time-prefix ""
-        org-journal-file-header #'+org/org-journal-file-header-func
-        org-journal-enable-cache t)
-
-  (define-key org-journal-mode-map (kbd "A-k") #'org-journal-previous-entry)
-  (define-key org-journal-mode-map (kbd "A-j") #'org-journal-next-entry))
-
 ;;;###package
 (use-package! demo-it
   :after org)
@@ -363,18 +351,13 @@
   (setq org-super-agenda-header-map (make-sparse-keymap))
   (shut-up (org-super-agenda-mode)))
 
-(after! org
-  (org-link-set-parameters "id" :store #'org-id-store-link)) ;; Make sure that we can create id links
-
 ;;;###package
 (use-package! org-expiry
   :after org
   :commands org-expiry-insert-expiry
   :bind (:map org-mode-map
          ("C-c C-e" . #'org-expiry-insert-expiry))
-  :config (setq org-expiry-inactive-timestamps t)
-  (add-hook 'org-capture-before-finalize-hook #'+org/insert-creation)
-  (add-hook 'org-insert-heading-hook #'+org/insert-creation))
+  :config (setq org-expiry-inactive-timestamps t))
 
 ;;;###package
 (use-package! doct
@@ -382,12 +365,12 @@
   :bind (("C-c c" . #'org-capture))
   :init (setq org-capture-templates '())
   :config
-  (add-hook 'org-capture-prepare-finalize-hook #'+org/insert-id)
   (add-to-list 'org-agenda-files (+org/projects-directory))
   (setq org-capture-templates
         (append org-capture-templates
                 (doct '(("Tasks"
                          :keys "t"
+                         :before-finalize (lambda () (+org/insert-creation))
                          :file +org/todo-file
                          :template "* %{todo} %?"
                          :children (("Task" :keys "t" :todo "TODO")
@@ -395,22 +378,30 @@
                                     ("Task (Tomorrow)" :keys "D" :template "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+1\")>")
                                     ("Idea" :keys "i" :todo "IDEA")
                                     ("Reminder" :keys "r" :template "* TODO %?\nSCHEDULED: %^t")))
+                        ("Journal"
+                         :keys "j"
+                         :file +org/journal-file
+                         :datetree t
+                         :children (("Timed Entry" :keys "t" :template "* %(format-time-string \"\%H:\%M\") - %?")))
                         ("Project"
                          :keys "p"
+                         :before-finalize (lambda () (+org/insert-creation))
                          :template "* %{todo} %?"
                          :file +org/project-org-file-path
                          :contexts ((:function (lambda () (projectile-project-p (buffer-file-name (current-buffer))))))
                          :children (("Task" :keys "p" :todo "TODO" :headline "Tasks")
                                     ("Idea" :keys "i" :todo "IDEA" :headline "Tasks")
                                     ("Note" :keys "n" :template "* %?" :headline "Notes")
-                                    ("Snippet" :keys "s" :headline "Notes" :template +core/capture-snippet)))
+                                    ("Snippet" :keys "s" :headline "Notes" :template +core/capture-snippet :contexts (:when (region-active-p)))))
                         ("Feedback"
                          :keys "f"
                          :file +org/notes-file
+                         :before-finalize (lambda () (+org/insert-creation))
                          :headline "Feedback"
                          :template "* %?")
                         ("Notes"
                          :keys "n"
+                         :before-finalize (lambda () (+org/insert-creation))
                          :file +org/notes-file
                          :headline "Note"
                          :template "* %?"))))))
