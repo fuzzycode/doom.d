@@ -28,6 +28,7 @@
 (package! org-super-agenda)
 (package! doct)
 (package! org-make-toc)
+(package! org-ql)
 
 ;;ELISP
 (package! elisp-format)

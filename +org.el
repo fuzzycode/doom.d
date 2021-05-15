@@ -361,6 +361,15 @@
   :config (setq org-expiry-inactive-timestamps t))
 
 ;;;###package
+(use-package! org-ql
+  :defer t
+  :commands org-ql-search
+  :init
+   (set-popup-rule! "^\\*Org QL View:" :side 'bottom :size .5 :select t :quit 'current)
+   (map! (:leader (:prefix "o"
+                        :desc "Org QL Search" :ng "q" #'org-ql-search))))
+
+;;;###package
 (use-package! doct
   :after org-capture
   :bind (("C-c c" . #'org-capture))
