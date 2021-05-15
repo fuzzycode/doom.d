@@ -295,6 +295,7 @@
          :desc "Todo List" :ng "t" #'org-todo-list))
        (:prefix "o"
         :desc "Agenda Dispatch" :ng "a" #'org-agenda
+        :desc "Daily Planner" :ng "d" (cmd! () (org-agenda nil "d"))
         :desc "Week Agenda" :ng "A" #'org-agenda-list
         :desc "Capture" :ng "c" #'org-capture)
        (:prefix "s"
