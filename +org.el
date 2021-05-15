@@ -59,12 +59,12 @@
 
 
 ;; Define my different files
-(defvar +org/todo-file (concat (file-name-as-directory org-directory) "todo.org"))
-(defvar +org/notes-file (concat (file-name-as-directory org-directory) "notes.org"))
-(defvar +org/archive-file (concat (file-name-as-directory org-directory) "archive.org"))
-(defvar +org/inbox-file (concat (file-name-as-directory org-directory) "inbox.org"))
-(defvar +org/calendar-file (concat (file-name-as-directory org-directory) "calendar.org"))
-(defvar +org/journal-file (concat (file-name-as-directory org-directory) "journal.org"))
+(defvar +org/todo-file (expand-file-name (concat (file-name-as-directory org-directory) "todo.org")))
+(defvar +org/notes-file (expand-file-name (concat (file-name-as-directory org-directory) "notes.org")))
+(defvar +org/archive-file (expand-file-name (concat (file-name-as-directory org-directory) "archive.org")))
+(defvar +org/inbox-file (expand-file-name (concat (file-name-as-directory org-directory) "inbox.org")))
+(defvar +org/calendar-file (expand-file-name (concat (file-name-as-directory org-directory) "calendar.org")))
+(defvar +org/journal-file (expand-file-name (concat (file-name-as-directory org-directory) "journal.org")))
 
 (setq org-archive-location (format "%s::%s" +org/archive-file "* From %s" ))
 
