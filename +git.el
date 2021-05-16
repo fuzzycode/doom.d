@@ -2,6 +2,9 @@
 
 (after! magit
 
+  ;; Add a binding for ignore commands that is missing from evil bindings
+  (transient-insert-suffix 'magit-dispatch "%" '("#" "Ignore" magit-gitignore))
+
   ;; Show 100 open topics and 10 closed ones, but only after they are toggled on
   (setq forge-topic-list-limit '(100 . -10))
 
@@ -123,8 +126,8 @@
 
 ;; Better scrolling in magit buffers
 ;;;###package magit
-(map! :after magit
-      (:map magit-status-mode-map
+(map! (:map magit-status-mode-map
+       :vng "#" #'magit-gitignore
        :vng "C-j" #'magit-section-forward-sibling
        :vng "C-k" #'magit-section-backward-sibling))
 
