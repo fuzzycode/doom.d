@@ -45,8 +45,5 @@
 (load! "+org")
 (load! "+packages")
 
-(when (featurep! :email mu4e)
-  (load! "+mu"))
-
 ;; Allow for machine local customizations
 (load! "~/.doom.local.el" "" t)
