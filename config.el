@@ -39,7 +39,6 @@
 
 ;Load Specific files
 (load! "+bindings")
-(load! "+builtin")
 (load! "+core")
 (load! "+ivy")
 (load! "+git")
