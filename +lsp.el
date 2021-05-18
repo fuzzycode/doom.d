@@ -9,6 +9,7 @@
           :desc "Rename" :ng "r" #'lsp-rename)))
 
 (after! lsp-ui
+  (setq lsp-ui-doc-show-with-cursor nil)
   (setq lsp-ui-sideline-show-code-actions nil) ;; Prefer to have this in the mode-line
   (add-hook 'lsp-ui-mode-hook #'+lsp/dim-lsp-sideline))
 
