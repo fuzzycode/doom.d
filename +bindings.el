@@ -487,6 +487,15 @@
            :desc "Go to Output Buffer" :ng "o" #'dap-go-to-output-buffer
            :desc "Sessions" :ng "s" #'dap-ui-sessions)))))
 
+(map! (:localleader
+       :mode (c++-mode python-mode)
+       (:prefix ("=" . "format")
+        :desc "Format Dwim" :ng "=" #'+lsp/lsp-format-region-or-buffer
+        :desc "Format Buffer" :ng "b" #'lsp-format-buffer
+        :desc "Format Region" :ng "r" #'lsp-format-region)
+       (:prefix ("r" . "refactor")
+        :desc "Rename" :ng "r" #'lsp-rename)))
+
 ;; Remove binding, I did not need it and it was colliding with org mode keys
 (after! pyenv-mode
   (define-key pyenv-mode-map (kbd "C-c C-s") nil))

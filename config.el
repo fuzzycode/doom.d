@@ -44,7 +44,6 @@
 (load! "+ivy")
 (load! "+git")
 (load! "+org")
-(load! "+lsp")
 (load! "+packages")
 
 (when (featurep! :email mu4e)

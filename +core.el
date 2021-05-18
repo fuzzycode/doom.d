@@ -2,11 +2,6 @@
 
 (setq plantuml-indent-level 2)
 
-(after! yasnippet
-  (when (file-exists-p "~/.snippets")
-    (add-to-list 'yas-snippet-dirs "~/.snippets")
-    (yas-reload-all)))
-
 (after! flycheck
   (setq flycheck-error-list-format `[("File" 25)
                                      ("Line" 5 flycheck-error-list-entry-< :right-align t)
@@ -41,6 +36,9 @@
 (setq ws-butler-convert-leading-tabs-or-spaces t)
 
 (after! yasnippet
+  (when (file-exists-p "~/.snippets")
+    (add-to-list 'yas-snippet-dirs "~/.snippets")
+
   (add-to-list 'yas-snippet-dirs (expand-file-name "external/" +snippets-dir))
   (add-to-list 'yas-snippet-dirs (expand-file-name "personal/" +snippets-dir))
   (yas-reload-all))
@@ -84,3 +82,14 @@
 ;;;###package evil-snipe
 (after! evil-snipe
   (setq evil-snipe-spillover-scope 'whole-visible))
+
+(after! lsp-ui
+  (setq lsp-ui-doc-show-with-cursor nil)
+  (setq lsp-ui-sideline-show-code-actions nil) ;; Prefer to have this in the mode-line
+  (add-hook 'lsp-ui-mode-hook #'+lsp/dim-lsp-sideline))
+
+(after! lsp-mode
+  (setq lsp-enable-semantic-highlighting t)) ; Enable semantic highlighting by default
+
+(when (and (featurep! :tools lsp) (featurep! :completion ivy))
+  (setq lsp-ivy-show-symbol-filename nil)) ; remove the file path from workspace symbols

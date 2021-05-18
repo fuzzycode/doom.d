@@ -417,3 +417,11 @@
                  (?s "\"" . "\""))))
     (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
     (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
+
+;;;###package
+(use-package! lsp-treemacs
+  :when (featurep! :tools lsp)
+  :after lsp-mode
+  :init (map! (:leader (:prefix "e"
+                        :desc "All Errors" :ng "a" #'lsp-treemacs-errors-list)))
+  (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))
