@@ -66,9 +66,6 @@
 
 (electric-indent-mode -1) ;; Not needed, newline and indent will take care of it
 
-;; Bump the process read limit to 3mb, helps lsp-mode perform better
-(setq read-process-output-max (* 3 1024 1024))
-
 ;; TODO(Björn Larsson): Remove the need for a hard coded path parts
 (after! recentf
   (add-to-list 'recentf-exclude #'directory-name-p) ;; Filter out all directories from the list
