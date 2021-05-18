@@ -401,3 +401,19 @@
   :init (map! (:leader
                (:prefix "c"
                 :desc "Send Location (SourceTrail)" :ng "u" #'sourcetrail-send-location))))
+
+;;;###package
+(use-package! evil-surround
+  :when (featurep! :editor evil)
+  :after evil-embrace
+  :config
+  (evil-define-key 'visual evil-surround-mode-map "s" #'evil-surround-region)
+  (let ((pairs '((?g "$" . "$")
+                 (?h "(" . ")")
+                 (?j "[" . "]")
+                 (?k "{" . "}")
+                 (?l "<" . ">")
+                 (?a "'" . "'")
+                 (?s "\"" . "\""))))
+    (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
+    (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))

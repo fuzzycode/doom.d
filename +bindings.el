@@ -491,6 +491,21 @@
 (after! pyenv-mode
   (define-key pyenv-mode-map (kbd "C-c C-s") nil))
 
+;; Occur mode
+(after! evil-collection
+  (evil-collection-define-key 'normal 'occur-mode-map
+    (kbd "C-c C-e") 'occur-edit-mode
+    (kbd "C-x C-q") nil)
+
+  (evil-collection-define-key 'normal 'occur-edit-mode-map
+    (kbd "C-c C-c") 'occur-cease-edit
+    (kbd "C-x C-q") nil))
+
+(after! outline
+  (evil-collection-define-key 'normal 'outline-mode-map
+    (kbd "C-j") nil
+    (kbd "C-k") nil))
+
 ;;; Make q close the window, not just the buffer
 (when (featurep 'xwidget-internal)
   (add-hook 'xwidget-webkit-mode-hook (lambda ()

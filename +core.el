@@ -80,3 +80,7 @@
         doom-modeline-vcs-max-length 45))
 
 (set-flyspell-predicate! '(c++-mode c-mode) #'cc-flyspell-predicate-p)
+
+;;;###package evil-snipe
+(after! evil-snipe
+  (setq evil-snipe-spillover-scope 'whole-visible))

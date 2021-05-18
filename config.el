@@ -46,7 +46,6 @@
 (load! "+org")
 (load! "+lsp")
 (load! "+packages")
-(load! "+evil")
 
 (when (featurep! :email mu4e)
   (load! "+mu"))
