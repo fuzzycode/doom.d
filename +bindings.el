@@ -500,6 +500,24 @@
 (after! pyenv-mode
   (define-key pyenv-mode-map (kbd "C-c C-s") nil))
 
+;; Company mode
+(after! (company evil)
+  (evil-collection-define-key nil 'company-active-map
+    (kbd "C-l") #'company-complete-selection
+    (kbd "C-n") #'company-select-next-or-abort
+    (kbd "C-p") #'company-select-previous-or-abort
+    (kbd "C-j") #'company-select-next-or-abort
+    (kbd "C-k") #'company-select-previous-or-abort
+    (kbd "M-j") #'company-select-next
+    (kbd "M-k") #'company-select-previous)
+
+  (evil-collection-define-key nil 'company-search-map
+    (kbd "C-j") 'company-select-next-or-abort
+    (kbd "C-k") 'company-select-previous-or-abort
+    (kbd "M-j") 'company-select-next
+    (kbd "M-k") 'company-select-previous
+    (kbd "<escape>") 'company-search-abort))
+
 ;; Occur mode
 (after! evil-collection
   (evil-collection-define-key 'normal 'occur-mode-map
