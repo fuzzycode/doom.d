@@ -91,5 +91,10 @@
 (after! lsp-mode
   (setq lsp-enable-semantic-highlighting t)) ; Enable semantic highlighting by default
 
+;; This is a temporary workaround for
+;; https://github.com/hlissner/doom-emacs/issues/4894
+(add-hook! lsp-mode
+  (defalias '+lookup/references 'lsp-find-references))
+
 (when (and (featurep! :tools lsp) (featurep! :completion ivy))
   (setq lsp-ivy-show-symbol-filename nil)) ; remove the file path from workspace symbols
