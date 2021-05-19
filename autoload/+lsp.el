@@ -7,15 +7,6 @@
           '(lsp-ui-sideline-code-action lsp-ui-sideline-current-symbol lsp-ui-sideline-symbol lsp-ui-sideline-symbol-info)))
 
 ;;;###autoload
-(defun +lsp/lsp-format-region-or-buffer ()
-  "Format the buffer (or selection) with LSP."
-  (interactive)
-  (call-interactively
-   (if (use-region-p)
-       #'lsp-format-region
-     #'lsp-format-buffer)))
-
-;;;###autoload
 (defun +lsp/toggle-global-bredcrumb-mode-on ()
   "Turn on global lsp breadcrumb mode"
   (add-hook 'lsp-mode-hook #'lsp-headerline-breadcrumb-mode)

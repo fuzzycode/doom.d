@@ -287,13 +287,6 @@
           :desc "Restart & restore Emacs"      :ng "r" #'doom/restart-and-restore
           :desc "Restart Emacs"                :ng "R" #'doom/restart)))
 
-(map! (:localleader
-        :map json-mode-map
-        (:prefix ("=" . "format")
-          :desc "Format Region Or Buffer" :ng "=" #'+json/pretty-print-region-or-buffer
-          :desc "Format Buffer" :ng "b" #'json-pretty-print-buffer
-          :desc "Format Region" :ng "r" #'json-pretty-print)))
-
 (map! :localleader
         :map emacs-lisp-mode-map
         :desc "Expand macro" "m" #'macrostep-expand
@@ -487,14 +480,6 @@
            :desc "Go to Output Buffer" :ng "o" #'dap-go-to-output-buffer
            :desc "Sessions" :ng "s" #'dap-ui-sessions)))))
 
-(map! (:localleader
-       :mode (c++-mode python-mode)
-       (:prefix ("=" . "format")
-        :desc "Format Dwim" :ng "=" #'+lsp/lsp-format-region-or-buffer
-        :desc "Format Buffer" :ng "b" #'lsp-format-buffer
-        :desc "Format Region" :ng "r" #'lsp-format-region)
-       (:prefix ("r" . "refactor")
-        :desc "Rename" :ng "r" #'lsp-rename)))
 
 ;; Remove binding, I did not need it and it was colliding with org mode keys
 (after! pyenv-mode
