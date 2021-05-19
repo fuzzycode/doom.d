@@ -37,9 +37,6 @@
 ;; LATEX
 (package! ebib)
 
-;; CSV
-(package! csv-mode)
-
 ;; MAIL
 (when (featurep! :email mu4e)
   (package! mu4e-maildirs-extension)

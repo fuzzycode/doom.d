@@ -77,6 +77,7 @@
        :lang
        (cc +lsp)
        common-lisp
+       data
        emacs-lisp
        (java +lsp)
        javascript

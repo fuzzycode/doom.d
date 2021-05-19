@@ -357,28 +357,6 @@
                   :desc "While Getopts" :ng "g" #'sh-while-getopts))))
 
 ;;;###package
-(use-package! csv-mode
-  :defer t
-  :mode "\\.csv$"
-  :init (map! :localleader :map csv-mode-map
-              :desc "Align Field" :ng "a" #'csv-align-field
-              :desc "Kill Fields" :ng "k" #'csv-kill-fields
-              :desc "Header Line" :ng "h" #'csv-header-line
-              :desc "Toggle Invisibility" :ng "" #'csv-toggle-invisibility
-              :desc "Forward Field" :ng "i" #'csv-forward-field
-              :desc "Backward Field" :ng "n" #'csv-backward-field
-              :desc "Reverse region" :ng "p" #'csv-reverse-region
-              (:prefix ("s" . "sort")
-                :desc "Sort Fields" :ng "f" #'csv-sort-fields
-                :desc "Sort Numeric Fields" :ng "n" #'csv-sort-numeric-fields
-                :desc "Toggle Descending" :ng "o" #'csv-toggle-descending)
-              :desc "Transpose" :ng "t" #'csv-transpose
-              :desc "Unalign Fields" :ng "u" #'csv-unalign-fields
-              (:prefix ("y" . "yank")
-                :desc "Yank Fields" :ng "f" #'csv-yank-fields
-                :desc "Yank As New Table" :ng "t" #'csv-yank-as-new-table)))
-
-;;;###package
 (use-package! ebib
   :defer t
   :commands (ebib)
