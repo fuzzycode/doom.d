@@ -93,6 +93,7 @@
        (python +pyenv +lsp)            ; beautiful is better than ugly
        qt                ; the 'cutest' gui framework ever
        rest              ; Emacs as a REST client
+       (rust +lsp)
        rst
        (sh +lsp)           ; she sells {ba,z,fi}sh shells on the C xor
        web               ; the tubes
