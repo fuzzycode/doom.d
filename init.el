@@ -82,6 +82,7 @@
        emacs-lisp
        (java +lsp)
        javascript
+       (json +lsp)
        (latex +latexmk +lsp)
        markdown
        (org
@@ -101,7 +102,6 @@
        (sh +lsp)
        web
        (yaml +lsp)
-       json
 
        :email
        mu4e
