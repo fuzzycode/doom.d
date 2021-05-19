@@ -74,13 +74,13 @@
        (spell +everywhere +flyspell +enchant)
 
        :lang
-       (cc +lsp)                ; C/C++/Obj-C madness
-       common-lisp       ; if you've seen one lisp, you've seen them all
-       emacs-lisp        ; drown in parentheses
-       (java +lsp)                ; the poster child for carpal tunnel syndrome
-       javascript          ; all(hope(abandon(ye(who(enter(here))))))
-       (latex +latexmk +lsp)            ; writing papers in Emacs has never been so fun
-       markdown          ; writing docs for people to ignore
+       (cc +lsp)
+       common-lisp
+       emacs-lisp
+       (java +lsp)
+       javascript
+       (latex +latexmk +lsp)
+       markdown
        (org
         +brain
         +dragndrop
@@ -89,14 +89,14 @@
         +jupyter
         +pandoc
         +present)
-       plantuml          ; diagrams for confusing people more
-       (python +pyenv +lsp)            ; beautiful is better than ugly
-       qt                ; the 'cutest' gui framework ever
-       rest              ; Emacs as a REST client
+       plantuml
+       (python +pyenv +lsp)
+       qt
+       rest
        (rust +lsp)
        rst
-       (sh +lsp)           ; she sells {ba,z,fi}sh shells on the C xor
-       web               ; the tubes
+       (sh +lsp)
+       web
        (yaml +lsp)
        json
 
