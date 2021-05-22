@@ -89,6 +89,68 @@
 (after! lsp-mode
   (setq lsp-enable-semantic-highlighting t)) ; Enable semantic highlighting by default
 
+(after! magit
+  ;; Add a binding for ignore commands that is missing from evil bindings
+  (transient-insert-suffix 'magit-dispatch "%" '("#" "Ignore" magit-gitignore))
+
+  ;; Show 100 open topics and 10 closed ones, but only after they are toggled on
+  (setq forge-topic-list-limit '(100 . -10))
+
+  ;; Show images in commit buffers
+  (setq magit-revision-show-gravatars t)
+
+  (magit-wip-after-save-mode)
+  (transient-bind-q-to-quit)
+
+  (add-to-list 'magit-no-confirm 'stage-all-changes)
+  (add-to-list 'magit-no-confirm 'trash)
+  (add-to-list 'magit-no-confirm 'safe-with-wip)
+
+  ;; A colour highlight is enough, no need to warn me again
+  (setq git-commit-style-convention-checks
+        (remove 'overlong-summary-line git-commit-style-convention-checks))
+
+  (setq magit-save-repository-buffers 'dontask
+        magit-section-visibility-indicator nil
+        magit-wip-merge-branch t
+        magit-refs-primary-column-width '(16 . 92)
+        magit-process-finish-apply-ansi-colors t
+        transient-enable-popup-navigation t)
+
+  (setq magit-repolist-columns '(("Name" 35 magit-repolist-column-ident nil)
+                                 ("Version" 35 magit-repolist-column-version nil)
+                                 ("B<U" 4 magit-repolist-column-unpulled-from-upstream
+                                  ((:right-align t)
+                                   (:help-echo "Upstream changes not in branch")))
+                                 ("B>U" 4 magit-repolist-column-unpushed-to-upstream
+                                  ((:right-align t)
+                                   (:help-echo "Local changes not in upstream")))
+                                 ("Path" 99 magit-repolist-column-path nil)))
+
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules-unpulled-from-upstream
+                          'magit-insert-unpulled-from-upstream)
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules-unpulled-from-pushremote
+                          'magit-insert-unpulled-from-upstream)
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules-unpushed-to-upstream
+                          'magit-insert-unpulled-from-upstream)
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules-unpushed-to-pushremote
+                          'magit-insert-unpulled-from-upstream)
+  (magit-add-section-hook 'magit-status-sections-hook
+                          'magit-insert-modules-overview
+                          'magit-insert-unpulled-from-upstream)
+
+  (when (featurep! :tools magit +forge)
+    (magit-add-section-hook 'magit-status-sections-hook
+                            'forge-insert-assigned-pullreqs
+                            'magit-insert-modules-overview)
+
+    (magit-add-section-hook 'magit-status-sections-hook
+                            'forge-insert-requested-reviews
+                            'forge-insert-assigned-pullreqs)))
 ;;
 ;; SETTINGS
 ;;

@@ -460,3 +460,69 @@
   :when (featurep! :email mu4e)
   :defer t
   :init (with-eval-after-load 'mu4e (mu4e-maildirs-extension-load)))
+
+;;;###package
+(use-package! git-commit
+  :defer t
+  :when (featurep! :tools magit)
+  :init
+  (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
+  (add-hook 'git-commit-mode-hook #'evil-insert-state)
+  :bind (:map git-commit-mode-map
+        ([tab] . #'+magit/move-to-next-slot)))
+
+;;;###package
+(use-package! gitconfig-mode
+  :defer t
+  :when (featurep! :tools magit)
+  :mode ("\.?gitaliases$" . gitconfig-mode)
+  :mode ("\.?gitconfig$" . gitconfig-mode))
+
+;;;###package
+(use-package! gitignore-mode
+  :defer t
+  :when (featurep! :tools magit)
+  :mode ("\.?gitignore$" . gitignore-mode))
+
+;;;###package
+(use-package! gitattributes-mode
+  :when (featurep! :tools magit)
+  :defer t)
+
+;;;###package
+(use-package magit-imerge
+  :defer t
+  :when (featurep! :tools magit)
+  :after magit)
+
+;;;###package
+(use-package! magit-tbdiff
+  :defer t
+  :when (featurep! :tools magit)
+  :after magit)
+
+;;;###package
+(use-package git-messenger
+  :defer t
+  :when (featurep! :tools magit)
+  :commands (git-messenger:popup-message)
+  :init (setq  git-messenger:use-magit-popup t
+               git-messenger:show-detail t)
+  (map! (:leader (:prefix "g" :desc "Git Messenger" :ng "M" #'git-messenger:popup-message))))
+
+;;;###package
+(use-package! git-walktree
+  :defer t
+  :when (featurep! :tools magit)
+  :commands (git-walktree)
+  :init (map! (:leader
+                (:prefix "g"
+                  :desc "Walk Tree" :ng "w" #'git-walktree))))
+;;;###package
+(use-package! gitignore-templates
+  :defer t
+  :when (featurep! :tools magit)
+  :commands (gitignore-templates-insert gitignore-templates-new-file)
+  :init (map! :leader (:prefix "g"
+                        :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
+                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))

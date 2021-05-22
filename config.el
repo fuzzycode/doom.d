@@ -41,7 +41,6 @@
 (load! "+bindings")
 (load! "+core")
 (load! "+ivy")
-(load! "+git")
 (load! "+org")
 (load! "+packages")
 

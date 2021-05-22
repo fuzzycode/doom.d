@@ -369,6 +369,71 @@
          :desc "List errors" :ng "x" #'flycheck-list-errors))))
 
 (map! (:leader
+       (:prefix "g"
+        :desc "Magit File Dispatch" :ng "." #'magit-file-dispatch
+        :desc "Magit Status" :ng "s" #'magit-status
+        :desc "Magit Dispatch" :ng "m" #'magit-dispatch
+        (:when (featurep! :tools magit +forge)
+         :desc "Forge Dispatch" :ng "F" #'forge-dispatch)
+        :desc "Stage File" :ng "S" #'magit-stage-file
+        :desc "Unstage File" :ng "U" #'magit-unstage-file
+        :desc "Time Machine" :ng "t" #'+magit/timemachine-hydra/body
+        :desc "Git Blame" :ng "b" #'+magit/blame-hydra/body
+        :desc "Magit Refresh" :ng "r" #'magit-refresh
+        :desc "Magit Refresh All" :ng "R" #'magit-refresh-all
+        (:prefix ("d" . "diff")
+         :desc "Diff dwim" :ng "d" #'magit-diff-dwim
+         :desc "File...Mainline" :ng "f" #'+magit/diff-file-against-mainline
+         :desc "Worktree...Mainline" :ng "w" #'+magit/diff-worktree-against-mainline
+         :desc "Diff Paths" :ng "p" #'magit-diff-paths
+         :desc "Diff Range" :ng "r" #'magit-diff-range)
+        (:prefix ("f" . "file")
+         :desc "Log File" :ng "l" #'magit-log-buffer-file
+         :desc "Diff" :ng "d" #'magit-diff
+         :desc "Magit Find File" :ng "f" #'magit-find-file)
+        (:prefix ("B" . "browse")
+         (:when (featurep! :emacs vc)
+          :desc "Browse region or line" :ng "." #'+vc/git-browse-region-or-line)
+         :desc "Browse remote" :ng "r" #'forge-browse-remote
+         :desc "Browse commit" :ng "c" #'forge-browse-commit
+         :desc "Browse an issue" :ng "i" #'forge-browse-issue
+         :desc "Browse a pull request" :ng "p" #'forge-browse-pullreq
+         :desc "Browse issues" :ng "I" #'forge-browse-issues
+         :desc "Browse pull requests" :ng "P" #'forge-browse-pullreqs)
+        (:prefix ("c" . "create")
+         :desc "Initialize repo" :ng "r"   #'magit-init
+         :desc "Clone repo" :ng "R" #'magit-clone
+         :desc "Commit" :ng "c" #'magit-commit-create
+         :desc "Fixup" :ng "f" #'magit-commit-fixup
+         :desc "Issue" :ng "i" #'forge-create-issue
+         :desc "Pull request" :ng "p" #'forge-create-pullreq)
+        (:when (featurep! :tools gist)
+         (:prefix ("g" . "gist")
+          :desc "Gist Buffer" :ng "b" #'gist-buffer
+          :desc "Gist Buffer (private)" :ng "B" #'gist-buffer-private
+          :desc "Gist Region" :ng "r" #'gist-region
+          :desc "Gist Region (private)" :ng "R" #'gist-region-private
+          :desc "Gist dwim" :ng "d" #'gist-region-or-buffer
+          :desc "Gist dwim (private)" :ng "D" #'gist-region-or-buffer-private))
+        (:prefix ("l" . "link")
+         :desc "Git Link" :ng "l" #'git-link
+         :desc "Git Link Commit" :ng "c" #'git-link-commit)
+        (:prefix ("L" . "list")
+         (:when (featurep! :tools gist)
+          :desc "List gists" :ng "g" #'+gist:list)
+         :desc "List repositories" :ng "r" #'magit-list-repositories
+         :desc "List submodules" :ng "s" #'magit-list-submodules
+         :desc "List issues":ng "i" #'forge-list-issues
+         :desc "List pull requests" :ng "p" #'forge-list-pullreqs
+         :desc "List notifications" :ng "n" #'forge-list-notifications))))
+
+;; Better scrolling in magit buffers
+(map! (:map magit-status-mode-map
+       :vng "#" #'magit-gitignore
+       :vng "C-j" #'magit-section-forward-sibling
+       :vng "C-k" #'magit-section-backward-sibling))
+
+(map! (:leader
        (:when (featurep! :tools debugger)
         (:prefix "a"
          :desc "Start Debugger" :ng "d" #'+debugger/start))
@@ -420,6 +485,10 @@
       :ng "C-x C-b" #'ibuffer
       :ng "C-c l" #'recenter
       :ngi "C-c u" #'undo-fu-only-undo
+      :n "q" nil
+      :n "J" #'+lookup:dash
+      :n "C-j" #'evil-scroll-down
+      :n "C-k" #'evil-scroll-up
 
       (:after flyspell
        (:map flyspell-mode-map
@@ -438,12 +507,7 @@
         :ngi "C-M-s" #'smartparens-hydra/body))
       (:after lsp-mode
        (:map lsp-mode-map
-        :ngi "<A-return>" #'lsp-execute-code-action))
-
-      :n "q" nil
-      :n "J" #'+lookup:dash
-      :n "C-j" #'evil-scroll-down
-      :n "C-k" #'evil-scroll-up)
+        :ngi "<A-return>" #'lsp-execute-code-action)))
 
 (map! (:map lsp-mode-map
          "<f9>"  #'dap-breakpoint-toggle
