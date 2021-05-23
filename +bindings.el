@@ -360,6 +360,7 @@
         :desc "Delete trailing newlines" :ng "W" #'doom/delete-trailing-newlines
         (:when (and (featurep! :tools lsp) (not (featurep! :tools lsp +eglot)))
          :desc "Execute code action" :ng "a" #'lsp-execute-code-action
+         :desc "Rename (LSP)" :ng "l" #'lsp-rename
          :desc "Find References (Peek)" :ng "R" #'lsp-ui-peek-find-references
          :desc "Organize imports" :ng "o" #'lsp-organize-imports
          (:when (featurep! :completion ivy)
