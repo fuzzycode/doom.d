@@ -265,6 +265,7 @@
         (:prefix "x"
           :desc "Downcase Region" :ng "d" #'downcase-region
           :desc "Upcase Region" :ng "u" #'upcase-region
+          :desc "Format DWIM" :ng "=" #'+format/region-or-buffer
           (:prefix ("i" . "indent")
             :desc "Indent Buffer" :ng "b" #'+text/indent-buffer
             :desc "Indent Defun" :ng "d" #'sp-indent-defun
