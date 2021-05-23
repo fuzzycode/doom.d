@@ -263,8 +263,8 @@
             :desc "List Errors" :ng "l" #'flycheck-list-errors
             :desc "Verify Setup" :ng "v" #'flycheck-verify-setup))
         (:prefix "x"
-          :desc "Downcase Region" :ng "d" 'downcase-region
-          :desc "Upcase Region" :ng "u" 'upcase-region
+          :desc "Downcase Region" :ng "d" #'downcase-region
+          :desc "Upcase Region" :ng "u" #'upcase-region
           (:prefix ("i" . "indent")
             :desc "Indent Buffer" :ng "b" #'+text/indent-buffer
             :desc "Indent Defun" :ng "d" #'sp-indent-defun
