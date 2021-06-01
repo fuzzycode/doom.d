@@ -340,23 +340,6 @@
   :hook ((emacs-lisp-mode . eval-sexp-fu-flash-mode)))
 
 ;;;###package
-(use-package! sh-script
-  :defer t
-  :init (map! (:localleader
-                :map shell-mode-map
-                (:prefix ("i" . "insert")
-                  :desc "Case" :ng "c" #'sh-case
-                  :desc "If" :ng "i" #'sh-if
-                  :desc "Function" :ng "f" #'sh-function
-                  :desc "For" :ng "o" #'sh-for
-                  :desc "Indexed For" :ng "e" #'sh-indexed-loop
-                  :desc "While" :ng "w" #'sh-while
-                  :desc "Repeat" :ng "r" #'sh-repeat
-                  :desc "Select" :ng "s" #'sh-select
-                  :desc "Until" :ng "u" #'sh-until
-                  :desc "While Getopts" :ng "g" #'sh-while-getopts))))
-
-;;;###package
 (use-package! ebib
   :defer t
   :commands (ebib)
