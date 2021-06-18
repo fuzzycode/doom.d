@@ -13,6 +13,7 @@
 ;; GIT
 (package! magit-imerge)
 (package! magit-tbdiff)
+(package! magit-delta)
 (package! git-commit)
 (package! gitignore-mode)
 (package! gitconfig-mode)
@@ -65,7 +66,6 @@
 (package! pandoc-mode)
 (package! avy)
 (package! goto-last-change)
-(package! alert)
 (package! centered-cursor-mode)
 (package! highlight-doxygen)
 (package! super-save)
