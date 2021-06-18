@@ -81,6 +81,10 @@
 (after! evil-snipe
   (setq evil-snipe-spillover-scope 'whole-visible))
 
+(after! evil
+  (setq! evil-want-fine-undo t))
+
+
 (after! lsp-ui
   (setq lsp-ui-doc-show-with-cursor nil)
   (setq lsp-ui-sideline-show-code-actions nil) ;; Prefer to have this in the mode-line
