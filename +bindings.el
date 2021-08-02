@@ -73,19 +73,19 @@
         :desc "Universal Argument" :ng "u" #'universal-argument
         :desc "Undo" :ng "," #'undo-fu-only-undo
         :desc "Repeat" :ng "." #'evil-repeat-pop-next
-        (:prefix "a"
-         :desc "Dired" :ng "d" #'dired
-         (:when (featurep! :email mu4e)
-          (:prefix ("m" . "mail")
-           :desc "Compose" :ng "c" #'+mu4e/compose
-           :desc "Mail" :ng "m" #'mu4e))
-          (:prefix ("s" . "shell")
-            (:when (featurep! :term vterm)
-              :desc "Toggle vterm popup"    "v" #'+vterm/toggle
-              :desc "Open vterm here"       "V" #'+vterm/here)
-            (:when (featurep! :term eshell)
-              :desc "Toggle eshell popup"   "e" #'+eshell/toggle
-              :desc "Open eshell here"      "E" #'+eshell/here)))
+        ;; (:prefix "a"
+        ;;  :desc "Dired" :ng "d" #'dired
+        ;;  (:when (featurep! :email mu4e)
+        ;;   (:prefix ("m" . "mail")
+        ;;    :desc "Compose" :ng "c" #'+mu4e/compose
+        ;;    :desc "Mail" :ng "m" #'mu4e))
+        ;;   (:prefix ("s" . "shell")
+        ;;     (:when (featurep! :term vterm)
+        ;;       :desc "Toggle vterm popup"    "v" #'+vterm/toggle
+        ;;       :desc "Open vterm here"       "V" #'+vterm/here)
+        ;;     (:when (featurep! :term eshell)
+        ;;       :desc "Toggle eshell popup"   "e" #'+eshell/toggle
+        ;;       :desc "Open eshell here"      "E" #'+eshell/here)))
         (:prefix "x"
           :desc "Count Region" :ng "c" #'count-words-region
           :desc "Indent Rigidly" :ng "TAB" #'indent-rigidly
@@ -249,13 +249,13 @@
 (map! (:leader
         :desc "Shell Command" :ng "!" 'shell-command
         :desc "Eval" :ng ":" 'eval-expression
-        (:when (featurep! :tools ein)
-          (:prefix "a"
-            (:prefix ("y" . "jupyter notebooks")
-              :desc "Login" :ng "l" #'ein:notebooklist-login
-              :desc "Open" :ng "o" #'ein:notebooklist-open
-              :desc "Run" :ng "r" #'ein:run
-              :desc "Stop" :ng "s" #'ein:stop)))
+        ;; (:when (featurep! :tools ein)
+        ;;   (:prefix "a"
+        ;;     (:prefix ("y" . "jupyter notebooks")
+        ;;       :desc "Login" :ng "l" #'ein:notebooklist-login
+        ;;       :desc "Open" :ng "o" #'ein:notebooklist-open
+        ;;       :desc "Run" :ng "r" #'ein:run
+        ;;       :desc "Stop" :ng "s" #'ein:stop)))
         (:prefix "e"
           (:when (featurep! :checkers syntax)
             :desc "Next Error" :ng "n" #'flycheck-next-error
@@ -436,15 +436,15 @@
        :vng "C-k" #'magit-section-backward-sibling))
 
 (map! (:leader
-       (:when (featurep! :tools debugger)
-        (:prefix "a"
-         :desc "Start Debugger" :ng "d" #'+debugger/start))
-       (:when (featurep! :app rss)
-        (:prefix "a"
-         :desc "News Feed" :ng "n" #'elfeed)
+       ;; (:when (featurep! :tools debugger)
+       ;;  (:prefix "a"
+       ;;   :desc "Start Debugger" :ng "d" #'+debugger/start))
+       ;; (:when (featurep! :app rss)
+       ;;  (:prefix "a"
+       ;;   :desc "News Feed" :ng "n" #'elfeed)
         (:prefix "f"
          (:prefix "o"
-          :desc "Open Elfeed File(s)" :ng "e" #'+org/open-efeed-files)))))
+          :desc "Open Elfeed File(s)" :ng "e" #'+org/open-efeed-files))))
 
 (map! (:after evil
        (:leader

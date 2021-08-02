@@ -11,7 +11,7 @@
 (doom!
        :completion
        company          ; the ultimate code completion backend
-       (ivy +prescient +icons)
+       (vertico +icons)
 
        :ui
        doom              ; what makes DOOM look the way it does

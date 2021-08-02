@@ -2,8 +2,6 @@
 
 ;;DISABLED
 
-;; Stay on bleeding edge for lsp
-(unpin! '(lsp-mode lsp-ui dap-modes))
 
 ;; C++
 (package! ninja-mode)
@@ -83,4 +81,4 @@
 ;; Add evil packages
 (when (featurep! :editor evil)
   (package! evil-surround)
-  (package! evil-collection))
+)

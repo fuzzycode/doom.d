@@ -40,9 +40,9 @@
 ;Load Specific files
 (load! "+bindings")
 (load! "+core")
-(load! "+ivy")
-(load! "+org")
-(load! "+packages")
+;; (load! "+ivy")
+;; (load! "+org")
+;; (load! "+packages")
 
 ;; Allow for machine local customizations
 (load! "~/.doom.local.el" "" t)

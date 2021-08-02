@@ -39,8 +39,8 @@
    :defer t
    :commands (proced)
    :hook (proced-mode . (lambda () (proced-toggle-auto-update +1)))
-   :init (map! (:leader (:prefix "a"
-                          :desc "Proced" :ng "P" #'proced)))
+   ;; :init (map! (:leader (:prefix "a"
+   ;;                        :desc "Proced" :ng "P" #'proced)))
    :config
    (setq proced-auto-update-interval 1)
    (set-popup-rule! "*Proced*" :size 0.4 :side 'bottom :select t :autosave t))
@@ -64,6 +64,7 @@
 
 ;;;###package
 (use-package! winum
+  :defer t
   :init (setq winum-auto-assign-0-to-minibuffer nil
               winum-auto-setup-mode-line nil
               winum-ignored-buffers '("*which-key*"))
@@ -343,9 +344,10 @@
 (use-package! ebib
   :defer t
   :commands (ebib)
-  :init (map! (:leader
-               (:prefix "a"
-                :desc "Ebib" :ng "e" #'ebib))))
+  ;; :init (map! (:leader
+  ;;              (:prefix "a"
+  ;;               :desc "Ebib" :ng "e" #'ebib)))
+)
 
 ;;;###package
 (use-package! ninja-mode
