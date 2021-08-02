@@ -288,15 +288,15 @@
 ;;     (kbd "C-j") #'evil-scroll-down
 ;;     (kbd "C-k") #'evil-scroll-up))
 
-;; ;;;###package
-;; (use-package! hardhat
-;;   :defer t
-;;   :init (setq hardhat-less-feedback t)
-;;   :hook (doom-first-input . global-hardhat-mode))
+;;;###package
+(use-package! hardhat
+  :defer t
+  :init (setq hardhat-less-feedback t)
+  :hook (doom-first-input . global-hardhat-mode))
 
-;; ;;;###package
-;; (use-package! subword
-;;   :hook (prog-mode . subword-mode))
+;;;###package
+(use-package! subword
+  :hook (prog-mode . subword-mode))
 
 ;; ;;;###package
 ;; (use-package! midnight
@@ -306,13 +306,14 @@
 ;;               clean-buffer-list-kill-never-regexps '("^\\*\\(doom\\|scratch\\|Messages\\)\\*$"
 ;;                                                      "^\\*lsp.*"
 ;;                                                      "^\\*clangd.*")))
-;; ;;;###package
-;; (use-package! dired-x
-;;   :defer t
-;;   :commands dired-jump
-;;   :init (map! (:leader
-;;                (:prefix "f"
-;;                 :desc "Find file in Dired" :ng "d" #'dired-jump))))
+
+;;;###package
+(use-package! dired-x
+  :defer t
+  :commands dired-jump
+  :init (map! (:leader
+               (:prefix "f"
+                :desc "Find file in Dired" :ng "d" #'dired-jump))))
 
 ;;;###package
 (use-package! dired
@@ -505,11 +506,12 @@
 ;;   :init (map! (:leader
 ;;                 (:prefix "g"
 ;;                   :desc "Walk Tree" :ng "w" #'git-walktree))))
-;; ;;;###package
-;; (use-package! gitignore-templates
-;;   :defer t
-;;   :when (featurep! :tools magit)
-;;   :commands (gitignore-templates-insert gitignore-templates-new-file)
-;;   :init (map! :leader (:prefix "g"
-;;                         :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
-;;                         :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
+
+;;;###package
+(use-package! gitignore-templates
+  :defer t
+  :when (featurep! :tools magit)
+  :commands (gitignore-templates-insert gitignore-templates-new-file)
+  :init (map! :leader (:prefix "g"
+                        :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
+                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
