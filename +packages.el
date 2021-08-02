@@ -319,10 +319,11 @@
 ;;   :defer t
 ;;   :hook (dired-mode . auto-revert-mode))
 
-;; ;;;###package
-;; (use-package! yaml-mode
-;;   :mode (("\\.clang-format\\'" . yaml-mode)
-;;          ("\\.clang-tidy\\'" . yaml-mode)))
+;;;###package
+(use-package! yaml-mode
+  :defer t
+  :mode (("\\.clang-format\\'" . yaml-mode)
+         ("\\.clang-tidy\\'" . yaml-mode)))
 
 ;; ;;;###package
 ;; (use-package! elisp-format
@@ -349,9 +350,9 @@
 ;;   ;;               :desc "Ebib" :ng "e" #'ebib)))
 ;; )
 
-;; ;;;###package
-;; (use-package! ninja-mode
-;;   :defer t)
+;;;###package
+(use-package! ninja-mode
+  :defer t)
 
 ;; ;;;###package
 ;; (use-package! ff-c-style
@@ -446,39 +447,39 @@
 ;;   :defer t
 ;;   :init (with-eval-after-load 'mu4e (mu4e-maildirs-extension-load)))
 
-;; ;;;###package
-;; (use-package! git-commit
-;;   :defer t
-;;   :when (featurep! :tools magit)
-;;   :init
-;;   (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
-;;   (add-hook 'git-commit-mode-hook #'evil-insert-state)
-;;   :bind (:map git-commit-mode-map
-;;         ([tab] . #'+magit/move-to-next-slot)))
+;;;###package
+(use-package! git-commit
+  :defer t
+  :when (featurep! :tools magit)
+  :init
+  (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
+  (add-hook 'git-commit-mode-hook #'evil-insert-state)
+  :bind (:map git-commit-mode-map
+        ([tab] . #'+magit/move-to-next-slot)))
 
-;; ;;;###package
-;; (use-package! gitconfig-mode
-;;   :defer t
-;;   :when (featurep! :tools magit)
-;;   :mode ("\.?gitaliases$" . gitconfig-mode)
-;;   :mode ("\.?gitconfig$" . gitconfig-mode))
+;;;###package
+(use-package! gitconfig-mode
+  :defer t
+  :when (featurep! :tools magit)
+  :mode ("\.?gitaliases$" . gitconfig-mode)
+  :mode ("\.?gitconfig$" . gitconfig-mode))
 
-;; ;;;###package
-;; (use-package! gitignore-mode
-;;   :defer t
-;;   :when (featurep! :tools magit)
-;;   :mode ("\.?gitignore$" . gitignore-mode))
+;;;###package
+(use-package! gitignore-mode
+  :defer t
+  :when (featurep! :tools magit)
+  :mode ("\.?gitignore$" . gitignore-mode))
 
-;; ;;;###package
-;; (use-package! gitattributes-mode
-;;   :when (featurep! :tools magit)
-;;   :defer t)
+;;;###package
+(use-package! gitattributes-mode
+  :when (featurep! :tools magit)
+  :defer t)
 
-;; ;;;###package
-;; (use-package magit-imerge
-;;   :defer t
-;;   :when (featurep! :tools magit)
-;;   :after magit)
+;;;###package
+(use-package magit-imerge
+  :defer t
+  :when (featurep! :tools magit)
+  :after magit)
 
 ;; ;;;###package
 ;; (use-package! magit-tbdiff
