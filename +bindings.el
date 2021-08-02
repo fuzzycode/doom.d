@@ -129,11 +129,11 @@
         (:prefix "f"
          :desc "Copy This File" :ng "c" #'doom/copy-this-file
          :desc "Move This File" :ng "m" #'doom/move-this-file
-          (:prefix ("D" . "doom")
-            :desc "Packages File" :ng "p" #'doom/goto-packages-file
-            :desc "Config File" :ng "C" #'doom/goto-config-file
-            :desc "Init File" :ng "i" #'doom/goto-doomblock
-            :desc "User Config" :ng "c" #'doom/open-private-config))
+        (:prefix ("D" . "doom")
+         :desc "Packages File" :ng "p" #'doom/goto-packages-file
+         :desc "Config File" :ng "C" #'doom/goto-config-file
+         :desc "Init File" :ng "i" #'doom/goto-doomblock
+         :desc "User Config" :ng "c" #'doom/open-private-config))
         (:prefix "h"
           :desc "Version" :ng "V" #'doom/version
           (:prefix ("t" . "tutorials")
@@ -162,89 +162,7 @@
           :desc "Close Window" :ng "k" #'+workspace/close-window-or-workspace
           :desc "Delete Other Windows" :ng "K" #'delete-other-windows
           (:when (featurep! :ui window-select)
-            :desc "Ace Window" :ng "w" #'ace-window))
-        (:prefix "K"
-          :desc "Start or Insert Counter" :ng "r" #'kmacro-start-macro-or-insert-counter
-          :desc "End or Call Macro" :ng "f" #'kmacro-end-or-call-macro-repeat
-          :desc "Add Counter" :ng "a" #'kmacro-add-counter
-          :desc "Bind to Key" :ng "b" #'kmacro-bind-to-key
-          :desc "Call Macro" :ng "c" #'kmacro-call-macro
-          :desc "Delete Ring Head" :ng "d" #'kmacro-delete-ring-head
-          :desc "Insert Counter" :ng "i" #'kmacro-insert-counter
-          :desc "End Call Mouse" :ng "m" #'kmacro-end-call-mouse
-          :desc "Cycle Ring Next" :ng "n" #'kmacro-cycle-ring-next
-          :desc "Name Last Macro" :ng "N" #'kmacro-name-last-macro
-          :desc "Cycle Ring Previous" :ng "p" #'kmacro-cycle-ring-previous
-          :desc "View Macro" :ng "v" #'kmacro-view-macro
-          :desc "View Macro Repeat" :ng "V" #'kmacro-view-macro-repeat
-          :desc "Macro to Register" :ng "w" #'kmacro-to-register
-          :desc "Jump to Register" :ng "y" #'jump-to-register
-          (:prefix ("2" . "2nd")
-            :desc "Call Ring 2nd" :ng "c" #'kmacro-call-ring-2nd
-            :desc "Call Ring 2nd Repeat" :ng "C" #'kmacro-call-ring-2nd-repeat
-            :desc "View Ring 2nd" :ng "v" #'kmacro-view-ring-2nd)
-          (:prefix ("e" . "edit")
-            :desc "Edit Lossage" :ng "l" #'kmacro-edit-lossage
-            :desc "Edit Macro" :ng "m" #'kmacro-edit-macro
-            :desc "Edit Macro Repeat" :ng "r" #'kmacro-edit-macro-repeat
-            :desc "Step Edit Macro" :ng "t" #'kmacro-step-edit-macro)
-          (:prefix ("s" . "set")
-            :desc "Set Counter" :ng "c" #'kmacro-set-counter
-            :desc "Set Format" :ng "f" #'kmacro-set-format
-            :desc "Swap Ring" :ng "r" #'kmacro-swap-ring))
-        (:prefix "R"
-          :desc "Clear Rectangle" :ng "!" #'clear-rectangle
-          :desc "Close Rectangle" :ng "c" #'close-rectangle
-          :desc "Delete Rectangle" :ng "d" #'delete-rectangle
-          :desc "Exchange Point & Mark" :ng "e" #'rectangle-exchange-point-and-mark
-          :desc "Copy To Register" :ng "i" #'copy-rectangle-to-register
-          :desc "Kill Rectangle" :ng "k" #'kill-rectangle
-          :desc "Left Char" :ng "l" #'rectangle-left-char
-          :desc "Mark Mode" :ng "m" #'rectangle-mark-mode
-          :desc "Next Line" :ng "n" #'rectangle-next-line
-          :desc "Number Lines" :ng "N" #'rectangle-number-lines
-          :desc "Open Rectangle" :ng "o" #'open-rectangle
-          :desc "Previous Line" :ng "p" #'rectangle-previous-line
-          :desc "Right Char" :ng "r" #'rectangle-right-char
-          :desc "String Rectangle" :ng "s" #'string-rectangle
-          :desc "Transpose Regions" :ng "t" #'transpose-regions
-          :desc "Yank Rectangle" :ng "y" #'yank-rectangle)
-        (:prefix "E"
-          (:prefix ("b" . "buffers")
-            :desc "Buffers 3 Way" :ng "3" #'ediff-buffers3
-            :desc "Buffers" :ng "b" #'ediff-buffers
-            :desc "Patch Buffer" :ng "p" #'ediff-patch-buffer)
-          (:prefix ("d" . "directories")
-            :desc "Directories 3 Way" :ng "3" #'ediff-directories3
-            :desc "Directories" :ng "d" #'ediff-directories
-            :desc "Directory Revisions" :ng "r" #'ediff-directory-revisions)
-          (:prefix ("f" . "files")
-            :desc "File 3 Way" :ng "3" #'ediff-files3
-            :desc "Files" :ng "f" #'ediff-files
-            :desc "Patch File" :ng "p" #'ediff-patch-file)
-          (:prefix ("m" . "merge")
-            (:prefix ("b" . "buffers")
-              :desc "Merge Buffers with Ancestor" :ng "3" #'ediff-merge-buffers-with-ancestor
-              :desc "Merge Buffers" :ng "b" #'ediff-merge-buffers)
-            (:prefix ("d" . "directories")
-              :desc "Merge Directories With Ancestor" :ng "3" #'ediff-merge-directories-with-ancestor
-              :desc "Merge Directories" :ng "d" #'ediff-merge-directories)
-            (:prefix ("f" . "files")
-              :desc "Merge Files With Ancestor" :ng "3" #'ediff-merge-files-with-ancestor
-              :desc "Merge Files" :ng "m" #'ediff-merge-files)
-            (:prefix ("r" . "revisions")
-              :desc "Merge Revisions With Ancestor" :ng "3" #'ediff-merge-revisions-with-ancestor
-              :desc "Merge Revisions" :ng "r" #'ediff-merge-revisions))
-          (:prefix ("r" . "regions/revisions")
-            :desc "Diff Regions Linewise" :ng "l" #'ediff-regions-linewise
-            :desc "Revisions" :ng "r" #'ediff-revision
-            :desc "Diff Regions Wordwise" :ng "w" #'ediff-regions-wordwise)
-          (:prefix ("w" . "windows")
-            :desc "Diff Windows Linewise" :ng "l" #'ediff-windows-linewise
-            :desc "Diff Windows Wordwise" :ng "w" #'ediff-windows-wordwise)
-          :desc "Backup" :ng "B" #'ediff-backup
-          :desc "Documentation" :ng "h" #'ediff-documentation
-          :desc "Show Registry" :ng "s" #'ediff-show-registry)))
+            :desc "Ace Window" :ng "w" #'ace-window))))
 
 (map! (:leader
         :desc "Shell Command" :ng "!" 'shell-command
@@ -589,14 +507,14 @@
     (kbd "<escape>") 'company-search-abort))
 
 ;; Occur mode
-(after! evil-collection
-  (evil-collection-define-key 'normal 'occur-mode-map
-    (kbd "C-c C-e") 'occur-edit-mode
-    (kbd "C-x C-q") nil)
+;; (after! evil-collection
+;;   (evil-collection-define-key 'normal 'occur-mode-map
+;;     (kbd "C-c C-e") 'occur-edit-mode
+;;     (kbd "C-x C-q") nil)
 
-  (evil-collection-define-key 'normal 'occur-edit-mode-map
-    (kbd "C-c C-c") 'occur-cease-edit
-    (kbd "C-x C-q") nil))
+;;   (evil-collection-define-key 'normal 'occur-edit-mode-map
+;;     (kbd "C-c C-c") 'occur-cease-edit
+;;     (kbd "C-x C-q") nil))
 
 (after! outline
   (evil-collection-define-key 'normal 'outline-mode-map
