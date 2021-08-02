@@ -101,15 +101,6 @@
 ;; ;;   (winner-mode t))
 
 ;; ;;;###package
-;; (use-package! expand-region
-;;   :defer t
-;;   :commands (er/expand-region)
-;;   :init (setq expand-region-contract-fast-key "V"
-;;               expand-region-reset-fast-key "r")
-;;   (map! (:leader
-;;           :desc "Expand Region" :ng "v" #'er/expand-region)))
-
-;; ;;;###package
 ;; (use-package! crux
 ;;   :defer t
 ;;   :commands (crux-top-join-line crux-delete-file-and-buffer crux-rename-file-and-buffer crux-find-shell-init-file

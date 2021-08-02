@@ -55,7 +55,6 @@
 (package! mwim)
 (package! open-junk-file)
 (package! winum)
-(package! expand-region)
 (package! crux)
 (package! dash-at-point)
 (package! lorem-ipsum)
