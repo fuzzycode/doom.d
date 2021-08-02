@@ -217,12 +217,12 @@
 ;;   (add-to-list 'avy-dispatch-alist
 ;;                '(?c . avy-comment-word)))
 
-;; ;;;###package
-;; (use-package! centered-cursor-mode
-;;   :defer t
-;;   :commands (centered-cursor-mode)
-;;   :init (map! (:leader (:prefix "t"
-;;                         :desc "Centered Cursor Mode" :g "c" #'centered-cursor-mode))))
+;;;###package
+(use-package! centered-cursor-mode
+  :defer t
+  :commands (centered-cursor-mode)
+  :init (map! (:leader (:prefix "t"
+                        :desc "Centered Cursor Mode" :g "c" #'centered-cursor-mode))))
 
 ;; ;;;###package
 ;; (use-package! super-save
@@ -375,13 +375,13 @@
     (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
     (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
 
-;; ;;;###package
-;; (use-package! lsp-treemacs
-;;   :when (featurep! :tools lsp)
-;;   :after lsp-mode
-;;   :init (map! (:leader (:prefix "e"
-;;                         :desc "All Errors" :ng "a" #'lsp-treemacs-errors-list)))
-;;   (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))
+;;;###package
+(use-package! lsp-treemacs
+  :when (featurep! :tools lsp)
+  :after lsp-mode
+  :init (map! (:leader (:prefix "e"
+                        :desc "All Errors" :ng "a" #'lsp-treemacs-errors-list)))
+  (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))
 
 ;; ;;;###package
 ;; (use-package! mu4e
