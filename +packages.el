@@ -28,11 +28,11 @@
 ;;   :defer t
 ;;   :bind ([remap comment-dwim] . #'+core/comment-uncomment-dwim))
 
-;; ;;;###package
-;; (use-package! smart-backspace
-;;   :defer t
-;;   :commands (smart-backspace)
-;;   :bind ([remap backward-delete-char-untabify] . #'smart-backspace))
+;;;###package
+(use-package! smart-backspace
+  :defer t
+  :commands (smart-backspace)
+  :bind ([remap backward-delete-char-untabify] . #'smart-backspace))
 
 ;; ;;;###package
 ;; (use-package! proced
@@ -195,18 +195,18 @@
 ;;       (setq alert-default-style 'notifier)
 ;;     (setq alert-default-style 'osx-notifier)))
 
-;; ;;;###package
-;; (use-package! pandoc-mode
-;;   :defer t)
+;;;###package
+(use-package! pandoc-mode
+  :defer t)
 
-;; ;;;###package
-;; (use-package! open-junk-file
-;;   :defer t
-;;   :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
-;;   (map! (:leader
-;;           (:prefix "f"
-;;             :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
-;;             :desc "Open Junk File" :ng "j" #'+bl/open-junk-file))))
+;;;###package
+(use-package! open-junk-file
+  :defer t
+  :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
+  (map! (:leader
+          (:prefix "f"
+            :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
+            :desc "Open Junk File" :ng "j" #'+bl/open-junk-file))))
 
 ;; ;;;###package
 ;; (use-package! avy
@@ -314,10 +314,10 @@
 ;;                (:prefix "f"
 ;;                 :desc "Find file in Dired" :ng "d" #'dired-jump))))
 
-;; ;;;###package
-;; (use-package! dired
-;;   :defer t
-;;   :hook (dired-mode . auto-revert-mode))
+;;;###package
+(use-package! dired
+  :defer t
+  :hook (dired-mode . auto-revert-mode))
 
 ;;;###package
 (use-package! yaml-mode
@@ -336,10 +336,10 @@
 ;;                   :desc "Format Region" :ng "r" #'elisp-format-region
 ;;                   :desc "Format Buffer" :ng "b" #'elisp-format-buffer))))
 
-;; ;;;###package
-;; (use-package! eval-sexp-fu
-;;   :defer t
-;;   :hook ((emacs-lisp-mode . eval-sexp-fu-flash-mode)))
+;;;###package
+(use-package! eval-sexp-fu
+  :defer t
+  :hook ((emacs-lisp-mode . eval-sexp-fu-flash-mode)))
 
 ;; ;;;###package
 ;; (use-package! ebib
