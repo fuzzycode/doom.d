@@ -10,7 +10,7 @@
 
 ;; Setup all standard prefixes
 (map! (:leader
-       (:prefix ("a" . "applications"))
+       ;; (:prefix ("a" . "applications"))
        (:prefix ("b" . "buffer/bookmarks"))
        (:prefix ("c" . "code"))
        (:prefix ("d" . "documentation"))
@@ -38,7 +38,7 @@
 (load! "+core")
 ;; (load! "+ivy")
 ;; (load! "+org")
-;; (load! "+packages")
+(load! "+packages")
 
 ;; Allow for machine local customizations
 (load! "~/.doom.local.el" "" t)
