@@ -6,22 +6,22 @@
 ;;   :diminish beginend-global-mode
 ;;   :config (beginend-global-mode 1))
 
-;; ;;;###package
-;; (use-package! visual-regexp-steroids
-;;   :after visual-regexp)
+;;;###package
+(use-package! visual-regexp-steroids
+  :after visual-regexp)
 
-;; ;;;###package
-;; (use-package! visual-regexp
-;;   :defer t
-;;   :commands (vr/replace vr/query-replace)
-;;   :bind (([remap replace-regexp] . #'vr/replace)
-;;          ([remap query-replace-regexp] . #'vr/query-replace)
-;;          ("C-c r" . #'vr/replace)
-;;          ("C-c q" . #'vr/query-replace)
-;;          ("C-c m" . #'vr/mc-mark))
-;;   :init (map! (:leader (:prefix "x"
-;;                          :desc "Replace" :ng "r" #'vr/replace
-;;                          :desc "Query Replace" :ng "q" #'vr/query-replace))))
+;;;###package
+(use-package! visual-regexp
+  :defer t
+  :commands (vr/replace vr/query-replace)
+  :bind (([remap replace-regexp] . #'vr/replace)
+         ([remap query-replace-regexp] . #'vr/query-replace)
+         ("C-c r" . #'vr/replace)
+         ("C-c q" . #'vr/query-replace)
+         ("C-c m" . #'vr/mc-mark))
+  :init (map! (:leader (:prefix "x"
+                         :desc "Replace" :ng "r" #'vr/replace
+                         :desc "Query Replace" :ng "q" #'vr/query-replace))))
 
 ;; ;;;###package
 ;; (use-package! comment-dwim-2
@@ -354,9 +354,10 @@
 (use-package! ninja-mode
   :defer t)
 
-;; ;;;###package
-;; (use-package! ff-c-style
-;;   :hook (c-mode-common . ff-add-c-style))
+;;;###package
+(use-package! ff-c-style
+  :defer t
+  :hook (c-mode-common . ff-add-c-style))
 
 ;; ;;;###package
 ;; (use-package! sourcetrail
@@ -366,21 +367,21 @@
 ;;                (:prefix "c"
 ;;                 :desc "Send Location (SourceTrail)" :ng "u" #'sourcetrail-send-location))))
 
-;; ;;;###package
-;; (use-package! evil-surround
-;;   :when (featurep! :editor evil)
-;;   :after evil-embrace
-;;   :config
-;;   (evil-define-key 'visual evil-surround-mode-map "s" #'evil-surround-region)
-;;   (let ((pairs '((?g "$" . "$")
-;;                  (?h "(" . ")")
-;;                  (?j "[" . "]")
-;;                  (?k "{" . "}")
-;;                  (?l "<" . ">")
-;;                  (?a "'" . "'")
-;;                  (?s "\"" . "\""))))
-;;     (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
-;;     (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
+;;;###package
+(use-package! evil-surround
+  :when (featurep! :editor evil)
+  :after evil-embrace
+  :config
+  (evil-define-key 'visual evil-surround-mode-map "s" #'evil-surround-region)
+  (let ((pairs '((?g "$" . "$")
+                 (?h "(" . ")")
+                 (?j "[" . "]")
+                 (?k "{" . "}")
+                 (?l "<" . ">")
+                 (?a "'" . "'")
+                 (?s "\"" . "\""))))
+    (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
+    (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
 
 ;; ;;;###package
 ;; (use-package! lsp-treemacs
