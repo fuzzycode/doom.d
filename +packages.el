@@ -227,6 +227,8 @@
 (use-package! evil-surround
   :when (featurep! :editor evil)
   :after evil-embrace
+  :init (add-hook 'c++-mode-hook (lambda ()
+                           (push '(?* . ("/*" . "*/")) evil-surround-pairs-alist)))
   :config
   (evil-define-key 'visual evil-surround-mode-map "s" #'evil-surround-region)
   (let ((pairs '((?g "$" . "$")
