@@ -233,11 +233,6 @@
 (when (featurep 'xwidget-internal)
   (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn))
 
-;; This is a temporary workaround for
-;; https://github.com/hlissner/doom-emacs/issues/4894
-(add-hook! lsp-mode
-  (defalias '+lookup/references 'lsp-find-references))
-
 (when (and (featurep! :tools lsp) (featurep! :completion ivy))
   (setq lsp-ivy-show-symbol-filename nil)) ; remove the file path from workspace symbols
 
