@@ -296,15 +296,6 @@
   :defer t
   :hook ((emacs-lisp-mode . eval-sexp-fu-flash-mode)))
 
-;; ;;;###package
-;; (use-package! ebib
-;;   :defer t
-;;   :commands (ebib)
-;;   ;; :init (map! (:leader
-;;   ;;              (:prefix "a"
-;;   ;;               :desc "Ebib" :ng "e" #'ebib)))
-;; )
-
 ;;;###package
 (use-package! ninja-mode
   :defer t)

@@ -33,9 +33,6 @@
 ;; (package! elisp-format)
 (package! eval-sexp-fu)
 
-;; LATEX
-;; (package! ebib)
-
 ;; MAIL
 ;; (when (featurep! :email mu4e)
 ;;   (package! mu4e-maildirs-extension)
