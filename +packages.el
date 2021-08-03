@@ -63,26 +63,6 @@
          ("SPC" . #'treemacs-visit-node-default))
   :config (treemacs-follow-mode +1))
 
-
-;; ;; ;;;###package
-;; ;; (use-package! winner
-;; ;;   :defer 2
-;; ;;   :init
-;; ;;   (setq +core/winner-boring-buffers '("*Completions*"
-;; ;;                                    "*Compile-Log*"
-;; ;;                                    "*inferior-lisp*"
-;; ;;                                    "*Fuzzy Completions*"
-;; ;;                                    "*Apropos*"
-;; ;;                                    "*Help*"
-;; ;;                                    "*cvs*"
-;; ;;                                    "*Buffer List*"
-;; ;;                                    "*Ibuffer*"
-;; ;;                                    "*esh command on file*"
-;; ;;                                    ))
-;; ;;   :config
-;; ;;   (setq winner-boring-buffers
-;; ;;         (append winner-boring-buffers +core/winner-boring-buffers))
-;; ;;   (winner-mode t))
 ;;;###package
 (use-package! winum
   :defer t
