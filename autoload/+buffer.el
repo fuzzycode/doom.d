@@ -48,12 +48,6 @@
   (deactivate-mark))
 
 ;;;###autoload
-(defun +bl/switch-to-scratch-buffer ()
-  "Switch to the `*scratch*' buffer. Create it first if needed."
-  (interactive)
-  (switch-to-buffer (get-buffer-create "*scratch*")))
-
-;;;###autoload
 (defun +bl/switch-to-message-buffer ()
   "Switch to the `*Messages*' buffer. Create it first if needed."
   (interactive)

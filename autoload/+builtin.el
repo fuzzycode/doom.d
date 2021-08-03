@@ -10,9 +10,3 @@
 ;;;###autoload
 (add-hook 'prog-mode-hook (lambda () (setq display-line-numbers-type 'relative)))
 
-;;;###autoload
-(defun toggle-relative-line-numbers ()
-  "Toggles between 'normal' and relative line numbers"
-  (if (eq display-line-numbers 'relative)
-      (setq display-line-numbers t)
-    (setq display-line-numbers 'relative)))
