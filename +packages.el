@@ -184,6 +184,10 @@
 ;;                                                      "^\\*lsp.*"
 ;;                                                      "^\\*clangd.*")))
 
+;;;###package
+(use-package! sort-words
+  :defer t
+  :commands sort-words)
 
 ;;;###package
 (use-package! dired
