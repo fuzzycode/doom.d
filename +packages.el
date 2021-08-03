@@ -101,28 +101,6 @@
 ;; ;;   (winner-mode t))
 
 ;; ;;;###package
-;; (use-package! crux
-;;   :defer t
-;;   :commands (crux-top-join-line crux-delete-file-and-buffer crux-rename-file-and-buffer crux-find-shell-init-file
-;;                                 crux-find-user-custom-file crux-capitalize-region crux-duplicate-current-line-or-region
-;;                                 crux-duplicate-and-comment-current-line-or-region)
-;;   :init
-;;   (global-set-key (kbd "<A-up>") #'join-line)
-;;   (global-set-key (kbd "<A-down>") #'crux-top-join-line)
-;;   (map! (:leader
-;;           (:prefix "b"
-;;             :desc "Delete Buffer and File" :ng "K" #'crux-delete-file-and-buffer
-;;             :desc "Rename Buffer and File" :ng "R" #'crux-rename-file-and-buffer)
-;;           (:prefix "f"
-;;            :desc "Find Shell init file" :ng "S" #'crux-find-shell-init-file
-;;            :desc "Find User Custom File" :ng "C" #'crux-find-user-custom-file)
-;;           (:prefix "x"
-;;             :desc "Capitalize Region" :ng "C" #'crux-capitalize-region
-;;             (:prefix ("l" . "lines")
-;;               :desc "Duplicate Line Or Region" :ng "d" #'crux-duplicate-current-line-or-region
-;;               :desc "Duplicate And Comment Line Or Region" :ng "D" #'crux-duplicate-and-comment-current-line-or-region)))))
-
-;; ;;;###package
 ;; (use-package! dash-at-point
 ;;   :defer t
 ;;   :commands (dash-at-point dash-at-point-with-docset)

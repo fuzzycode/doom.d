@@ -7,3 +7,7 @@
       ";" nil ;; Save for later
       :desc "M-x" "<SPC>" #'execute-extended-command
       :desc "Eval Expression" ":" #'eval-expression)
+
+(map!
+ "<A-up>" #'join-line
+ "<A-down>" (cmd! (delete-indentation 1)))
