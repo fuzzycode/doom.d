@@ -10,18 +10,18 @@
 (use-package! visual-regexp-steroids
   :after visual-regexp)
 
-;;;###package
-(use-package! visual-regexp
-  :defer t
-  :commands (vr/replace vr/query-replace)
-  :bind (([remap replace-regexp] . #'vr/replace)
-         ([remap query-replace-regexp] . #'vr/query-replace)
-         ("C-c r" . #'vr/replace)
-         ("C-c q" . #'vr/query-replace)
-         ("C-c m" . #'vr/mc-mark))
-  :init (map! (:leader (:prefix "x"
-                         :desc "Replace" :ng "r" #'vr/replace
-                         :desc "Query Replace" :ng "q" #'vr/query-replace))))
+;; ;;;###package
+;; (use-package! visual-regexp
+;;   :defer t
+;;   :commands (vr/replace vr/query-replace)
+;;   :bind (([remap replace-regexp] . #'vr/replace)
+;;          ([remap query-replace-regexp] . #'vr/query-replace)
+;;          ("C-c r" . #'vr/replace)
+;;          ("C-c q" . #'vr/query-replace)
+;;          ("C-c m" . #'vr/mc-mark))
+;;   :init (map! (:leader (:prefix "x"
+;;                          :desc "Replace" :ng "r" #'vr/replace
+;;                          :desc "Query Replace" :ng "q" #'vr/query-replace))))
 
 ;; ;;;###package
 ;; (use-package! comment-dwim-2
@@ -45,12 +45,12 @@
 ;;    (setq proced-auto-update-interval 1)
 ;;    (set-popup-rule! "*Proced*" :size 0.4 :side 'bottom :select t :autosave t))
 
-;; ;;;###package
-;; (use-package! which-key
-;;   :defer t
-;;   :init (setq which-key-sort-order 'which-key-key-order-alpha
-;;               which-key-add-column-padding 1
-;;               which-key-min-display-lines 6))
+;;;###package
+(use-package! which-key
+  :defer t
+  :init (setq which-key-sort-order 'which-key-key-order-alpha
+              which-key-add-column-padding 1
+              which-key-min-display-lines 6))
 
 ;; ;;;###package
 ;; (use-package! treemacs
@@ -190,14 +190,14 @@
 (use-package! pandoc-mode
   :defer t)
 
-;;;###package
-(use-package! open-junk-file
-  :defer t
-  :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
-  (map! (:leader
-          (:prefix "f"
-            :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
-            :desc "Open Junk File" :ng "j" #'+bl/open-junk-file))))
+;; ;;;###package
+;; (use-package! open-junk-file
+;;   :defer t
+;;   :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
+;;   (map! (:leader
+;;           (:prefix "f"
+;;             :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
+;;             :desc "Open Junk File" :ng "j" #'+bl/open-junk-file))))
 
 ;; ;;;###package
 ;; (use-package! avy
@@ -217,12 +217,12 @@
 ;;   (add-to-list 'avy-dispatch-alist
 ;;                '(?c . avy-comment-word)))
 
-;;;###package
-(use-package! centered-cursor-mode
-  :defer t
-  :commands (centered-cursor-mode)
-  :init (map! (:leader (:prefix "t"
-                        :desc "Centered Cursor Mode" :g "c" #'centered-cursor-mode))))
+;; ;;;###package
+;; (use-package! centered-cursor-mode
+;;   :defer t
+;;   :commands (centered-cursor-mode)
+;;   :init (map! (:leader (:prefix "t"
+;;                         :desc "Centered Cursor Mode" :g "c" #'centered-cursor-mode))))
 
 ;; ;;;###package
 ;; (use-package! super-save
@@ -298,13 +298,13 @@
 ;;                                                      "^\\*lsp.*"
 ;;                                                      "^\\*clangd.*")))
 
-;;;###package
-(use-package! dired-x
-  :defer t
-  :commands dired-jump
-  :init (map! (:leader
-               (:prefix "f"
-                :desc "Find file in Dired" :ng "d" #'dired-jump))))
+;; ;;;###package
+;; (use-package! dired-x
+;;   :defer t
+;;   :commands dired-jump
+;;   :init (map! (:leader
+;;                (:prefix "f"
+;;                 :desc "Find file in Dired" :ng "d" #'dired-jump))))
 
 ;;;###package
 (use-package! dired
@@ -375,13 +375,13 @@
     (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
     (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
 
-;;;###package
-(use-package! lsp-treemacs
-  :when (featurep! :tools lsp)
-  :after lsp-mode
-  :init (map! (:leader (:prefix "e"
-                        :desc "All Errors" :ng "a" #'lsp-treemacs-errors-list)))
-  (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))
+;; ;;;###package
+;; (use-package! lsp-treemacs
+;;   :when (featurep! :tools lsp)
+;;   :after lsp-mode
+;;   :init (map! (:leader (:prefix "e"
+;;                         :desc "All Errors" :ng "a" #'lsp-treemacs-errors-list)))
+;;   (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))
 
 ;; ;;;###package
 ;; (use-package! mu4e
@@ -498,11 +498,11 @@
 ;;                 (:prefix "g"
 ;;                   :desc "Walk Tree" :ng "w" #'git-walktree))))
 
-;;;###package
-(use-package! gitignore-templates
-  :defer t
-  :when (featurep! :tools magit)
-  :commands (gitignore-templates-insert gitignore-templates-new-file)
-  :init (map! :leader (:prefix "g"
-                        :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
-                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
+;; ;;;###package
+;; (use-package! gitignore-templates
+;;   :defer t
+;;   :when (featurep! :tools magit)
+;;   :commands (gitignore-templates-insert gitignore-templates-new-file)
+;;   :init (map! :leader (:prefix "g"
+;;                         :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
+;;                         :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
