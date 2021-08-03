@@ -47,7 +47,7 @@
 (package! smart-backspace)
 ;; (package! mwim)
 (package! open-junk-file)
-;; (package! winum)
+(package! winum)
 ;; (package! dash-at-point)
 ;; (package! lorem-ipsum)
 ;; (package! string-inflection)
