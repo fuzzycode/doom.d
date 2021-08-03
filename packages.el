@@ -61,12 +61,8 @@
 ;; (package! rg)
 (package! hardhat)
 
-(package! counsel-doxygen-snippets
-  :recipe (:host github :repo "fuzzycode/counsel-doxygen-snippets"))
-
 (when IS-MAC
-  (package! reveal-in-osx-finder)
-  (package! osx-dictionary))
+  (package! reveal-in-osx-finder))
 
 ;; Add evil packages
 (when (featurep! :editor evil)

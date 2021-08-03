@@ -112,16 +112,6 @@
 ;;                   :desc "Reveal in Finder" :ng "F" #'reveal-in-osx-finder))))
 
 ;; ;;;###package
-;; (use-package! osx-dictionary
-;;   :when IS-MAC
-;;   :defer t
-;;   :commands (osx-dictionary-search-word-at-point)
-;;   :init (map! (:leader
-;;                 (:prefix "x"
-;;                   (:prefix ("w" . "words")
-;;                     :desc "Search Dictionary" :ng "d" #'osx-dictionary-search-word-at-point)))))
-
-;; ;;;###package
 ;; (use-package! string-inflection
 ;;   :defer t
 ;;   :commands (string-inflection-all-cycle string-inflection-underscore string-inflection-upcase string-inflection-kebab-case
