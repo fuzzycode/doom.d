@@ -10,15 +10,11 @@
 
 ;; GIT
 (package! magit-imerge)
-;; (package! magit-tbdiff)
-;; (package! magit-delta)
 (package! git-commit)
 (package! gitignore-mode)
 (package! gitconfig-mode)
 (package! gitattributes-mode)
-;; (package! git-messenger)
 (package! rigid-tabs)
-;; (package! git-walktree)
 (package! gitignore-templates)
 
 ;;ORG
@@ -74,5 +70,4 @@
 
 ;; Add evil packages
 (when (featurep! :editor evil)
-  (package! evil-surround)
-)
+  (package! evil-surround))

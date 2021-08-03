@@ -428,30 +428,6 @@
   :when (featurep! :tools magit)
   :after magit)
 
-;; ;;;###package
-;; (use-package! magit-tbdiff
-;;   :defer t
-;;   :when (featurep! :tools magit)
-;;   :after magit)
-
-;; ;;;###package
-;; (use-package git-messenger
-;;   :defer t
-;;   :when (featurep! :tools magit)
-;;   :commands (git-messenger:popup-message)
-;;   :init (setq  git-messenger:use-magit-popup t
-;;                git-messenger:show-detail t)
-;;   (map! (:leader (:prefix "g" :desc "Git Messenger" :ng "M" #'git-messenger:popup-message))))
-
-;; ;;;###package
-;; (use-package! git-walktree
-;;   :defer t
-;;   :when (featurep! :tools magit)
-;;   :commands (git-walktree)
-;;   :init (map! (:leader
-;;                 (:prefix "g"
-;;                   :desc "Walk Tree" :ng "w" #'git-walktree))))
-
 ;;;###package
 (use-package! gitignore-templates
   :defer t
