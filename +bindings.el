@@ -5,6 +5,10 @@
 
 (map! :leader
       ";" nil ;; Save for later
+      "x" nil
+      "w" nil
+      "h" nil
+
       :desc "M-x" "<SPC>" #'execute-extended-command
       :desc "Eval Expression" ":" #'eval-expression)
 
