@@ -1,5 +1,44 @@
 ;;; ~/.doom.d/+bindings.el -*- lexical-binding: t; -*-
 
+;;
+;;; <leader>
+
+(map! :leader
+      :desc "M-X"                       "<SPC>" #'execute-extended-command
+      :desc "Universal argument"        "u"     #'universal-argument
+      (:when (featurep! :ui popup)
+       :desc "Toggle last popup"        "~"     #'+popup/toggle)
+
+
+
+      (:prefix "q"
+       :desc "Restart emacs server"         "d" #'+default/restart-server
+       :desc "Delete frame"                 "f" #'delete-frame
+       :desc "Clear current frame"          "F" #'doom/kill-all-buffers
+       :desc "Kill Emacs (and daemon)"      "K" #'save-buffers-kill-emacs
+       :desc "Quit Emacs"                   "q" #'save-buffers-kill-terminal
+       :desc "Quit Emacs without saving"    "Q" #'evil-quit-all-with-error-code
+       :desc "Quick save current session"   "s" #'doom/quicksave-session
+       :desc "Restore last session"         "l" #'doom/quickload-session
+       :desc "Save session to file"         "S" #'doom/save-session
+       :desc "Restore session from file"    "L" #'doom/load-session
+       :desc "Restart & restore Emacs"      "r" #'doom/restart-and-restore
+       :desc "Restart Emacs"                "R" #'doom/restart)
+
+      (:prefix "t"
+       :desc "Big mode"                     "b" #'doom-big-font-mode
+       :desc "Fill Column Indicator"        "c" #'global-display-fill-column-indicator-mode
+       (:when (featurep! :ui indent-guides)
+        :desc "Indent guides"              "i" #'highlight-indent-guides-mode)
+       :desc "Indent style"                 "I" #'doom/toggle-indent-style
+       :desc "Line numbers"                 "l" #'doom/toggle-line-numbers
+       :desc "Read-only mode"               "r" #'read-only-mode
+       :desc "Soft line wrapping"           "w" #'visual-line-mode
+       (:when (featurep! :editor word-wrap)
+        :desc "Soft line wrapping"         "w" #'+word-wrap-mode)
+       )
+      )
+
 ;; (map! (:leader
 ;;        (:prefix "h"
 ;;           :desc "Info" :ng "i" #'info
