@@ -193,9 +193,9 @@
 ;;;###package
 (use-package! yaml-mode
   :defer t
-  :mode (("\\.clang-format\\'" . yaml-mode)
-         ("\\.clang-tidy\\'" . yaml-mode)))
-
+  :mode (("\\.clang-format$" . yaml-mode)
+         ("\\.clang-tidy$" . yaml-mode)
+         ("\\.clangd$" . yaml-mode)))
 
 ;;;###package
 (use-package! eval-sexp-fu
