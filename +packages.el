@@ -1,11 +1,5 @@
 ;;; +packages.el -*- lexical-binding: t; -*-
 
-;; ;;;###package
-;; (use-package! beginend
-;;   :defer 5
-;;   :diminish beginend-global-mode
-;;   :config (beginend-global-mode 1))
-
 ;;;###package
 (use-package! visual-regexp-steroids
   :after visual-regexp)
@@ -22,11 +16,6 @@
   :init (map! (:leader (:prefix "s"
                          :desc "Replace" :ng "q" #'vr/replace
                          :desc "Query Replace" :ng "Q" #'vr/query-replace))))
-
-;; ;;;###package
-;; (use-package! comment-dwim-2
-;;   :defer t
-;;   :bind ([remap comment-dwim] . #'+core/comment-uncomment-dwim))
 
 ;;;###package
 (use-package! smart-backspace
@@ -90,42 +79,6 @@
 ;;           (:prefix "d"
 ;;             :desc "Dash @ Point" :ng "d" #'dash-at-point
 ;;             :desc "Dash @ Point With Docset" :ng "D" #'dash-at-point-with-docset))))
-
-;; ;;;###package
-;; (use-package! lorem-ipsum
-;;   :defer t
-;;   :commands (lorem-ipsum-insert-paragraphs lorem-ipsum-insert-sentences lorem-ipsum-insert-list)
-;;   :init (map! (:leader
-;;                 (:prefix "i"
-;;                   (:prefix ("l" . "lorem/ipsum")
-;;                     :desc "Paragraphs" :ng "p" #'lorem-ipsum-insert-paragraphs
-;;                     :desc "Sentences" :ng "s" #'lorem-ipsum-insert-sentences
-;;                     :desc "List" :ng "l" #'lorem-ipsum-insert-list)))))
-
-;; ;;;###package
-;; (use-package! reveal-in-osx-finder
-;;   :when IS-MAC
-;;   :defer t
-;;   :commands (reveal-in-osx-finder)
-;;   :init (map! (:leader
-;;                 (:prefix "f"
-;;                   :desc "Reveal in Finder" :ng "F" #'reveal-in-osx-finder))))
-
-;; ;;;###package
-;; (use-package! string-inflection
-;;   :defer t
-;;   :commands (string-inflection-all-cycle string-inflection-underscore string-inflection-upcase string-inflection-kebab-case
-;;                                          string-inflection-lower-camelcase string-inflection-camelcase)
-;;   :bind ("M-u" . #'string-inflection-all-cycle)
-;;   :init (map! (:leader
-;;                 (:prefix "x"
-;;                   (:prefix ("i" . "inflection")
-;;                     :desc "Cycle Style" :ng [tab] #'+core/inflection-cycle-dwim
-;;                     :desc "Underscore" :ng "u" #'string-inflection-underscore
-;;                     :desc "Uppercase" :ng "U" #'string-inflection-upcase
-;;                     :desc "Kebab Case" :ng "k" #'string-inflection-kebab-case
-;;                     :desc "Lower Camel Case" :ng "c" #'string-inflection-lower-camelcase
-;;                     :desc "Camel Case" :ng "C" #'string-inflection-camelcase)))))
 
 ;;;###package
 (use-package! pandoc-mode
