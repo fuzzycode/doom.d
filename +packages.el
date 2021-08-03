@@ -156,14 +156,6 @@
 ;;                     :desc "Lower Camel Case" :ng "c" #'string-inflection-lower-camelcase
 ;;                     :desc "Camel Case" :ng "C" #'string-inflection-camelcase)))))
 
-;; ;;;###package
-;; (use-package! alert
-;;   :defer 10
-;;   :config
-;;   (if (executable-find "terminal-notifier")
-;;       (setq alert-default-style 'notifier)
-;;     (setq alert-default-style 'osx-notifier)))
-
 ;;;###package
 (use-package! pandoc-mode
   :defer t)

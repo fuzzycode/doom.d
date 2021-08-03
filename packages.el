@@ -58,7 +58,6 @@
 ;; (package! dash-at-point)
 ;; (package! lorem-ipsum)
 ;; (package! string-inflection)
-;; (package! alert)
 (package! pandoc-mode)
 ;; (package! avy)
 ;; (package! goto-last-change)
