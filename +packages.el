@@ -305,13 +305,13 @@
   :defer t
   :hook (c-mode-common . ff-add-c-style))
 
-;; ;;;###package
-;; (use-package! sourcetrail
-;;   :defer t
-;;   :commands (sourcetrail-send-location)
-;;   :init (map! (:leader
-;;                (:prefix "c"
-;;                 :desc "Send Location (SourceTrail)" :ng "u" #'sourcetrail-send-location))))
+;;;###package
+(use-package! sourcetrail
+  :defer t
+  :commands (sourcetrail-send-location)
+  :init (map! (:leader
+               (:prefix "c"
+                :desc "Send Location (SourceTrail)" :ng "u" #'sourcetrail-send-location))))
 
 ;;;###package
 (use-package! evil-surround
@@ -393,6 +393,11 @@
 ;;   :when (featurep! :email mu4e)
 ;;   :defer t
 ;;   :init (with-eval-after-load 'mu4e (mu4e-maildirs-extension-load)))
+
+;;;###package
+(use-package! smart-newline
+  :defer t
+  :hook (doom-first-input . smart-newline-mode))
 
 ;;;###package
 (use-package! git-commit
