@@ -196,16 +196,6 @@
   :mode (("\\.clang-format\\'" . yaml-mode)
          ("\\.clang-tidy\\'" . yaml-mode)))
 
-;; ;;;###package
-;; (use-package! elisp-format
-;;   :defer t
-;;   :commands (elisp-format-region elisp-format-buffer)
-;;   :init (map! (:localleader
-;;                 :map emacs-lisp-mode-map
-;;                 (:prefix ("=" . "format")
-;;                   :desc "Format Region or Buffer" :ng "=" #'+elisp/format-region-or-buffer
-;;                   :desc "Format Region" :ng "r" #'elisp-format-region
-;;                   :desc "Format Buffer" :ng "b" #'elisp-format-buffer))))
 
 ;;;###package
 (use-package! eval-sexp-fu

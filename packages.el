@@ -1,8 +1,5 @@
 ;; -*- lexical-binding: t; -*-
 
-;;DISABLED
-
-
 ;; C++
 (package! ninja-mode)
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
@@ -26,7 +23,6 @@
 ;; (package! org-ql)
 
 ;;ELISP
-;; (package! elisp-format)
 (package! eval-sexp-fu)
 
 ;; MAIL
