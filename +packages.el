@@ -208,14 +208,6 @@
 ;;   (super-save-mode +1))
 
 ;; ;;;###package
-;; (use-package! counsel-doxygen-snippets
-;;   :when (featurep! :completion ivy)
-;;   :after counsel
-;;   :commands counsel-doxygen-snippets
-;;   :init (map! :leader (:prefix "i"
-;;                        :desc "Doxygen Snippet" :ng "S" #'counsel-doxygen-snippets)))
-
-;; ;;;###package
 ;; (use-package! rg
 ;;   :defer t
 ;;   :commands (rg-project rg rg-dwim rg-menu rg-list-searches rg-toggle-command-hiding)
