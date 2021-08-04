@@ -23,24 +23,11 @@
 (defhydra +magit/blame-hydra (:hint nil
                                     :color magenta
                                     :pre (unless (bound-and-true-p magit-blame-mode)
-                                           (call-interactively 'magit-blame-addition)))
+                                           (call-interactively 'magit-blame-addition))
+                                    :post (when (bound-and-true-p magit-blame-mode)
+                                            (magit-blame-quit)))
   "
 [_b_] Blame Further [_q_] Quit
 "
   ("b" magit-blame-addition)
-  ("q" nil :exit (progn
-                   (when (bound-and-true-p magit-blame-mode)
-                     (magit-blame-quit))
-                   (not (bound-and-true-p magit-blame-mode)))))
-
-;;;###autoload (autoload 'smartparens-hydra/body "autoload/+hydra" nil t)
-(defhydra smartparens-hydra ()
-              "Smartparens"
-              ("d" sp-down-sexp "Down")
-              ("e" sp-up-sexp "Up")
-              ("u" sp-backward-up-sexp "Up")
-              ("a" sp-backward-down-sexp "Down")
-              ("f" sp-forward-sexp "Forward")
-              ("b" sp-backward-sexp "Backward")
-              ("k" sp-kill-sexp "Kill" :color blue)
-              ("q" nil "Quit" :color blue))
+  ("q" nil :exit t))
