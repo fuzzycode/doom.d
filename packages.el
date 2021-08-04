@@ -15,12 +15,12 @@
 (package! gitignore-templates)
 
 ;;ORG
-;; (package! demo-it)
-;; (package! idle-org-agenda)
-;; (package! org-super-agenda)
-;; (package! doct)
-;; (package! org-make-toc)
-;; (package! org-ql)
+(package! demo-it)
+(package! idle-org-agenda)
+(package! org-super-agenda)
+(package! doct)
+(package! org-make-toc)
+(package! org-ql)
 
 ;;ELISP
 (package! eval-sexp-fu)
