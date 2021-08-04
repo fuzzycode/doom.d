@@ -119,18 +119,6 @@
                         :desc "Centered Cursor Mode" "C" #'centered-cursor-mode))))
 
 ;; ;;;###package
-;; (use-package! super-save
-;;   :defer 6
-;;   :init (setq super-save-auto-save-when-idle t
-;;               super-save-idle-duration 30
-;;               super-save-remote-files nil
-;;               auto-save-default nil
-;;               super-save-exclude '("\\*.+\\*" "^[A-Z_]+$"))
-;;   :config
-;;   (add-to-list 'super-save-hook-triggers 'magit-status-mode-hook)
-;;   (super-save-mode +1))
-
-;; ;;;###package
 ;; (use-package! rg
 ;;   :defer t
 ;;   :commands (rg-project rg rg-dwim rg-menu rg-list-searches rg-toggle-command-hiding)

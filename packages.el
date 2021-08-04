@@ -47,7 +47,6 @@
 ;; (package! goto-last-change)
 (package! centered-cursor-mode)
 ;; (package! highlight-doxygen)
-;; (package! super-save)
 (package! smart-newline)
 ;; (package! rg)
 (package! hardhat)
