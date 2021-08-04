@@ -14,10 +14,16 @@
       :desc "Popup Scratch Buffer" "%" #'doom/open-scratch-buffer
       :desc "Shell Command" "!" #'shell-command
 
-      ;; Toggle
-      (:prefix "t"
-       :desc "Trailing Whitespace" :ng "w" (cmd! (setq show-trailing-whitespace (not show-trailing-whitespace)))
-       (:after lsp-mode
+      ;; Git
+      (:prefix "g"
+       (:when (featurep! :ui hydra)
+        :desc "Blame" "B" #'+magit/blame-hydra/body
+        :desc "Git Time Machine" "t" #'+magit/timemachine-hydra/body))
+
+       ;; Toggle
+       (:prefix "t"
+        :desc "Trailing Whitespace" :ng "w" (cmd! (setq show-trailing-whitespace (not show-trailing-whitespace)))
+        (:after lsp-mode
          :desc "Breadcrumb Mode" :ng "h" #'lsp-headerline-breadcrumb-mode))
 
       ;; Help
