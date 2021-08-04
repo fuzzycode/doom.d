@@ -44,7 +44,6 @@
 ;; (package! dash-at-point)
 (package! pandoc-mode)
 ;; (package! avy)
-;; (package! goto-last-change)
 (package! centered-cursor-mode)
 ;; (package! highlight-doxygen)
 (package! smart-newline)
