@@ -85,7 +85,8 @@
          (:prefix "j"
           :desc "Jump to Word" :ng "j" #'avy-goto-char-timer
           :desc "Jump to Line" :ng "l" #'avy-goto-line
-          :desc "Jump to Symbol" :ng "s" #'avy-goto-symbol-1))))
+          :desc "Jump to Symbol" :ng "s" #'avy-goto-symbol-1))
+        :nv "gb" #'avy-goto-char-timer))
 
 ;;;###package
 (use-package! centered-cursor-mode
