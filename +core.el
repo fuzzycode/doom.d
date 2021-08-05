@@ -189,7 +189,7 @@
                               " " filename)))
 
 
-(setq ispell-dictionary "en_GB")
+(setq ispell-dictionary "en_US")
 
 ;; Show the location of the sym-link and not the actual file
 (setq find-file-visit-truename nil
