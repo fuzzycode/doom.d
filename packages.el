@@ -37,17 +37,14 @@
 (package! visual-regexp-steroids)
 (package! visual-regexp)
 (package! sort-words)
-;; (package! ace-isearch)
 (package! smart-backspace)
 (package! open-junk-file)
 (package! winum)
-;; (package! dash-at-point)
 (package! pandoc-mode)
 ;; (package! avy)
 (package! centered-cursor-mode)
 ;; (package! highlight-doxygen)
 (package! smart-newline)
-;; (package! rg)
 (package! hardhat)
 
 (when IS-MAC

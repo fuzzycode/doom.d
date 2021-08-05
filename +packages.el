@@ -23,17 +23,6 @@
   :commands (smart-backspace)
   :bind ([remap backward-delete-char-untabify] . #'smart-backspace))
 
-;; ;;;###package
-;; (use-package! proced
-;;    :defer t
-;;    :commands (proced)
-;;    :hook (proced-mode . (lambda () (proced-toggle-auto-update +1)))
-;;    ;; :init (map! (:leader (:prefix "a"
-;;    ;;                        :desc "Proced" :ng "P" #'proced)))
-;;    :config
-;;    (setq proced-auto-update-interval 1)
-;;    (set-popup-rule! "*Proced*" :size 0.4 :side 'bottom :select t :autosave t))
-
 ;;;###package
 (use-package! which-key
   :defer t
@@ -69,16 +58,6 @@
           ("M-7" . #'winum-select-window-7)
           ("M-8" . #'winum-select-window-8)
           ("M-9" . #'winum-select-window-9)))
-
-;; ;;;###package
-;; (use-package! dash-at-point
-;;   :defer t
-;;   :commands (dash-at-point dash-at-point-with-docset)
-;;   :init
-;;   (map! (:leader
-;;           (:prefix "d"
-;;             :desc "Dash @ Point" :ng "d" #'dash-at-point
-;;             :desc "Dash @ Point With Docset" :ng "D" #'dash-at-point-with-docset))))
 
 ;;;###package
 (use-package! pandoc-mode
@@ -118,41 +97,6 @@
   :init (map! (:leader (:prefix "t"
                         :desc "Centered Cursor Mode" "C" #'centered-cursor-mode))))
 
-;; ;;;###package
-;; (use-package! rg
-;;   :defer t
-;;   :commands (rg-project rg rg-dwim rg-menu rg-list-searches rg-toggle-command-hiding)
-;;   :bind (:map rg-mode-map
-;;          ([tab] . #'rg-toggle-command-hiding)
-;;          ("C-c C-e" . #'wgrep-change-to-wgrep-mode)
-;;          ("C-x C-s" . #'wgrep-finish-edit))
-;;   :init (set-popup-rule! "^\\*rg" :side 'bottom :size 0.8 :select t :modeline t :quit t :ignore nil)
-;;   (setq rg-align-position-numbers t
-;;         rg-align-line-number-field-length 3
-;;         rg-align-column-number-field-length 3
-;;         rg-align-line-column-separator "#"
-;;         rg-align-position-content-separator "|")
-;;   (map! :leader
-;;         (:prefix "p"
-;;          :desc "Run rg in project" :ng "r" #'rg-project)
-;;         (:prefix "s"
-;;          :desc "Rg" :ng "d" #'rg
-;;          :desc "Rg Dwim" :ng "D" #'rg-dwim
-;;          :desc "Ripgrep Dispatch" :ng "r" #'rg-menu
-;;          :desc "List Searches" :ng "R" #'rg-list-searches)))
-
-;; ;;;###package
-;; (use-package! evil-collection-rg
-;;   :when (featurep! :editor evil)
-;;   :after (rg evil)
-;;   :config (evil-collection-rg-setup)
-;;   (evil-collection-define-key 'normal 'rg-mode-map
-;;     "i" nil
-;;     (kbd "M-j") #'rg-next-file
-;;     (kbd "M-k") #'rg-prev-file
-;;     (kbd "C-j") #'evil-scroll-down
-;;     (kbd "C-k") #'evil-scroll-up))
-
 ;;;###package
 (use-package! hardhat
   :defer t
@@ -162,15 +106,6 @@
 ;;;###package
 (use-package! subword
   :hook (prog-mode . subword-mode))
-
-;; ;;;###package
-;; (use-package! midnight
-;;   :defer t
-;;   :hook (doom-first-input . midnight-mode)
-;;   :init (setq clean-buffer-list-kill-regexps '("^\\*.*\\*$")
-;;               clean-buffer-list-kill-never-regexps '("^\\*\\(doom\\|scratch\\|Messages\\)\\*$"
-;;                                                      "^\\*lsp.*"
-;;                                                      "^\\*clangd.*")))
 
 ;;;###package
 (use-package! sort-words
