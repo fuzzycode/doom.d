@@ -232,9 +232,6 @@
 (when (featurep 'xwidget-internal)
   (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn))
 
-(when (and (featurep! :tools lsp) (featurep! :completion ivy))
-  (setq lsp-ivy-show-symbol-filename nil)) ; remove the file path from workspace symbols
-
 (set-flyspell-predicate! '(c++-mode c-mode) #'cc-flyspell-predicate-p)
 
 ;; Enable advanced features without asking
