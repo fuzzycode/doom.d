@@ -9,6 +9,8 @@
       "w" nil ;; I don't use window commands, use this for my needs
       "h" nil ;; I am used to my setup of help so I will use that
 
+      (:prefix ("j" . "jump")) ;; Claim the j prefix for me
+
       :desc "M-x" "<SPC>" #'execute-extended-command
       :desc "Eval Expression" ":" #'eval-expression
       :desc "Popup Scratch Buffer" "%" #'doom/open-scratch-buffer
@@ -20,11 +22,11 @@
         :desc "Blame" "B" #'+magit/blame-hydra/body
         :desc "Git Time Machine" "t" #'+magit/timemachine-hydra/body))
 
-       ;; Toggle
-       (:prefix "t"
-        :desc "Trailing Whitespace" :ng "w" (cmd! (setq show-trailing-whitespace (not show-trailing-whitespace)))
-        (:after lsp-mode
-         :desc "Breadcrumb Mode" :ng "h" #'lsp-headerline-breadcrumb-mode))
+      ;; Toggle
+      (:prefix "t"
+       :desc "Trailing Whitespace" :ng "w" (cmd! (setq show-trailing-whitespace (not show-trailing-whitespace)))
+       (:after lsp-mode
+        :desc "Breadcrumb Mode" :ng "h" #'lsp-headerline-breadcrumb-mode))
 
       ;; Help
       (:prefix "h"
@@ -104,7 +106,9 @@
  (:after lsp-mode
   (:map lsp-mode-map
    :ngi "<A-return>" #'lsp-execute-code-action))
-
+ (:after tabulated-list
+  (:map tabulated-list-mode-map
+   :ng "q" #'quit-window))
  (:after projectile
   "M-o" #'projectile-find-file-dwim
   :n "go" #'projectile-find-other-file))

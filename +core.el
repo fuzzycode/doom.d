@@ -71,9 +71,6 @@
   (add-to-list 'recentf-exclude (concat ".*?" "\\.emacs\\.d/\\.local" ".*"))  ;; Remove all files in the .local folders
   (add-to-list 'recentf-exclude "\\.vrb$")) ;; Remove latex intermediate files
 
-(after! tabulated-list
-  (define-key tabulated-list-mode-map "q" #'quit-window))
-
 (after! git-gutter-fringe
   (fringe-mode '(8 . 4)))  ;; Left is full size and right is half size, makes room for break-point and tilde bitmaps
 
