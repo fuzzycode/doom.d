@@ -72,23 +72,20 @@
             :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
             :desc "Open Junk File" :ng "j" #'+bl/open-junk-file))))
 
-;; ;;;###package
-;; (use-package! avy
-;;   :commands (avy-goto-word-or-subword-1 avy-goto-line avy-goto-char-timer)
-;;   :init
-;;  ;; Integrate avy with better-jumper, might be a better way to cover all avy jump functions
-;;   (advice-add #'avy-goto-word-or-subword-1 :around #'doom-set-jump-a)
-;;   (advice-add #'avy-goto-char-timer :around #'doom-set-jump-a)
-;;   (advice-add #'avy-goto-line :around #'doom-set-jump-a)
+;;;###package
+(use-package! avy
+  :commands (avy-goto-word-or-subword-1 avy-goto-line avy-goto-char-timer)
+  :init
+ ;; Integrate avy with better-jumper, might be a better way to cover all avy jump functions
+  (advice-add #'avy-goto-word-or-subword-1 :around #'doom-set-jump-a)
+  (advice-add #'avy-goto-char-timer :around #'doom-set-jump-a)
+  (advice-add #'avy-goto-line :around #'doom-set-jump-a)
 
-;;   (map! (:leader
-;;          (:prefix "j"
-;;           :desc "Jump to Word" :ng "j" #'avy-goto-char-timer
-;;           :desc "Jump to Line" :ng "l" #'avy-goto-line
-;;           :desc "Jump to Symbol" :ng "s" #'avy-goto-symbol-1)))
-;;   :config
-;;   (add-to-list 'avy-dispatch-alist
-;;                '(?c . avy-comment-word)))
+  (map! (:leader
+         (:prefix "j"
+          :desc "Jump to Word" :ng "j" #'avy-goto-char-timer
+          :desc "Jump to Line" :ng "l" #'avy-goto-line
+          :desc "Jump to Symbol" :ng "s" #'avy-goto-symbol-1))))
 
 ;;;###package
 (use-package! centered-cursor-mode
@@ -255,7 +252,7 @@
 (use-package! gitignore-mode
   :defer t
   :when (featurep! :tools magit)
-  :mode ("\.?gitignore$" . gitignore-mode))
+  :mode ("\\.?\\(fd\\|git\\)?ignore$" . gitignore-mode))
 
 ;;;###package
 (use-package! gitattributes-mode

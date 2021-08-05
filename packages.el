@@ -41,7 +41,7 @@
 (package! open-junk-file)
 (package! winum)
 (package! pandoc-mode)
-;; (package! avy)
+(package! avy)
 (package! centered-cursor-mode)
 ;; (package! highlight-doxygen)
 (package! smart-newline)
