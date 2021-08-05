@@ -85,7 +85,7 @@
  "C-j" #'evil-scroll-down
  "C-k" #'evil-scroll-up
 
- :g "M-." #'+lookup/definition
+ :ng "M-." #'+lookup/definition
  :n "q" nil
 
  (:after flyspell
