@@ -14,5 +14,5 @@
 (load! "+org")
 (load! "+packages")
 
-;; Allow for machine local customizations
+;; Allow for machine local customization
 (load! "~/.doom.local.el" "" t)
