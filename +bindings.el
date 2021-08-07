@@ -107,8 +107,7 @@
    :ngi "C-<right>" #'sp-forward-slurp-sexp
    :ngi "C-<left>" #'sp-forward-barf-sexp
    :ngi "C-M-<right>" #'sp-backward-slurp-sexp
-   :ngi "C-M-<left>" #'sp-backward-barf-sexp
-   :ngi "C-M-s" #'smartparens-hydra/body))
+   :ngi "C-M-<left>" #'sp-backward-barf-sexp))
  (:after lsp-mode
   (:map lsp-mode-map
    :ngi "<A-return>" #'lsp-execute-code-action))
