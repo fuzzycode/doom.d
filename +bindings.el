@@ -16,6 +16,12 @@
       :desc "Popup Scratch Buffer" "%" #'doom/open-scratch-buffer
       :desc "Shell Command" "!" #'shell-command
 
+      ;; Insert
+      (:prefix "i"
+       (:when (featurep! :editor evil)
+        :desc "New Line Above" "k" #'+evil/insert-newline-above
+        :desc "New Line Below" "j" #'+evil/insert-newline-below))
+
       ;; Git
       (:prefix "g"
        (:when (featurep! :ui hydra)
