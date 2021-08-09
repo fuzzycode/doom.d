@@ -10,65 +10,66 @@
 
 (doom!
        :completion
-       company          ; the ultimate code completion backend
+       company
        (vertico +icons)
 
        :ui
-       doom              ; what makes DOOM look the way it does
-       doom-dashboard    ; a nifty splash screen for Emacs
-       hl-todo           ; highlight TODO/FIXME/NOTE/DEPRECATED/HACK/REVIEW
+       doom
+       doom-dashboard
+       hl-todo
        hydra
-       modeline          ; snazzy, Atom-inspired modeline, plus API
-       nav-flash         ; blink the current line after jumping
+       modeline
+       nav-flash
 
-       (popup            ; tame sudden yet inevitable temporary windows
-        +all             ; catch all popups that start with an asterix
+       (popup
+        +all
         +defaults)
-       (treemacs +lsp)          ; a project drawer, like neotree but cooler
-       vc-gutter         ; vcs diff in the fringe
-       vi-tilde-fringe   ; fringe tildes to mark beyond EOB
-       window-select     ; visually switch windows
-       workspaces        ; tab emulation, persistence & separate workspaces
+       (treemacs +lsp)
+       ophints
+       vc-gutter
+       vi-tilde-fringe
+       window-select
+       workspaces
 
        :editor
        (evil +everywhere)
-       file-templates    ; auto-snippets for empty files
+       file-templates
        fold
        format
-       multiple-cursors  ; editing in many places at once
-       rotate-text       ; cycle region at point between text candidates
-       snippets          ; my elves. They type so I don't have to
-       word-wrap         ; soft wrapping with language-aware indent
+       multiple-cursors
+       rotate-text
+       snippets
+       word-wrap
 
        :emacs
-       (dired +ranger +icons)             ; making dired pretty [functional]
-       electric          ; smarter, keyword-based electric-indent
-       ibuffer           ; interactive buffer management
-       vc                ; version-control and Emacs, sitting in a tree
+       (dired +ranger +icons)
+       electric
+       ibuffer
+       vc
        undo
 
        :term
-       eshell            ; a consistent, cross-platform shell (WIP)
-       vterm             ; another terminals in Emacs
+       eshell
+       vterm
 
        :tools
        debugger
        direnv
        docker
-       editorconfig      ; let someone else argue about tabs vs spaces
-       ein               ; tame Jupyter notebooks with emacs
-       (eval +overlay)     ; run code, run (also, repls)
-       gist              ; interacting with github gists
-       (lookup           ; helps you navigate your code and documentation
+       editorconfig
+       ein
+       (eval +overlay)
+       gist
+       (lookup
        +dictionary
-        +docsets)        ; ...or in Dash docsets locally
+        +docsets)
        (lsp +peek)
-       magit    ; a git porcelain for Emacs
-       pdf               ; pdf enhancements
+       magit
+       pdf
        prodigy
-       rgb               ; creating color strings
-       tmux              ; an API for interacting with tmux
-       upload            ; map local to remote projects via ssh/ftp
+       rgb
+       tmux
+       upload
 
        :checkers
        syntax
@@ -107,7 +108,7 @@
        mu4e
 
        :app
-       (rss +org)        ; emacs as an RSS reader
+       (rss +org)
 
        :config
        (default +smartparens +bindings))
