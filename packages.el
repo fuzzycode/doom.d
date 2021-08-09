@@ -36,6 +36,7 @@
 
 (package! visual-regexp-steroids)
 (package! visual-regexp)
+(package! expand-region)
 (package! sort-words)
 (package! smart-backspace)
 (package! open-junk-file)
