@@ -71,6 +71,12 @@
         :desc "Variable" "v" #'describe-variable
         :desc "Text Properties" "T" #'describe-text-properties)
        (:prefix ("D" . "Doom")
+        (:prefix ("b" . "Bump")
+         :desc "Packages In Buffer" "b" #'doom/bump-packages-in-buffer
+         :desc "Commit Bumps" "c" #'doom/commit-bumps
+         :desc "Module" "m" #'doom/bump-module
+         :desc "Package" "p" #'doom/bump-package
+         :desc "Package At Point" "P" #'doom/bump-package-at-point)
         :desc "Info" "i" #'doom/info
         :desc "Issue Tracker" "I" #'doom/issue-tracker
         :desc "Homepage" "h" #'doom/homepage
