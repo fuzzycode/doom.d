@@ -225,7 +225,8 @@
 
 ;; Open documentation in webkit buffer
 (when (featurep 'xwidget-internal)
-  (setq dash-docs-browser-func '+lookup-xwidget-webkit-open-url-fn)
+  (after! dash-docs
+    (setq dash-docs-browser-func '+lookup-xwidget-webkit-open-url-fn))
   (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn))
 
 (set-flyspell-predicate! '(c++-mode c-mode) #'cc-flyspell-predicate-p)

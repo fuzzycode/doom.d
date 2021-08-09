@@ -61,7 +61,7 @@
        (eval +overlay)
        gist
        (lookup
-       +dictionary
+        +dictionary
         +docsets)
        (lsp +peek)
        magit
