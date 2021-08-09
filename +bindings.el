@@ -78,6 +78,7 @@
         :desc "Discourse" "d" #'doom/discourse
         :desc "Doom Manual" "D" #'doom/help
         :desc "Report Bug" "r" #'doom/report-bug
+        :desc "Doom Reload" "R" #'doom/reload
         :desc "Version" "V" #'doom/version)))
 
 ;; Bindings with no leader key
@@ -99,6 +100,7 @@
    :ng "M-i" #'flyspell-correct-wrapper))
  (:after (projectile cc-mode)
   (:map c++-mode-map
+   :n "go" #'projectile-find-other-file
    :ng "<A-tab>" #'projectile-find-other-file))
  (:after projectile
   :ng "M-o" #'projectile-find-file-dwim)
@@ -115,8 +117,7 @@
   (:map tabulated-list-mode-map
    :ng "q" #'quit-window))
  (:after projectile
-  "M-o" #'projectile-find-file-dwim
-  :n "go" #'projectile-find-other-file))
+  "M-o" #'projectile-find-file-dwim))
 
 (when (featurep 'xwidget-internal)
   (add-hook 'xwidget-webkit-mode-hook (lambda ()
