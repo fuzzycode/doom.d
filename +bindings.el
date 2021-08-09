@@ -121,9 +121,7 @@
    :ngi "<A-return>" #'lsp-execute-code-action))
  (:after tabulated-list
   (:map tabulated-list-mode-map
-   :ng "q" #'quit-window))
- (:after projectile
-  "M-o" #'projectile-find-file-dwim))
+   :ng "q" #'quit-window)))
 
 (when (featurep 'xwidget-internal)
   (add-hook 'xwidget-webkit-mode-hook (lambda ()
