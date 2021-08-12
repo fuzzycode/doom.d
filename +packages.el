@@ -82,7 +82,7 @@
   (map! (:leader
           (:prefix "f"
             :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
-            :desc "Open Junk File" :ng "j" #'+bl/open-junk-file))))
+            :desc "Open Junk File" :ng "j" #'open-junk-file))))
 
 ;;;###package
 (use-package! avy

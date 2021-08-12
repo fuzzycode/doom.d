@@ -71,21 +71,15 @@
       (delete-duplicate-lines)
     (+bl/uniquify-lines-buffer)))
 
-;;;###autoload
-(defun +bl/open-junk-file ()
-      (interactive)
-      (let* ((fname (format-time-string open-junk-file-format (current-time)))
-             (junk-dir (file-name-directory fname))
-             (rel-fname (file-relative-name fname junk-dir))
-             (default-directory junk-dir))
-
-        (require 'counsel)
-        (counsel-find-file rel-fname)))
+(defun +bl/junk-directory ()
+  "Returns the directory where junk files are stored"
+  (let ((fname (format-time-string open-junk-file-format (current-time))))
+    (file-name-directory fname)))
 
 ;;;###autoload
 (defun +bl/browse-junk-files ()
   (interactive)
-  (dired (concat doom-private-dir "junk/")))
+  (dired (+bl/junk-directory)))
 
 ;;;###autoload
 (defun +bl/special-mode-action-fn (buffer alist)
