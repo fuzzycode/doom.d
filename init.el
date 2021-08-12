@@ -79,6 +79,7 @@
        :lang
        (cc +lsp)
        common-lisp
+       (clojure +lsp)
        data
        emacs-lisp
        (java +lsp)
