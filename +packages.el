@@ -1,7 +1,6 @@
 ;;; +packages.el -*- lexical-binding: t; -*-
 
 ;;; Added in from doom +emacs configuration
-;;;###package
 (use-package! expand-region
   :commands (er/contract-region er/mark-symbol er/mark-word)
   :init (map! (:leader :desc "Expand Region" "v" #'er/expand-region))
@@ -12,11 +11,9 @@
     (when (memq last-command '(er/expand-region er/contract-region))
       (er/contract-region 0))))
 
-;;;###package
 (use-package! visual-regexp-steroids
   :after visual-regexp)
 
-;;;###package
 (use-package! visual-regexp
   :defer t
   :commands (vr/replace vr/query-replace)
@@ -29,20 +26,17 @@
                          :desc "Replace" :ng "q" #'vr/replace
                          :desc "Query Replace" :ng "Q" #'vr/query-replace))))
 
-;;;###package
 (use-package! smart-backspace
   :defer t
   :commands (smart-backspace)
   :bind ([remap backward-delete-char-untabify] . #'smart-backspace))
 
-;;;###package
 (use-package! which-key
   :defer t
   :init (setq which-key-sort-order 'which-key-key-order-alpha
               which-key-add-column-padding 1
               which-key-min-display-lines 6))
 
-;;;###package
 (use-package! treemacs
   :defer t
   :when (featurep! :ui treemacs)
@@ -53,7 +47,6 @@
          ("SPC" . #'treemacs-visit-node-default))
   :config (treemacs-follow-mode +1))
 
-;;;###package
 (use-package! winum
   :defer t
   :hook (doom-first-input . winum-mode)
@@ -71,11 +64,9 @@
           ("M-8" . #'winum-select-window-8)
           ("M-9" . #'winum-select-window-9)))
 
-;;;###package
 (use-package! pandoc-mode
   :defer t)
 
-;;;###package
 (use-package! open-junk-file
   :defer t
   :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
@@ -84,7 +75,6 @@
             :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
             :desc "Open Junk File" :ng "j" #'open-junk-file))))
 
-;;;###package
 (use-package! avy
   :commands (avy-goto-word-or-subword-1 avy-goto-line avy-goto-char-timer)
   :init
@@ -100,55 +90,45 @@
           :desc "Jump to Symbol" :ng "s" #'avy-goto-symbol-1))
         :nv "gb" #'avy-goto-char-timer))
 
-;;;###package
 (use-package! centered-cursor-mode
   :defer t
   :commands (centered-cursor-mode)
   :init (map! (:leader (:prefix "t"
                         :desc "Centered Cursor Mode" "C" #'centered-cursor-mode))))
 
-;;;###package
 (use-package! hardhat
   :defer t
   :init (setq hardhat-less-feedback t)
   :hook (doom-first-input . global-hardhat-mode))
 
-;;;###package
 (use-package! subword
   :hook (prog-mode . subword-mode))
 
-;;;###package
 (use-package! sort-words
   :defer t
   :commands sort-words)
 
-;;;###package
 (use-package! dired
   :defer t
   :hook (dired-mode . auto-revert-mode))
 
-;;;###package
 (use-package! yaml-mode
   :defer t
   :mode (("\\.clang-format$" . yaml-mode)
          ("\\.clang-tidy$" . yaml-mode)
          ("\\.clangd$" . yaml-mode)))
 
-;;;###package
 (use-package! eval-sexp-fu
   :defer t
   :hook ((emacs-lisp-mode . eval-sexp-fu-flash-mode)))
 
-;;;###package
 (use-package! ninja-mode
   :defer t)
 
-;;;###package
 (use-package! ff-c-style
   :defer t
   :hook (c-mode-common . ff-add-c-style))
 
-;;;###package
 (use-package! sourcetrail
   :defer t
   :commands (sourcetrail-send-location)
@@ -156,7 +136,6 @@
                (:prefix "c"
                 :desc "Send Location (SourceTrail)" :ng "u" #'sourcetrail-send-location))))
 
-;;;###package
 (use-package! evil-surround
   :when (featurep! :editor evil)
   :after evil-embrace
@@ -174,7 +153,6 @@
     (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
     (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
 
-;; ;;;###package
 ;; (use-package! lsp-treemacs
 ;;   :when (featurep! :tools lsp)
 ;;   :after lsp-mode
@@ -182,7 +160,6 @@
 ;;                         :desc "All Errors" :ng "a" #'lsp-treemacs-errors-list)))
 ;;   (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))
 
-;; ;;;###package
 ;; (use-package! mu4e
 ;;   :when (featurep! :email mu4e)
 ;;   :defer t
@@ -202,7 +179,6 @@
 ;;                                     (:from-or-to . 20)
 ;;                                     (:subject))))
 
-;; ;;;###package
 ;; (use-package! mu4e-views
 ;;   :when (featurep! :email mu4e)
 ;;   :after mu4e
@@ -212,13 +188,11 @@
 ;;               mu4e-views-next-previous-message-behaviour #'stick-to-current-window)
 ;;   :config (mu4e-views-mu4e-use-view-msg-method "html"))
 
-;; ;;;###package
 ;; (use-package! mu4e-icalendar
 ;;   :when (featurep! :email mu4e)
 ;;   :after mu4e
 ;;   :config (mu4e-icalendar-setup))
 
-;; ;;;###package
 ;; (use-package! mu4e-compose
 ;;   :when (featurep! :email mu4e)
 ;;   :after mu4e
@@ -226,25 +200,21 @@
 ;;               mu4e-compose-keep-self-cc nil
 ;;               mu4e-compose-complete-addresses t))
 
-;; ;;;###package
 ;; (use-package! mu4e-alert
 ;;   :when (featurep! :email mu4e)
 ;;   :defer t
 ;;   :init (add-hook 'doom-first-input-hook  #'mu4e-alert-enable-mode-line-display)
 ;;   :config (mu4e-alert-set-default-style 'notifier))
 
-;; ;;;###package
 ;; (use-package mu4e-maildirs-extension
 ;;   :when (featurep! :email mu4e)
 ;;   :defer t
 ;;   :init (with-eval-after-load 'mu4e (mu4e-maildirs-extension-load)))
 
-;;;###package
 (use-package! smart-newline
   :defer t
   :hook (doom-first-input . smart-newline-mode))
 
-;;;###package
 (use-package! git-commit
   :defer t
   :when (featurep! :tools magit)
@@ -254,31 +224,26 @@
   :bind (:map git-commit-mode-map
         ([tab] . #'+magit/move-to-next-slot)))
 
-;;;###package
 (use-package! gitconfig-mode
   :defer t
   :when (featurep! :tools magit)
   :mode ("\.?gitaliases$" . gitconfig-mode)
   :mode ("\.?gitconfig$" . gitconfig-mode))
 
-;;;###package
 (use-package! gitignore-mode
   :defer t
   :when (featurep! :tools magit)
   :mode ("\\.?\\(fd\\|git\\)?ignore$" . gitignore-mode))
 
-;;;###package
 (use-package! gitattributes-mode
   :when (featurep! :tools magit)
   :defer t)
 
-;;;###package
 (use-package magit-imerge
   :defer t
   :when (featurep! :tools magit)
   :after magit)
 
-;;;###package
 (use-package! gitignore-templates
   :defer t
   :when (featurep! :tools magit)
