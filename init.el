@@ -88,13 +88,14 @@
        (latex +latexmk +lsp)
        markdown
        (org
-        +brain
         +dragndrop
         +gnuplot
         +hugo
         +jupyter
+        +noter
         +pandoc
-        +present)
+        +present
+        +roam2)
        plantuml
        (python +pyenv +lsp)
        qt
