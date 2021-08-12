@@ -9,6 +9,17 @@
       "w" nil ;; I don't use window commands, use this for my needs
       "h" nil ;; I am used to my setup of help so I will use that
 
+      ;; Remove deft keybinding if not using
+      (:unless (featurep! :ui deft)
+       (:prefix "n"
+        "d" nil))
+
+      ;; I do not use org clock feature so these can be removed
+      (:prefix "n"
+       "c" nil
+       "C" nil
+       "o" nil)
+
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
 
       :desc "M-x" "<SPC>" #'execute-extended-command
