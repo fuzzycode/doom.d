@@ -32,6 +32,8 @@
   (add-to-list 'yas-snippet-dirs (expand-file-name "personal/" +snippets-dir))
   (yas-reload-all))
 
+;; File templates
+(set-file-template! "/LICEN[CS]E$" :trigger '+file-templates/insert-license)
 
 (after! smartparens
   (setq sp-escape-wrapped-region t
