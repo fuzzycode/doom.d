@@ -121,6 +121,7 @@
         transient-enable-popup-navigation t)
 
   (setq magit-repolist-columns '(("Name" 35 magit-repolist-column-ident nil)
+                                 ("Status" 7 magit-repolist-column-flag nil)
                                  ("Version" 35 magit-repolist-column-version nil)
                                  ("B<U" 4 magit-repolist-column-unpulled-from-upstream
                                   ((:right-align t)
