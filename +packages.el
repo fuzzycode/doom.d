@@ -252,5 +252,22 @@
                         :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
                         :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
 
+;; ORG
+
 (use-package! demo-it
+  :when (featurep! :lang org)
   :after org)
+
+(use-package! org-expiry
+  :when (featurep! :lang org)
+  :after org
+  :commands org-expiry-insert-expiry
+  :bind (:map org-mode-map
+         ("C-c C-e" . #'org-expiry-insert-expiry))
+  :init (setq org-expiry-inactive-timestamps t))
+
+(use-package! org-ql
+  :defer t
+  :commands org-ql-search
+  :init (set-popup-rule! "^\\*Org QL View:" :side 'bottom :size .5 :select t :quit 'current)
+   (map! (:leader (:prefix "s" :desc "Org QL Search" :ng "g" #'org-ql-search))))
