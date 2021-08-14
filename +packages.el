@@ -251,3 +251,6 @@
   :init (map! :leader (:prefix "g"
                         :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
                         :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
+
+(use-package! demo-it
+  :after org)
