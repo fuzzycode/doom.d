@@ -19,6 +19,8 @@
   :commands (vr/replace vr/query-replace)
   :bind (([remap replace-regexp] . #'vr/replace)
          ([remap query-replace-regexp] . #'vr/query-replace)
+         ([remap isearch-forward] . #'vr/isearch-forward)
+         ([remap isearch-backward] . #'vr/isearch-backward)
          ("C-c r" . #'vr/replace)
          ("C-c q" . #'vr/query-replace)
          ("C-c m" . #'vr/mc-mark))
