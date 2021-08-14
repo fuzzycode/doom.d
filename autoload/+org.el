@@ -131,43 +131,4 @@ to be that of the scheduled date+time."
         (cmake-mode . "cmake")))
 
 ;;;###autoload
-(defun +org/project-org-file-name (&optional project-name)
-  (let ((file (or project-name (projectile-project-name))))
-    (concat (string-remove-prefix "." file) ".org")))
-
-;;;###autoload
-(defun +org/projects-directory ()
-  (concat org-directory "/projects/"))
-
-;;;###autoload
-(defun +org/project-org-file-path (&optional project-name)
-  (concat (+org/projects-directory) (+org/project-org-file-name project-name)))
-
-;;;###autoload
-(defun +org/extract-id-info ()
-  "Extracts item and id if the item has an id."
-  (let ((id (org-entry-get nil "ID"))
-        (title (org-entry-get nil "ITEM")))
-    (when id
-      `(,title ,id))))
-
-;;;###autoload
-(defun +org/org-global-custom-ids ()
-  "Find custom ID fields in all org agenda files."
-  (require 'dash)
-  (-non-nil (org-map-entries #'+org/extract-id-info t 'agenda-with-archives)))
-
-;;;###autoload
-(defun +org/org-insert-custom-id-link ()
-  "Insert an Org link to a custom ID selected interactively."
-  (interactive)
-  (let* ((all-ids (+org/org-global-custom-ids))
-        (custom-id (completing-read "Select Item: " all-ids)))
-    (when custom-id
-      (let* ((id-parts (assoc custom-id all-ids))
-             (name (car id-parts))
-             (id (cdr id-parts)))
-        (org-insert-link nil (concat "id:" (car id)) (read-string "Description: " name))))))
-
-;;;###autoload
 (add-hook 'org-mode-hook #'flyspell-mode)
