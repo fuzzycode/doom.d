@@ -16,9 +16,12 @@
 
       ;; I do not use org clock feature so these can be removed
       (:prefix "n"
-       "c" nil
-       "C" nil
        "o" nil)
+
+      (:when (featurep! :lang org)
+       (:prefix "n"
+        :desc "Org Capture" "c" #'org-capture ;; Override Doom binding
+        :desc "Org Roam Capture" "C" #'org-roam-capture)) ;; Override Doom binding
 
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
 
