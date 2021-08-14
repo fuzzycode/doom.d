@@ -239,7 +239,7 @@
   :when (featurep! :tools magit)
   :defer t)
 
-(use-package magit-imerge
+(use-package! magit-imerge
   :defer t
   :when (featurep! :tools magit)
   :after magit)
