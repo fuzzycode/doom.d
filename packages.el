@@ -16,7 +16,6 @@
 
 ;;ORG
 (package! demo-it)
-(package! idle-org-agenda)
 (package! org-super-agenda)
 (package! doct)
 (package! org-make-toc)
@@ -45,7 +44,6 @@
 (package! pandoc-mode)
 (package! avy)
 (package! centered-cursor-mode)
-;; (package! highlight-doxygen)
 (package! smart-newline)
 (package! hardhat)
 
