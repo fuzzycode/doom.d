@@ -269,7 +269,14 @@
   :init (setq org-expiry-inactive-timestamps t))
 
 (use-package! org-ql
+  :when (featurep! :lang org)
   :defer t
   :commands org-ql-search
   :init (set-popup-rule! "^\\*Org QL View:" :side 'bottom :size .5 :select t :quit 'current)
    (map! (:leader (:prefix "s" :desc "Org QL Search" :ng "g" #'org-ql-search))))
+
+(use-package! org-appear
+  :when (featurep! :lang org)
+  :after org
+  :init (setq org-appear-delay 0.3)
+  :hook (org-mode . org-appear-mode))

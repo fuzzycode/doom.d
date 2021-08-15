@@ -21,6 +21,7 @@
 (package! doct)
 (package! org-make-toc)
 (package! org-ql)
+(package! org-appear)
 
 ;;ELISP
 (package! eval-sexp-fu)
