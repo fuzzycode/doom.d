@@ -95,6 +95,7 @@
         +noter
         +pandoc
         +present
+        +pretty
         +roam2)
        plantuml
        (python +pyenv +lsp)
