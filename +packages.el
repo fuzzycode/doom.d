@@ -278,7 +278,8 @@
 (use-package! org-appear
   :when (featurep! :lang org)
   :after org
-  :init (setq org-appear-delay 0.3)
+  :init (setq org-appear-delay 0.3
+              org-appear-autolinks t)
   :hook (org-mode . org-appear-mode))
 
 (use-package! org-archive
