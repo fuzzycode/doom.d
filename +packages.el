@@ -285,3 +285,16 @@
   :after org
   :init (setq org-archive-location (format "%s::%s" +org/archive-file "* From %s" )
               org-refile-target-verify-function #'+org/verify-refile-target))
+
+(use-package! org-super-agenda
+  :after (org org-agenda)
+  :init (setq org-super-agenda-groups '((:name "Today"
+                                         :scheduled today)
+                                        (:name "Overdue"
+                                         :scheduled past)
+                                        (:name "Soon"
+                                         :scheduled future)))
+  :config
+  ;; TODO: Only clear hjkl keys needed for navigation
+  (setq org-super-agenda-header-map (make-sparse-keymap))
+  (shut-up (org-super-agenda-mode)))
