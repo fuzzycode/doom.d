@@ -25,8 +25,8 @@
          ("C-c q" . #'vr/query-replace)
          ("C-c m" . #'vr/mc-mark))
   :init (map! (:leader (:prefix "s"
-                         :desc "Replace" :ng "q" #'vr/replace
-                         :desc "Query Replace" :ng "Q" #'vr/query-replace))))
+                        :desc "Replace" :ng "q" #'vr/replace
+                        :desc "Query Replace" :ng "Q" #'vr/query-replace))))
 
 (use-package! smart-backspace
   :defer t
@@ -56,15 +56,15 @@
               winum-auto-setup-mode-line nil
               winum-ignored-buffers '("*which-key*"))
   :bind (:map winum-keymap
-          ("M-1" . #'winum-select-window-1)
-          ("M-2" . #'winum-select-window-2)
-          ("M-3" . #'winum-select-window-3)
-          ("M-4" . #'winum-select-window-4)
-          ("M-5" . #'winum-select-window-5)
-          ("M-6" . #'winum-select-window-6)
-          ("M-7" . #'winum-select-window-7)
-          ("M-8" . #'winum-select-window-8)
-          ("M-9" . #'winum-select-window-9)))
+         ("M-1" . #'winum-select-window-1)
+         ("M-2" . #'winum-select-window-2)
+         ("M-3" . #'winum-select-window-3)
+         ("M-4" . #'winum-select-window-4)
+         ("M-5" . #'winum-select-window-5)
+         ("M-6" . #'winum-select-window-6)
+         ("M-7" . #'winum-select-window-7)
+         ("M-8" . #'winum-select-window-8)
+         ("M-9" . #'winum-select-window-9)))
 
 (use-package! pandoc-mode
   :defer t)
@@ -73,14 +73,14 @@
   :defer t
   :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
   (map! (:leader
-          (:prefix "f"
-            :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
-            :desc "Open Junk File" :ng "j" #'open-junk-file))))
+         (:prefix "f"
+          :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
+          :desc "Open Junk File" :ng "j" #'open-junk-file))))
 
 (use-package! avy
   :commands (avy-goto-word-or-subword-1 avy-goto-line avy-goto-char-timer)
   :init
- ;; Integrate avy with better-jumper, might be a better way to cover all avy jump functions
+  ;; Integrate avy with better-jumper, might be a better way to cover all avy jump functions
   (advice-add #'avy-goto-word-or-subword-1 :around #'doom-set-jump-a)
   (advice-add #'avy-goto-char-timer :around #'doom-set-jump-a)
   (advice-add #'avy-goto-line :around #'doom-set-jump-a)
@@ -142,7 +142,7 @@
   :when (featurep! :editor evil)
   :after evil-embrace
   :init (add-hook 'c++-mode-hook (lambda ()
-                           (push '(?* . ("/*" . "*/")) evil-surround-pairs-alist)))
+                                   (push '(?* . ("/*" . "*/")) evil-surround-pairs-alist)))
   :config
   (evil-define-key 'visual evil-surround-mode-map "s" #'evil-surround-region)
   (let ((pairs '((?g "$" . "$")
@@ -224,7 +224,7 @@
   (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
   (add-hook 'git-commit-mode-hook #'evil-insert-state)
   :bind (:map git-commit-mode-map
-        ([tab] . #'+magit/move-to-next-slot)))
+         ([tab] . #'+magit/move-to-next-slot)))
 
 (use-package! gitconfig-mode
   :defer t
@@ -251,8 +251,8 @@
   :when (featurep! :tools magit)
   :commands (gitignore-templates-insert gitignore-templates-new-file)
   :init (map! :leader (:prefix "g"
-                        :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
-                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
+                       :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
+                       :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
 
 ;; ORG
 
@@ -273,7 +273,7 @@
   :defer t
   :commands org-ql-search
   :init (set-popup-rule! "^\\*Org QL View:" :side 'bottom :size .5 :select t :quit 'current)
-   (map! (:leader (:prefix "s" :desc "Org QL Search" :ng "g" #'org-ql-search))))
+  (map! (:leader (:prefix "s" :desc "Org QL Search" :ng "g" #'org-ql-search))))
 
 (use-package! org-appear
   :when (featurep! :lang org)
