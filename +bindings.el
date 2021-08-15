@@ -135,6 +135,9 @@
    :ngi "<A-return>" #'lsp-execute-code-action))
  (:after tabulated-list
   (:map tabulated-list-mode-map
+   :ng "q" #'quit-window))
+ (:after org-agenda
+  (:map org-agenda-mode-map
    :ng "q" #'quit-window)))
 
 (when (featurep 'xwidget-internal)
