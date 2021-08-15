@@ -280,3 +280,8 @@
   :after org
   :init (setq org-appear-delay 0.3)
   :hook (org-mode . org-appear-mode))
+
+(use-package! org-archive
+  :after org
+  :init (setq org-archive-location (format "%s::%s" +org/archive-file "* From %s" )
+              org-refile-target-verify-function #'+org/verify-refile-target))
