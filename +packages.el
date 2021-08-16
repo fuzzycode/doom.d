@@ -299,3 +299,7 @@
   ;; TODO: Only clear hjkl keys needed for navigation
   (setq org-super-agenda-header-map (make-sparse-keymap))
   (shut-up (org-super-agenda-mode)))
+
+(use-package! doct
+  :when (featurep! :lang org)
+  :commands doct)
