@@ -283,11 +283,13 @@
   :hook (org-mode . org-appear-mode))
 
 (use-package! org-archive
+  :when (featurep! :lang org)
   :after org
   :init (setq org-archive-location (format "%s::%s" +org/archive-file "* From %s" )
               org-refile-target-verify-function #'+org/verify-refile-target))
 
 (use-package! org-super-agenda
+  :when (featurep! :lang org)
   :after (org org-agenda)
   :init (setq org-super-agenda-groups '((:name "Today"
                                          :scheduled today)
