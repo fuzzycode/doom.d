@@ -48,6 +48,13 @@
        (:after lsp-mode
         :desc "Breadcrumb Mode" :ng "h" #'lsp-headerline-breadcrumb-mode))
 
+      ;; Notes
+      (:prefix "n"
+       :desc "Open Project Todo File" "p" (cmd! (find-file (+org-capture-project-todo-file)))
+       :desc "Open Project Notes File" "P" (cmd! (find-file (+org-capture-project-notes-file)))
+       :desc "Global Project Todo File" "g" (cmd! (find-file (+org-capture-central-project-todo-file)))
+       :desc "Global Project Notes File" "G" (cmd! (find-file (+org-capture-central-project-notes-file))))
+
       ;; Help
       (:prefix "h"
        :desc "Info" "i" #'info
