@@ -52,6 +52,8 @@
       (:prefix "n"
        :desc "Open Project Todo File" "p" (cmd! (find-file (+org-capture-project-todo-file)))
        :desc "Open Project Notes File" "P" (cmd! (find-file (+org-capture-project-notes-file)))
+       :desc "Open Global Todo File" "x" (cmd! (find-file (+org-capture-todo-file)))
+       :desc "Open Global Notes File" "X" (cmd! (find-file (+org-capture-notes-file)))
        :desc "Global Project Todo File" "g" (cmd! (find-file (+org-capture-central-project-todo-file)))
        :desc "Global Project Notes File" "G" (cmd! (find-file (+org-capture-central-project-notes-file))))
 
