@@ -30,7 +30,7 @@
 
   (setq org-roam-dailies-capture-templates
         '(("d" "default" entry
-           "* %?"
+           "* %? \n:PROPERTIES:\nCREATED: %<%T>\n:END:"
            :if-new (file+head "%<%Y-%m-%d>.org"
                               "#+title: %<%Y-%m-%d>\n\n")))))
 

@@ -20,7 +20,7 @@
 
       (:when (featurep! :lang org)
        (:prefix "n"
-        :desc "Org Capture" "c" #'org-capture ;; Override Doom binding
+        :desc "Org Roam Capture Today" "c" #'org-roam-dailies-capture-today
         :desc "Org Roam Capture" "C" #'org-roam-capture)) ;; Override Doom binding
 
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
