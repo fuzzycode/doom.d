@@ -305,3 +305,6 @@
 (use-package! doct
   :when (featurep! :lang org)
   :commands doct)
+
+(use-package! ox-gfm
+  :after ox)
