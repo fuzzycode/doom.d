@@ -3,4 +3,4 @@
 # key: e
 # condition: (+yas/org-src-header-p)
 # --
-`(let ((out (+yas/org-prompt-header-arg :exports "Exports: " '("code" "results" "both" "none")))) )(+yas/org-format-header "exports" out)`
+`(let ((out (+yas/org-prompt-header-arg :exports "Exports: " '("code" "results" "both" "none")))) (+yas/org-format-header "exports" out))`
