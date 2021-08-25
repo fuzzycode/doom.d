@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: External link in org-mode
+# key: elink
+# contributor: Björn Larsson <develop@bjornlarsson.net>
+# --
+[[$1][$2]]$0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: todo
+# key: td
+# contributor: Björn Larsson <develop@bjornlarsson.net>
+# --
+`(yas-trimmed-comment-start)` TODO(`(user-full-name)`): $0

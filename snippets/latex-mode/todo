@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: todo
+# key: td
+# contributor: Björn Larsson <develop@bjornlarsson.net>
+# --
+% TODO(`(user-full-name)`): $0

@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: nocommit
+# key: nocommit
+# contributor: Björn Larsson <develop@bjornlarsson.net>
+# --
+ `(comment-line 1)`[nocommit] [`(format-time-string "%Y-%m-%d")`] - ${1:reason}

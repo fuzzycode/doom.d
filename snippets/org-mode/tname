@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: table name
+# key: tname
+# uuid: tname
+# --
+
+#+tblname: ${1:name}
+|$0 |
+|---|
+|   |
