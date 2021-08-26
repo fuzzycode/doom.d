@@ -308,3 +308,6 @@
 
 (use-package! ox-gfm
   :after ox)
+
+(use-package! ox-asciidoc
+  :after ox)

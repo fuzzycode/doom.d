@@ -22,6 +22,7 @@
 (package! org-ql :pin "94f9e6f3031b32cf5e2149beca7074807235dcb0")
 (package! org-appear :pin "148aa124901ae598f69320e3dcada6325cdc2cf0")
 (package! ox-gfm :pin "99f93011b069e02b37c9660b8fcb45dab086a07f")
+(package! ox-asciidoc :pin "efb74df1179702e19ce531f84993ac5b5039075f")
 
 ;;ELISP
 (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a")
