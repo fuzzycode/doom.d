@@ -259,3 +259,4 @@
 
 (set-popup-rule! "^\\*Shell Command Output\\*$" :quit 'other :side 'bottom :height 40 :select nil :actions '(+bl/special-mode-action-fn))
 (set-popup-rule! "^\\*YASnippet Tables\\*$" :quit 'other :side 'bottom :height 0.5 :select t)
+(set-popup-rule! "^\\*Org Export Dispatcher\\*$" :side 'right :width 0.6)
