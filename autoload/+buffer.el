@@ -16,16 +16,6 @@
       (whitespace-cleanup))))
 
 ;;;###autoload
-(defun +bl/show-and-copy-buffer-filename ()
-  "Show and copy the full path to the current file in the minibuffer."
-  (interactive)
-  ;; list-buffers-directory is the variable set in dired buffers
-  (let ((file-name (or (buffer-file-name) list-buffers-directory)))
-    (if file-name
-        (message (kill-new file-name))
-      (error "Buffer not visiting a file"))))
-
-;;;###autoload
 (defun +bl/new-empty-buffer ()
   "Create a new buffer called untitled(<n>)"
   (interactive)
