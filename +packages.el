@@ -33,12 +33,6 @@
   :commands (smart-backspace)
   :bind ([remap backward-delete-char-untabify] . #'smart-backspace))
 
-(use-package! which-key
-  :defer t
-  :init (setq which-key-sort-order 'which-key-key-order-alpha
-              which-key-add-column-padding 1
-              which-key-min-display-lines 6))
-
 (use-package! treemacs
   :defer t
   :when (featurep! :ui treemacs)
