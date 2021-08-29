@@ -213,6 +213,12 @@
 ;;   :defer t
 ;;   :init (with-eval-after-load 'mu4e (mu4e-maildirs-extension-load)))
 
+(use-package! yasnippet
+  :defer t
+  :config (when (file-directory-p "~/.snippets")
+            (add-to-list 'yas-snippet-dirs "~/.snippets")
+            (yas-reload-all)))
+
 (use-package! smart-newline
   :defer t
   :hook (doom-first-input . smart-newline-mode))

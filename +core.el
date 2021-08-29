@@ -24,14 +24,6 @@
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
 
 
-(after! yasnippet
-  (when (file-exists-p "~/.snippets")
-    (add-to-list 'yas-snippet-dirs "~/.snippets"))
-
-  (add-to-list 'yas-snippet-dirs (expand-file-name "external/" +snippets-dir))
-  (add-to-list 'yas-snippet-dirs (expand-file-name "personal/" +snippets-dir))
-  (yas-reload-all))
-
 ;; File templates
 (set-file-template! "/LICEN[CS]E$" :trigger '+file-templates/insert-license)
 
