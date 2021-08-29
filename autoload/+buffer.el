@@ -15,13 +15,6 @@
           (message "Indented buffer.")))
       (whitespace-cleanup))))
 
-;;;###autoload
-(defun +bl/new-empty-buffer ()
-  "Create a new buffer called untitled(<n>)"
-  (interactive)
-  (let ((newbuf (generate-new-buffer-name "untitled")))
-    (switch-to-buffer newbuf)))
-
 ;; http://stackoverflow.com/a/10216338/4869
 ;;;###autoload
 (defun +bl/copy-whole-buffer-to-clipboard ()
