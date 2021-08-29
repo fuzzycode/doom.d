@@ -68,11 +68,6 @@
       (org-expiry-insert-created))))
 
 ;;;###autoload
-(defun +org/insert-id ()
-  (when (+org/capture-properties-p)
-    (org-id-get-create)))
-
-;;;###autoload
 (defun +org/prepare-time (time)
   "Converts to active/inactive time stamp depending on the value of `'org-expiry-inactive-timestamps "
   (require 'org-expiry)
