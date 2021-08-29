@@ -7,7 +7,7 @@
 
 ;; GIT
 (package! magit-imerge :pin "cf3b4646aa0205e8d7f47e45165fe6403d6440f5")
-(package! git-commit :pin "5a0cf9aaa9acf53c68c0fe98883c081aa5e29dd3")
+(package! git-commit :pin "8406b084a31c9f4f331fb9846938deffdbe740e2")
 (package! gitignore-mode :pin "433e1c57a63c88855fc41a942e29d7bc8c9c16c7")
 (package! gitconfig-mode :pin "433e1c57a63c88855fc41a942e29d7bc8c9c16c7")
 (package! gitattributes-mode :pin "433e1c57a63c88855fc41a942e29d7bc8c9c16c7")
