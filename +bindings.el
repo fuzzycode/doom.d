@@ -24,7 +24,8 @@
         :desc "Org Roam Capture" "C" #'org-roam-capture)) ;; Override Doom binding
 
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
-      (:prefix ("x" . "text"))
+      (:prefix ("x" . "text")
+       :desc "Zoom" "z" #'+hydra/text-zoom/body)
 
       :desc "M-x" "<SPC>" #'execute-extended-command
       :desc "Eval Expression" ":" #'eval-expression
