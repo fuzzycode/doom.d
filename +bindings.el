@@ -154,9 +154,3 @@
  (:after org-agenda
   (:map org-agenda-mode-map
    :ng "q" #'quit-window)))
-
-(when (featurep 'xwidget-internal)
-  (add-hook 'xwidget-webkit-mode-hook (lambda ()
-                                        (define-key xwidget-webkit-mode-map (kbd "<up>") #'xwidget-webkit-scroll-up-line)
-                                        (define-key xwidget-webkit-mode-map "<down>" #'xwidget-webkit-scroll-down-line)
-                                        (define-key xwidget-webkit-mode-map  "q" #'+workspace/close-window-or-workspace))))
