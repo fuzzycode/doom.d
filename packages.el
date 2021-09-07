@@ -49,6 +49,7 @@
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
 (package! fix-word :pin "e967dd4ac98d777deeede8b497d6337634c06df4")
+(package! string-inflection :pin "73b9a35e80e09ba744f2c364db4291f2d6f0a17a")
 
 (when IS-MAC
   (package! reveal-in-osx-finder :pin "5710e5936e47139a610ec9a06899f72e77ddc7bc"))

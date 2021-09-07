@@ -215,6 +215,12 @@
                 :desc "Downcase" "d" #'fix-word-downcase
                 :desc "Capitalize" "c" #'fix-word-capitalize))))
 
+(use-package! string-inflection
+  :defer t
+  :init (map! (:leader
+               (:prefix "x"
+                :desc "Inflection" "i" #'+bl/string-inflection-cycle-dwim))))
+
 (use-package! yasnippet
   :defer t
   :config (when (file-directory-p "~/.snippets")
