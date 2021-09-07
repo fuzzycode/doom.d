@@ -127,6 +127,7 @@
  "C-j" #'evil-scroll-down
  "C-k" #'evil-scroll-up
 
+ :n "J" #'+lookup:dash
  :ng "M-." #'+lookup/definition
  :n "q" nil
 
