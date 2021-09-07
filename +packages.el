@@ -207,6 +207,14 @@
 ;;   :defer t
 ;;   :init (with-eval-after-load 'mu4e (mu4e-maildirs-extension-load)))
 
+(use-package! fix-word
+  :defer t
+  :init (map! (:leader
+               (:prefix "x"
+                :desc "Upcase" "u" #'fix-word-upcase
+                :desc "Downcase" "d" #'fix-word-downcase
+                :desc "Capitalize" "c" #'fix-word-capitalize))))
+
 (use-package! yasnippet
   :defer t
   :config (when (file-directory-p "~/.snippets")

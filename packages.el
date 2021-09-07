@@ -48,6 +48,7 @@
 (package! centered-cursor-mode :pin "4093821cc9759ca5a3c6e527d4cc915fc3a5ad74")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
+(package! fix-word :pin "e967dd4ac98d777deeede8b497d6337634c06df4")
 
 (when IS-MAC
   (package! reveal-in-osx-finder :pin "5710e5936e47139a610ec9a06899f72e77ddc7bc"))
