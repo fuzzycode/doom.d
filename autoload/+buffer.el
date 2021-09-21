@@ -1,36 +1,6 @@
 ;;; ../Development/GitHub/dotfiles/doom.d/autoload/+buffer.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
-(defun +bl/indent-region-or-buffer ()
-  "Indent a region if selected, otherwise the whole buffer."
-  (interactive)
-  (unless (member major-mode spacemacs-indent-sensitive-modes)
-    (save-excursion
-      (if (region-active-p)
-          (progn
-            (indent-region (region-beginning) (region-end))
-            (message "Indented selected region."))
-        (progn
-          (evil-indent (point-min) (point-max))
-          (message "Indented buffer.")))
-      (whitespace-cleanup))))
-
-;; http://stackoverflow.com/a/10216338/4869
-;;;###autoload
-(defun +bl/copy-whole-buffer-to-clipboard ()
-  "Copy entire buffer to clipboard"
-  (interactive)
-  (clipboard-kill-ring-save (point-min) (point-max)))
-
-;;;###autoload
-(defun +bl/copy-clipboard-to-whole-buffer ()
-  "Copy clipboard and replace buffer"
-  (interactive)
-  (delete-region (point-min) (point-max))
-  (clipboard-yank)
-  (deactivate-mark))
-
-;;;###autoload
 (defun +bl/switch-to-message-buffer ()
   "Switch to the `*Messages*' buffer. Create it first if needed."
   (interactive)
