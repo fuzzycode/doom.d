@@ -28,6 +28,11 @@
                         :desc "Replace" :ng "q" #'vr/replace
                         :desc "Query Replace" :ng "Q" #'vr/query-replace))))
 
+(use-package! ialign
+  :defer t
+  :commands ialign
+  :init (map! (:leader (:prefix "x" :desc "Align" "a" #'ialign))))
+
 (use-package! smart-backspace
   :defer t
   :commands (smart-backspace)
