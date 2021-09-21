@@ -46,6 +46,7 @@
 (package! pandoc-mode :pin "39167ff0e9293b4632cf162a32c9d0b6990a371d")
 (package! avy :pin "e92cb37457b43336b765630dbfbea8ba4be601fa")
 (package! centered-cursor-mode :pin "4093821cc9759ca5a3c6e527d4cc915fc3a5ad74")
+(package! ssh-config-mode :pin "2642659aa4cb882d95d84f780e8f8bf5e3a9114b")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
 (package! fix-word :pin "e967dd4ac98d777deeede8b497d6337634c06df4")

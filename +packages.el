@@ -97,6 +97,9 @@
   :init (map! (:leader (:prefix "t"
                         :desc "Centered Cursor Mode" "C" #'centered-cursor-mode))))
 
+(use-package! ssh-config-mode
+  :defer t)
+
 (use-package! hardhat
   :defer t
   :init (setq hardhat-less-feedback t)
