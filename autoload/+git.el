@@ -22,19 +22,3 @@ to have a comment line as a header for each slot where text should/could be inse
                                (goto-char (point-min))
                                (+magit/move-to-next-slot))))
 
-;;;###autoload
-(defvar +magit/mainline-branch "master"
-  "The default branch for a project")
-
-;;;###autoload
-(defun +magit/diff-file-against-mainline ()
-  ""
-  (interactive)
-  (when buffer-file-name
-    (magit-diff-range +org/mainline-branch nil (list buffer-file-name))))
-
-;;;###autoload
-(defun +magit/diff-worktree-against-mainline ()
-  ""
-  (interactive)
-  (magit-diff-range +magit/mainline-branch))
