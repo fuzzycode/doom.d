@@ -25,7 +25,8 @@
 
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
       (:prefix ("x" . "text")
-       :desc "Zoom" "z" #'+hydra/text-zoom/body)
+       (:when (featurep! :ui hydra)
+        :desc "Zoom" "z" #'+hydra/text-zoom/body))
 
       :desc "M-x" "<SPC>" #'execute-extended-command
       :desc "Eval Expression" ":" #'eval-expression
