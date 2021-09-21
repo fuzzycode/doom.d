@@ -78,7 +78,7 @@
 (after! lsp-ui
   (setq lsp-ui-doc-show-with-cursor nil)
   (setq lsp-ui-sideline-show-code-actions nil) ;; Prefer to have this in the mode-line
-  (add-hook 'lsp-ui-mode-hook #'+lsp/dim-lsp-sideline))
+  (add-hook 'lsp-ui-mode-hook #'+bl/dim-lsp-sideline))
 
 (after! lsp-mode
   (setq lsp-enable-semantic-highlighting t)) ; Enable semantic highlighting by default
@@ -224,7 +224,7 @@
     (setq dash-docs-browser-func '+lookup-xwidget-webkit-open-url-fn))
   (setq +lookup-open-url-fn #'+lookup-xwidget-webkit-open-url-fn))
 
-(set-flyspell-predicate! '(c++-mode c-mode) #'cc-flyspell-predicate-p)
+(set-flyspell-predicate! '(c++-mode c-mode) #'+bl/cc-flyspell-predicate-p)
 
 ;; Enable advanced features without asking
 (put 'narrow-to-region 'disabled nil)

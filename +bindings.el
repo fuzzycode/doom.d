@@ -42,8 +42,8 @@
       ;; Git
       (:prefix "g"
        (:when (featurep! :ui hydra)
-        :desc "Blame" "B" #'+magit/blame-hydra/body
-        :desc "Git Time Machine" "t" #'+magit/timemachine-hydra/body))
+        :desc "Blame" "B" #'+bl/blame-hydra/body
+        :desc "Git Time Machine" "t" #'+bl/timemachine-hydra/body))
 
       ;; Toggle
       (:prefix "t"

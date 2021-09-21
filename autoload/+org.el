@@ -2,7 +2,7 @@
 
 
 ;;;###autoload
-(defun +org/open-efeed-files ()
+(defun +bl/open-efeed-files ()
   "Open all elfeed files."
   (interactive)
   (dolist (file rmh-elfeed-org-files)
@@ -12,11 +12,11 @@
 
 ;; http://doc.norang.ca/org-mode.html
 ;;;###autoload
-(defun +org/verify-refile-target ()
+(defun +bl/verify-refile-target ()
   "Exclude todo keywords with a done state from refile targets"
   (not (member (nth 2 (org-heading-components)) org-done-keywords)))
 
-(defun +org/org-archive-if (condition-function)
+(defun +bl/org-archive-if (condition-function)
   (if (funcall condition-function)
       (let ((next-point-marker
              (save-excursion (org-forward-heading-same-level 1) (point-marker))))
@@ -24,51 +24,51 @@
         (setq org-map-continue-from (marker-position next-point-marker)))))
 
 ;;;###autoload
-(defun +org/org-archive-if-completed ()
+(defun +bl/org-archive-if-completed ()
   (interactive)
-  (+org/org-archive-if 'org-entry-is-done-p))
+  (+bl/org-archive-if 'org-entry-is-done-p))
 
 ;;;###autoload
-(defun +org/org-archive-completed-in-buffer ()
+(defun +bl/org-archive-completed-in-buffer ()
   "Archive all completed tasks in current buffer"
   (interactive)
-  (org-map-entries '+org/org-archive-if-completed))
+  (org-map-entries '+bl/org-archive-if-completed))
 
 ;;;###autoload
-(defun +org/try-close-expired-task ()
+(defun +bl/try-close-expired-task ()
   (require 'org-expiry)
   (unless (org-entry-is-done-p)
     (org-expiry-add-keyword)))
 
 ;;;###autoload
-(defun +org/close-expired-in-buffer ()
+(defun +bl/close-expired-in-buffer ()
   "Close all tasks that have expired in the current buffer."
   (interactive)
-  (org-map-entries '+org/try-close-expired-task))
+  (org-map-entries '+bl/try-close-expired-task))
 
 ;;;###autoload
-(defun +org/expire-and-archive-tasks-in-buffer ()
+(defun +bl/expire-and-archive-tasks-in-buffer ()
   "Expire all expired tasks in buffer and archive all completed tasks in current buffer."
   (interactive)
-  (+org/close-expired-in-buffer)
+  (+bl/close-expired-in-buffer)
   (save-buffer)
-  (+org/org-archive-completed-in-buffer))
+  (+bl/org-archive-completed-in-buffer))
 
 
-(defun +org/capture-properties-p ()
+(defun +bl/capture-properties-p ()
   "Check if we should auto capture properties or not"
   (not (derived-mode-p 'org-journal-mode)))
 
 ;;;###autoload
-(defun +org/insert-creation ()
-  (when (+org/capture-properties-p)
+(defun +bl/insert-creation ()
+  (when (+bl/capture-properties-p)
     (require 'org-expiry)
     (save-excursion
       (org-back-to-heading)
       (org-expiry-insert-created))))
 
 ;;;###autoload
-(defun +org/prepare-time (time)
+(defun +bl/prepare-time (time)
   "Converts to active/inactive time stamp depending on the value of `'org-expiry-inactive-timestamps "
   (require 'org-expiry)
   (if org-expiry-inactive-timestamps
@@ -76,46 +76,46 @@
     (replace-regexp-in-string "\\[\\(.*?\\)\\]" "<\\1>" time)))
 
 ;;;###autoload
-(defun +org/expire-on-scheduled ()
+(defun +bl/expire-on-scheduled ()
   "Sets the expiry date and time to be the same as the scheduled date+time of the entry."
   (interactive)
   (require 'org-expiry)
   (let* ((schedule (org-entry-get nil "SCHEDULED")))
     (when schedule
-      (org-set-property org-expiry-expiry-property-name (+org/prepare-time schedule)))))
+      (org-set-property org-expiry-expiry-property-name (+bl/prepare-time schedule)))))
 
 ;;;###autoload
-(defun +org/expire-on-deadline ()
+(defun +bl/expire-on-deadline ()
   "Sets the expiry date and time to be the same as the deadline date+time of the entry."
   (interactive)
   (require 'org-expiry)
   (let* ((deadline (org-entry-get nil "DEADLINE")))
     (when deadline
-      (org-set-property org-expiry-keyword (+org/prepare-time deadline)))))
+      (org-set-property org-expiry-keyword (+bl/prepare-time deadline)))))
 
 ;;;###autoload
-(defun +org/expire-on-time-dwim ()
+(defun +bl/expire-on-time-dwim ()
   "If there is a deadline for this entry, set the expiry to be the same as the deadline, otherwise set the expiry
 to be that of the scheduled date+time."
   (interactive)
   (let* ((schedule (org-entry-get nil "SCHEDULED"))
          (deadline (org-entry-get nil "DEADLINE")))
     (if deadline
-        (+org/expire-on-deadline)
+        (+bl/expire-on-deadline)
       (when schedule
-        (+org/expire-on-scheduled)))))
+        (+bl/expire-on-scheduled)))))
 
 ;;;###autoload
-(defun +core/capture-snippet ()
+(defun +bl/capture-snippet ()
   "Formats a capture snippet for capturing code."
   (let ((line-number (line-number-at-pos (region-beginning)))
          (func-name (which-function))
-         (org-src-mode (cdr (assoc major-mode +org/major-mode-to-org-src))))
+         (org-src-mode (cdr (assoc major-mode +bl/major-mode-to-org-src))))
     (format "* %%?\nSource: [[file:%%F::%d][%%f (%s)]]\n#+begin_src %s\n%%i\n#+end_src" line-number func-name (or org-src-mode ""))))
 
 ;; TODO(Björn Larsson): Expand this list with more modes that should be supported
 ;;;###autoload
-(setq +org/major-mode-to-org-src
+(setq +bl/major-mode-to-org-src
       '((c++-mode . "C++")
         (python-mode . "python")
         (emacs-lisp-mode . "emacs-lisp")

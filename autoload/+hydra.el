@@ -1,8 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 ;;;###if (featurep! :ui hydra)
 
-;;;###autoload (autoload '+magit/timemachine-hydra/body "autoload/+hydra" nil t)
-(defhydra +magit/timemachine-hydra (:hint nil
+;;;###autoload (autoload '+bl/timemachine-hydra/body "autoload/+hydra" nil t)
+(defhydra +bl/timemachine-hydra (:hint nil
                                           :color pink
                                           :pre (unless (bound-and-true-p git-timemachine-mode)
                                                  (call-interactively 'git-timemachine))
@@ -19,8 +19,8 @@
   ("Y" git-timemachine-kill-revision)
   ("q" nil :exit t))
 
-;;;###autoload (autoload '+magit/blame-hydra/body "autoload/+hydra" nil t)
-(defhydra +magit/blame-hydra (:hint nil
+;;;###autoload (autoload '+bl/blame-hydra/body "autoload/+hydra" nil t)
+(defhydra +bl/blame-hydra (:hint nil
                                     :color magenta
                                     :pre (unless (bound-and-true-p magit-blame-mode)
                                            (call-interactively 'magit-blame-addition))

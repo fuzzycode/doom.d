@@ -38,7 +38,7 @@
 (after! org-capture
   (setq org-capture-templates (doct '(("Tasks"
                                        :keys "t"
-                                       :before-finalize (lambda () (+org/insert-creation))
+                                       :before-finalize (lambda () (+bl/insert-creation))
                                        :file (lambda () (+org-capture-todo-file))
                                        :children (("Task" :keys "t" :template "* TODO %?")
                                                   ("Task (Today)" :keys "d" :template "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"\")>")
@@ -46,28 +46,28 @@
                                                   ("Reminder" :keys "r" :template "* TODO %?\nSCHEDULED: %^t")))
                                       ("Project"
                                        :keys "p"
-                                       :before-finalize (lambda () (+org/insert-creation))
+                                       :before-finalize (lambda () (+bl/insert-creation))
                                        :template "* %{todo} %?"
                                        :contexts ((:function (lambda () (projectile-project-p (buffer-file-name (current-buffer))))))
                                        :children (("Task" :keys "p" :todo "TODO" :headline "Tasks" :file (lambda () (+org-capture-project-todo-file)))
                                                   ("Note" :keys "n" :template "* %?" :headline "Notes"  :file (lambda () (+org-capture-project-notes-file)))
-                                                  ("Snippet" :keys "s" :headline "Notes" :template +core/capture-snippet :contexts (:when (region-active-p)))) :file (lambda () (+org-capture-project-notes-file)))
+                                                  ("Snippet" :keys "s" :headline "Notes" :template +bl/capture-snippet :contexts (:when (region-active-p)))) :file (lambda () (+org-capture-project-notes-file)))
                                       ("Centralized Project"
                                        :keys "c"
-                                       :before-finalize (lambda () (+org/insert-creation))
+                                       :before-finalize (lambda () (+bl/insert-creation))
                                        :template "* %{todo} %?"
                                        :children (("Task" :keys "p" :todo "TODO" :headline "Tasks" :file (lambda () (+org-capture-central-project-todo-file)))
                                                   ("Note" :keys "n" :template "* %?" :headline "Notes"  :file (lambda () (+org-capture-central-project-notes-file)))
-                                                  ("Snippet" :keys "s" :headline "Notes" :template +core/capture-snippet :contexts (:when (region-active-p)))) :file (lambda () (+org-capture-central-project-notes-file)))
+                                                  ("Snippet" :keys "s" :headline "Notes" :template +bl/capture-snippet :contexts (:when (region-active-p)))) :file (lambda () (+org-capture-central-project-notes-file)))
                                       ("Feedback"
                                        :keys "f"
                                        :file (lambda () (+org-capture-notes-file))
-                                       :before-finalize (lambda () (+org/insert-creation))
+                                       :before-finalize (lambda () (+bl/insert-creation))
                                        :headline "Feedback"
                                        :template "* %?")
                                       ("Notes"
                                        :keys "n"
-                                       :before-finalize (lambda () (+org/insert-creation))
+                                       :before-finalize (lambda () (+bl/insert-creation))
                                        :file (lambda () (+org-capture-notes-file))
                                        :headline "Note"
                                        :template "* %?")

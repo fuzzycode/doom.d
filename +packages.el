@@ -246,7 +246,7 @@
   (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
   (add-hook 'git-commit-mode-hook #'evil-insert-state)
   :bind (:map git-commit-mode-map
-         ([tab] . #'+magit/move-to-next-slot)))
+         ([tab] . #'+bl/move-to-next-slot)))
 
 (use-package! gitconfig-mode
   :defer t
