@@ -110,7 +110,8 @@
 
 (use-package! sort-words
   :defer t
-  :commands sort-words)
+  :commands sort-words
+  :init (map! (:leader (:prefix "x" :desc "Sort Words" "w" #'sort-words))))
 
 (use-package! dired
   :defer t
