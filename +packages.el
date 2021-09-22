@@ -242,9 +242,9 @@
 (use-package! git-commit
   :defer t
   :when (featurep! :tools magit)
-  :init
-  (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
-  (add-hook 'git-commit-mode-hook #'evil-insert-state)
+  :init (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
+  (when (featurep! :editor evil)
+    (add-hook 'git-commit-mode-hook #'evil-insert-state))
   :bind (:map git-commit-mode-map
          ([tab] . #'+bl/move-to-next-slot)))
 
