@@ -1,13 +1,13 @@
 ;; -*- lexical-binding: t; -*-
 
 ;; C++
-(package! ninja-mode :pin "e90dfd3c7528b9c620eab29121a3591af7bf035e")
+(package! ninja-mode :pin "a280868e9c2c791a0d1529c7002786a117bd16fc")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
 (package! sourcetrail :pin "b8d5557aa565ae979622312576db20515f65f977")
 
 ;; GIT
-(package! magit-imerge :pin "cf3b4646aa0205e8d7f47e45165fe6403d6440f5")
-(package! git-commit :pin "8406b084a31c9f4f331fb9846938deffdbe740e2")
+(package! magit-imerge :pin "bd548da8b0c982c346c5c3d11641b9602415ab74")
+(package! git-commit :pin "2049fd6f6eae7e958b673e809299bc7d3f02a781")
 (package! gitignore-mode :pin "433e1c57a63c88855fc41a942e29d7bc8c9c16c7")
 (package! gitconfig-mode :pin "433e1c57a63c88855fc41a942e29d7bc8c9c16c7")
 (package! gitattributes-mode :pin "433e1c57a63c88855fc41a942e29d7bc8c9c16c7")
@@ -17,12 +17,12 @@
 ;;ORG
 (package! demo-it :pin "9cfa5c3f92a0dca7eebb1f1a2011643c9b009d26")
 (package! org-super-agenda :pin "a5557ea4f51571ee9def3cd9a1ab1c38f1a27af7")
-(package! doct :pin "c7c8687ae8a7f1230732eaebc89ea668b4f7a37d")
+(package! doct :pin "bf8ba74cf29c876958e8c7249e044d7800145f9d")
 (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
-(package! org-ql :pin "94f9e6f3031b32cf5e2149beca7074807235dcb0")
+(package! org-ql :pin "31aeb0a2505acf8044c07824888ddec7f3e529c1")
 (package! org-appear :pin "a1aa8496f2fd61305e43e03e6eeee2ff92aa9e24")
 (package! ox-gfm :pin "99f93011b069e02b37c9660b8fcb45dab086a07f")
-(package! ox-asciidoc :pin "efb74df1179702e19ce531f84993ac5b5039075f")
+(package! ox-asciidoc :pin "c2b794aae26133189499424569d0f88b41c7e4c6")
 
 ;;ELISP
 (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a")
@@ -43,14 +43,14 @@
 (package! smart-backspace :pin "a10ec44ff325ec8c4c98b1a6e44e89e60a9aa4ac")
 (package! open-junk-file :pin "558bec7372b0fed4c4cb6074ab906535fae615bd")
 (package! winum :pin "c5455e866e8a5f7eab6a7263e2057aff5f1118b9")
-(package! pandoc-mode :pin "39167ff0e9293b4632cf162a32c9d0b6990a371d")
+(package! pandoc-mode :pin "bf01a14e99304653ae722226ea064c7d4b641774")
 (package! avy :pin "e92cb37457b43336b765630dbfbea8ba4be601fa")
 (package! centered-cursor-mode :pin "4093821cc9759ca5a3c6e527d4cc915fc3a5ad74")
 (package! ssh-config-mode :pin "2642659aa4cb882d95d84f780e8f8bf5e3a9114b")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
 (package! fix-word :pin "e967dd4ac98d777deeede8b497d6337634c06df4")
-(package! string-inflection :pin "73b9a35e80e09ba744f2c364db4291f2d6f0a17a")
+(package! string-inflection :pin "fd7926ac17293e9124b31f706a4e8f38f6a9b855")
 (package! ialign :pin "eca40b8b59ea713dba21b18f5b047a6c086b91dc")
 (package! lsp-treemacs :pin "d82df44d632f331a46eaf1f7a37eb6b1ada0c69b")
 
