@@ -28,13 +28,13 @@
 (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a")
 
 ;; MAIL
-;; (when (featurep! :email mu4e)
-;;   (package! mu4e-maildirs-extension)
-;;   (package! mu4e-alert))
+(when (featurep! :email mu4e)
+  (package! mu4e-maildirs-extension :pin "1167bc6e08996f866e73e9a02f563fd21ac317fd")
+  (package! mu4e-alert :pin "91f0657c5b245a9de57aa38391221fb5d141d9bd"))
 
-;; (when (and (featurep! :email mu4e)
-;;            (featurep 'xwidget-internal))
-;;   (package! mu4e-views :recipe (:host github :repo "lordpretzel/mu4e-views")))
+(when (and (featurep! :email mu4e)
+           (featurep 'xwidget-internal))
+  (package! mu4e-views :pin "f3f454c7f92e8a9eecb5501af9ca81a547fd1841"))
 
 (package! visual-regexp-steroids :pin "a6420b25ec0fbba43bf57875827092e1196d8a9e")
 (package! visual-regexp :pin "48457d42a5e0fe10fa3a9c15854f1f127ade09b5")
