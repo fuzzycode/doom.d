@@ -158,6 +158,10 @@
     (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
     (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
 
+(use-package! evil-textobj-line
+  :when (featurep! :editor evil)
+  :after evil)
+
 (use-package! lsp-treemacs
   :when (featurep! :tools lsp)
   :after lsp-mode
