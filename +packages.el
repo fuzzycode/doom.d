@@ -165,8 +165,7 @@
 (use-package! lsp-treemacs
   :when (featurep! :tools lsp)
   :after lsp-mode
-  :init (map! (:leader (:prefix "c" (:prefix "l" :desc "All Errors" :ng "e" #'lsp-treemacs-errors-list))))
-  (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))
+  :init (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))
 
 (use-package! mu4e
   :when (featurep! :email mu4e)
