@@ -52,7 +52,6 @@
 (package! fix-word :pin "e967dd4ac98d777deeede8b497d6337634c06df4")
 (package! string-inflection :pin "fd7926ac17293e9124b31f706a4e8f38f6a9b855")
 (package! ialign :pin "eca40b8b59ea713dba21b18f5b047a6c086b91dc")
-(package! lsp-treemacs :pin "d82df44d632f331a46eaf1f7a37eb6b1ada0c69b")
 
 (when IS-MAC
   (package! reveal-in-osx-finder :pin "5710e5936e47139a610ec9a06899f72e77ddc7bc"))

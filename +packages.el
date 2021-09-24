@@ -162,11 +162,6 @@
   :when (featurep! :editor evil)
   :after evil)
 
-(use-package! lsp-treemacs
-  :when (featurep! :tools lsp)
-  :after lsp-mode
-  :init (set-popup-rule! "^\\*LSP Error List\\*$" :size 0.5 :side 'bottom :select t :ttl nil))
-
 (use-package! mu4e
   :when (featurep! :email mu4e)
   :defer t
