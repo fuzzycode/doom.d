@@ -74,7 +74,6 @@
 (after! evil
   (setq! evil-want-fine-undo t))
 
-
 (after! lsp-ui
   (setq lsp-ui-doc-show-with-cursor nil)
   (setq lsp-ui-sideline-show-code-actions nil) ;; Prefer to have this in the mode-line
@@ -83,10 +82,11 @@
 (after! lsp-mode
   (setq lsp-enable-semantic-highlighting t)) ; Enable semantic highlighting by default
 
-(after! magit
+(after! magit-gitflow
   ;; Add a binding for ignore commands that is missing from evil bindings
-  (transient-insert-suffix 'magit-dispatch "%" '("#" "Ignore" magit-gitignore))
+  (transient-insert-suffix 'magit-dispatch "%" '("=" "Ignore" magit-gitignore)))
 
+(after! magit
   ;; Show 100 open topics and 10 closed ones, but only after they are toggled on
   (setq forge-topic-list-limit '(100 . -10))
 
