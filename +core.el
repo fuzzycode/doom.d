@@ -83,6 +83,7 @@
   (add-hook 'lsp-ui-mode-hook #'+bl/dim-lsp-sideline))
 
 (after! lsp-mode
+  (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
   (setq lsp-enable-semantic-highlighting t)) ; Enable semantic highlighting by default
 
 (after! magit-gitflow
