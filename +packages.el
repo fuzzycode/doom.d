@@ -204,6 +204,7 @@
 (use-package! mu4e-alert
   :when (featurep! :email mu4e)
   :after mu4e
+  :init (setq mu4e-alert-interesting-mail-query (mapconcat #'identity '("flag:unread" "AND NOT" "flag:trashed" "AND" "maildir:/inbox") " "))
   :config (mu4e-alert-set-default-style 'notifier)
   (mu4e-alert-enable-mode-line-display))
 
