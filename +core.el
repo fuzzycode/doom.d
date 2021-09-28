@@ -24,6 +24,9 @@
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
 
 
+(after! warnings
+  (add-to-list 'warning-suppress-types '(yasnippet backquote-change)))
+
 ;; File templates
 (set-file-template! "/LICEN[CS]E$" :trigger '+file-templates/insert-license)
 
