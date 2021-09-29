@@ -37,10 +37,18 @@
 
 
 (after! org-capture
-  (setq org-capture-templates (doct '(("Tasks"
+  (setq org-capture-templates (doct '(("Actions"
+                                       :keys "a"
+                                       :file (lambda () (+org-capture-todo-file))
+                                       :headline "Inbox"
+                                       :children (("Action" :keys "a" :template "* [ ] %?")
+                                                  ("Action (today)" :keys "d" :template "* [ ] %?\nSCHEDULED: <%(org-read-date nil nil \"\")>")
+                                                  ("Action (tomorrow)" :keys "D" :template "* [ ] %?\nSCHEDULED: <%(org-read-date nil nil \"+1\")>")))
+                                      ("Task"
                                        :keys "t"
                                        :before-finalize (lambda () (+bl/insert-creation))
                                        :file (lambda () (+org-capture-todo-file))
+                                       :headline "Inbox"
                                        :children (("Task" :keys "t" :template "* TODO %?")
                                                   ("Task (Today)" :keys "d" :template "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"\")>")
                                                   ("Task (Tomorrow)" :keys "D" :template "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+1\")>")
@@ -71,5 +79,4 @@
                                        :before-finalize (lambda () (+bl/insert-creation))
                                        :file (lambda () (+org-capture-notes-file))
                                        :headline "Note"
-                                       :template "* %?")
-                                      ))))
+                                       :template "* %?")))))
