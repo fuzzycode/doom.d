@@ -15,6 +15,7 @@
         org-log-redeadline 'time
         org-log-reschedule 'time
         org-treat-insert-todo-heading-as-state-change t
+        org-agenda-include-diary t
         org-agenda-skip-scheduled-if-done t
         org-agenda-skip-deadline-if-done t
         org-archive-mark-done t
