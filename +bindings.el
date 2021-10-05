@@ -120,8 +120,11 @@
 
 ;; Bindings with no leader key
 (map!
- "<A-up>" #'join-line
- "<A-down>" (cmd! (delete-indentation 1)) ;; Top join line
+ (:when (not (featurep! :editor evil))
+   "<A-up>" #'join-line)
+ (:when (featurep! :editor evil)
+  "<A-down>" #'evil-join)
+
 
  "C-x C-b" #'ibuffer
  "C-c l" #'recenter
