@@ -60,6 +60,11 @@
        :desc "Global Project Todo File" "g" (cmd! (find-file (+org-capture-central-project-todo-file)))
        :desc "Global Project Notes File" "G" (cmd! (find-file (+org-capture-central-project-notes-file))))
 
+      ;; Open
+      (:prefix "o"
+       (:when (featurep! :app rss)
+        :desc "Rss" "s" #'=rss))
+
       ;; Project
       (:prefix "p"
        "x" nil
