@@ -320,7 +320,9 @@
   :commands doct)
 
 (use-package! ox-gfm
+  :when (featurep! :lang org)
   :after ox)
 
 (use-package! ox-asciidoc
-  :after ox)
+   :when (featurep! :lang org)
+   :after ox)
