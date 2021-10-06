@@ -129,6 +129,7 @@
  "C-x C-b" #'ibuffer
  "C-c l" #'recenter
  "C-c u" #'undo-fu-only-undo
+ "C-u" #'undo-fu-only-undo
  "C-j" #'evil-scroll-down
  "C-k" #'evil-scroll-up
 
