@@ -3,7 +3,6 @@
 ;; C++
 (package! ninja-mode :pin "a280868e9c2c791a0d1529c7002786a117bd16fc")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
-(package! sourcetrail :pin "b8d5557aa565ae979622312576db20515f65f977")
 
 ;; GIT
 (when (featurep! :tools magit)
