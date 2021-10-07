@@ -53,7 +53,6 @@
         doom-modeline-vcs-max-length 45))
 
 
-;;;###package company
 (after! company
   (setq company-tooltip-minimum-width 80
         company-tooltip-maximum-width 80
@@ -70,7 +69,6 @@
 (after! git-gutter-fringe
   (fringe-mode '(8 . 4)))  ;; Left is full size and right is half size, makes room for break-point and tilde bitmaps
 
-;;;###package evil-snipe
 (after! evil-snipe
   (setq evil-snipe-spillover-scope 'whole-visible))
 
