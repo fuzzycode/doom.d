@@ -72,6 +72,9 @@
 (after! evil-snipe
   (setq evil-snipe-spillover-scope 'whole-visible))
 
+(after! evil-goggles
+  (setq evil-goggles-duration 0.2))
+
 (after! evil
   (setq! evil-want-fine-undo t))
 
