@@ -257,3 +257,4 @@
 (set-popup-rule! "^\\*YASnippet Tables\\*$" :quit 'other :side 'bottom :height 0.5 :select t)
 (set-popup-rule! "^\\*Org Export Dispatcher\\*$" :side 'right :width 0.6)
 (set-popup-rule! "^CAPTURE-.*\\.org$" :size 0.5 :quit nil :select t :autosave t)
+(set-popup-rule! "^\\*xwidget" :vslot -11 :size 0.55 :select nil)
