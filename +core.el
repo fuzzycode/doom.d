@@ -23,12 +23,9 @@
   (add-to-list 'projectile-project-root-files-bottom-up "compile_commands.json" t)
   (define-key projectile-mode-map (kbd "C-x p") 'projectile-command-map))
 
-
 (after! warnings
   (add-to-list 'warning-suppress-types '(yasnippet backquote-change)))
 
-;; File templates
-(set-file-template! "/LICEN[CS]E$" :trigger '+file-templates/insert-license)
 
 (after! smartparens
   (setq sp-escape-wrapped-region t
@@ -230,6 +227,7 @@
 
 ;; Configure flycheck, with lsp available there is no need for c/c++-* family
 (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc c/c++-cppcheck))
+
 ;; mac specifics
 (when IS-MAC
   (setq mac-option-key-is-meta nil
@@ -238,6 +236,10 @@
         mac-option-modifier 'alt
         mac-right-command-modifier nil
         mac-right-option-modifier nil))
+
+;; File templates
+(set-file-template! "/LICEN[CS]E$" :trigger '+file-templates/insert-license)
+
 ;;
 ;; POPUPS
 ;;
