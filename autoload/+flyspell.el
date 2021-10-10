@@ -2,7 +2,7 @@
 
 ;;;###autoload
 (defun +bl/inside-string-p ()
-  "Test is point is inside a string or not."
+  "Test if point is inside a string or not."
   (nth 3 (syntax-ppss (point))))
 
 ;;;###autoload
