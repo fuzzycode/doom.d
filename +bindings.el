@@ -143,6 +143,15 @@
  :ng "M-." #'+lookup/definition
  :n "q" nil
 
+ (:when (featurep! :editor evil) ;; Cleanup g prefix
+  :nv "gi" nil
+  :nv "g8" nil
+  :nv "gQ" nil
+  :nv "g?" nil
+
+  :nv "ga" #'evil-avy-goto-char-timer
+  :nv "gb" #'better-jumper-jump-backward)
+
  (:after flyspell
   (:map flyspell-mode-map
    :ng "M-i" #'flyspell-correct-wrapper))

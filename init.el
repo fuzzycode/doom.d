@@ -21,9 +21,7 @@
        modeline
        nav-flash
 
-       (popup
-        +all
-        +defaults)
+       (popup +all +defaults)
        (treemacs +lsp)
        ophints
        vc-gutter
@@ -60,9 +58,7 @@
        ein
        (eval +overlay)
        gist
-       (lookup
-        +dictionary
-        +docsets)
+       (lookup +dictionary +docsets)
        (lsp +peek)
        magit
        pdf
@@ -87,16 +83,7 @@
        (json +lsp)
        (latex +latexmk +lsp)
        markdown
-       (org
-        +dragndrop
-        +gnuplot
-        +hugo
-        +jupyter
-        +noter
-        +pandoc
-        +present
-        +pretty
-        +roam2)
+       (org +dragndrop +gnuplot +hugo +jupyter +noter +pandoc +present +pretty +roam2)
        plantuml
        (python +pyenv +lsp)
        qt
