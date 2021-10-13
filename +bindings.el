@@ -32,6 +32,7 @@
       :desc "Eval Expression" ":" #'eval-expression
       :desc "Popup Scratch Buffer" "%" #'doom/open-scratch-buffer
       :desc "Shell Command" "!" #'shell-command
+      :desc "Async Shell Command" "&" #'async-shell-command
 
       ;; Insert
       (:prefix "i"
