@@ -45,7 +45,6 @@
 (package! open-junk-file :pin "558bec7372b0fed4c4cb6074ab906535fae615bd")
 (package! winum :pin "c5455e866e8a5f7eab6a7263e2057aff5f1118b9")
 (package! pandoc-mode :pin "bf01a14e99304653ae722226ea064c7d4b641774")
-(package! avy :pin "e92cb37457b43336b765630dbfbea8ba4be601fa")
 (package! centered-cursor-mode :pin "4093821cc9759ca5a3c6e527d4cc915fc3a5ad74")
 (package! ssh-config-mode :pin "2642659aa4cb882d95d84f780e8f8bf5e3a9114b")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
