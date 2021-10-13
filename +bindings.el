@@ -105,7 +105,8 @@
         :desc "Doom Package" "P" #'doom/describe-package
         :desc "Theme" "t" #'describe-theme
         :desc "Variable" "v" #'describe-variable
-        :desc "Text Properties" "T" #'describe-text-properties)
+        :desc "Text Properties" "T" #'describe-text-properties
+        :desc "What cursor position" "w" #'what-cursor-position)
        (:prefix ("D" . "Doom")
         (:prefix ("b" . "Bump")
          :desc "Packages In Buffer" "b" #'doom/bump-packages-in-buffer
