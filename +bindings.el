@@ -149,6 +149,18 @@
   :nv "gQ" nil
   :nv "g?" nil
 
+  (:when (featurep! :ui window-select +numbers)
+   :n "g1" #'winum-select-window-1
+   :n "g2" #'winum-select-window-2
+   :n "g3" #'winum-select-window-3
+   :n "g4" #'winum-select-window-4
+   :n "g5" #'winum-select-window-5
+   :n "g6" #'winum-select-window-6
+   :n "g7" #'winum-select-window-7
+   :n "g8" #'winum-select-window-8
+   :n "g9" #'winum-select-window-9
+   :n "g0" #'winum-select-window-0-or-10)
+
   :nv "ga" #'evil-avy-goto-char-timer
   :nv "gb" #'better-jumper-jump-backward)
 

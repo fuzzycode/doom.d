@@ -43,7 +43,6 @@
 (package! sort-words :pin "7b6e108f80237363faf7ec28b2c58dec270b8601")
 (package! smart-backspace :pin "a10ec44ff325ec8c4c98b1a6e44e89e60a9aa4ac")
 (package! open-junk-file :pin "558bec7372b0fed4c4cb6074ab906535fae615bd")
-(package! winum :pin "c5455e866e8a5f7eab6a7263e2057aff5f1118b9")
 (package! pandoc-mode :pin "bf01a14e99304653ae722226ea064c7d4b641774")
 (package! centered-cursor-mode :pin "4093821cc9759ca5a3c6e527d4cc915fc3a5ad74")
 (package! ssh-config-mode :pin "2642659aa4cb882d95d84f780e8f8bf5e3a9114b")

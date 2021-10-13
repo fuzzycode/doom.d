@@ -26,7 +26,7 @@
        ophints
        vc-gutter
        vi-tilde-fringe
-       window-select
+       (window-select +numbers)
        workspaces
 
        :editor
