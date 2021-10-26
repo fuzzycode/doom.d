@@ -148,9 +148,16 @@
 
  (:when (featurep! :editor evil) ;; Cleanup g prefix
   :nv "gi" nil
+  :nv "g#" nil
+  :nv "g$" nil
+  :nv "g^" nil
+  :nv "ge" nil
+  :nv "gE" nil
   :nv "g8" nil
   :nv "gQ" nil
   :nv "g?" nil
+  :nv "ga" #'evil-avy-goto-char-timer
+  :nv "gb" #'better-jumper-jump-backward
 
   (:when (featurep! :ui window-select +numbers)
    :n "g1" #'winum-select-window-1
@@ -162,10 +169,7 @@
    :n "g7" #'winum-select-window-7
    :n "g8" #'winum-select-window-8
    :n "g9" #'winum-select-window-9
-   :n "g0" #'winum-select-window-0-or-10)
-
-  :nv "ga" #'evil-avy-goto-char-timer
-  :nv "gb" #'better-jumper-jump-backward)
+   :n "g0" #'winum-select-window-0-or-10))
 
  (:after flyspell
   (:map flyspell-mode-map
