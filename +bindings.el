@@ -26,7 +26,9 @@
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
       (:prefix ("x" . "text")
        (:when (featurep! :ui hydra)
-        :desc "Zoom" "z" #'+hydra/text-zoom/body))
+        :desc "Zoom" "z" #'+hydra/text-zoom/body)
+       (:when (featurep! :editor rotate-text)
+        :desc "Rotate text" "r" #'rotate-text))
 
       :desc "M-x" "<SPC>" #'execute-extended-command
       :desc "Eval Expression" ":" #'eval-expression
