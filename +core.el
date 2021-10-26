@@ -88,6 +88,11 @@
   ;; Add a binding for ignore commands that is missing from evil bindings
   (transient-insert-suffix 'magit-dispatch "%" '("=" "Ignore" magit-gitignore)))
 
+(after! git-modes
+  (add-to-list 'auto-mode-alist '("\.?gitaliases$" . gitconfig-mode))
+  (add-to-list 'auto-mode-alist '("\.?gitconfig$" . gitconfig-mode))
+  (add-to-list 'auto-mode-alist '("\\.?\\(fd\\|git\\)?ignore$" . gitignore-mode)))
+
 (after! magit
   ;; Show 100 open topics and 10 closed ones, but only after they are toggled on
   (setq forge-topic-list-limit '(100 . -10))

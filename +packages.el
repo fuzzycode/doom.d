@@ -207,21 +207,6 @@
   :bind (:map git-commit-mode-map
          ([tab] . #'+bl/move-to-next-slot)))
 
-(use-package! gitconfig-mode
-  :defer t
-  :when (featurep! :tools magit)
-  :mode ("\.?gitaliases$" . gitconfig-mode)
-  :mode ("\.?gitconfig$" . gitconfig-mode))
-
-(use-package! gitignore-mode
-  :defer t
-  :when (featurep! :tools magit)
-  :mode ("\\.?\\(fd\\|git\\)?ignore$" . gitignore-mode))
-
-(use-package! gitattributes-mode
-  :when (featurep! :tools magit)
-  :defer t)
-
 (use-package! magit-imerge
   :defer t
   :when (featurep! :tools magit)
