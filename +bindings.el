@@ -65,6 +65,8 @@
 
       ;; Open
       (:prefix "o"
+       :desc "Dired Jump" "o" #'dired-jump
+       :desc "Projectile Dired" "O" #'projectile-dired
        (:when (featurep! :app rss)
         :desc "Rss" "s" #'=rss))
 
