@@ -191,6 +191,9 @@
  (:after lsp-mode
   (:map lsp-mode-map
    :ngi "<A-return>" #'lsp-execute-code-action))
+ (:after ranger
+  (:map ranger-mode-map
+   [escape] #'ranger-close))
  (:after tabulated-list
   (:map tabulated-list-mode-map
    :ng "q" #'quit-window))
