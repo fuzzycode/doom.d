@@ -34,6 +34,7 @@
            (featurep 'xwidget-internal))
   (package! mu4e-views :pin "f3f454c7f92e8a9eecb5501af9ca81a547fd1841"))
 
+(package! swedish-holidays :recipe (:host github :repo "fuzzycode/swedish-holidays"))
 (package! visual-regexp-steroids :pin "a6420b25ec0fbba43bf57875827092e1196d8a9e")
 (package! visual-regexp :pin "48457d42a5e0fe10fa3a9c15854f1f127ade09b5")
 (package! expand-region :pin "95a773bd8f557cbd43d3b2dab2fa4417ec5927ab")

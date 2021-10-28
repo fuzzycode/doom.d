@@ -221,6 +221,10 @@
                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
 
 ;; ORG
+(use-package! swedish-holidays
+  :when (featurep! :lang org)
+  :after calendar
+  :config (swedish-holidays-setup))
 
 (use-package! demo-it
   :when (featurep! :lang org)
