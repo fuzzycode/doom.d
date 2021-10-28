@@ -194,6 +194,9 @@
  (:after ranger
   (:map ranger-mode-map
    [escape] #'ranger-close))
+ (:after ibuffer
+  (:map ibuffer-mode-map
+   :n [escape] #'kill-current-buffer))
  (:after org-agenda
   (:map org-agenda-mode-map
    [escape] #'+popup/quit-window
