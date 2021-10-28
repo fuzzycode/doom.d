@@ -194,6 +194,9 @@
  (:after ranger
   (:map ranger-mode-map
    [escape] #'ranger-close))
+ (:after org-agenda
+  (:map org-agenda-mode-map
+   [escape] #'+popup/quit-window))
  (:after tabulated-list
   (:map tabulated-list-mode-map
    :ng "q" #'quit-window))
