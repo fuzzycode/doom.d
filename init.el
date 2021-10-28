@@ -42,7 +42,7 @@
        :emacs
        (dired +ranger +icons)
        electric
-       ibuffer
+       (ibuffer +icons)
        vc
        undo
 

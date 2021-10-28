@@ -164,18 +164,6 @@
 (setq eval-expression-print-length nil
       eval-expression-print-level nil)
 
-(setq ibuffer-formats '((mark modified read-only locked " "
-                              (name 35 35 :left :elide)
-                              " "
-                              (size 9 -1 :right)
-                              " "
-                              (mode 16 16 :left :elide)
-                              " " filename-and-process)
-                        (mark " "
-                              (name 16 -1)
-                              " " filename)))
-
-
 (setq ispell-dictionary "en_US")
 
 ;; Show the location of the sym-link and not the actual file
