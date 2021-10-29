@@ -161,6 +161,8 @@
   :nv "ga" #'evil-avy-goto-char-timer
   :nv "gb" #'better-jumper-jump-backward
 
+  :v "s" #'evil-surround-region
+
   (:when (featurep! :ui window-select +numbers)
    :n "g1" #'winum-select-window-1
    :n "g2" #'winum-select-window-2

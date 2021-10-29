@@ -102,23 +102,6 @@
   :defer t
   :hook (c-mode-common . ff-add-c-style))
 
-(use-package! evil-surround
-  :when (featurep! :editor evil)
-  :after evil-embrace
-  :init (add-hook 'c++-mode-hook (lambda ()
-                                   (push '(?* . ("/*" . "*/")) evil-surround-pairs-alist)))
-  :config
-  (evil-define-key 'visual evil-surround-mode-map "s" #'evil-surround-region)
-  (let ((pairs '((?g "$" . "$")
-                 (?h "(" . ")")
-                 (?j "[" . "]")
-                 (?k "{" . "}")
-                 (?l "<" . ">")
-                 (?a "'" . "'")
-                 (?s "\"" . "\""))))
-    (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
-    (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
-
 (use-package! evil-textobj-line
   :when (featurep! :editor evil)
   :after evil)

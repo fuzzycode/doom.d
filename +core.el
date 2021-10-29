@@ -75,6 +75,17 @@
 (after! evil
   (setq! evil-want-fine-undo t))
 
+(after! evil-surround
+  (let ((pairs '((?g "$" . "$")
+                 (?h "(" . ")")
+                 (?j "[" . "]")
+                 (?k "{" . "}")
+                 (?l "<" . ">")
+                 (?a "'" . "'")
+                 (?s "\"" . "\""))))
+    (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
+    (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
+
 (after! lsp-ui
   (setq lsp-ui-doc-show-with-cursor nil)
   (setq lsp-ui-sideline-show-code-actions nil) ;; Prefer to have this in the mode-line

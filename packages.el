@@ -56,5 +56,4 @@
 
 ;; Add evil packages
 (when (featurep! :editor evil)
-  (package! evil-textobj-line :pin "3d401b6831bdbeec967ec8e64177a8950251e812")
-  (package! evil-surround :pin "3bd73794ee5a760118042584ef74e2b6fb2a1e06"))
+  (package! evil-textobj-line :pin "3d401b6831bdbeec967ec8e64177a8950251e812"))
