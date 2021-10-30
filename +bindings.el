@@ -210,9 +210,9 @@
   (:map tabulated-list-mode-map
    :ng "q" #'quit-window)))
 
-(after! which-key
-  (pushnew! which-key-replacement-alist
-            '((nil . "\\+?evil\\(?:nc\\|em\\)?[:/-]\\(?:a-\\|motion-\\)?\\(.+\\)") . (nil . +bl/beautify-evil))
-            '((nil . "\\(?:\\?\\|consult-\\)?org[:/-]\\(.+\\)") . (nil . +bl/beautify-org))
-            '((nil . "\\+\\(.+\\)[:/]\\(.+\\)") . (nil . +bl/beautify-doom))
-            '((nil . ".+-.+") . (nil . +bl/format-command-name))))
+;; (after! which-key
+;;   (pushnew! which-key-replacement-alist
+;;             '((nil . "\\+?evil\\(?:nc\\|em\\)?[:/-]\\(?:a-\\|motion-\\)?\\(.+\\)") . (nil . +bl/beautify-evil))
+;;             '((nil . "\\(?:\\?\\|consult-\\)?org[:/-]\\(.+\\)") . (nil . +bl/beautify-org))
+;;             '((nil . "\\+\\(.+\\)[:/]\\(.+\\)") . (nil . +bl/beautify-doom))
+;;             '((nil . ".+-.+") . (nil . +bl/format-command-name))))
