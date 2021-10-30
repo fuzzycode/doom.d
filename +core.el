@@ -73,7 +73,8 @@
   (setq evil-goggles-duration 0.2))
 
 (after! evil
-  (setq evil-want-fine-undo t))
+  (setq evil-want-fine-undo t
+      evil-kill-on-visual-paste nil))
 
 (after! evil-surround
   (let ((pairs '((?g "$" . "$")
