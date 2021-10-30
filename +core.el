@@ -229,10 +229,6 @@
 
 (electric-indent-mode -1) ;; Not needed, newline and indent will take care of it
 
-
-;; Configure flycheck, with lsp available there is no need for c/c++-* family
-(setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-gcc c/c++-cppcheck))
-
 ;; mac specifics
 (when IS-MAC
   (setq mac-option-key-is-meta nil
