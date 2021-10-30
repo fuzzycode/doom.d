@@ -94,7 +94,7 @@
 
 (after! lsp-mode
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
-  (setq lsp-enable-semantic-highlighting t)) ; Enable semantic highlighting by default
+  (setq lsp-semantic-tokens-enable t)) ; Enable semantic highlighting by default
 
 (after! magit-gitflow
   ;; Add a binding for ignore commands that is missing from evil bindings
