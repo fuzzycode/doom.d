@@ -199,6 +199,9 @@
  (:after ibuffer
   (:map ibuffer-mode-map
    :n [escape] #'kill-current-buffer))
+ (:after magit
+  (:map magit-status-mode-map
+   [escape] #'+magit/quit))
  (:after org-agenda
   (:map org-agenda-mode-map
    [escape] #'+popup/quit-window
