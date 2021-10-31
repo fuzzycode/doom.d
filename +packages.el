@@ -71,7 +71,8 @@
 (use-package! hardhat
   :defer t
   :init (setq hardhat-less-feedback t)
-  :hook (doom-first-input . global-hardhat-mode))
+  :hook (doom-first-input . global-hardhat-mode)
+  :config (add-to-list 'hardhat-fullpath-editable-regexps "/\\.git/user/"))
 
 (use-package! subword
   :hook (prog-mode . subword-mode))
