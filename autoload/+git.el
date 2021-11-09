@@ -1,3 +1,6 @@
+;; -*- lexical-binding: t; -*-
+;;;###if (featurep! :tools magit)
+
 
 ;;;###autoload
 (defun +bl/current-line-empty-p ()

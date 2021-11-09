@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-
+;;;###if (featurep! :lang org)
 
 ;;;###autoload
 (defun +bl/open-efeed-files ()
