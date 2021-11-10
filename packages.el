@@ -27,8 +27,7 @@
 
 ;; MAIL
 (when (featurep! :email mu4e)
-  (package! mu4e-maildirs-extension :pin "1167bc6e08996f866e73e9a02f563fd21ac317fd")
-  (package! mu4e-alert :pin "91f0657c5b245a9de57aa38391221fb5d141d9bd"))
+  (package! mu4e-maildirs-extension :pin "1167bc6e08996f866e73e9a02f563fd21ac317fd"))
 
 (when (and (featurep! :email mu4e)
            (featurep 'xwidget-internal))

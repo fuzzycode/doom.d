@@ -107,25 +107,6 @@
   :when (featurep! :editor evil)
   :after evil)
 
-(use-package! mu4e
-  :when (featurep! :email mu4e)
-  :defer t
-  :init (setq mu4e-root-maildir (expand-file-name "~/.mail")
-              mu4e-drafts-folder "/drafts"
-              mu4e-sent-folder   "/sent"
-              mu4e-trash-folder  "/trash"
-              mu4e-refile-folder "/archive"
-              mu4e-update-interval 120
-              mu4e-headers-auto-update t
-              mu4e-headers-date-format "%Y-%m-%d %H:%M"
-              mu4e-change-filenames-when-moving t
-              mu4e-sent-messages-behavior 'delete
-              mu4e-use-fancy-chars nil
-              mu4e-headers-fields `((:human-date . 18)
-                                    (:flags . 4)
-                                    (:from-or-to . 20)
-                                    (:subject))))
-
 (use-package! mu4e-views
   :when (featurep! :email mu4e)
   :after mu4e
@@ -133,25 +114,6 @@
   :init (setq mu4e-views-default-view-method "html"
               mu4e-views-next-previous-message-behaviour #'stick-to-current-window)
   :config (mu4e-views-mu4e-use-view-msg-method "html"))
-
-(use-package! mu4e-icalendar
-  :when (featurep! :email mu4e)
-  :after mu4e
-  :config (mu4e-icalendar-setup))
-
-(use-package! mu4e-compose
-  :when (featurep! :email mu4e)
-  :after mu4e
-  :init (setq mu4e-compose-dont-reply-to-self t
-              mu4e-compose-keep-self-cc nil
-              mu4e-compose-complete-addresses t))
-
-(use-package! mu4e-alert
-  :when (featurep! :email mu4e)
-  :after mu4e
-  :init (setq mu4e-alert-interesting-mail-query (mapconcat #'identity '("flag:unread" "AND NOT" "flag:trashed" "AND" "maildir:/inbox") " "))
-  :config (mu4e-alert-set-default-style 'notifier)
-  (mu4e-alert-enable-mode-line-display))
 
 (use-package mu4e-maildirs-extension
   :when (featurep! :email mu4e)
