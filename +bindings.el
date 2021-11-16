@@ -177,13 +177,13 @@
 
  (:after flyspell
   (:map flyspell-mode-map
-   :ng "M-i" #'flyspell-correct-wrapper))
+   :ngi "M-i" #'flyspell-correct-wrapper))
  (:after (projectile cc-mode)
   (:map c++-mode-map
-   :n "go" #'projectile-find-other-file
-   :ng "<A-tab>" #'projectile-find-other-file))
+   :ngi "go" #'projectile-find-other-file
+   :ngi "<A-tab>" #'projectile-find-other-file))
  (:after projectile
-  :ng "M-o" #'projectile-find-file-dwim)
+  :ngi "M-o" #'projectile-find-file-dwim)
  (:after smartparens
   (:map smartparens-mode-map
    :ngi "C-<right>" #'sp-forward-slurp-sexp
