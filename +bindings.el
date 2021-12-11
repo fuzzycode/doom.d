@@ -75,6 +75,16 @@
        "x" nil
        :desc "Scratch Buffer" "%" #'doom/open-project-scratch-buffer)
 
+      ;; Windows
+      (:prefix "w"
+       :desc "Change Window" "w" #'ace-window
+       :desc "Close Window" "k" #'+workspace/close-window-or-workspace
+       :desc "Close Other Windows" "K" #'delete-other-windows
+       :desc "Window Below" "b" #'split-window-below
+       :desc "Window Below Select" "B" (cmd! (select-window (split-window-below)))
+       :desc "Window Right" "r" #'split-window-right
+       :desc "Window Right Select" "R" (cmd! (select-window (split-window-right))))
+
       ;; Help
       (:prefix "h"
        :desc "Info" "i" #'info
@@ -163,7 +173,7 @@
 
   :v "s" #'evil-surround-region
 
-  (:when (featurep! :ui window-select +numbers)
+  (:when (featurep! :ui window-select)
    :n "g1" #'winum-select-window-1
    :n "g2" #'winum-select-window-2
    :n "g3" #'winum-select-window-3
