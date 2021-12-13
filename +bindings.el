@@ -77,13 +77,24 @@
 
       ;; Windows
       (:prefix "w"
+       :desc "Balance Windows" "=" #'balance-windows
        :desc "Change Window" "w" #'ace-window
        :desc "Close Window" "k" #'+workspace/close-window-or-workspace
        :desc "Close Other Windows" "K" #'delete-other-windows
        :desc "Window Below" "b" #'split-window-below
-       :desc "Window Below Select" "B" (cmd! (select-window (split-window-below)))
+       :desc "Window Below And Select" "B" (cmd! (select-window (split-window-below)))
+       (:prefix ("m" . "maximize")
+        :desc "Maximize Buffer" "m" #'doom/window-maximize-buffer
+        :desc "Maximize Horizontally" "h" #'doom/window-maximize-horizontally
+        :desc "Maximize Vertically" "v" #'doom/window-maximize-vertically)
+       :desc "Enlarge" "o" #'doom/window-enlargen
+       :desc "Most Recently Used" "p" #'evil-window-mru
+       :desc "Size" "s" #'+bl/window-hydra/body
+       :desc "Other Window" "t" #'other-window
+       :desc "Undo" "u" #'winner-undo
        :desc "Window Right" "r" #'split-window-right
-       :desc "Window Right Select" "R" (cmd! (select-window (split-window-right))))
+       :desc "Window Right And Select" "R" (cmd! (select-window (split-window-right)))
+       :desc "Quit" "q" #'evil-quit)
 
       ;; Help
       (:prefix "h"
