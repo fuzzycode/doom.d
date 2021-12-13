@@ -60,7 +60,7 @@
        gist
        (lookup +dictionary +docsets)
        (lsp +peek)
-       magit
+       (magit +forge)
        pdf
        prodigy
        rgb
