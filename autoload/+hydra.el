@@ -32,7 +32,7 @@
   ("b" magit-blame-addition)
   ("q" nil :exit t))
 
-;;;###autoload ((autoload '+bl/window-hydra "autoload/+hydra" nil t))
+;;;###autoload (autoload '+bl/window-hydra "autoload/+hydra" nil t)
 (defhydra +bl/window-hydra (:init nil
                             :color pink)
   "
