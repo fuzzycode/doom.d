@@ -115,6 +115,7 @@
     (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
 
 (after! lsp-ui
+  (setq lsp-ui-peek-list-width 75)
   (setq lsp-ui-doc-show-with-cursor nil)
   (setq lsp-ui-sideline-show-code-actions nil) ;; Prefer to have this in the mode-line
   (add-hook 'lsp-ui-mode-hook #'+bl/dim-lsp-sideline))
