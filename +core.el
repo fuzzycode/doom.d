@@ -114,6 +114,9 @@
     (setq-default evil-embrace-evil-surround-keys (append evil-embrace-evil-surround-keys (mapcar #'car pairs)))
     (setq-default evil-surround-pairs-alist (append evil-surround-pairs-alist pairs))))
 
+(after! better-jumper
+  (add-hook 'better-jumper-post-jump-hook #'recenter))
+
 (after! lsp-ui
   (setq lsp-ui-peek-list-width 75)
   (setq lsp-ui-doc-show-with-cursor nil)
