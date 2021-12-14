@@ -214,6 +214,8 @@
  (:after lsp-mode
   (:map lsp-mode-map
    :ngi "<A-return>" #'lsp-execute-code-action))
+(:map lsp-ui-peek-mode-map
+   "<tab>" #'lsp-ui-peek--toggle-file)
  (:after ranger
   (:map ranger-mode-map
    [escape] #'ranger-close))
