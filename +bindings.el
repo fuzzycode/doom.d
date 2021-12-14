@@ -23,6 +23,10 @@
         :desc "Org Roam Capture Today" "c" #'org-roam-dailies-capture-today
         :desc "Org Roam Capture" "C" #'org-roam-capture)) ;; Override Doom binding
 
+      (:when (featurep! :tools lsp)
+       (:prefix "c"
+        :desc "IMenu" "I" #'lsp-ui-imenu))
+
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
       (:prefix ("x" . "text")
        (:when (featurep! :ui hydra)
