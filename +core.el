@@ -133,8 +133,8 @@
   (add-to-list 'auto-mode-alist '("\\.?\\(fd\\|git\\)?ignore$" . gitignore-mode)))
 
 (after! magit
-  ;; Show 100 open topics and 10 closed ones, but only after they are toggled on
-  (setq forge-topic-list-limit '(100 . -10))
+  ;; Show 50 open topics and 10 closed ones, but only after they are toggled on
+  (setq forge-topic-list-limit '(50 . -10))
 
   ;; Show images in commit buffers
   (setq magit-revision-show-gravatars t)
