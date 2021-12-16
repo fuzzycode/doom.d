@@ -154,9 +154,13 @@
          ([tab] . #'+bl/move-to-next-slot)))
 
 (use-package! magit-imerge
-  :defer t
   :when (featurep! :tools magit)
-  :after magit)
+  :after magit
+  :config
+  (transient-insert-suffix 'magit-dispatch "I" '("i" "iMerge" magit-imerge))
+  (transient-insert-suffix 'magit-dispatch "!" '("#" "Ignore" magit-gitignore))
+  (transient-append-suffix 'magit-merge "n"
+    '("g" "iMerge" magit-imerge)))
 
 (use-package! gitignore-templates
   :defer t
