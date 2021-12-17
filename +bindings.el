@@ -199,9 +199,13 @@
    :n "g8" #'winum-select-window-8
    :n "g9" #'winum-select-window-9
    :n "g0" #'winum-select-window-0-or-10))
- (:after code-review
+ (:after (forge code-review)
   (:map magit-status-mode-map
-  "C-c C-r" #'+magit/start-code-review))
+   "C-c C-r" #'+magit/start-code-review)
+  (:map forge-pullreq-list-mode-map
+   "C-c C-r" #'+magit/start-code-review)
+  (:map forge-topic-mode-map
+   "r" #'+magit/start-code-review))
  (:after flyspell
   (:map flyspell-mode-map
    :ngi "M-i" #'flyspell-correct-wrapper))
