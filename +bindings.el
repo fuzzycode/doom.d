@@ -199,7 +199,9 @@
    :n "g8" #'winum-select-window-8
    :n "g9" #'winum-select-window-9
    :n "g0" #'winum-select-window-0-or-10))
-
+ (:after code-review
+  (:map magit-status-mode-map
+  "C-c C-r" #'+magit/start-code-review))
  (:after flyspell
   (:map flyspell-mode-map
    :ngi "M-i" #'flyspell-correct-wrapper))
