@@ -132,6 +132,12 @@
   (add-to-list 'auto-mode-alist '("\.?gitconfig$" . gitconfig-mode))
   (add-to-list 'auto-mode-alist '("\\.?\\(fd\\|git\\)?ignore$" . gitignore-mode)))
 
+(after! (evil code-review)
+  (evil-set-initial-state 'code-review-comment-mode 'insert))
+
+(after! (evil forge)
+  (evil-set-initial-state 'forge-post-mode 'insert))
+
 (after! magit
   ;; Show 50 open topics and 10 closed ones, but only after they are toggled on
   (setq forge-topic-list-limit '(50 . -10))
@@ -279,3 +285,4 @@
 (set-popup-rule! "^\\*Org Export Dispatcher\\*$" :side 'right :width 0.6)
 (set-popup-rule! "^CAPTURE-.*\\.org$" :size 0.5 :quit nil :select t :autosave t)
 (set-popup-rule! "^\\*xwidget" :vslot -11 :size 0.55 :select nil)
+(set-popup-rule! "^\\*Code Review.*\\*$" :ignore t)
