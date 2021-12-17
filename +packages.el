@@ -72,7 +72,8 @@
   :defer t
   :init (setq hardhat-less-feedback t)
   :hook (doom-first-input . global-hardhat-mode)
-  :config (add-to-list 'hardhat-fullpath-editable-regexps "/\\.git/user/"))
+  :config (add-to-list 'hardhat-fullpath-editable-regexps "/\\.git/user/")
+  (add-to-list 'hardhat-fullpath-editable-regexps ".+/\\.git/.+/magit/posts/.+"))
 
 (use-package! subword
   :hook (prog-mode . subword-mode))
