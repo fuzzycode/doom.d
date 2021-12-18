@@ -21,7 +21,7 @@
 
 ;;;###autoload (autoload '+bl/blame-hydra/body "autoload/+hydra" nil t)
 (defhydra +bl/blame-hydra (:hint nil
-                                    :color magenta
+                                    :color pink
                                     :pre (unless (bound-and-true-p magit-blame-mode)
                                            (call-interactively 'magit-blame-addition))
                                     :post (when (bound-and-true-p magit-blame-mode)
