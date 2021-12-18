@@ -138,6 +138,10 @@
 (after! (evil forge)
   (evil-set-initial-state 'forge-post-mode 'insert))
 
+(after! forge
+  (transient-append-suffix 'forge-dispatch "l p" '("l P" "authored PRs" forge-list-authored-pullreqs))
+  (transient-append-suffix 'forge-dispatch "l i" '("l I" "authored issues" forge-list-authored-issues)))
+
 (after! magit
   ;; Show 50 open topics and 10 closed ones, but only after they are toggled on
   (setq forge-topic-list-limit '(50 . -10))
