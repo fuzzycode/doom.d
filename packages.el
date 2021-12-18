@@ -5,13 +5,13 @@
 (unpin! code-review)
 
 ;; C++
-(package! ninja-mode :recipe (:files ("*.el")) :pin "0cd88287a4cd77d11c92c7a9b44bb15fb787a1ee")
+(package! ninja-mode :recipe (:files ("*.el")) :pin "e5935b63757f3a788bc56d2c7afd9e390daf2f07")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
 
 ;; GIT
 (when (featurep! :tools magit)
   (package! magit-imerge :pin "1ee213d7fa1536c86c128d09946b44ededbfac9c")
-  (package! git-commit :pin "aba0a596115b42fbd60347d893bcc319020ce5a2")
+  (package! git-commit :pin "f766f68f78b982443850b2e4433d83e26971fdb0")
   (package! rigid-tabs :pin "eba84ceaba2e57e76ad2dfbb7a7154238a25d956")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
@@ -22,7 +22,7 @@
   (package! doct :pin "c1919a4297e5479d3a22ded90095245317b29935")
   (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
   (package! org-ql :pin "31aeb0a2505acf8044c07824888ddec7f3e529c1")
-  (package! org-appear :pin "a1aa8496f2fd61305e43e03e6eeee2ff92aa9e24")
+  (package! org-appear :pin "a4d10fc346ba14f487eb7aa95761b9295089ba55")
   (package! ox-gfm :pin "99f93011b069e02b37c9660b8fcb45dab086a07f")
   (package! ox-asciidoc :pin "d60ac439278cec214882f92c47bc16e0f43ae98e"))
 
@@ -44,7 +44,7 @@
 (package! sort-words :pin "7b6e108f80237363faf7ec28b2c58dec270b8601")
 (package! smart-backspace :pin "a10ec44ff325ec8c4c98b1a6e44e89e60a9aa4ac")
 (package! open-junk-file :pin "558bec7372b0fed4c4cb6074ab906535fae615bd")
-(package! pandoc-mode :pin "bf01a14e99304653ae722226ea064c7d4b641774")
+(package! pandoc-mode :pin "c1429887287b7ee9601196e26f97c908b6e4f5c0")
 (package! centered-cursor-mode :pin "4093821cc9759ca5a3c6e527d4cc915fc3a5ad74")
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
@@ -59,4 +59,4 @@
 
 ;; Add evil packages
 (when (featurep! :editor evil)
-  (package! evil-textobj-line :pin "3d401b6831bdbeec967ec8e64177a8950251e812"))
+  (package! evil-textobj-line :pin "9eaf9a5485c2b5c05e16552b34632ca520cd681d"))
