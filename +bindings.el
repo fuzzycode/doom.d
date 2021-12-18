@@ -157,7 +157,7 @@
 ;; Bindings with no leader key
 (map!
  (:when (not (featurep! :editor evil))
-   "<A-up>" #'join-line)
+  "<A-up>" #'join-line)
  (:when (featurep! :editor evil)
   "<A-down>" #'evil-join)
 
@@ -224,8 +224,8 @@
  (:after lsp-mode
   (:map lsp-mode-map
    :ngi "<A-return>" #'lsp-execute-code-action))
-(:map lsp-ui-peek-mode-map
-   "<tab>" #'lsp-ui-peek--toggle-file)
+ (:map lsp-ui-peek-mode-map
+  "<tab>" #'lsp-ui-peek--toggle-file)
  (:after ranger
   (:map ranger-mode-map
    [escape] #'ranger-close))
