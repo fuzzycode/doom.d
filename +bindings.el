@@ -206,6 +206,10 @@
    "C-c C-r" #'+magit/start-code-review)
   (:map forge-topic-mode-map
    "r" #'+magit/start-code-review))
+ (:after evil-collection-magit
+  (:map code-review-mode-map
+   :n "r" #'code-review-transient-api
+   :n "gr" #'code-review-reload))
  (:after flyspell
   (:map flyspell-mode-map
    :ngi "M-i" #'flyspell-correct-wrapper))
