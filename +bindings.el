@@ -205,10 +205,14 @@
   (:map forge-pullreq-list-mode-map
    "C-c C-r" #'+magit/start-code-review)
   (:map forge-topic-mode-map
-   "r" #'+magit/start-code-review))
- (:after evil-collection-magit
+   "r" #'+magit/start-code-review)
+  (:map code-review-feedback-section-map
+   "x" #'code-review-delete-feedback)
+  (:map code-review-local-comment-section-map
+   "x" #'code-review-section-delete-comment)
+  (:map code-review-reply-comment-section-map
+   "x" #'code-review-section-delete-comment)
   (:map code-review-mode-map
-   :n "r" #'code-review-transient-api
    :n "gr" #'code-review-reload))
  (:after flyspell
   (:map flyspell-mode-map
