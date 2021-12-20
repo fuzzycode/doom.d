@@ -133,6 +133,7 @@
   (add-to-list 'auto-mode-alist '("\\.?\\(fd\\|git\\)?ignore$" . gitignore-mode)))
 
 (after! (evil code-review)
+  (evil-make-overriding-map code-review-mode-map 'normal)
   (evil-set-initial-state 'code-review-comment-mode 'insert))
 
 (after! (evil forge)
