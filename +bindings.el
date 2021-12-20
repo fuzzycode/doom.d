@@ -188,7 +188,7 @@
 
   :v "s" #'evil-surround-region
 
-  (:when (featurep! :ui window-select)
+  (:when (featurep! :ui window-select +numbers)
    :n "g1" #'winum-select-window-1
    :n "g2" #'winum-select-window-2
    :n "g3" #'winum-select-window-3
