@@ -1,0 +1,8 @@
+alias ... ../..
+alias .... ../../..
+alias ..... ../../../..
+alias ...... ../../../../..
+alias la ls -lah $*
+alias md mkdir -p $*
+alias c clear
+alias q exit
