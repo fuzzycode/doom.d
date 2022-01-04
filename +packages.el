@@ -28,6 +28,9 @@
                         :desc "Replace" :ng "q" #'vr/replace
                         :desc "Query Replace" :ng "Q" #'vr/query-replace))))
 
+(use-package! graphql-mode
+  :defer t)
+
 (use-package! ialign
   :defer t
   :commands ialign

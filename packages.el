@@ -53,6 +53,7 @@
 (package! string-inflection :pin "fd7926ac17293e9124b31f706a4e8f38f6a9b855")
 (package! ialign :pin "eca40b8b59ea713dba21b18f5b047a6c086b91dc")
 (package! s :pin "08661efb075d1c6b4fa812184c1e5e90c08795a9")
+(package! graphql-mode :pin "9740e4027bd9313697d5cac5caaa5b15626ab1da")
 
 (when IS-MAC
   (package! reveal-in-osx-finder :pin "5710e5936e47139a610ec9a06899f72e77ddc7bc"))
