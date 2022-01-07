@@ -70,7 +70,10 @@
        :checkers
        syntax
        grammar
-       (spell +everywhere +flyspell +enchant)
+       (spell +everywhere +flyspell
+              (:cond ((executable-find "enchant-2") +enchant)
+               ((executable-find "hunspell") +hunspell)
+               ((executable-find "aspell") +aspell)))
 
        :lang
        (cc +lsp)
