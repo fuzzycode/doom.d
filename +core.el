@@ -191,14 +191,12 @@
   (magit-add-section-hook 'magit-status-sections-hook
                           'magit-insert-modules-unpushed-to-pushremote
                           'magit-insert-unpulled-from-upstream)
-  (magit-add-section-hook 'magit-status-sections-hook
-                          'magit-insert-modules-overview
-                          'magit-insert-unpulled-from-upstream)
+
 
   (when (featurep! :tools magit +forge)
     (magit-add-section-hook 'magit-status-sections-hook
-                            'forge-insert-assigned-pullreqs
-                            'forge-insert-pullreqs)
+                            'magit-insert-modules-unpushed-to-pushremote
+                            'magit-insert-modules-overview)
 
     (magit-add-section-hook 'magit-status-sections-hook
                             'forge-insert-requested-reviews
