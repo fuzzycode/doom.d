@@ -130,7 +130,7 @@
 (after! git-modes
   (add-to-list 'auto-mode-alist '("\.?gitaliases$" . gitconfig-mode))
   (add-to-list 'auto-mode-alist '("\.?gitconfig$" . gitconfig-mode))
-  (add-to-list 'auto-mode-alist '("\\.?\\(fd\\|git\\)?ignore$" . gitignore-mode)))
+  (add-to-list 'auto-mode-alist '("\.?\(fd\|git\)?ignore$" . gitignore-mode)))
 
 (after! (evil code-review)
   (evil-make-overriding-map code-review-mode-map 'normal)
