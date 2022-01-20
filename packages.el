@@ -8,6 +8,8 @@
 (package! ninja-mode :recipe (:files ("*.el")) :pin "e5935b63757f3a788bc56d2c7afd9e390daf2f07")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
 
+(package! shader-mode :pin "d7dc8d0d6fe8914e8b6d5cf2081ad61e6952359c") ;; This is also a part of the csharp module but I only want this package from it
+
 ;; GIT
 (when (featurep! :tools magit)
   (package! magit-imerge :pin "1ee213d7fa1536c86c128d09946b44ededbfac9c")

@@ -107,6 +107,10 @@
   :defer t
   :hook (c-mode-common . ff-add-c-style))
 
+(use-package! shader-mode
+  :defer t
+  :mode "\\.hlsl\\'")
+
 (use-package! evil-textobj-line
   :when (featurep! :editor evil)
   :after evil)
