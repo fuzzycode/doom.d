@@ -109,7 +109,7 @@
 
 (use-package! shader-mode
   :defer t
-  :mode "\\.hlsl\\'")
+  :mode "\\.i?hlsl\\'")
 
 (use-package! evil-textobj-line
   :when (featurep! :editor evil)
