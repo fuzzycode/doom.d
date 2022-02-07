@@ -14,7 +14,7 @@
                                       0 t)]))
 
 (after! projectile
-  (setq projectile-enable-caching nil)
+  (setq projectile-files-cache-expire 5)
 
   (put 'projectile-project-name 'safe-local-variable #'stringp)
   (put 'projectile-project-compilation-dir 'safe-local-variable #'file-directory-p)
