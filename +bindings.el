@@ -219,7 +219,7 @@
    :ngi "M-i" #'flyspell-correct-wrapper))
  (:after (projectile cc-mode)
   (:map c++-mode-map
-   :ngi "go" #'projectile-find-other-file
+   :n "go" #'projectile-find-other-file
    :ngi "<A-tab>" #'projectile-find-other-file))
  (:after projectile
   :ngi "M-o" #'projectile-find-file-dwim)
