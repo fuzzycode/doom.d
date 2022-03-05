@@ -5,7 +5,7 @@
 (unpin! code-review)
 
 ;; C++
-(package! ninja-mode :recipe (:files ("*.el")) :pin "e5935b63757f3a788bc56d2c7afd9e390daf2f07")
+(package! ninja-mode :recipe (:files ("*.el")) :pin "c5e509481f1e53ceedc21d0315e125895b24d68d")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
 
 (package! shader-mode :pin "d7dc8d0d6fe8914e8b6d5cf2081ad61e6952359c") ;; This is also a part of the csharp module but I only want this package from it
@@ -14,20 +14,20 @@
 (when (featurep! :tools magit)
   (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db")
   (package! magit-imerge :pin "1ee213d7fa1536c86c128d09946b44ededbfac9c")
-  (package! git-commit :pin "f766f68f78b982443850b2e4433d83e26971fdb0")
+  (package! git-commit :pin "613682a70631178caee15d1b5a16fae90da4af7b")
   (package! rigid-tabs :pin "eba84ceaba2e57e76ad2dfbb7a7154238a25d956")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
 ;;ORG
 (when (featurep! :lang org)
-  (package! demo-it :pin "9cfa5c3f92a0dca7eebb1f1a2011643c9b009d26")
-  (package! org-super-agenda :pin "fb5e2ef277bc811a3b061106c99e4c47b6b86f80")
-  (package! doct :pin "c1919a4297e5479d3a22ded90095245317b29935")
+  (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
+  (package! org-super-agenda :pin "3108bc3f725818f0e868520d2c243abe9acbef4e")
+  (package! doct :pin "4033a8fd8681d3989550f7a2532d6b4e3c45bfe8")
   (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
-  (package! org-ql :pin "31aeb0a2505acf8044c07824888ddec7f3e529c1")
-  (package! org-appear :pin "a4d10fc346ba14f487eb7aa95761b9295089ba55")
+  (package! org-ql :pin "af18eac2b80b2f56c135f37fcbdcce19fbc34b65")
+  (package! org-appear :pin "ffbd742267ff81ba8433177fac5d7fe22b6d68a9")
   (package! ox-gfm :pin "99f93011b069e02b37c9660b8fcb45dab086a07f")
-  (package! ox-asciidoc :pin "d60ac439278cec214882f92c47bc16e0f43ae98e"))
+  (package! ox-asciidoc :pin "27bf9a3e900c782bd57719c81c0aa68d9a1e3b46"))
 
 ;;ELISP
 (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a")
@@ -38,12 +38,12 @@
 
 (when (and (featurep! :email mu4e)
            (featurep 'xwidget-internal))
-  (package! mu4e-views :pin "f3f454c7f92e8a9eecb5501af9ca81a547fd1841"))
+  (package! mu4e-views :pin "fa47f35e56edcc84f00d622e415ae970cc5df0dd"))
 
 (package! swedish-holidays :recipe (:host github :repo "fuzzycode/swedish-holidays"))
 (package! visual-regexp-steroids :pin "a6420b25ec0fbba43bf57875827092e1196d8a9e")
 (package! visual-regexp :pin "48457d42a5e0fe10fa3a9c15854f1f127ade09b5")
-(package! expand-region :pin "95a773bd8f557cbd43d3b2dab2fa4417ec5927ab")
+(package! expand-region :pin "7e5bbe2763c12bae3e77fe0c49bcad05ff91dbfe")
 (package! sort-words :pin "7b6e108f80237363faf7ec28b2c58dec270b8601")
 (package! smart-backspace :pin "a10ec44ff325ec8c4c98b1a6e44e89e60a9aa4ac")
 (package! open-junk-file :pin "558bec7372b0fed4c4cb6074ab906535fae615bd")
