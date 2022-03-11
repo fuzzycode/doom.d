@@ -58,6 +58,9 @@
 (package! s :pin "08661efb075d1c6b4fa812184c1e5e90c08795a9")
 (package! graphql-mode :pin "9740e4027bd9313697d5cac5caaa5b15626ab1da")
 
+(when (featurep! :lang web)
+  (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))
+
 (when IS-MAC
   (package! reveal-in-osx-finder :pin "5710e5936e47139a610ec9a06899f72e77ddc7bc"))
 

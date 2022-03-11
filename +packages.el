@@ -54,6 +54,10 @@
 (use-package! pandoc-mode
   :defer t)
 
+(use-package! yarn-mode
+  :when (featurep! :lang web)
+  :defer t)
+
 (use-package! open-junk-file
   :defer t
   :init (setq open-junk-file-format (concat doom-private-dir "junk/%Y/%m/%d-%H%M%S."))
