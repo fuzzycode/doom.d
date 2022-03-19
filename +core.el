@@ -236,8 +236,8 @@
       compilation-skip-threshold 2)
 
 ;; Add extensionless file modes
-(add-to-list 'auto-mode-alist '("\\.?zshenv\\(.local\\)?$" . sh-mode))
-(add-to-list 'auto-mode-alist '("\\.?zshrc\\(.local\\)?$" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.?zshenv\\(\\.local\\)?$" . sh-mode))
+(add-to-list 'auto-mode-alist '("\\.?zshrc\\(\\.local\\)?$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.?zshenv$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.?zprofile$" . sh-mode))
 (add-to-list 'auto-mode-alist '("\\.?pep8$" . conf-mode))
