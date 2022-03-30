@@ -18,10 +18,19 @@ to have a comment line as a header for each slot where text should/could be inse
   (while (not (+bl/current-line-empty-p))
     (forward-line 1)))
 
+;;;###autoload
+(defun +bl/delete-carrage-returns ()
+  (interactive)
+  (save-excursion
+    (goto-char 0)
+    (while (search-forward "\r" nil :noerror)
+      (replace-match ""))))
 
 ;;;###autoload
 (add-hook 'find-file-hook (lambda ()
                              (when (string-suffix-p "COMMIT_EDITMSG" buffer-file-name)
+                               (when IS-WINDOWS
+                                 (+bl/delete-carrage-returns))
                                (goto-char (point-min))
                                (+bl/move-to-next-slot))))
 
