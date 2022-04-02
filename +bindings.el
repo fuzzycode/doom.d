@@ -93,7 +93,8 @@
         :desc "Maximize Vertically" "v" #'doom/window-maximize-vertically)
        :desc "Enlarge" "o" #'doom/window-enlargen
        :desc "Most Recently Used" "p" #'evil-window-mru
-       :desc "Size" "s" #'+bl/window-hydra/body
+       (:when (featurep! :ui treemacs)
+         :desc "Size" "s" #'treemacs-select-window)
        :desc "Other Window" "t" #'other-window
        :desc "Undo" "u" #'winner-undo
        :desc "Window Right" "r" #'split-window-right
