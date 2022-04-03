@@ -6,7 +6,7 @@
 (map! :leader
       ";" nil ;; Save for later
       "x" nil ;; No need for scratch buffer, use for text instead
-      "w" nil ;; I don't use window commands, use this for my needs
+      "w" nil
       "h" nil ;; I am used to my setup of help so I will use that
 
       ;; Remove deft keybinding if not using
