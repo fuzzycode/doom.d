@@ -71,6 +71,8 @@
       (:prefix "o"
        :desc "Dired Jump" "o" #'dired-jump
        :desc "Projectile Dired" "O" #'projectile-dired
+       (:when (featurep! :tools prodigy)
+        :desc "Prodigy" "y" #'prodigy)
        (:when (featurep! :app rss)
         :desc "Rss" "s" #'=rss))
 
