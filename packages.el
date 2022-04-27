@@ -30,7 +30,9 @@
   (package! ox-asciidoc :pin "27bf9a3e900c782bd57719c81c0aa68d9a1e3b46"))
 
 ;;ELISP
-(package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a")
+(when (featurep! :lang emacs-lisp)
+  (package! emacs-inspector :recipe (:host github :repo "mmontone/emacs-inspector"))
+  (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
 ;; MAIL
 (when (featurep! :email mu4e)

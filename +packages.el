@@ -102,8 +102,23 @@
          ("\\.clangd$" . yaml-mode)))
 
 (use-package! eval-sexp-fu
+  :when (featurep! :lang emacs-lisp)
   :defer t
   :hook ((emacs-lisp-mode . eval-sexp-fu-flash-mode)))
+
+(use-package! emacs-inspector
+  :when (featurep! :lang emacs-lisp)
+  :defer t
+  :init (map! (:localleader
+               :map (emacs-lisp-mode-map lisp-interaction-mode-map)
+               (:prefix ("i" . "inspect")
+                :desc "Inspect Last Sexp" "i" #'inspect-last-sexp
+                :desc "Inspect Expression" "e" #'inspect-expression))
+              (:map inspector-mode-map
+               "q" #'inspector-pop
+               [escape] #'inspector-quit
+               "<tab>" #'forward-button
+               "S-<tab>" #'backward-button)))
 
 (use-package! ninja-mode
   :defer t)
