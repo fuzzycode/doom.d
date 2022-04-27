@@ -265,5 +265,5 @@
   :after ox)
 
 (use-package! ox-asciidoc
-   :when (featurep! :lang org)
-   :after ox)
+  :when (featurep! :lang org)
+  :after ox)
