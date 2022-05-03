@@ -120,6 +120,28 @@
                "<tab>" #'forward-button
                "S-<tab>" #'backward-button)))
 
+(use-package! vundo
+  :unless (featurep! +tree)
+  :custom
+  (vundo-glyph-alist     vundo-unicode-symbols)
+  (vundo-compact-display t)
+  :config
+  (map! (:leader :desc "Visual Undo" "U" #'vundo))
+  (when (featurep! :editor evil)
+    (set-evil-initial-state! 'vundo-mode 'motion)
+    (add-hook! vundo-mode #'evil-normalize-keymaps)
+    (map! :map vundo-mode-map
+          [remap evil-backward-char] #'vundo-backward
+          [remap evil-forward-char]  #'vundo-forward
+          [remap evil-next-line]     #'vundo-next
+          [remap evil-previous-line] #'vundo-previous
+          [remap evil-window-top]    #'vundo-stem-root
+          [remap evil-window-bottom] #'vundo-stem-end
+          "q"                        #'vundo-quit
+          [escape]                   #'vundo-quit
+          [remap evil-ret]           #'vundo-confirm))
+  :defer t)
+
 (use-package! ninja-mode
   :defer t)
 

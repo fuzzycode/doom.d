@@ -59,6 +59,7 @@
 (package! ialign :pin "eca40b8b59ea713dba21b18f5b047a6c086b91dc")
 (package! s :pin "08661efb075d1c6b4fa812184c1e5e90c08795a9")
 (package! graphql-mode :pin "9740e4027bd9313697d5cac5caaa5b15626ab1da")
+(package! vundo :pin "3522758166687f6a877efb8449fe300625db536e")
 
 (when (featurep! :lang web)
   (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))
