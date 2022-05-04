@@ -5,7 +5,7 @@
 (unpin! code-review)
 
 ;; C++
-(package! ninja-mode :recipe (:files ("*.el")) :pin "c5e509481f1e53ceedc21d0315e125895b24d68d")
+(package! ninja-mode :recipe (:files ("*.el")) :pin "7905dee5ac62f7a1e0dfec4d936b97d96c7566d7")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
 
 (package! shader-mode :pin "d7dc8d0d6fe8914e8b6d5cf2081ad61e6952359c") ;; This is also a part of the csharp module but I only want this package from it
@@ -13,9 +13,9 @@
 ;; GIT
 (when (featurep! :tools magit)
   (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db")
-  (package! magit-imerge :pin "1ee213d7fa1536c86c128d09946b44ededbfac9c")
-  (package! git-commit :pin "613682a70631178caee15d1b5a16fae90da4af7b")
-  (package! rigid-tabs :pin "eba84ceaba2e57e76ad2dfbb7a7154238a25d956")
+  (package! magit-imerge :pin "37bca48218dc32cad964e01e0f9936a90f634fba")
+  (package! git-commit :pin "476383fc8fb0f6ea4c6fc29d7057a1b5b5f95bd8")
+  (package! rigid-tabs :pin "872a10c8751574c9610cba1800f541a6eda24997")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
 ;;ORG
@@ -24,10 +24,10 @@
   (package! org-super-agenda :pin "3108bc3f725818f0e868520d2c243abe9acbef4e")
   (package! doct :pin "4033a8fd8681d3989550f7a2532d6b4e3c45bfe8")
   (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
-  (package! org-ql :pin "af18eac2b80b2f56c135f37fcbdcce19fbc34b65")
-  (package! org-appear :pin "ffbd742267ff81ba8433177fac5d7fe22b6d68a9")
+  (package! org-ql :pin "46f523d94a376b168176c75bbd0e3e0d00e61170")
+  (package! org-appear :pin "8dd1e564153d8007ebc4bb4e14250bde84e26a34")
   (package! ox-gfm :pin "99f93011b069e02b37c9660b8fcb45dab086a07f")
-  (package! ox-asciidoc :pin "27bf9a3e900c782bd57719c81c0aa68d9a1e3b46"))
+  (package! ox-asciidoc :pin "c8bc184f9088b76fdf1ce20e6e5d0a1588e1b327"))
 
 ;;ELISP
 (when (featurep! :lang emacs-lisp)
