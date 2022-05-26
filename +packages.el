@@ -215,8 +215,7 @@
          "#" #'magit-gitignore))
   (transient-insert-suffix 'magit-dispatch "I" '("i" "iMerge" magit-imerge))
   (transient-insert-suffix 'magit-dispatch "!" '("#" "Ignore" magit-gitignore))
-  (transient-append-suffix 'magit-merge "n"
-    '("g" "iMerge" magit-imerge)))
+  (transient-append-suffix 'magit-merge "n" '("g" "iMerge" magit-imerge)))
 
 (use-package! gitignore-templates
   :defer t
