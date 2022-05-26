@@ -157,6 +157,14 @@
         :desc "Doom Reload" "R" #'doom/reload
         :desc "Version" "V" #'doom/version)))
 
+(after! magit
+  (map! :localleader
+        :map with-editor-mode-map
+        :desc "Commit" "c" #'with-editor-finish)
+  (map! :localleader
+        :map with-editor-mode-map
+        :desc "Cancel" "k" #'with-editor-cancel))
+
 ;; Bindings with no leader key
 (map!
  (:when (not (featurep! :editor evil))
