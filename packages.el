@@ -5,7 +5,7 @@
 (unpin! code-review)
 
 ;; C++
-(package! ninja-mode :recipe (:files ("*.el")) :pin "7905dee5ac62f7a1e0dfec4d936b97d96c7566d7")
+(package! ninja-mode :recipe (:files ("*.el")) :pin "55f54511d35716c43637dee2bcb5fbc7839f967b")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
 
 (package! shader-mode :pin "d7dc8d0d6fe8914e8b6d5cf2081ad61e6952359c") ;; This is also a part of the csharp module but I only want this package from it
@@ -14,7 +14,7 @@
 (when (featurep! :tools magit)
   (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db")
   (package! magit-imerge :pin "37bca48218dc32cad964e01e0f9936a90f634fba")
-  (package! git-commit :pin "476383fc8fb0f6ea4c6fc29d7057a1b5b5f95bd8")
+  (package! git-commit :pin "a7953b2645503904b2a31e18e019f07af9e71a7a")
   (package! rigid-tabs :pin "872a10c8751574c9610cba1800f541a6eda24997")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
@@ -22,21 +22,21 @@
 (when (featurep! :lang org)
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
   (package! org-super-agenda :pin "3108bc3f725818f0e868520d2c243abe9acbef4e")
-  (package! doct :pin "4033a8fd8681d3989550f7a2532d6b4e3c45bfe8")
+  (package! doct :pin "8464809754f3316d5a2fdcf3c01ce1e8736b323b")
   (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
-  (package! org-ql :pin "46f523d94a376b168176c75bbd0e3e0d00e61170")
+  (package! org-ql :pin "67506a56f8e84af80af922e40797f8dc861243e4")
   (package! org-appear :pin "8dd1e564153d8007ebc4bb4e14250bde84e26a34")
   (package! ox-gfm :pin "99f93011b069e02b37c9660b8fcb45dab086a07f")
   (package! ox-asciidoc :pin "c8bc184f9088b76fdf1ce20e6e5d0a1588e1b327"))
 
 ;;ELISP
 (when (featurep! :lang emacs-lisp)
-  (package! emacs-inspector :recipe (:host github :repo "mmontone/emacs-inspector"))
+  (package! emacs-inspector :recipe (:host github :repo "mmontone/emacs-inspector") :pin "8c555dfadb737bf2f05ff2786dbab2ac985775ef")
   (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
 ;; MAIL
 (when (featurep! :email mu4e)
-  (package! mu4e-maildirs-extension :pin "1167bc6e08996f866e73e9a02f563fd21ac317fd"))
+  (package! mu4e-maildirs-extension :pin "cdc2e141d8ecd59508a5cd50d6d02120073bf4f1"))
 
 (when (and (featurep! :email mu4e)
            (featurep 'xwidget-internal))
@@ -49,7 +49,7 @@
 (package! sort-words :pin "7b6e108f80237363faf7ec28b2c58dec270b8601")
 (package! smart-backspace :pin "a10ec44ff325ec8c4c98b1a6e44e89e60a9aa4ac")
 (package! open-junk-file :pin "558bec7372b0fed4c4cb6074ab906535fae615bd")
-(package! pandoc-mode :pin "c1429887287b7ee9601196e26f97c908b6e4f5c0")
+(package! pandoc-mode :pin "2a4e726a29d38e7c2379787cad619e5392ad2da0")
 (package! centered-cursor-mode :pin "4093821cc9759ca5a3c6e527d4cc915fc3a5ad74")
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
@@ -59,7 +59,7 @@
 (package! ialign :pin "eca40b8b59ea713dba21b18f5b047a6c086b91dc")
 (package! s :pin "08661efb075d1c6b4fa812184c1e5e90c08795a9")
 (package! graphql-mode :pin "9740e4027bd9313697d5cac5caaa5b15626ab1da")
-(package! vundo :pin "3522758166687f6a877efb8449fe300625db536e")
+(package! vundo :pin "0b8538f4e4c2f25cb9d5b75cf064ba8dceca6145")
 
 (when (featurep! :lang web)
   (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))
