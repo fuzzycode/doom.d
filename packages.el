@@ -12,7 +12,8 @@
 
 ;; GIT
 (when (featurep! :tools magit)
-  (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db")
+  (when IS-WINDOWS
+    (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
   (package! magit-imerge :pin "37bca48218dc32cad964e01e0f9936a90f634fba")
   (package! git-commit :pin "a7953b2645503904b2a31e18e019f07af9e71a7a")
   (package! rigid-tabs :pin "872a10c8751574c9610cba1800f541a6eda24997")

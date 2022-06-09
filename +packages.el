@@ -195,6 +195,7 @@
   :hook (doom-first-input . smart-newline-mode))
 
 (use-package! ssh-agency
+  :when IS-WINDOWS
   :when (featurep! :tools magit))
 
 (use-package! git-commit
