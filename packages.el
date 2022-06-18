@@ -1,9 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
 
-(unpin! dired-git-info)
-(unpin! code-review)
-
 ;; C++
 (package! ninja-mode :recipe (:files ("*.el")) :pin "55f54511d35716c43637dee2bcb5fbc7839f967b")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
