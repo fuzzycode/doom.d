@@ -65,6 +65,7 @@
        prodigy
        rgb
        tmux
+       tree-sitter
        upload
 
        :checkers
@@ -76,24 +77,24 @@
                ((executable-find "aspell") +aspell)))
 
        :lang
-       (cc +lsp)
+       (cc +lsp +tree-sitter)
        common-lisp
        (clojure +lsp)
        data
        emacs-lisp
-       (java +lsp)
-       javascript
-       (json +lsp)
+       (java +lsp +tree-sitter)
+       (javascript +tree-sitter)
+       (json +lsp +tree-sitter)
        (latex +latexmk +lsp)
        markdown
        (org +dragndrop +gnuplot +hugo +jupyter +noter +pandoc +present +roam2 +pretty)
        plantuml
-       (python +pyenv +lsp)
+       (python +pyenv +lsp +tree-sitter)
        qt
        rest
-       (rust +lsp)
+       (rust +lsp +tree-sitter)
        rst
-       (sh +lsp)
+       (sh +lsp +tree-sitter)
        web
        (yaml +lsp)
 
