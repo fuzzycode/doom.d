@@ -125,6 +125,7 @@
 
 (after! lsp-mode
   (setq-default flycheck-disabled-checkers '(c/c++-clang c/c++-cppcheck c/c++-gcc))
+  (setq lsp-warn-no-matched-clients nil)
   (setq lsp-semantic-tokens-enable t)) ; Enable semantic highlighting by default
 
 (after! git-modes
