@@ -1,5 +1,5 @@
 ;;; ../Development/GitHub/dotfiles/doom.d/autoload/+flyspell.el -*- lexical-binding: t; -*-
-;;;###if (featurep! :checkers spell)
+;;;###if (modulep! :checkers spell)
 
 ;;;###autoload
 (defun +bl/inside-string-p ()

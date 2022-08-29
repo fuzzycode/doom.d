@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-;;;###if (featurep! :tools lsp)
+;;;###if (modulep! :tools lsp)
 
 ;;;###autoload
 (defun +bl/dim-lsp-sideline (&rest args)

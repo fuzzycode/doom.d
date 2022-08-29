@@ -43,7 +43,7 @@
 
 (use-package! treemacs
   :defer t
-  :when (featurep! :ui treemacs)
+  :when (modulep! :ui treemacs)
   :init (advice-add #'treemacs-visit-node-default :around #'doom-set-jump-a)
   (with-eval-after-load 'winum
     (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
@@ -55,7 +55,7 @@
   :defer t)
 
 (use-package! yarn-mode
-  :when (featurep! :lang web)
+  :when (modulep! :lang web)
   :defer t)
 
 (use-package! open-junk-file
@@ -102,12 +102,12 @@
          ("\\.clangd$" . yaml-mode)))
 
 (use-package! eval-sexp-fu
-  :when (featurep! :lang emacs-lisp)
+  :when (modulep! :lang emacs-lisp)
   :defer t
   :hook ((emacs-lisp-mode . eval-sexp-fu-flash-mode)))
 
 (use-package! emacs-inspector
-  :when (featurep! :lang emacs-lisp)
+  :when (modulep! :lang emacs-lisp)
   :defer t
   :init (map! (:localleader
                :map (emacs-lisp-mode-map lisp-interaction-mode-map)
@@ -121,13 +121,13 @@
                "S-<tab>" #'backward-button)))
 
 (use-package! vundo
-  :unless (featurep! +tree)
+  :unless (modulep! +tree)
   :custom
   (vundo-glyph-alist     vundo-unicode-symbols)
   (vundo-compact-display t)
   :config
   (map! (:leader :desc "Visual Undo" "U" #'vundo))
-  (when (featurep! :editor evil)
+  (when (modulep! :editor evil)
     (set-evil-initial-state! 'vundo-mode 'motion)
     (add-hook! vundo-mode #'evil-normalize-keymaps)
     (map! :map vundo-mode-map
@@ -154,11 +154,11 @@
   :mode "\\.i?hlsl\\'")
 
 (use-package! evil-textobj-line
-  :when (featurep! :editor evil)
+  :when (modulep! :editor evil)
   :after evil)
 
 (use-package! mu4e-views
-  :when (featurep! :email mu4e)
+  :when (modulep! :email mu4e)
   :after mu4e
   :if (featurep 'xwidget-internal) ;; Test if emacs is built with xwidget support
   :init (setq mu4e-views-default-view-method "html"
@@ -166,7 +166,7 @@
   :config (mu4e-views-mu4e-use-view-msg-method "html"))
 
 (use-package mu4e-maildirs-extension
-  :when (featurep! :email mu4e)
+  :when (modulep! :email mu4e)
   :after mu4e
   :config (mu4e-maildirs-extension-load))
 
@@ -196,19 +196,19 @@
 
 (use-package! ssh-agency
   :when IS-WINDOWS
-  :when (featurep! :tools magit))
+  :when (modulep! :tools magit))
 
 (use-package! git-commit
   :defer t
-  :when (featurep! :tools magit)
+  :when (modulep! :tools magit)
   :init (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
-  (when (featurep! :editor evil)
+  (when (modulep! :editor evil)
     (add-hook 'git-commit-mode-hook #'evil-insert-state))
   :bind (:map git-commit-mode-map
          ([tab] . #'+bl/move-to-next-slot)))
 
 (use-package! magit-imerge
-  :when (featurep! :tools magit)
+  :when (modulep! :tools magit)
   :after magit
   :config
   (map! (:map magit-status-mode-map
@@ -220,7 +220,7 @@
 
 (use-package! gitignore-templates
   :defer t
-  :when (featurep! :tools magit)
+  :when (modulep! :tools magit)
   :commands (gitignore-templates-insert gitignore-templates-new-file)
   :init (map! :leader (:prefix "g"
                        :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
@@ -228,16 +228,16 @@
 
 ;; ORG
 (use-package! swedish-holidays
-  :when (featurep! :lang org)
+  :when (modulep! :lang org)
   :after calendar
   :config (swedish-holidays-setup))
 
 (use-package! demo-it
-  :when (featurep! :lang org)
+  :when (modulep! :lang org)
   :after org)
 
 (use-package! org-expiry
-  :when (featurep! :lang org)
+  :when (modulep! :lang org)
   :after org
   :commands org-expiry-insert-expiry
   :bind (:map org-mode-map
@@ -245,27 +245,27 @@
   :init (setq org-expiry-inactive-timestamps t))
 
 (use-package! org-ql
-  :when (featurep! :lang org)
+  :when (modulep! :lang org)
   :defer t
   :commands org-ql-search
   :init (set-popup-rule! "^\\*Org QL View:" :side 'bottom :size .5 :select t :quit 'current)
   (map! (:leader (:prefix "s" :desc "Org QL Search" :ng "g" #'org-ql-search))))
 
 (use-package! org-appear
-  :when (featurep! :lang org)
+  :when (modulep! :lang org)
   :after org
   :init (setq org-appear-delay 0.3
               org-appear-autolinks t)
   :hook (org-mode . org-appear-mode))
 
 (use-package! org-archive
-  :when (featurep! :lang org)
+  :when (modulep! :lang org)
   :after org
   :init (setq org-archive-location (format "%s::%s" +org/archive-file "* From %s" )
               org-refile-target-verify-function #'+org/verify-refile-target))
 
 (use-package! org-super-agenda
-  :when (featurep! :lang org)
+  :when (modulep! :lang org)
   :after (org org-agenda)
   :init (setq org-super-agenda-groups '((:name "Today"
                                          :scheduled today)
@@ -279,13 +279,13 @@
   (shut-up (org-super-agenda-mode)))
 
 (use-package! doct
-  :when (featurep! :lang org)
+  :when (modulep! :lang org)
   :commands doct)
 
 (use-package! ox-gfm
-  :when (featurep! :lang org)
+  :when (modulep! :lang org)
   :after ox)
 
 (use-package! ox-asciidoc
-  :when (featurep! :lang org)
+  :when (modulep! :lang org)
   :after ox)

@@ -10,7 +10,7 @@
       "h" nil ;; I am used to my setup of help so I will use that
 
       ;; Remove deft keybinding if not using
-      (:unless (featurep! :ui deft)
+      (:unless (modulep! :ui deft)
        (:prefix "n"
         "d" nil))
 
@@ -18,20 +18,20 @@
       (:prefix "n"
        "o" nil)
 
-      (:when (featurep! :lang org)
+      (:when (modulep! :lang org)
        (:prefix "n"
         :desc "Org Roam Capture Today" "c" #'org-roam-dailies-capture-today
         :desc "Org Roam Capture" "C" #'org-roam-capture)) ;; Override Doom binding
 
-      (:when (featurep! :tools lsp)
+      (:when (modulep! :tools lsp)
        (:prefix "c"
         :desc "IMenu" "I" #'lsp-ui-imenu))
 
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
       (:prefix ("x" . "text")
-       (:when (featurep! :ui hydra)
+       (:when (modulep! :ui hydra)
         :desc "Zoom" "z" #'+hydra/text-zoom/body)
-       (:when (featurep! :editor rotate-text)
+       (:when (modulep! :editor rotate-text)
         :desc "Rotate text" "r" #'rotate-text))
 
       :desc "M-x" "<SPC>" #'execute-extended-command
@@ -42,13 +42,13 @@
 
       ;; Insert
       (:prefix "i"
-       (:when (featurep! :editor evil)
+       (:when (modulep! :editor evil)
         :desc "New Line Above" "k" #'+evil/insert-newline-above
         :desc "New Line Below" "j" #'+evil/insert-newline-below))
 
       ;; Git
       (:prefix "g"
-       (:when (featurep! :ui hydra)
+       (:when (modulep! :ui hydra)
         :desc "Blame" "B" #'+bl/blame-hydra/body
         :desc "Git Time Machine" "t" #'+bl/timemachine-hydra/body))
 
@@ -71,9 +71,9 @@
       (:prefix "o"
        :desc "Dired Jump" "o" #'dired-jump
        :desc "Projectile Dired" "O" #'projectile-dired
-       (:when (featurep! :tools prodigy)
+       (:when (modulep! :tools prodigy)
         :desc "Prodigy" "y" #'prodigy)
-       (:when (featurep! :app rss)
+       (:when (modulep! :app rss)
         :desc "Rss" "s" #'=rss))
 
       ;; Project
@@ -95,7 +95,7 @@
         :desc "Maximize Vertically" "v" #'doom/window-maximize-vertically)
        :desc "Enlarge" "o" #'doom/window-enlargen
        :desc "Most Recently Used" "p" #'evil-window-mru
-       (:when (featurep! :ui treemacs)
+       (:when (modulep! :ui treemacs)
          :desc "Project Sidebar" "s" #'treemacs-select-window)
        :desc "Other Window" "t" #'other-window
        :desc "Undo" "u" #'winner-undo
@@ -167,9 +167,9 @@
 
 ;; Bindings with no leader key
 (map!
- (:when (not (featurep! :editor evil))
+ (:when (not (modulep! :editor evil))
   "<A-up>" #'join-line)
- (:when (featurep! :editor evil)
+ (:when (modulep! :editor evil)
   "<A-down>" #'evil-join)
 
 
@@ -184,7 +184,7 @@
  :ng "M-." #'+lookup/definition
  :n "q" nil
 
- (:when (featurep! :editor evil) ;; Cleanup g prefix
+ (:when (modulep! :editor evil) ;; Cleanup g prefix
   :nv "gi" nil
   :nv "g#" nil
   :nv "g$" nil
@@ -199,7 +199,7 @@
 
   :v "s" #'evil-surround-region
 
-  (:when (featurep! :ui window-select +numbers)
+  (:when (modulep! :ui window-select +numbers)
    :n "g1" #'winum-select-window-1
    :n "g2" #'winum-select-window-2
    :n "g3" #'winum-select-window-3

@@ -180,7 +180,7 @@
                                    (:help-echo "Local changes not in upstream")))
                                  ("Path" 99 magit-repolist-column-path nil)))
 
-  (when (featurep! :tools magit +forge)
+  (when (modulep! :tools magit +forge)
     (magit-add-section-hook 'magit-status-sections-hook
                             'magit-insert-modules-unpushed-to-pushremote
                             'magit-insert-modules-overview)

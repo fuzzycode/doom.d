@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-;;;###if (featurep! :ui hydra)
+;;;###if (modulep! :ui hydra)
 
 ;;;###autoload (autoload '+bl/timemachine-hydra/body "autoload/+hydra" nil t)
 (defhydra +bl/timemachine-hydra (:hint nil

@@ -8,7 +8,7 @@
 (package! shader-mode :pin "d7dc8d0d6fe8914e8b6d5cf2081ad61e6952359c") ;; This is also a part of the csharp module but I only want this package from it
 
 ;; GIT
-(when (featurep! :tools magit)
+(when (modulep! :tools magit)
   (when IS-WINDOWS
     (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
   (package! magit-imerge :pin "37bca48218dc32cad964e01e0f9936a90f634fba")
@@ -17,7 +17,7 @@
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
 ;;ORG
-(when (featurep! :lang org)
+(when (modulep! :lang org)
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
   (package! org-super-agenda :pin "3108bc3f725818f0e868520d2c243abe9acbef4e")
   (package! doct :pin "8464809754f3316d5a2fdcf3c01ce1e8736b323b")
@@ -28,15 +28,15 @@
   (package! ox-asciidoc :pin "c8bc184f9088b76fdf1ce20e6e5d0a1588e1b327"))
 
 ;;ELISP
-(when (featurep! :lang emacs-lisp)
+(when (modulep! :lang emacs-lisp)
   (package! emacs-inspector :recipe (:host github :repo "mmontone/emacs-inspector") :pin "8c555dfadb737bf2f05ff2786dbab2ac985775ef")
   (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
 ;; MAIL
-(when (featurep! :email mu4e)
+(when (modulep! :email mu4e)
   (package! mu4e-maildirs-extension :pin "cdc2e141d8ecd59508a5cd50d6d02120073bf4f1"))
 
-(when (and (featurep! :email mu4e)
+(when (and (modulep! :email mu4e)
            (featurep 'xwidget-internal))
   (package! mu4e-views :pin "fa47f35e56edcc84f00d622e415ae970cc5df0dd"))
 
@@ -59,12 +59,12 @@
 (package! graphql-mode :pin "9740e4027bd9313697d5cac5caaa5b15626ab1da")
 (package! vundo :pin "0b8538f4e4c2f25cb9d5b75cf064ba8dceca6145")
 
-(when (featurep! :lang web)
+(when (modulep! :lang web)
   (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))
 
 (when IS-MAC
   (package! reveal-in-osx-finder :pin "5710e5936e47139a610ec9a06899f72e77ddc7bc"))
 
 ;; Add evil packages
-(when (featurep! :editor evil)
+(when (modulep! :editor evil)
   (package! evil-textobj-line :pin "9eaf9a5485c2b5c05e16552b34632ca520cd681d"))

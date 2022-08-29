@@ -1,5 +1,5 @@
 ;; -*- lexical-binding: t; -*-
-;;;###if (featurep! :tools magit)
+;;;###if (modulep! :tools magit)
 
 
 ;;;###autoload
