@@ -50,7 +50,10 @@
       (:prefix "g"
        (:when (modulep! :ui hydra)
         :desc "Blame" "B" #'+bl/blame-hydra/body
-        :desc "Git Time Machine" "t" #'+bl/timemachine-hydra/body))
+        :desc "Git Time Machine" "t" #'+bl/timemachine-hydra/body)
+       (:prefix "l"
+        :desc "List Added Files" "a" #'+bl/dired-added-files
+        :desc "List Modified Files" "m" #'+bl/dired-modified-files))
 
       ;; Toggle
       (:prefix "t"
