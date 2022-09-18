@@ -55,6 +55,9 @@
         :desc "List Added Files" "a" #'+bl/dired-added-files
         :desc "List Modified Files" "m" #'+bl/dired-modified-files))
 
+      (:prefix "s"
+       :desc "Fd Dired" "F" #'fd-dired)
+
       ;; Toggle
       (:prefix "t"
        :desc "Trailing Whitespace" :ng "w" (cmd! (setq show-trailing-whitespace (not show-trailing-whitespace)))
