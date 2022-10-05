@@ -14,7 +14,7 @@
                                       0 t)]))
 
 (after! projectile
-  (setq projectile-files-cache-expire 5)
+  (setq projectile-files-cache-expire 35)
 
   (put 'projectile-project-name 'safe-local-variable #'stringp)
   (put 'projectile-project-compilation-dir 'safe-local-variable #'file-directory-p)
