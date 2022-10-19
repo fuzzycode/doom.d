@@ -6,6 +6,7 @@
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
 
 (package! shader-mode :pin "fe5a1982ba69e4a98b834141a46a1908f132df15") ;; This is also a part of the csharp module but I only want this package from it
+(package! cmake-font-lock :pin "0d6111b36a66013aa9b452e664c93308df3b07e1")
 
 ;; GIT
 (when (modulep! :tools magit)

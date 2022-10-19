@@ -149,6 +149,9 @@
   :defer t
   :hook (c-mode-common . ff-add-c-style))
 
+(use-package! cmake-font-lock
+  :defer t)
+
 (use-package! shader-mode
   :defer t
   :mode "\\.i?hlsl\\'")
