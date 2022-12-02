@@ -93,6 +93,9 @@
 (after! git-gutter-fringe
   (fringe-mode '(8 . 4)))  ;; Left is full size and right is half size, makes room for break-point and tilde bitmaps
 
+(after! consult
+  (advice-add #'consult--jump :around #'doom-set-jump-a))
+
 (after! evil-snipe
   (setq evil-snipe-spillover-scope 'whole-visible))
 
