@@ -51,6 +51,7 @@
        (:when (modulep! :ui hydra)
         :desc "Blame" "B" #'+bl/blame-hydra/body
         :desc "Git Time Machine" "t" #'+bl/timemachine-hydra/body)
+       :desc "Yank current Branch" "k" #'+bl/magit-add-current-branch-to-kill-ring
        (:prefix "l"
         :desc "List Added Files" "a" #'+bl/dired-added-files
         :desc "List Modified Files" "m" #'+bl/dired-modified-files))

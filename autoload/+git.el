@@ -35,8 +35,18 @@ to have a comment line as a header for each slot where text should/could be inse
                                (+bl/move-to-next-slot))))
 
 ;;;###autoload
+(defun +bl/magit-add-current-branch-to-kill-ring ()
+  "Show the current branch in the echo-area and add it to the `kill-ring'."
+  (interactive)
+  (let ((branch (magit-get-current-branch)))
+    (if branch
+        (progn (kill-new branch)
+               (message "%s" branch))
+      (user-error "There is not current branch"))))
+
+;;;###autoload
 (defun +bl/changed-files (filter base compare)
-  "Return a list of abolute paths to files diffing between COMPARE and BASE, using FILTER to filter the diff.
+  "Return a list of absolute paths to files diffing between COMPARE and BASE, using FILTER to filter the diff.
 
 FILTER Should be a string to be used with the --diff-filter option for git diff.
 "
