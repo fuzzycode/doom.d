@@ -38,6 +38,7 @@ to have a comment line as a header for each slot where text should/could be inse
 (defun +bl/magit-add-current-branch-to-kill-ring ()
   "Show the current branch in the echo-area and add it to the `kill-ring'."
   (interactive)
+  (require 'magit)
   (let ((branch (magit-get-current-branch)))
     (if branch
         (progn (kill-new branch)
