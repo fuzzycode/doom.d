@@ -32,7 +32,8 @@ to have a comment line as a header for each slot where text should/could be inse
                                (when IS-WINDOWS
                                  (+bl/delete-carrage-returns))
                                (goto-char (point-min))
-                               (+bl/move-to-next-slot))))
+                               (when (looking-at-p "^[[:space:]]*#.*$")
+                                 (+bl/move-to-next-slot)))))
 
 ;;;###autoload
 (defun +bl/magit-add-current-branch-to-kill-ring ()
@@ -54,7 +55,6 @@ FILTER Should be a string to be used with the --diff-filter option for git diff.
   (let ((files (ensure-list (split-string (cdr (doom-call-process "git" "diff" "--name-only" (format "--diff-filter=%s" filter) base compare)))))
         (root (file-name-as-directory (cdr (doom-call-process "git" "rev-parse" "--show-toplevel")))))
     (mapcar (lambda (file) (concat root file)) files)))
-
 
 ;;;###autoload
 (defun +bl/dired-changed-files (filter base compare)
