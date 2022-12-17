@@ -237,8 +237,8 @@
    :ngi "M-i" #'flyspell-correct-wrapper))
  (:after (projectile cc-mode)
   (:map c++-mode-map
-   :n "go" #'projectile-find-other-file
-   :ngi "<A-tab>" #'projectile-find-other-file))
+   :n "go" #'+bl/toggle-header-source
+   :ngi "<A-tab>" #'+bl/toggle-header-source))
  (:after projectile
   :ngi "M-o" #'projectile-find-file-dwim)
  (:after smartparens

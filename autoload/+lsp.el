@@ -19,3 +19,11 @@
   "Turn off global lsp breadcrumb mode"
   (remove-hook 'lsp-mode-hook #'lsp-headerline-breadcrumb-mode)
   (lsp-headerline-breadcrumb-mode -1))
+
+;;;###autoload
+(defun +bl/toggle-header-source ()
+  "Toggle between header and source file using LSP if supported."
+  (interactive)
+  (if (and lsp-mode (lsp-can-execute-command? "textDocument/switchSourceHeader"))
+      (lsp-clangd-find-other-file)
+    (projectile-find-other-file)))
