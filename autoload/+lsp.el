@@ -24,6 +24,6 @@
 (defun +bl/toggle-header-source ()
   "Toggle between header and source file using LSP if supported."
   (interactive)
-  (if (and (derived-mode-p ('c++-mode 'c-mode)) (bound-and-true-p lsp-mode)) ;; This assumes I always use clangd with c++ code
+  (if (and (derived-mode-p 'c++-mode 'c-mode) (bound-and-true-p lsp-mode)) ;; This assumes I always use clangd with c++ code
       (lsp-clangd-find-other-file)
     (projectile-find-other-file)))
