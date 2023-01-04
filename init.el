@@ -40,7 +40,7 @@
        word-wrap
 
        :emacs
-       (dired +icons +dirvish)
+       (dired +icons)
        electric
        (ibuffer +icons)
        vc
