@@ -58,7 +58,7 @@ FILTER Should be a string to be used with the --diff-filter option for git diff.
 
 ;;;###autoload
 (defun +bl/dired-changed-files (filter base compare)
-  "Shows a dired buffer with diffing files between COMAPRE and BASE, using FILTER to filter the files."
+  "Shows a dired buffer with diffing files between COMPARE and BASE, using FILTER to filter the files."
   (let ((files (+bl/changed-files filter base compare))
         (name "Dired Changed Files"))
     (if files
