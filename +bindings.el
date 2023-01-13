@@ -172,6 +172,15 @@
         :map with-editor-mode-map
         :desc "Cancel" "k" #'with-editor-cancel))
 
+(map! (:localleader
+       :map emacs-lisp-mode-map
+       (:prefix "d"
+        :desc "Toggle Debug On Error" "t" #'toggle-debug-on-error
+        :desc "Debug On Entry" "e" #'debug-on-entry
+        :desc "Cancel Debug On Entry" "E" #'cancel-debug-on-entry
+        :desc "Debug On Variable Change" "v" #'debug-on-variable-change
+        :desc "Cancel Debug On Variable Change" "V" #'cancel-debug-on-variable-change)))
+
 ;; Bindings with no leader key
 (map!
  (:when (not (modulep! :editor evil))
