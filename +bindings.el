@@ -59,6 +59,7 @@
       ;; Toggle
       (:prefix "t"
        :desc "Trailing Whitespace" :ng "w" (cmd! (setq show-trailing-whitespace (not show-trailing-whitespace)))
+       :desc "Toggle Debug On Error" "t" #'toggle-debug-on-error
        (:after lsp-mode
         :desc "Breadcrumb Mode" :ng "h" #'lsp-headerline-breadcrumb-mode))
 
@@ -172,7 +173,6 @@
 (map! (:localleader
        :map emacs-lisp-mode-map
        (:prefix "d"
-        :desc "Toggle Debug On Error" "t" #'toggle-debug-on-error
         :desc "Debug On Entry" "e" #'debug-on-entry
         :desc "Cancel Debug On Entry" "E" #'cancel-debug-on-entry
         :desc "Debug On Variable Change" "v" #'debug-on-variable-change
