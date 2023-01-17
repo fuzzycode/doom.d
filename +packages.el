@@ -95,6 +95,14 @@
   :defer t
   :hook (dired-mode . auto-revert-mode))
 
+(use-package! diff-dired
+  :defer t
+  :when (modulep! :tools magit)
+  :init (map! (:leader (:prefix "g" (:prefix "l"
+                                             :desc "List Added Files" "a" #'diff-dired-list-added
+                                             :desc "List Modified Files" "m" #'diff-dired-list-modified
+                                             :desc "List Changed Files" "c" #'diff-dired-list-changed)))))
+
 (use-package! yaml-mode
   :defer t
   :mode (("\\.clang-format$" . yaml-mode)

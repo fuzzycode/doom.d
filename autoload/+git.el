@@ -45,36 +45,3 @@ to have a comment line as a header for each slot where text should/could be inse
         (progn (kill-new branch)
                (message "%s" branch))
       (user-error "There is not current branch"))))
-
-;;;###autoload
-(defun +bl/changed-files (filter base compare)
-  "Return a list of absolute paths to files diffing between COMPARE and BASE, using FILTER to filter the diff.
-
-FILTER Should be a string to be used with the --diff-filter option for git diff.
-"
-  (let ((files (ensure-list (split-string (cdr (doom-call-process "git" "diff" "--name-only" (format "--diff-filter=%s" filter) base compare)))))
-        (root (file-name-as-directory (cdr (doom-call-process "git" "rev-parse" "--show-toplevel")))))
-    (mapcar (lambda (file) (concat root file)) files)))
-
-;;;###autoload
-(defun +bl/dired-changed-files (filter base compare)
-  "Shows a dired buffer with diffing files between COMPARE and BASE, using FILTER to filter the files."
-  (let ((files (+bl/changed-files filter base compare))
-        (name "Dired Changed Files"))
-    (if files
-        (dired (cons name files))
-      (message "No Changed files found"))))
-
-;;;###autoload
-(defun +bl/dired-added-files (base compare)
-  "Lists all added files between COMPARE and BASE."
-  (interactive (list (magit-read-branch "Base" (magit-main-branch))
-                     (magit-read-branch "Compare" (magit-get-current-branch))))
-  (+bl/dired-changed-files "A" base compare))
-
-;;;###autoload
-(defun +bl/dired-modified-files (base compare)
-  "Lists all modified files between COMPARE and BASE."
-  (interactive (list (magit-read-branch "Base" (magit-main-branch))
-                     (magit-read-branch "Compare" (magit-get-current-branch))))
-  (+bl/dired-changed-files "M" base compare))

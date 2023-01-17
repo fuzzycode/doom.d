@@ -12,6 +12,7 @@
 (when (modulep! :tools magit)
   (when IS-WINDOWS
     (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
+  (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
   (package! magit-imerge :pin "5a1833d33e1516c7819521a5b35135527d9409f9")
   (package! git-commit :pin "99d9b3008adf72a0c2cdb7df70b5ae03ea9271c8")
   (package! rigid-tabs :pin "872a10c8751574c9610cba1800f541a6eda24997")
