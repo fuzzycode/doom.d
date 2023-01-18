@@ -8,6 +8,8 @@
       "x" nil ;; No need for scratch buffer, use for text instead
       "w" nil
       "h" nil ;; I am used to my setup of help so I will use that
+      ":" nil
+      "<SPC>" nil
 
       ;; Remove deft keybinding if not using
       (:unless (modulep! :ui deft)
