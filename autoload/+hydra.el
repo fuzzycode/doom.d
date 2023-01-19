@@ -43,3 +43,7 @@
   ("k" evil-window-increase-height)
   ("l" evil-window-increase-width)
   ("q" nil :exit t))
+
+;;;###autoload
+(add-hook 'smerge-mode-hook (lambda () (when smerge-mode
+                                         (+vc/smerge-hydra/body))))
