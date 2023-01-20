@@ -237,6 +237,9 @@
                        :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
 
+(use-package! lang-mode
+  :defer t)
+
 ;; ORG
 (use-package! swedish-holidays
   :when (modulep! :lang org)

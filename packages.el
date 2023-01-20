@@ -43,6 +43,7 @@
   (package! mu4e-views :pin "fa47f35e56edcc84f00d622e415ae970cc5df0dd"))
 
 (package! swedish-holidays :recipe (:host github :repo "fuzzycode/swedish-holidays"))
+(package! lang-mode :recipe (:host github :repo "fuzzycode/lang-mode"))
 (package! visual-regexp-steroids :pin "a6420b25ec0fbba43bf57875827092e1196d8a9e")
 (package! visual-regexp :pin "48457d42a5e0fe10fa3a9c15854f1f127ade09b5")
 (package! expand-region :pin "b70feaa644310dc2d599dc277cd20a1f2b6446ac")
