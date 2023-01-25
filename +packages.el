@@ -28,6 +28,26 @@
                         :desc "Replace" :ng "q" #'vr/replace
                         :desc "Query Replace" :ng "Q" #'vr/query-replace))))
 
+(use-package! deadgrep
+  :defer t
+  :init (map! (:leader (:prefix "p" :desc "Deadgrep Project" "G" #'deadgrep)))
+  :config
+  (when (modulep! :editor evil)
+    (+evil-collection-init 'deadgrep))
+  (map! (:map deadgrep-edit-mode-map
+              (:prefix "g"
+               :n "o" #'deadgrep-visit-result
+               :n "O" #'deadgrep-visit-result-other-window)
+              :n [escape] #'deadgrep-mode
+              :n "q" #'deadgrep-mode)
+        (:map deadgrep-mode-map
+              (:prefix "g"
+               :n "o" #'deadgrep-visit-result
+               :n "O" #'deadgrep-visit-result-other-window)
+              :n "C-j" #'deadgrep-forward-filename
+              :n "C-k" #'deadgrep-backward-filename
+              :n [escape] #'quit-window)))
+
 (use-package! graphql-mode
   :defer t)
 

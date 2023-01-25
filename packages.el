@@ -61,6 +61,7 @@
 (package! s :pin "e957dcb0677da18b2bb60ad867db5df5c35b5616")
 (package! graphql-mode :pin "1437b790060f6ce4a8dc57df2023443645b899e5")
 (package! vundo :pin "37e46ace40edf118a764e075634851992c4f5ac6")
+(package! deadgrep :pin "9da7183e60c75bacefd44025fc5e5335b7c5862a")
 
 (when (modulep! :lang web)
   (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))
