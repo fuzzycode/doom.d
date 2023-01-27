@@ -111,7 +111,10 @@ to be that of the scheduled date+time."
   (let ((line-number (line-number-at-pos (region-beginning)))
          (func-name (which-function))
          (org-src-mode (cdr (assoc major-mode +bl/major-mode-to-org-src))))
-    (format "* %%?\nSource: [[file:%%F::%d][%%f (%s)]]\n#+begin_src %s\n%%i\n#+end_src" line-number func-name (or org-src-mode ""))))
+    (format "* %%?\nSource: [[file:%%F::%d][%%f%s]]\n#+begin_src %s\n%%i\n#+end_src" line-number (if func-name
+                                                                                                     (format " (%s)" func-name)
+                                                                                                   "")
+            (or org-src-mode ""))))
 
 ;; TODO(Björn Larsson): Expand this list with more modes that should be supported
 ;;;###autoload
