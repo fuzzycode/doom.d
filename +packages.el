@@ -38,6 +38,8 @@
               (:prefix "g"
                :n "o" #'deadgrep-visit-result
                :n "O" #'deadgrep-visit-result-other-window)
+              :n "C-j" #'deadgrep-forward-filename
+              :n "C-k" #'deadgrep-backward-filename
               :n [escape] #'deadgrep-mode
               :n "q" #'deadgrep-mode)
         (:map deadgrep-mode-map
