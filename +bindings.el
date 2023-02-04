@@ -212,6 +212,7 @@
   :nv "g8" nil
   :nv "gQ" nil
   :nv "g?" nil
+  :nv "gr" #'+lookup/references
   :nv "ga" #'evil-avy-goto-char-timer
   :nv "gb" #'better-jumper-jump-backward
 
