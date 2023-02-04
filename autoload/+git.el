@@ -45,3 +45,14 @@ to have a comment line as a header for each slot where text should/could be inse
         (progn (kill-new branch)
                (message "%s" branch))
       (user-error "There is not current branch"))))
+
+
+;;;###autoload
+(defun +bl/delete-merged-branches (target)
+  "Remove all branches merged into TARGET."
+  (interactive (list (magit-read-branch "Target")))
+  (let ((merged (delete target (ensure-list (magit-list-merged-branches target)))))
+    (if merged
+        (when (yes-or-no-p (format "Really delete %s ?" (mapconcat 'identity merged ", ")))
+          (magit-branch-delete merged))
+      (message "No merged branches found"))))

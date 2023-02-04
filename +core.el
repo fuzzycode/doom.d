@@ -148,6 +148,9 @@
   (transient-append-suffix 'forge-dispatch "l i" '("l I" "authored issues" forge-list-authored-issues)))
 
 (after! magit
+  (transient-append-suffix 'magit-branch "m" '("M" "Delete Merged" +bl/delete-merged-branches))
+
+
   ;; Show 50 open topics and 10 closed ones, but only after they are toggled on
   (setq forge-topic-list-limit '(50 . -10))
 
