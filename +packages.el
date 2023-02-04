@@ -155,10 +155,9 @@
                "S-<tab>" #'backward-button)))
 
 (use-package! vundo
-  :unless (modulep! +tree)
-  :custom
-  (vundo-glyph-alist     vundo-unicode-symbols)
-  (vundo-compact-display t)
+  :unless (modulep! :emacs undo +tree)
+  :init
+  (setq vundo-compact-display t)
   :config
   (map! (:leader :desc "Visual Undo" "U" #'vundo))
   (when (modulep! :editor evil)
