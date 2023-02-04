@@ -30,7 +30,9 @@
 
 (use-package! deadgrep
   :defer t
-  :init (map! (:leader (:prefix "p" :desc "Deadgrep Project" "G" #'deadgrep)))
+  :commands (deadgrep--read-search-term) ;; Needed for my custom deadgrep wrapper
+  :init (map! (:leader (:prefix "p" :desc "Deadgrep Project" "G" #'deadgrep)
+                       (:prefix "s" :desc "Deadgrep Directory" "G" #'+bl/deadgrep-directory)))
   :config
   (when (modulep! :editor evil)
     (+evil-collection-init 'deadgrep))
@@ -40,6 +42,7 @@
                :n "O" #'deadgrep-visit-result-other-window)
               :n "C-j" #'deadgrep-forward-filename
               :n "C-k" #'deadgrep-backward-filename
+              :nvg "C-c C-c" #'deadgrep-mode
               :n [escape] #'deadgrep-mode
               :n "q" #'deadgrep-mode)
         (:map deadgrep-mode-map
@@ -48,6 +51,7 @@
                :n "O" #'deadgrep-visit-result-other-window)
               :n "C-j" #'deadgrep-forward-filename
               :n "C-k" #'deadgrep-backward-filename
+              :n "C-c C-e" #'deadgrep-edit-mode
               :n [escape] #'quit-window)))
 
 (use-package! graphql-mode
