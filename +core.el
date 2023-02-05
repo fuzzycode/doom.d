@@ -147,6 +147,8 @@
   (transient-append-suffix 'forge-dispatch "l p" '("l P" "authored PRs" forge-list-authored-pullreqs))
   (transient-append-suffix 'forge-dispatch "l i" '("l I" "authored issues" forge-list-authored-issues)))
 
+(add-hook 'doom-first-file-hook #'magit-todos-mode)
+
 (after! magit
   (transient-append-suffix 'magit-branch "m" '("M" "Delete Merged" +bl/delete-merged-branches))
 
@@ -198,6 +200,9 @@
     (magit-add-section-hook 'magit-status-sections-hook
                             'forge-insert-assigned-issues
                             'forge-insert-issues)))
+
+
+
 ;;
 ;; SETTINGS
 ;;
