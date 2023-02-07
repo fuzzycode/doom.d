@@ -78,6 +78,8 @@
       (:prefix "o"
        :desc "Dired Jump" "o" #'dired-jump
        :desc "Projectile Dired" "O" #'projectile-dired
+       (:when (modulep! :emacs vc)
+         :desc "Browse At Remote" "B" #'browse-at-remote)
        (:when (modulep! :tools prodigy)
         :desc "Prodigy" "y" #'prodigy)
        (:when (modulep! :app rss)
