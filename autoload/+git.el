@@ -56,3 +56,24 @@ to have a comment line as a header for each slot where text should/could be inse
         (when (yes-or-no-p (format "Really delete %s ?" (mapconcat 'identity merged ", ")))
           (magit-branch-delete merged))
       (message "No merged branches found"))))
+
+
+(defun +bl/get-commit-at-point ()
+  "Tries to get the commit at point."
+  (cond
+   ((or (eq major-mode 'magit-status-mode) (eq major-mode 'magit-log-mode))
+    (call-interactively 'magit-copy-section-value))
+
+   ((or (eq major-mode 'magit-commit-mode) (eq major-mode 'magit-revision-mode))
+    (call-interactively 'magit-copy-buffer-revision))))
+
+;;;###autoload
+(defun +bl/kill-url-to-commit-at-point ()
+  "Copies the URL to the current commit at point."
+  (interactive)
+  (let ((commit (+bl/get-commit-at-point)))
+    (if commit
+        (progn
+          (require 'browse-at-remote)
+          (kill-new (message "%s" (browse-at-remote--commit-url commit))))
+      (message "No commit found at point"))))

@@ -231,6 +231,13 @@
    :n "g8" #'winum-select-window-8
    :n "g9" #'winum-select-window-9
    :n "g0" #'winum-select-window-0-or-10))
+ (:after magit
+  (:map magit-status-mode-map
+   :n "yu" #'+bl/kill-url-to-commit-at-point)
+  (:map magit-revision-mode-map
+   :n "yu" #'+bl/kill-url-to-commit-at-point)
+  (:map magit-log-mode-map
+   :n "yu" #'+bl/kill-url-to-commit-at-point))
  (:after (forge code-review)
   (:map magit-status-mode-map
    "C-c C-r" #'+magit/start-code-review)
