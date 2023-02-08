@@ -233,7 +233,9 @@
    :n "g0" #'winum-select-window-0-or-10))
  (:after magit
   (:map magit-status-mode-map
-   :n "yu" #'+bl/kill-url-to-commit-at-point)
+   :n "yu" #'+bl/kill-url-to-commit-at-point
+   :n "C-j" #'magit-section-forward-sibling
+   :n "C-k" #'magit-section-backward-sibling)
   (:map magit-revision-mode-map
    :n "yu" #'+bl/kill-url-to-commit-at-point)
   (:map magit-log-mode-map
