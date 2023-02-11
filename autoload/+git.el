@@ -77,3 +77,19 @@ to have a comment line as a header for each slot where text should/could be inse
           (require 'browse-at-remote)
           (kill-new (message "%s" (browse-at-remote--commit-url commit))))
       (message "No commit found at point"))))
+
+;;;###autoload
+(defun +bl/smerge-repeatedly ()
+  "Perform smerge actions again and again"
+  (interactive)
+  (unless (and (not smerge-mode) (called-interactively-p 'any))
+    (smerge-mode 1))
+  (smerge-transient))
+
+;;;###autoload
+(defun +bl/maybe-show-smerge-transient-h ()
+  (when smerge-mode
+    (+bl/smerge-repeatedly)))
+
+;;;###autoload
+(add-hook 'magit-diff-visit-file-hook #'+bl/maybe-show-smerge-transient-h)
