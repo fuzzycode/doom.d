@@ -23,6 +23,8 @@
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
   (package! org-super-agenda :pin "f4f528985397c833c870967884b013cf91a1da4a")
   (package! doct :pin "69bfe30317c7fa7a5a51f2763515dfe9c989ebf1")
+  (package! doct-org-roam :recipe (:host nil :repo "git@gist.github.com:f9b48f23ec0046e89c197c5e80ec3d7e.git" :type git))
+  (package! vulpea :pin "f4d3448b6ccdb314c5fe3defea66e750e1371a10")
   (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
   (package! org-ql :pin "29533525c39e0e243912bb3c807412e4bc3e804e")
   (package! org-appear :pin "eb9f9db40aa529fe4b977235d86494b115281d17")
