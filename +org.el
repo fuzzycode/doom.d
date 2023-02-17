@@ -18,7 +18,10 @@
         org-agenda-include-diary t
         org-agenda-skip-scheduled-if-done t
         org-agenda-skip-deadline-if-done t
+        org-agenda-files (ensure-list (expand-file-name +org-capture-projects-file org-directory))
         org-archive-mark-done t
+        org-todo-keywords '((sequence "TODO(t)" "WORKING(w)" "BLOCKED(b)" "IDEA(i)" "|" "DONE(d)" "CANCEL(c)" "DELEGATE(D)")
+                           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)"))
         org-agenda-time-grid '((daily today) (800 1000 1200 1400 1600 1800 2000) "......" "----------------")))
 
 
@@ -37,46 +40,25 @@
 
 
 (after! org-capture
-  (setq org-capture-templates (doct '(("Actions"
-                                       :keys "a"
-                                       :file (lambda () (+org-capture-todo-file))
-                                       :headline "Inbox"
-                                       :children (("Action" :keys "a" :template "* [ ] %?")
-                                                  ("Action (today)" :keys "d" :template "* [ ] %?\nSCHEDULED: <%(org-read-date nil nil \"\")>")
-                                                  ("Action (tomorrow)" :keys "D" :template "* [ ] %?\nSCHEDULED: <%(org-read-date nil nil \"+1\")>")))
-                                      ("Task"
-                                       :keys "t"
-                                       :before-finalize (lambda () (+bl/insert-creation))
-                                       :file (lambda () (+org-capture-todo-file))
-                                       :headline "Inbox"
-                                       :children (("Task" :keys "t" :template "* TODO %?")
-                                                  ("Task (Today)" :keys "d" :template "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"\")>")
-                                                  ("Task (Tomorrow)" :keys "D" :template "* TODO %?\nSCHEDULED: <%(org-read-date nil nil \"+1\")>")
-                                                  ("Reminder" :keys "r" :template "* TODO %?\nSCHEDULED: %^t")))
-                                      ("Project"
+  (setq org-capture-templates (doct '(("Project"
                                        :keys "p"
                                        :before-finalize (lambda () (+bl/insert-creation))
-                                       :template "* %{todo} %?"
-                                       :contexts ((:function (lambda () (projectile-project-p (buffer-file-name (current-buffer))))))
-                                       :children (("Task" :keys "p" :todo "TODO" :headline "Tasks" :file (lambda () (+org-capture-project-todo-file)))
-                                                  ("Note" :keys "n" :template "* %?" :headline "Notes"  :file (lambda () (+org-capture-project-notes-file)))
-                                                  ("Snippet" :keys "s" :headline "Notes" :template +bl/capture-snippet :contexts (:when (region-active-p)))) :file (lambda () (+org-capture-project-notes-file)))
-                                      ("Centralized Project"
-                                       :keys "c"
-                                       :before-finalize (lambda () (+bl/insert-creation))
-                                       :template "* %{todo} %?"
-                                       :children (("Task" :keys "p" :todo "TODO" :headline "Tasks" :file (lambda () (+org-capture-central-project-todo-file)))
-                                                  ("Note" :keys "n" :template "* %?" :headline "Notes"  :file (lambda () (+org-capture-central-project-notes-file)))
-                                                  ("Snippet" :keys "s" :headline "Notes" :template +bl/capture-snippet :contexts (:when (region-active-p)))) :file (lambda () (+org-capture-central-project-notes-file)))
-                                      ("Feedback"
-                                       :keys "f"
-                                       :file (lambda () (+org-capture-notes-file))
-                                       :before-finalize (lambda () (+bl/insert-creation))
-                                       :headline "Feedback"
-                                       :template "* %?")
-                                      ("Notes"
+                                       :contexts (:when (projectile-project-p))
+                                       :children (("Task" :keys "t" :template "* TODO %?" :function +bl/capture-central-project-todo)
+                                                  ("Idea" :keys "i" :template "* IDEA %?" :function +bl/capture-central-project-todo)
+                                                  ("Note" :keys "n" :template "* %?" :function +bl/capture-central-project-notes)
+                                                  ("Snippet" :keys "s" :template +bl/capture-snippet :contexts (:when (region-active-p)) :function +bl/capture-central-project-notes)))
+                                      ("Note"
                                        :keys "n"
+                                       :prepend nil
                                        :before-finalize (lambda () (+bl/insert-creation))
-                                       :file (lambda () (+org-capture-notes-file))
-                                       :headline "Note"
-                                       :template "* %?")))))
+                                       :template "* %?"
+                                       :file (lambda () (expand-file-name +org-capture-projects-file org-directory))
+                                       :headline "General Notes")
+                                      ("Task"
+                                       :keys "t"
+                                       :prepend nil
+                                       :before-finalize (lambda () (+bl/insert-creation))
+                                       :template "* TODO %?"
+                                       :file (lambda () (expand-file-name +org-capture-projects-file org-directory))
+                                       :headline "General Tasks")))))

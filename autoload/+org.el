@@ -111,9 +111,11 @@ to be that of the scheduled date+time."
   (let ((line-number (line-number-at-pos (region-beginning)))
          (func-name (which-function))
          (org-src-mode (cdr (assoc major-mode +bl/major-mode-to-org-src))))
-    (format "* %%?\nSource: [[file:%%F::%d][%%f%s]]\n#+begin_src %s\n%%i\n#+end_src" line-number (if func-name
-                                                                                                     (format " (%s)" func-name)
-                                                                                                   "")
+    (format "* %%? :%s:\nSource: [[file:%%F::%d][%%f%s]]\n#+begin_src %s\n%%i\n#+end_src"
+            (projectile-project-name)
+            line-number (if func-name
+                            (format " (%s)" func-name)
+                          "")
             (or org-src-mode ""))))
 
 ;; TODO(Björn Larsson): Expand this list with more modes that should be supported
@@ -127,6 +129,45 @@ to be that of the scheduled date+time."
         (json-mode . "json")
         (yaml-mode . "yml")
         (cmake-mode . "cmake")))
+
+(defun +bl/capture-ensure-heading (headings &optional initial-level)
+  (if (not headings)
+      (widen)
+    (let ((initial-level (or initial-level 1)))
+      (if (and (re-search-forward (format org-complex-heading-regexp-format
+                                          (regexp-quote (car headings)))
+                                  nil t)
+               (= (org-current-level) initial-level))
+          (progn
+            (beginning-of-line)
+            (org-narrow-to-subtree))
+        (goto-char (point-max))
+        (unless (and (bolp) (eolp)) (insert "\n"))
+        (insert (make-string initial-level ?*)
+                " " (car headings) "\n")
+        (beginning-of-line 0))
+      (+bl/capture-ensure-heading (cdr headings) (1+ initial-level)))))
+
+(defun +bl/capture-central-location (file project &optional sub-tree)
+  (let ((file (expand-file-name file org-directory))
+        (tree (ensure-list sub-tree)))
+    (set-buffer (org-capture-target-buffer file))
+    (org-capture-put-target-region-and-position)
+    (widen)
+    (goto-char (point-min))
+    ;; Find or create the project headling
+    (+bl/capture-ensure-heading
+     (-non-nil (append (list project) tree)))))
+
+;;;###autoload
+(defun +bl/capture-central-project-todo ()
+  (+bl/capture-central-location
+   +org-capture-projects-file (projectile-project-name) '("Tasks")))
+
+;;;###autoload
+(defun +bl/capture-central-project-notes ()
+  (+bl/capture-central-location
+   +org-capture-projects-file (projectile-project-name) '("Notes")))
 
 ;;;###autoload
 (add-hook 'org-mode-hook #'flyspell-mode)

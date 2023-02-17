@@ -307,14 +307,15 @@
   :when (modulep! :lang org)
   :after (org org-agenda)
   :init (setq org-super-agenda-groups '((:name "Today"
-                                         :scheduled today)
+                                         :date today)
                                         (:name "Overdue"
                                          :scheduled past)
-                                        (:name "Soon"
-                                         :scheduled future)))
+                                        (:name "All"
+                                         :todo t)))
   :config
-  ;; TODO: Only clear hjkl keys needed for navigation
-  (setq org-super-agenda-header-map (make-sparse-keymap))
+  (map! (:map org-super-agenda-header-map
+              "j" nil
+              "k" nil))
   (shut-up (org-super-agenda-mode)))
 
 (use-package! doct

@@ -94,7 +94,7 @@
        :desc "Scratch Buffer" "%" #'doom/open-project-scratch-buffer
        :desc "Capture Project Note" "n" (cmd! (org-capture nil "pn"))
        :desc "Open Project Notes" "N" (cmd! (find-file-existing (+org-capture-project-notes-file)))
-       :desc "Capture Project Task" "t" (cmd! (org-capture nil "pp")))
+       :desc "Capture Project Task" "t" (cmd! (org-capture nil "pt")))
 
       ;; Windows
       (:prefix "w"
