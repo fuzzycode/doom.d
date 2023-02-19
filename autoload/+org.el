@@ -1,6 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 ;;;###if (modulep! :lang org)
 
+
 ;;;###autoload
 (defun +bl/open-efeed-files ()
   "Open all elfeed files."
@@ -105,69 +106,169 @@ to be that of the scheduled date+time."
       (when schedule
         (+bl/expire-on-scheduled)))))
 
+;; coppied and adapted from https://d12frosted.io/posts/2021-01-16-task-management-with-roam-vol5.html
 ;;;###autoload
-(defun +bl/capture-snippet ()
-  "Formats a capture snippet for capturing code."
-  (let ((line-number (line-number-at-pos (region-beginning)))
-         (func-name (which-function))
-         (org-src-mode (cdr (assoc major-mode +bl/major-mode-to-org-src))))
-    (format "* %%? :%s:\nSource: [[file:%%F::%d][%%f%s]]\n#+begin_src %s\n%%i\n#+end_src"
-            (projectile-project-name)
-            line-number (if func-name
-                            (format " (%s)" func-name)
-                          "")
-            (or org-src-mode ""))))
+(defun +bl/org-roam-project-p ()
+  "Return non-nil if current buffer has any todo entry.
 
-;; TODO(Björn Larsson): Expand this list with more modes that should be supported
-;;;###autoload
-(setq +bl/major-mode-to-org-src
-      '((c++-mode . "C++")
-        (python-mode . "python")
-        (emacs-lisp-mode . "emacs-lisp")
-        (shell-mode . "sh")
-        (lua-mode . "lua")
-        (json-mode . "json")
-        (yaml-mode . "yml")
-        (cmake-mode . "cmake")))
-
-(defun +bl/capture-ensure-heading (headings &optional initial-level)
-  (if (not headings)
-      (widen)
-    (let ((initial-level (or initial-level 1)))
-      (if (and (re-search-forward (format org-complex-heading-regexp-format
-                                          (regexp-quote (car headings)))
-                                  nil t)
-               (= (org-current-level) initial-level))
-          (progn
-            (beginning-of-line)
-            (org-narrow-to-subtree))
-        (goto-char (point-max))
-        (unless (and (bolp) (eolp)) (insert "\n"))
-        (insert (make-string initial-level ?*)
-                " " (car headings) "\n")
-        (beginning-of-line 0))
-      (+bl/capture-ensure-heading (cdr headings) (1+ initial-level)))))
-
-(defun +bl/capture-central-location (file project &optional sub-tree)
-  (let ((file (expand-file-name file org-directory))
-        (tree (ensure-list sub-tree)))
-    (set-buffer (org-capture-target-buffer file))
-    (org-capture-put-target-region-and-position)
-    (widen)
-    (goto-char (point-min))
-    ;; Find or create the project headling
-    (+bl/capture-ensure-heading
-     (-non-nil (append (list project) tree)))))
+TODO entries marked as done are ignored, meaning the this
+function returns nil if current buffer contains only completed
+tasks."
+  (org-element-map
+      (org-element-parse-buffer 'headline)
+      'headline
+    (lambda (h)
+      (eq (org-element-property :todo-type h)
+          'todo))
+    nil 'first-match))
 
 ;;;###autoload
-(defun +bl/capture-central-project-todo ()
-  (+bl/capture-central-location
-   +org-capture-projects-file (projectile-project-name) '("Tasks")))
+(defun +bl/org-roam-project-update-tag ()
+  "Update PROJECT tag in the current buffer."
+  (require 'vulpea)
+  (when (and (not (active-minibuffer-window))
+             (+bl/org-roam-buffer-p))
+    (save-excursion
+      (goto-char (point-min))
+      (let* ((tags (vulpea-buffer-tags-get))
+             (original-tags tags))
+        (if (+bl/org-roam-project-p)
+            (setq tags (cons "work" tags))
+          (setq tags (remove "work" tags)))
+
+        ;; cleanup duplicates
+        (setq tags (seq-uniq tags))
+
+        ;; update tags if changed
+        (when (or (seq-difference tags original-tags)
+                  (seq-difference original-tags tags))
+          (apply #'vulpea-buffer-tags-set tags))))))
 
 ;;;###autoload
-(defun +bl/capture-central-project-notes ()
-  (+bl/capture-central-location
-   +org-capture-projects-file (projectile-project-name) '("Notes")))
+(add-hook 'find-file-hook #'+bl/org-roam-project-update-tag)
+
+;;;###autoload
+(add-hook 'before-save-hook #'+bl/org-roam-project-update-tag)
+
+(defun +bl/org-roam-maybe-get-project-name (&optional dir)
+  ""
+  (if (projectile-project-p dir)
+      (projectile-project-name dir)
+    ""))
+
+;;;###autoload
+(defun +bl/org-roam-buffer-p ()
+  "Return non-nil if the currently visited buffer is a note."
+  (and buffer-file-name
+       (string-prefix-p
+        (expand-file-name (file-name-as-directory org-roam-directory))
+        (file-name-directory buffer-file-name))))
+
+;;;###autoload
+(defun +bl/org-roam-project-files ()
+  "Return a list of note files containing `work' tag." ;
+  (seq-uniq
+   (seq-map
+    #'car
+    (org-roam-db-query
+     [:select [nodes:file]
+      :from tags
+      :left-join nodes
+      :on (= tags:node-id nodes:id)
+      :where (like tag (quote "work"))]))))
+
+;;;###autoload
+(defun +bl/org-roam-agenda-files-update-a (&rest _)
+  "Update the value of `org-agenda-files'."
+  (setq org-agenda-files (+bl/org-roam-project-files)))
+
+;;;###autoload
+(defun +bl/org-roam-update-agenda-files ()
+  "Interactive function if I ever need to manually update agenda files."
+  (interactive)
+  (+bl/org-roam-agenda-files-update-a))
+
+;;;###autoload
+(advice-add 'org-agenda :before #'+bl/org-roam-agenda-files-update-a)
+
+;;;###autoload
+(advice-add 'org-todo-list :before #'+bl/org-roam-agenda-files-update-a)
+
+(defun +bl/org-roam-filter-by-tag (tag)
+  "Generator function to generate filter function using TAG."
+  (lambda (node)
+    (member tag (org-roam-node-tags node))))
+
+;;;###autoload
+(defun +bl/org-roam-find-project ()
+  "Add or open a note about a project."
+  (interactive)
+  (let ((project-name (+bl/org-roam-maybe-get-project-name)))
+    (org-roam-node-find nil
+                        project-name
+                        (+bl/org-roam-filter-by-tag "Project")
+                        nil
+                        :templates
+                        '(("p" "project" plain "\n* Tasks\n\n* Links\n\n"
+                           :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date:%U\n#+category: ${title}\n#+filetags: :project:\n\n" )
+                           :unnarrowed t)))))
+
+;;;###autoload
+(defun +bl/org-roam-capture-project-task ()
+  ""
+  (interactive)
+  (let ((project-name (+bl/org-roam-maybe-get-project-name)))
+    (org-roam-capture- :node (org-roam-node-read
+                              project-name
+                              (+bl/org-roam-filter-by-tag "Project"))
+                       :templates '(("p" "project" plain "** TODO %?"
+                                     :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date:%U\n#+category: ${title}\n#+filetags: :project:\n\n"  ("Tasks")))))))
+
+;;;###autoload
+(defun +bl/org-roam-capture-default ()
+  ""
+  (interactive)
+  (let ((templates '(("d" "default" plain "%?"
+                      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")))))
+    (org-roam-capture :keys "d" :templates templates)))
+
+;;;###autoload
+(defun +bl/org-roam-node-insert-immediate (arg &rest args)
+  ""
+  (interactive "P")
+  (let ((args (push arg args))
+        org-roam-capture-templates '(("d" "default" plain "%?"
+                                      :immediate-finish t
+                                      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n"))))
+    (apply #'org-roam-node-insert args)))
+
+;;; https://github.com/tecosaur/emacs-config/blob/master/config.org#modeline-file-name
+;;;###autoload
+(defadvice! doom-modeline--buffer-file-name-roam-aware-a (orig-fun)
+  :around #'doom-modeline-buffer-file-name ; takes no args
+  (if (s-contains-p org-roam-directory (or buffer-file-name ""))
+      (replace-regexp-in-string
+       "\\(?:^\\|.*/\\)\\([0-9]\\{4\\}\\)\\([0-9]\\{2\\}\\)\\([0-9]\\{2\\}\\)[0-9]*-"
+       "🢔(\\1-\\2-\\3) "
+       (subst-char-in-string ?_ ?  buffer-file-name))
+    (funcall orig-fun)))
+
+;;;###autoload
+;; (defun +bl/capture-snippet ()
+;;   "Formats a capture snippet for capturing code."
+;;   (let ((line-number (line-number-at-pos (region-beginning)))
+;;         (func-name (which-function))
+;;         (org-src-mode (replace-regexp-in-string "\\(.*\\)-mode$" "\\1" (format "%s" major-mode))))
+;;     (format "* %%? :%s:\nSource: [[file:%%F::%d][%%f%s]]\n#+begin_src %s\n%%i\n#+end_src"
+;;             (projectile-project-name)
+;;             line-number
+;;             (if func-name
+;;                 (format " (%s)" func-name)
+;;               "")
+;;             (or org-src-mode ""))))
+
+;;;###autoload
+(add-hook 'dired-mode-hook #'org-download-enable)
 
 ;;;###autoload
 (add-hook 'org-mode-hook #'flyspell-mode)

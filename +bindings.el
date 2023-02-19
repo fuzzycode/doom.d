@@ -70,12 +70,18 @@
 
       ;; Notes
       (:prefix "n"
-       :desc "Open Project Todo File" "p" (cmd! (find-file (+org-capture-project-todo-file)))
-       :desc "Open Project Notes File" "P" (cmd! (find-file (+org-capture-project-notes-file)))
-       :desc "Open Global Todo File" "x" (cmd! (find-file (+org-capture-todo-file)))
-       :desc "Open Global Notes File" "X" (cmd! (find-file (+org-capture-notes-file)))
-       :desc "Global Project Todo File" "g" (cmd! (find-file (+org-capture-central-project-todo-file)))
-       :desc "Global Project Notes File" "G" (cmd! (find-file (+org-capture-central-project-notes-file))))
+        "e" nil
+        :desc "Org Agenda List" "a" #'org-agenda-list
+        :desc "Org Agenda" "A" #'org-agenda
+        :desc "Org Roam Capture" "c" #'org-roam-capture
+        :desc "Find Node" "f" #'org-roam-node-find
+        ;; :desc "Capture Snippet" "C" #'identity
+        :desc "Capture Daily" "d" #'org-roam-dailies-capture-today
+        :desc "Org Roam Capture Default" "n" #'+bl/org-roam-capture-default
+        :desc "Org Capture" "N" #'org-capture
+        :desc "Find Project" "p" #'+bl/org-roam-find-project
+        :desc "Add Project Task" "P" #'+bl/org-roam-capture-project-task
+        :desc "Org Ql Search" "q" #'org-ql-search)
 
       ;; Open
       (:prefix "o"
@@ -92,9 +98,8 @@
       (:prefix "p"
        "x" nil
        :desc "Scratch Buffer" "%" #'doom/open-project-scratch-buffer
-       :desc "Capture Project Note" "n" (cmd! (org-capture nil "pn"))
-       :desc "Open Project Notes" "N" (cmd! (find-file-existing (+org-capture-project-notes-file)))
-       :desc "Capture Project Task" "t" (cmd! (org-capture nil "pt")))
+       :desc "Find Project Notes" "n" #'+bl/org-roam-find-project
+       :desc "Capture Project Task" "t" #'+bl/org-roam-capture-project-task)
 
       ;; Windows
       (:prefix "w"
@@ -279,6 +284,9 @@
    :ngi "C-<left>" #'sp-forward-barf-sexp
    :ngi "C-M-<right>" #'sp-backward-slurp-sexp
    :ngi "C-M-<left>" #'sp-backward-barf-sexp))
+ (:after org-mode
+  (:map org-mode-map
+   "C-M-i" #'completion-at-point))
  (:after lsp-mode
   (:map lsp-mode-map
    :ngi "<A-return>" #'lsp-execute-code-action))
