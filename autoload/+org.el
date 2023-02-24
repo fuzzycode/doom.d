@@ -223,7 +223,6 @@ tasks."
                               (+bl/org-roam-filter-by-tag "Project"))
                        :templates '(("p" "project" plain "** TODO %?"
                                      :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date:%U\n#+category: ${title}\n#+filetags: :project:\n\n"  ("Tasks")))))))
-
 ;;;###autoload
 (defun +bl/org-roam-capture-default ()
   ""
@@ -254,18 +253,22 @@ tasks."
     (funcall orig-fun)))
 
 ;;;###autoload
-;; (defun +bl/capture-snippet ()
-;;   "Formats a capture snippet for capturing code."
-;;   (let ((line-number (line-number-at-pos (region-beginning)))
-;;         (func-name (which-function))
-;;         (org-src-mode (replace-regexp-in-string "\\(.*\\)-mode$" "\\1" (format "%s" major-mode))))
-;;     (format "* %%? :%s:\nSource: [[file:%%F::%d][%%f%s]]\n#+begin_src %s\n%%i\n#+end_src"
-;;             (projectile-project-name)
-;;             line-number
-;;             (if func-name
-;;                 (format " (%s)" func-name)
-;;               "")
-;;             (or org-src-mode ""))))
+(defun +bl/org-roam-capture-snippet ()
+  ""
+  (interactive)
+  (if (region-active-p)
+      (let* ((line-number (line-number-at-pos (region-beginning)))
+            (func-name (which-function))
+            (babel-name (replace-regexp-in-string "\\(.*\\)-mode$" "\\1" (format "%s" major-mode)))
+            (templates `(("c" "code" plain ,(format "\n* Description\n%%?\n* Source\n[[file:%%F::%d][%%f%s]]\n#+begin_src %s\n%%i#+end_src"
+                                                   line-number
+                                                   (if func-name (format " (%s)" func-name) "")
+                                                   (or babel-name ""))
+                          :unnarrowed t
+                          :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n#+filetags: :code:")))))
+
+        (org-roam-capture :keys "c" :templates templates))
+    (message "No region highlighted")))
 
 ;;;###autoload
 (add-hook 'dired-mode-hook #'org-download-enable)

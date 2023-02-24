@@ -75,7 +75,7 @@
         :desc "Org Agenda" "A" #'org-agenda
         :desc "Org Roam Capture" "c" #'org-roam-capture
         :desc "Find Node" "f" #'org-roam-node-find
-        ;; :desc "Capture Snippet" "C" #'identity
+        :desc "Capture Snippet" "C" #'+bl/org-roam-capture-snippet
         :desc "Capture Daily" "d" #'org-roam-dailies-capture-today
         :desc "Org Roam Capture Default" "n" #'+bl/org-roam-capture-default
         :desc "Org Capture" "N" #'org-capture
