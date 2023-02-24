@@ -1,6 +1,9 @@
 ;; -*- lexical-binding: t; -*-
 ;;;###if (modulep! :lang org)
 
+(defvar +bl/org-roam-file-fomat "%<%Y%m%d%H%M%S>-${slug}.org")
+(defvar +bl/org-roam-project-template "#+title: ${title}\n#+date:%U\n#+category: ${title}\n#+filetags: :project:\n\n")
+(defvar +bl/org-roam-default-template  "#+title: ${title}\n#+date: %U\n")
 
 ;;;###autoload
 (defun +bl/open-efeed-files ()
@@ -209,8 +212,8 @@ tasks."
                         (+bl/org-roam-filter-by-tag "Project")
                         nil
                         :templates
-                        '(("p" "project" plain "\n* Tasks\n\n* Links\n\n"
-                           :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date:%U\n#+category: ${title}\n#+filetags: :project:\n\n" )
+                        `(("p" "project" plain "\n* Tasks\n\n* Links\n\n"
+                           :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-project-template)
                            :unnarrowed t)))))
 
 ;;;###autoload
@@ -221,14 +224,14 @@ tasks."
     (org-roam-capture- :node (org-roam-node-read
                               project-name
                               (+bl/org-roam-filter-by-tag "Project"))
-                       :templates '(("p" "project" plain "** TODO %?"
-                                     :target (file+head+olp "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date:%U\n#+category: ${title}\n#+filetags: :project:\n\n"  ("Tasks")))))))
+                       :templates `(("p" "project" plain "** TODO %?"
+                                     :target (file+head+olp ,+bl/org-roam-file-fomat ,+bl/org-roam-project-template ("Tasks")))))))
 ;;;###autoload
 (defun +bl/org-roam-capture-default ()
   ""
   (interactive)
-  (let ((templates '(("d" "default" plain "%?"
-                      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n")))))
+  (let ((templates `(("d" "default" plain "%?"
+                      :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-default-template)))))
     (org-roam-capture :keys "d" :templates templates)))
 
 ;;;###autoload
@@ -236,9 +239,9 @@ tasks."
   ""
   (interactive "P")
   (let ((args (push arg args))
-        org-roam-capture-templates '(("d" "default" plain "%?"
+        org-roam-capture-templates `(("d" "default" plain "%?"
                                       :immediate-finish t
-                                      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n"))))
+                                      :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-project-template))))
     (apply #'org-roam-node-insert args)))
 
 ;;; https://github.com/tecosaur/emacs-config/blob/master/config.org#modeline-file-name
@@ -254,7 +257,7 @@ tasks."
 
 ;;;###autoload
 (defun +bl/org-roam-capture-snippet ()
-  ""
+  "Capture the selected region as a code snippet."
   (interactive)
   (if (region-active-p)
       (let* ((line-number (line-number-at-pos (region-beginning)))
@@ -265,7 +268,7 @@ tasks."
                                                    (if func-name (format " (%s)" func-name) "")
                                                    (or babel-name ""))
                           :unnarrowed t
-                          :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+date: %U\n#+filetags: :code:")))))
+                          :target (file+head ,+bl/org-roam-file-fomat "#+title: ${title}\n#+date: %U\n#+filetags: :code:")))))
 
         (org-roam-capture :keys "c" :templates templates))
     (message "No region highlighted")))

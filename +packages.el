@@ -318,14 +318,6 @@
               "k" nil))
   (shut-up (org-super-agenda-mode)))
 
-(use-package! doct
-  :when (modulep! :lang org)
-  :commands doct)
-
-(use-package! doct-org-roam
-  :when (modulep! :lang org)
-  :commands doct-org-roam)
-
 (use-package! vulpea
   :when (modulep! :lang org)
   :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable)))
