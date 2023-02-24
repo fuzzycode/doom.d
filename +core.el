@@ -225,6 +225,17 @@
       ("k" "kill current" (lambda () (interactive) (ignore-errors (smerge-kill-current)) (+bl/smerge-repeatedly)))
       ("q" "quit" (lambda () (interactive) (smerge-auto-leave)))]]))
 
+(after! (magit transient)
+  (transient-define-suffix magit-submodule-update-all (args)
+    "Update all submodules"
+    :class 'magit--git-submodule-suffix
+    :description "Update all modules git submodule update --init [--recursive]"
+    (interactive (list (magit-submodule-arguments "--recursive")))
+    (magit-with-toplevel
+      (magit-run-git-async "submodule" "update" "--init" args)))
+
+  (transient-append-suffix 'magit-submodule '(2 -1) '("U" magit-submodule-update-all)))
+
 ;;
 ;; SETTINGS
 ;;
