@@ -25,7 +25,6 @@
   (package! vulpea :pin "f4d3448b6ccdb314c5fe3defea66e750e1371a10")
   (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
   (package! org-ql :pin "29533525c39e0e243912bb3c807412e4bc3e804e")
-  (package! org-appear :pin "eb9f9db40aa529fe4b977235d86494b115281d17")
   (package! ox-gfm :pin "46faa67dbb3fb0cd7a76c3fe518f16e4195c22c7")
   (package! ox-asciidoc :pin "a55ac6adef39124c9434be47fe9cc0c75c4bfea2"))
 

@@ -290,13 +290,6 @@
   :init (set-popup-rule! "^\\*Org QL View:" :side 'bottom :size .5 :select t :quit 'current)
   (map! (:leader (:prefix "s" :desc "Org QL Search" :ng "g" #'org-ql-search))))
 
-(use-package! org-appear
-  :when (modulep! :lang org)
-  :after org
-  :init (setq org-appear-delay 0.3
-              org-appear-autolinks t)
-  :hook (org-mode . org-appear-mode))
-
 (use-package! org-archive
   :when (modulep! :lang org)
   :after org
