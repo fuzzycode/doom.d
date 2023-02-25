@@ -54,9 +54,6 @@
               :n "C-c C-e" #'deadgrep-edit-mode
               :n [escape] #'quit-window)))
 
-(use-package! graphql-mode
-  :defer t)
-
 (use-package! ialign
   :defer t
   :commands ialign

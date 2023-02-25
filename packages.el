@@ -58,7 +58,6 @@
 (package! string-inflection :pin "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
 (package! ialign :pin "bc4d30d79f2f4b413288195ef19894ac0fd258b7")
 (package! s :pin "e957dcb0677da18b2bb60ad867db5df5c35b5616")
-(package! graphql-mode :pin "1437b790060f6ce4a8dc57df2023443645b899e5")
 (package! deadgrep :pin "0d3e0725a7fe605978692076ab1d8f1870d8a269")
 
 (when (modulep! :lang web)

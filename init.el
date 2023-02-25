@@ -82,6 +82,7 @@
        (clojure +lsp)
        data
        emacs-lisp
+       (graphql +lsp)
        (java +lsp +tree-sitter)
        (javascript +tree-sitter)
        (json +lsp +tree-sitter)
