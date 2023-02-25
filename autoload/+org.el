@@ -178,7 +178,7 @@ tasks."
       :from tags
       :left-join nodes
       :on (= tags:node-id nodes:id)
-      :where (like tag (quote "work"))]))))
+      :where (like tag (quote "%\"work\"%"))]))))
 
 ;;;###autoload
 (defun +bl/org-roam-agenda-files-update-a (&rest _)

@@ -300,11 +300,11 @@
   :when (modulep! :lang org)
   :after (org org-agenda)
   :init (setq org-super-agenda-groups '((:name "Today"
-                                         :date today)
+                                         :date today :order 1)
                                         (:name "Overdue"
-                                         :scheduled past)
+                                         :scheduled past :order 0)
                                         (:name "All"
-                                         :todo t)))
+                                         :todo t :order 2)))
   :config
   (map! (:map org-super-agenda-header-map
               "j" nil
@@ -312,6 +312,7 @@
   (shut-up (org-super-agenda-mode)))
 
 (use-package! vulpea
+  :defer t
   :when (modulep! :lang org)
   :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable)))
 
