@@ -30,7 +30,7 @@
 
 ;;ELISP
 (when (modulep! :lang emacs-lisp)
-  (package! emacs-inspector :recipe (:host github :repo "mmontone/emacs-inspector") :pin "0766ce48dfbf193df73a1fd343a84a9d41ded8ba")
+  (package! inspector :pin "6e54f879200455f923c3171eef9f2bf155a4312b")
   (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
 ;; MAIL
@@ -59,7 +59,6 @@
 (package! ialign :pin "bc4d30d79f2f4b413288195ef19894ac0fd258b7")
 (package! s :pin "e957dcb0677da18b2bb60ad867db5df5c35b5616")
 (package! graphql-mode :pin "1437b790060f6ce4a8dc57df2023443645b899e5")
-(package! vundo :pin "d450f92222a1a53102d5aadfbf35ac9d54675199")
 (package! deadgrep :pin "0d3e0725a7fe605978692076ab1d8f1870d8a269")
 
 (when (modulep! :lang web)
