@@ -83,7 +83,7 @@
 
 (use-package! open-junk-file
   :defer t
-  :init (setq open-junk-file-format (concat doom-user-dir "junk/%Y/%m/%d-%H%M%S."))
+  :init (setq open-junk-file-format (concat doom-local-dir "junk/%Y/%m/%d-%H%M%S."))
   (map! (:leader
          (:prefix "f"
           :desc "Browse Junk Files" :ng "J" #'+bl/browse-junk-files
