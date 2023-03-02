@@ -20,13 +20,6 @@
       (:prefix "n"
        "o" nil)
 
-      (:when (modulep! :lang org)
-       (:prefix "n"
-        :desc "Org Roam Capture Today" "c" #'org-roam-dailies-capture-today
-        :desc "Org Roam Capture" "C" #'org-roam-capture);; Override Doom binding
-       (:prefix "o"
-        :desc "Org Agenda" "A" (cmd! (org-agenda nil "a"))))
-
       (:when (modulep! :tools lsp)
        (:prefix "c"
         :desc "IMenu" "I" #'lsp-ui-imenu))
