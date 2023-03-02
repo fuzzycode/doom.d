@@ -304,6 +304,9 @@
   (:map org-agenda-mode-map
    [escape] #'+popup/quit-window
    :ng "q" #'+popup/quit-window))
+ (:after org-roam
+  (:map org-mode-map
+   :ngvi "M-n" #'+bl/org-roam-node-insert-immediate))
  (:after tabulated-list
   (:map tabulated-list-mode-map
    :ng "q" #'quit-window)))

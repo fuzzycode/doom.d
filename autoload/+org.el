@@ -250,14 +250,15 @@ tasks."
   ""
   (interactive "P")
   (let ((args (push arg args))
-        org-roam-capture-templates `(("d" "default" plain "%?"
+        (org-roam-capture-templates `(("d" "default" plain "%?"
                                       :immediate-finish t
-                                      :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-default-template))))
+                                      :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-default-template)))))
     (apply #'org-roam-node-insert args)))
 
 ;;; https://github.com/tecosaur/emacs-config/blob/master/config.org#modeline-file-name
 ;;;###autoload
 (defadvice! doom-modeline--buffer-file-name-roam-aware-a (orig-fun)
+  "Turns a org-roam file name with timestamp and slug and make it more user friendly to read."
   :around #'doom-modeline-buffer-file-name ; takes no args
   (if (s-contains-p org-roam-directory (or buffer-file-name ""))
       (replace-regexp-in-string
