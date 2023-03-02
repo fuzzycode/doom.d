@@ -147,12 +147,6 @@ tasks."
                   (seq-difference original-tags tags))
           (apply #'vulpea-buffer-tags-set tags))))))
 
-;;;###autoload
-(add-hook 'find-file-hook #'+bl/org-roam-project-update-tag)
-
-;;;###autoload
-(add-hook 'before-save-hook #'+bl/org-roam-project-update-tag)
-
 (defun +bl/org-roam-maybe-get-project-name (&optional dir)
   ""
   (if (projectile-project-p dir)
