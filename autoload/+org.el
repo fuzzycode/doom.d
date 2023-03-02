@@ -217,6 +217,23 @@ tasks."
                            :unnarrowed t)))))
 
 ;;;###autoload
+(defun +bl/org-roam-capture-inbox ()
+  "Capture something to the inbox"
+  (interactive)
+  (org-roam-capture- :node (org-roam-node-create)
+                     :templates '(("i" "inbox" plain "* %?"
+                                   :target (file+head "inbox.org" "#+category: Inbox\n#+title: Inbox\n#+filetags: :INBOX:\n")))))
+
+;;;###autoload
+(defun +bl/org-roam-open-inbox ()
+  ""
+  (interactive)
+  (let ((file-path (expand-file-name "Inbox.org" org-roam-directory)))
+    (if (file-exists-p file-path)
+        (find-file file-path)
+      (message "No Inbox file found."))))
+
+;;;###autoload
 (defun +bl/org-roam-capture-project-task ()
   ""
   (interactive)
@@ -241,7 +258,7 @@ tasks."
   (let ((args (push arg args))
         org-roam-capture-templates `(("d" "default" plain "%?"
                                       :immediate-finish t
-                                      :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-project-template))))
+                                      :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-default-template))))
     (apply #'org-roam-node-insert args)))
 
 ;;; https://github.com/tecosaur/emacs-config/blob/master/config.org#modeline-file-name

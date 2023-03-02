@@ -77,6 +77,8 @@
         :desc "Find Node" "f" #'org-roam-node-find
         :desc "Capture Snippet" "C" #'+bl/org-roam-capture-snippet
         :desc "Capture Daily" "d" #'org-roam-dailies-capture-today
+        :desc "Capture Inbox" "i" #'+bl/org-roam-capture-inbox
+        :desc "Open Inbox" "I" #'+bl/org-roam-open-inbox
         :desc "Org Roam Capture Default" "n" #'+bl/org-roam-capture-default
         :desc "Org Capture" "N" #'org-capture
         :desc "Find Project" "p" #'+bl/org-roam-find-project
