@@ -216,6 +216,7 @@ tasks."
   (interactive)
   (org-roam-capture- :node (org-roam-node-create)
                      :templates '(("i" "inbox" plain "* %?"
+                                   :empty-lines 1
                                    :target (file+head "inbox.org" "#+category: Inbox\n#+title: Inbox\n#+filetags: :INBOX:\n")))))
 
 ;;;###autoload
@@ -236,6 +237,7 @@ tasks."
                               project-name
                               (+bl/org-roam-filter-by-tag "Project"))
                        :templates `(("p" "project" plain "** TODO %?"
+                                     :empty-lines 1
                                      :target (file+head+olp ,+bl/org-roam-file-fomat ,+bl/org-roam-project-template ("Tasks")))))))
 ;;;###autoload
 (defun +bl/org-roam-capture-default ()
