@@ -241,6 +241,54 @@
 (use-package! lang-mode
   :defer t)
 
+(use-package! gh-notify
+  :when (featurep! :tools magit)
+  :after magit
+  :commands (gh-notify)
+  :init (setq gh-notify-redraw-on-visit t
+              gh-notify-show-state t)
+  (map! (:leader (:prefix "g" :desc "Notifications" :ng "n" #'gh-notify))
+        (:map magit-status-mode-map "n" #'gh-notify))
+  (transient-insert-suffix 'magit-dispatch "\'" '("n" "Notifications" gh-notify))
+  :config
+  (map! (:map gh-notify-mode-map
+         :n "q" #'quit-window
+         :n [escape] #'quit-window
+         :n "RET" #'gh-notify-visit-notification)
+
+        (:localleader :map gh-notify-mode-map
+         "l" #'gh-notify-retrieve-notifications
+         "r" #'gh-notify-reset-filter
+         "t" #'gh-notify-toggle-timing
+         "y" #'gh-notify-copy-url
+         "s" #'gh-notify-display-state
+         "i" #'gh-notify-ls-issues-at-point
+         "P" #'gh-notify-ls-pullreqs-at-point
+         "p" #'gh-notify-forge-refresh
+         "g" #'gh-notify-forge-visit-repo-at-point
+         "m" #'gh-notify-mark-notification
+         "M" #'gh-notify-mark-all-notifications
+         "u" #'gh-notify-unmark-notification
+         "U" #'gh-notify-unmark-all-notifications
+         (:prefix ("/" . "limit")
+          "d" #'gh-notify-toggle-global-ts-sort
+          "u" #'gh-notify-limit-unread
+          "U" (cmd! (gh-notify-limit-unread 2))
+          "'" #'gh-notify-limit-repo
+          "\"" #'gh-notify-limit-repo-none
+          "p" #'gh-notify-limit-pr
+          "i" #'gh-notify-limit-issue
+          "*" #'gh-notify-limit-marked
+          "a" #'gh-notify-limit-assign
+          "y" #'gh-notify-limit-author
+          "m" #'gh-notify-limit-mention
+          "t" #'gh-notify-limit-team-mention
+          "s" #'gh-notify-limit-subscribed
+          "c" #'gh-notify-limit-comment
+          "r" #'gh-notify-limit-review-requested
+          "/" #'gh-notify-limit-none))
+        ))
+
 ;; ORG
 (use-package! swedish-holidays
   :when (modulep! :lang org)
