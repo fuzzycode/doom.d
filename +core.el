@@ -153,8 +153,8 @@
   (transient-append-suffix 'magit-branch "m" '("M" "Delete Merged" +bl/delete-merged-branches))
 
 
-  ;; Show 50 open topics and 10 closed ones, but only after they are toggled on
-  (setq forge-topic-list-limit '(50 . -10))
+  ;; Show 10 open topics and 10 closed ones, but only after they are toggled on
+  (setq forge-topic-list-limit '(10 . -10))
 
   ;; Show images in commit buffers
   (setq magit-revision-show-gravatars t)
