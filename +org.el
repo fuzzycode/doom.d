@@ -29,11 +29,10 @@
                                       :unnarrowed t)))
 
 
-  (setq org-roam-dailies-capture-templates
-        '(("d" "default" entry
-           "* %? \n:PROPERTIES:\nCREATED: %<%T>\n:END:"
-           :target (file+head "%<%Y-%m-%d>.org"
-                              "#+title: %<%Y-%m-%d>\n\n"))))
+  (setq org-roam-dailies-capture-templates '(("d" "default" entry
+                                              "* %? \n:PROPERTIES:\nCREATED: %<%T>\n:END:"
+                                              :target (file+head "%<%Y-%m-%d>.org"
+                                                                 "#+title: %<%Y-%m-%d>\n\n"))))
 
   (add-hook 'find-file-hook #'+bl/org-roam-project-update-tag)
   (add-hook 'before-save-hook #'+bl/org-roam-project-update-tag))

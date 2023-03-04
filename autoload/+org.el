@@ -244,6 +244,7 @@ tasks."
   ""
   (interactive)
   (let ((templates `(("d" "default" plain "%?"
+                      :unnarrowed t
                       :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-default-template)))))
     (org-roam-capture :keys "d" :templates templates)))
 
