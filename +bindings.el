@@ -43,11 +43,23 @@
         :desc "New Line Above" "k" #'+evil/insert-newline-above
         :desc "New Line Below" "j" #'+evil/insert-newline-below))
 
+      ;; Jump
+      (:prefix "j"
+       :desc "Goto Char Timer" "j" #'avy-goto-char-timer
+       :desc "Find Other File" "o" #'projectile-find-other-file
+       :desc "Find Other File Other Window" "O" #'projectile-find-other-file-other-window
+       :desc "Ace Window" "w" #'ace-window)
+
       ;; Git
       (:prefix "g"
        (:when (modulep! :ui hydra)
         :desc "Blame" "B" #'+bl/blame-hydra/body
         :desc "Git Time Machine" "t" #'+bl/timemachine-hydra/body)
+       (:when (modulep! :tools magit +forge)
+         (:prefix "l"
+          :desc "List Requested Reviews" "v" #'forge-list-requested-reviews
+          :desc "List Authored Pull-requests" "u" #'forge-list-authored-pullreqs
+          :desc "List Owned Pull-requests" "o" #'forge-list-owned-pullreqs))
        :desc "SMerge" "m" #'+bl/smerge-repeatedly
        :desc "Yank current Branch" "k" #'+bl/magit-add-current-branch-to-kill-ring)
 
@@ -251,7 +263,8 @@
    "B" #'magit-todos-branch-list-toggle))
  (:after (forge code-review)
   (:map magit-status-mode-map
-   "C-c C-r" #'+magit/start-code-review)
+   "C-c C-r" #'+magit/start-code-review
+   "C-c C-t" #'forge-toggle-display-in-status-buffer)
   (:map forge-pullreq-list-mode-map
    "C-c C-r" #'+magit/start-code-review)
   (:map forge-topic-mode-map
