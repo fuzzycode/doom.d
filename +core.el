@@ -195,7 +195,11 @@
 
     (magit-add-section-hook 'magit-status-sections-hook
                             'forge-insert-requested-reviews
-                            'forge-insert-assigned-pullreqs)
+                            'forge-insert-pullreqs)
+
+    (magit-add-section-hook 'magit-status-sections-hook
+                            'forge-insert-authored-pullreqs
+                            'forge-insert-requested-reviews)
 
     (magit-add-section-hook 'magit-status-sections-hook
                             'forge-insert-assigned-issues
