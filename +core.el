@@ -241,6 +241,17 @@
   (transient-append-suffix 'magit-submodule '(2 -1) '("U" magit-submodule-update-all)))
 
 ;;
+;; HOOKS
+;;
+
+(add-hook 'after-save-hook
+            #'executable-make-buffer-file-executable-if-script-p)
+
+(add-hook 'help-mode-hook #'rainbow-mode)
+
+(add-hook 'prog-mode-hook (lambda () (setq display-line-numbers-type 'relative)))
+
+;;
 ;; SETTINGS
 ;;
 
