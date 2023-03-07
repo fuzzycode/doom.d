@@ -6,7 +6,7 @@
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
 
 (package! shader-mode :pin "fe5a1982ba69e4a98b834141a46a1908f132df15") ;; This is also a part of the csharp module but I only want this package from it
-(package! cmake-font-lock :pin "0d6111b36a66013aa9b452e664c93308df3b07e1")
+(package! cmake-font-lock :pin "a6038e916bcca807ae695f7d7e5c300c3f38f415")
 
 ;; GIT
 (when (modulep! :tools magit)
@@ -14,7 +14,7 @@
     (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
   (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
   (package! magit-imerge :pin "5a1833d33e1516c7819521a5b35135527d9409f9")
-  (package! git-commit :pin "6d325d90ba1374d48c4c7088f96864b678155f48")
+  (package! git-commit :pin "7fd62479b1127a4df3b073084fba3fd229f30f4c")
   (package! rigid-tabs :pin "872a10c8751574c9610cba1800f541a6eda24997")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
@@ -57,11 +57,11 @@
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
-(package! fix-word :pin "219966ce5baa66431e82e82e394c40723d71c8c4")
+(package! fix-word :pin "250aabdd04ca6e34c02a4a862c9ce4489fb00505")
 (package! string-inflection :pin "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
 (package! ialign :pin "bc4d30d79f2f4b413288195ef19894ac0fd258b7")
 (package! s :pin "e957dcb0677da18b2bb60ad867db5df5c35b5616")
-(package! deadgrep :pin "0d3e0725a7fe605978692076ab1d8f1870d8a269")
+(package! deadgrep :pin "998968614852783fa4fb547c8609d59da605f806")
 
 (when (modulep! :lang web)
   (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))
