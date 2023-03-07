@@ -57,6 +57,7 @@
         :desc "Git Time Machine" "t" #'+bl/timemachine-hydra/body)
        (:when (modulep! :tools magit +forge)
          (:prefix "l"
+          :desc "List Labeled Pull-requests" "l" #'forge-list-labeled-pullreqs
           :desc "List Requested Reviews" "v" #'forge-list-requested-reviews
           :desc "List Authored Pull-requests" "u" #'forge-list-authored-pullreqs
           :desc "List Owned Pull-requests" "o" #'forge-list-owned-pullreqs))
