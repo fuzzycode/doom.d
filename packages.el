@@ -18,7 +18,7 @@
   (package! rigid-tabs :pin "872a10c8751574c9610cba1800f541a6eda24997")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
-(when (featurep! :tools magit +forge)
+(when (modulep! :tools magit +forge)
   (package! gh-notify))
 
 ;;ORG
