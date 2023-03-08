@@ -13,9 +13,9 @@
     (goto-char (1- (point)))
     (or (and (+bl/inside-string-p)
              (looking-at-p ".+\"")
-             (looking-back "^[[:blank:]]*#include[[:blank:]]+\".+"))
+             (looking-back "^[[:blank:]]*#include[[:blank:]]+\".+" (line-beginning-position)))
         (and (looking-at-p ".+>")
-             (looking-back "^[[:blank:]]*#include[[:blank:]]+<.+")))))
+             (looking-back "^[[:blank:]]*#include[[:blank:]]+<.+" (line-beginning-position))))))
 
 ;;;###autoload
 (defun +bl/cc-flyspell-predicate-p ()

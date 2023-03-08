@@ -31,16 +31,3 @@
 "
   ("b" magit-blame-addition)
   ("q" nil :exit t))
-
-;;;###autoload (autoload '+bl/window-hydra "autoload/+hydra" nil t)
-(defhydra +bl/window-hydra (:init nil
-                            :color pink)
-  "
-[_h_] Decrease Width [_j_] Decrease Hight [_k_] Increase Hight [_l_] Increase Width [_q_] Quit
-"
-  ("h" evil-window-decrease-width)
-  ("j" evil-window-decrease-height)
-  ("k" evil-window-increase-height)
-  ("l" evil-window-increase-width)
-  ("q" nil :exit t))
-

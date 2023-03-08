@@ -15,7 +15,7 @@
 
 ;;;###autoload
 (defun +bl/deadgrep-directory (search-term directory)
-  ""
+  "Search for SEARCH_TERM in DIRECTORY using deadgrep."
   (interactive (list (deadgrep--read-search-term)
                      (read-directory-name "Directory:" nil default-directory t nil)))
   (deadgrep search-term directory))

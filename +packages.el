@@ -121,10 +121,11 @@
 (use-package! diff-dired
   :defer t
   :when (modulep! :tools magit)
-  :init (map! (:leader (:prefix "g" (:prefix "l"
-                                             :desc "List Added Files" "a" #'diff-dired-list-added
-                                             :desc "List Modified Files" "m" #'diff-dired-list-modified
-                                             :desc "List Changed Files" "c" #'diff-dired-list-changed)))))
+  :init (map! (:leader (:prefix "g"
+                        (:prefix "l"
+                         :desc "List Added Files" "a" #'diff-dired-list-added
+                         :desc "List Modified Files" "m" #'diff-dired-list-modified
+                         :desc "List Changed Files" "c" #'diff-dired-list-changed)))))
 
 (use-package! yaml-mode
   :defer t
@@ -242,7 +243,7 @@
   :defer t)
 
 (use-package! gh-notify
-  :when (featurep! :tools magit)
+  :when (modulep! :tools magit)
   :after magit
   :commands (gh-notify)
   :init (setq gh-notify-redraw-on-visit t

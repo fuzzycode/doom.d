@@ -15,7 +15,7 @@
 ;;;###autoload
 (defadvice! +bl/comment-one-line-blocks-cpp-mode (fn &rest args)
   "In C++ and C if a region is only on one line, it is better to use /* and */ to delimit a comment than to
-us // and break the line. This is especially useful when commenting out parameters to functions in c++."
+use // and break the line. This is especially useful when commenting out parameters to functions in c++."
   :around #'evilnc-comment-operator
   (if (and (derived-mode-p 'c-mode 'c++-mode) (+bl/one-line-region-p))
       (let ((comment-start "/*")

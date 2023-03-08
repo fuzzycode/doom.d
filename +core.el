@@ -39,13 +39,8 @@
 (after! doom-modeline
   (setq doom-modeline-major-mode-icon t
         doom-modeline-indent-info t
-        doom-modeline-minor-modes nil
-        doom-modeline-enable-word-count nil
         doom-modeline-checker-simple-format nil
         doom-modeline-persp-name t
-        doom-modeline-lsp t
-        doom-modeline-buffer-file-name-style 'truncate-with-project
-        doom-modeline-env-version t
         doom-modeline-vcs-max-length 45))
 
 
@@ -147,7 +142,6 @@
   (transient-append-suffix 'forge-dispatch "l p" '("l P" "authored PRs" forge-list-authored-pullreqs))
   (transient-append-suffix 'forge-dispatch "l i" '("l I" "authored issues" forge-list-authored-issues)))
 
-(add-hook 'doom-first-file-hook #'magit-todos-mode)
 
 (after! magit
   (transient-append-suffix 'magit-branch "m" '("M" "Delete Merged" +bl/delete-merged-branches))
@@ -244,13 +238,13 @@
 ;; HOOKS
 ;;
 
-(add-hook 'after-save-hook
-            #'executable-make-buffer-file-executable-if-script-p)
+(add-hook 'after-save-hook #'executable-make-buffer-file-executable-if-script-p)
 
 (add-hook 'help-mode-hook #'rainbow-mode)
 
 (add-hook 'prog-mode-hook (lambda () (setq display-line-numbers-type 'relative)))
 
+(add-hook 'doom-first-file-hook #'magit-todos-mode)
 ;;
 ;; SETTINGS
 ;;
