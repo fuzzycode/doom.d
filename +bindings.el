@@ -209,6 +209,9 @@
   "<A-down>" #'evil-join)
 
 
+ "<mouse-4>" #'previous-buffer
+ "<mouse-5>" #'next-buffer
+
  "C-x C-b" #'ibuffer
  "C-c l" #'recenter
  "C-c u" #'undo-fu-only-undo

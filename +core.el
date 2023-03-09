@@ -40,6 +40,7 @@
   (setq doom-modeline-major-mode-icon t
         doom-modeline-indent-info t
         doom-modeline-checker-simple-format nil
+        doom-modeline-buffer-file-name-style 'truncate-with-project
         doom-modeline-persp-name t
         doom-modeline-vcs-max-length 45))
 
