@@ -3,7 +3,7 @@
 
 ;; C++
 (package! ninja-mode :recipe (:files ("*.el")) :pin "2d9083b2608bd60c31583193d321d13a81a75beb")
-(package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "32bc21d4f0e011dbdb7dc1a9d1cd8651353f2943")
+(package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "ad896213408f6961dd95ce384c36ebcced7b9f1a")
 
 (package! shader-mode :pin "fe5a1982ba69e4a98b834141a46a1908f132df15") ;; This is also a part of the csharp module but I only want this package from it
 (package! cmake-font-lock :pin "a6038e916bcca807ae695f7d7e5c300c3f38f415")
@@ -27,7 +27,7 @@
   (package! org-super-agenda :pin "f4f528985397c833c870967884b013cf91a1da4a")
   (package! vulpea :pin "f4d3448b6ccdb314c5fe3defea66e750e1371a10")
   (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
-  (package! org-ql :pin "aadddc4d84a72fa80d3bf909c9a3a4cbce53cd93")
+  (package! org-ql :pin "4c1a4b169f54d37ce541902c0ae5043759ef9d9b")
   (package! ox-gfm :pin "46faa67dbb3fb0cd7a76c3fe518f16e4195c22c7")
   (package! ox-asciidoc :pin "a55ac6adef39124c9434be47fe9cc0c75c4bfea2"))
 
