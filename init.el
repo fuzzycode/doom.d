@@ -32,7 +32,6 @@
        :editor
        (evil +everywhere)
        file-templates
-       fold
        format
        multiple-cursors
        rotate-text
