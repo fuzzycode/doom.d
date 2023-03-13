@@ -3,7 +3,7 @@
 
 (defvar +bl/org-roam-file-fomat "%<%Y%m%d%H%M%S>-${slug}.org")
 (defvar +bl/org-roam-project-template "#+title: ${title}\n#+date:%U\n#+category: ${title}\n#+filetags: :project:\n\n")
-(defvar +bl/org-roam-default-template  "#+title: ${title}\n#+date: %U\n")
+(defvar +bl/org-roam-default-template  "#+title: ${title}\n#+date: %u\n")
 
 ;;;###autoload
 (defun +bl/open-efeed-files ()
@@ -241,7 +241,7 @@ tasks."
                                      :target (file+head+olp ,+bl/org-roam-file-fomat ,+bl/org-roam-project-template ("Tasks")))))))
 ;;;###autoload
 (defun +bl/org-roam-capture-default ()
-  ""
+  "Directly capture using the default template"
   (interactive)
   (let ((templates `(("d" "default" plain "%?"
                       :unnarrowed t
@@ -250,12 +250,14 @@ tasks."
 
 ;;;###autoload
 (defun +bl/org-roam-node-insert-immediate (arg &rest args)
-  ""
+  "Immediate capture and close capture buffer.
+Creating a stub node with a todo entry to fill out the information. "
   (interactive "P")
   (let ((args (push arg args))
-        (org-roam-capture-templates `(("d" "default" plain "%?"
+        (org-roam-capture-templates `(("d" "default" plain "* TODO Insert content about ${title}%?"
+                                       :empty-lines 1
                                       :immediate-finish t
-                                      :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-default-template)))))
+                                      :target (file+head ,+bl/org-roam-file-fomat "#+title: ${title}\n#+date: %u\n#+filetags: :stub:\n")))))
     (apply #'org-roam-node-insert args)))
 
 ;;; https://github.com/tecosaur/emacs-config/blob/master/config.org#modeline-file-name
