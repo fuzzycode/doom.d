@@ -8,6 +8,7 @@
 
 (after! org
   (setq org-hide-emphasis-markers t
+        org-startup-with-inline-images t
         org-log-into-drawer t
         org-log-done 'time
         org-log-redeadline 'time
