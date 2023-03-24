@@ -6,6 +6,7 @@
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "ad896213408f6961dd95ce384c36ebcced7b9f1a")
 
 (package! shader-mode :pin "fe5a1982ba69e4a98b834141a46a1908f132df15") ;; This is also a part of the csharp module but I only want this package from it
+(package! metal-mode :recipe (:host github :repo "masfj/metal-mode") :pin "686ad916f53589d59797613c1050922dd424d492")
 (package! cmake-font-lock :pin "a6038e916bcca807ae695f7d7e5c300c3f38f415")
 
 ;; GIT

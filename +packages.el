@@ -166,6 +166,9 @@
   :defer t
   :mode "\\.i?hlsl\\'")
 
+(use-package! metal-mode
+  :defer t)
+
 (use-package! evil-textobj-line
   :when (modulep! :editor evil)
   :after evil)
