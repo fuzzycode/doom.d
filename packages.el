@@ -15,7 +15,6 @@
     (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
   (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
   (package! magit-imerge :pin "5a1833d33e1516c7819521a5b35135527d9409f9")
-  (package! git-commit :pin "dec25b407bde4a3406b3491156636e81abd2a754")
   (package! rigid-tabs :pin "872a10c8751574c9610cba1800f541a6eda24997")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
@@ -28,13 +27,13 @@
   (package! org-super-agenda :pin "f4f528985397c833c870967884b013cf91a1da4a")
   (package! vulpea :pin "f4d3448b6ccdb314c5fe3defea66e750e1371a10")
   (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
-  (package! org-ql :pin "4c1a4b169f54d37ce541902c0ae5043759ef9d9b")
+  (package! org-ql :pin "1d98c7d07c6f2af5c84e8358cb6c5db71e8f1006")
   (package! ox-gfm :pin "46faa67dbb3fb0cd7a76c3fe518f16e4195c22c7")
   (package! ox-asciidoc :pin "a55ac6adef39124c9434be47fe9cc0c75c4bfea2"))
 
 ;;ELISP
 (when (modulep! :lang emacs-lisp)
-  (package! inspector :pin "7b9924b8ab412cbdacb000e107b3930273ecebe2")
+  (package! inspector :pin "878e1696640793550998cbb941bba6430ac42629")
   (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
 ;; MAIL
