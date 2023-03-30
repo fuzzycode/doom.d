@@ -3,7 +3,9 @@
 
 (defvar +bl/org-roam-file-fomat "%<%Y%m%d%H%M%S>-${slug}.org")
 (defvar +bl/org-roam-project-template "#+title: ${title}\n#+date:%U\n#+category: ${title}\n#+filetags: :project:\n\n")
-(defvar +bl/org-roam-default-template  "#+title: ${title}\n#+date: %u\n")
+(defvar +bl/org-roam-default-template  "#+title: ${title}\n#+date: %u\n#+category: notes\n")
+(defvar +bl/org-roam-inbox "inbox.org")
+(defvar +bl/org-roam-project-ignored-files '("inbox.org")) ;; Inbox will always be marked as having work because I also update it from outside Emacs
 
 ;;;###autoload
 (defun +bl/open-efeed-files ()
@@ -130,7 +132,8 @@ tasks."
   "Update PROJECT tag in the current buffer."
   (require 'vulpea)
   (when (and (not (active-minibuffer-window))
-             (+bl/org-roam-buffer-p))
+             (+bl/org-roam-buffer-p)
+             (not (member (file-name-nondirectory buffer-file-name) +bl/org-roam-project-ignored-files)))
     (save-excursion
       (goto-char (point-min))
       (let* ((tags (vulpea-buffer-tags-get))
@@ -217,13 +220,13 @@ tasks."
   (org-roam-capture- :node (org-roam-node-create)
                      :templates '(("i" "inbox" plain "* %?"
                                    :empty-lines 1
-                                   :target (file+head "inbox.org" "#+category: Inbox\n#+title: Inbox\n#+filetags: :INBOX:\n")))))
+                                   :target (file+head +bl/org-roam-inbox "#+category: Inbox\n#+title: Inbox\n#+filetags: :work:inbox:\n")))))
 
 ;;;###autoload
 (defun +bl/org-roam-open-inbox ()
   ""
   (interactive)
-  (let ((file-path (expand-file-name "Inbox.org" org-roam-directory)))
+  (let ((file-path (expand-file-name +bl/org-roam-inbox org-roam-directory)))
     (if (file-exists-p file-path)
         (find-file file-path)
       (message "No Inbox file found."))))
@@ -256,8 +259,8 @@ Creating a stub node with a todo entry to fill out the information. "
   (let ((args (push arg args))
         (org-roam-capture-templates `(("d" "default" plain "* TODO Insert content about ${title}%?"
                                        :empty-lines 1
-                                      :immediate-finish t
-                                      :target (file+head ,+bl/org-roam-file-fomat "#+title: ${title}\n#+date: %u\n#+filetags: :stub:\n")))))
+                                       :immediate-finish t
+                                       :target (file+head ,+bl/org-roam-file-fomat "#+title: ${title}\n#+date: %u\n#+filetags: :stub:\n")))))
     (apply #'org-roam-node-insert args)))
 
 ;;; https://github.com/tecosaur/emacs-config/blob/master/config.org#modeline-file-name
