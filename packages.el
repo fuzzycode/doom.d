@@ -57,7 +57,6 @@
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
-(package! fix-word :pin "250aabdd04ca6e34c02a4a862c9ce4489fb00505")
 (package! string-inflection :pin "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
 (package! ialign :pin "bc4d30d79f2f4b413288195ef19894ac0fd258b7")
 (package! s :pin "e957dcb0677da18b2bb60ad867db5df5c35b5616")

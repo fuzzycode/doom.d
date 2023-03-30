@@ -130,7 +130,10 @@
        :desc "Window Right" "r" #'split-window-right
        :desc "Window Right And Select" "R" (cmd! (select-window (split-window-right)))
        :desc "Quit" "q" #'evil-quit)
-
+      (:prefix "x"
+       :desc "Capitalize" "c" #'capitalize-dwim
+       :desc "Downcase" "d" #'downcase-dwim
+       :desc "Upcase" "u" #'upcase-dwim)
       ;; Help
       (:prefix "h"
        :desc "Info" "i" #'info
