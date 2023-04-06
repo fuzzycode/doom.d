@@ -152,6 +152,10 @@
                "<tab>" #'forward-button
                "S-<tab>" #'backward-button)))
 
+(use-package! dired+
+  :when (modulep! :emacs dired)
+  :after dired)
+
 (use-package! ninja-mode
   :defer t)
 

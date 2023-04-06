@@ -44,6 +44,9 @@
            (featurep 'xwidget-internal))
   (package! mu4e-views :pin "fa47f35e56edcc84f00d622e415ae970cc5df0dd"))
 
+(when (modulep! :emacs dired)
+  (package! dired+ :pin "90fc0d5a110063278e3fe320dd903ec07be5dba7"))
+
 (package! swedish-holidays :recipe (:host github :repo "fuzzycode/swedish-holidays"))
 (package! lang-mode :recipe (:host github :repo "fuzzycode/lang-mode"))
 (package! visual-regexp-steroids :pin "a6420b25ec0fbba43bf57875827092e1196d8a9e")
