@@ -218,9 +218,9 @@ tasks."
   "Capture something to the inbox"
   (interactive)
   (org-roam-capture- :node (org-roam-node-create)
-                     :templates '(("i" "inbox" plain "* %?"
+                     :templates `(("i" "inbox" plain "* %?"
                                    :empty-lines 1
-                                   :target (file+head +bl/org-roam-inbox "#+category: Inbox\n#+title: Inbox\n#+filetags: :work:inbox:\n")))))
+                                   :target (file+head ,+bl/org-roam-inbox "#+category: Inbox\n#+title: Inbox\n#+filetags: :work:inbox:\n")))))
 
 ;;;###autoload
 (defun +bl/org-roam-open-inbox ()
