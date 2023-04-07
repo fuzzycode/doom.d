@@ -218,7 +218,7 @@ tasks."
   "Capture something to the inbox"
   (interactive)
   (org-roam-capture- :node (org-roam-node-create)
-                     :templates `(("i" "inbox" plain "* %?"
+                     :templates `(("i" "inbox" plain "* %?\n:PROPERTIES:\n:CREATED: %u\n:END:\n"
                                    :empty-lines 1
                                    :target (file+head ,+bl/org-roam-inbox "#+category: Inbox\n#+title: Inbox\n#+filetags: :work:inbox:\n")))))
 
@@ -239,7 +239,7 @@ tasks."
     (org-roam-capture- :node (org-roam-node-read
                               project-name
                               (+bl/org-roam-filter-by-tag "Project"))
-                       :templates `(("p" "project" plain "** TODO %?"
+                       :templates `(("p" "project" plain "** TODO %?\n:PROPERTIES:\n:CREATED: %u\n:END:\n"
                                      :empty-lines 1
                                      :target (file+head+olp ,+bl/org-roam-file-fomat ,+bl/org-roam-project-template ("Tasks")))))))
 ;;;###autoload
@@ -257,7 +257,7 @@ tasks."
 Creating a stub node with a todo entry to fill out the information. "
   (interactive "P")
   (let ((args (push arg args))
-        (org-roam-capture-templates `(("d" "default" plain "* TODO Insert content about ${title}%?"
+        (org-roam-capture-templates `(("d" "default" plain "* TODO Insert content about ${title}%?\n:PROPERTIES:\n:CREATED: %u\n:END:\n"
                                        :empty-lines 1
                                        :immediate-finish t
                                        :target (file+head ,+bl/org-roam-file-fomat "#+title: ${title}\n#+date: %u\n#+filetags: :stub:\n")))))
