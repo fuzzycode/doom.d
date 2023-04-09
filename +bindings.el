@@ -256,8 +256,11 @@
  (:after magit
   (:map magit-status-mode-map
    :n "yu" #'+bl/kill-url-to-commit-at-point
-   :n "C-j" #'magit-section-forward-sibling
-   :n "C-k" #'magit-section-backward-sibling)
+   :n "X" #'magit-reset
+   :n "o" #'magit-submodule
+   :n "O" #'magit-subtree
+   "C-j" #'magit-section-forward-sibling
+   "C-k" #'magit-section-backward-sibling)
   (:map magit-revision-mode-map
    :n "yu" #'+bl/kill-url-to-commit-at-point)
   (:map magit-log-mode-map
