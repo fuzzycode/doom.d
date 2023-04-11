@@ -25,6 +25,7 @@
 (when (modulep! :lang org)
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
   (package! org-super-agenda :pin "f4f528985397c833c870967884b013cf91a1da4a")
+  (package! idle-org-agenda)
   (package! vulpea :pin "f4d3448b6ccdb314c5fe3defea66e750e1371a10")
   (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
   (package! org-ql :pin "1d98c7d07c6f2af5c84e8358cb6c5db71e8f1006")

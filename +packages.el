@@ -362,6 +362,11 @@
               "k" nil))
   (shut-up (org-super-agenda-mode)))
 
+(use-package! idle-org-agenda
+  :hook (doom-first-input . idle-org-agenda-mode)
+  :init (setq idle-org-agenda-key "d"
+              idle-org-agenda-interval 600))
+
 (use-package! vulpea
   :defer t
   :when (modulep! :lang org)
