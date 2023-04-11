@@ -9,17 +9,7 @@
 (after! org
   (setq org-hide-emphasis-markers t
         org-startup-with-inline-images t
-        org-log-into-drawer t
-        org-log-done 'time
-        org-log-redeadline 'time
-        org-log-reschedule 'time
-        org-treat-insert-todo-heading-as-state-change t
-        org-agenda-skip-scheduled-if-done t
-        org-agenda-skip-deadline-if-done t
-        org-archive-mark-done t
-        org-todo-keywords '((sequence "TODO(t)" "WORKING(w)" "BLOCKED(b)" "IDEA(i)" "|" "DONE(d)" "CANCELED(c)" "DELEGATE(D)")
-                           (sequence "[ ](T)" "[-](S)" "[?](W)" "|" "[X](D)"))
-        org-agenda-time-grid '((daily today) (800 1000 1200 1400 1600 1800 2000) "......" "----------------")))
+        org-log-into-drawer t))
 
 
 (after! org-roam
@@ -31,7 +21,7 @@
 
 
   (setq org-roam-dailies-capture-templates '(("d" "default" entry
-                                              "* %? \n:PROPERTIES:\nCREATED: %<%T>\n:END:"
+                                              "* %? \n:PROPERTIES:\nCREATED: %u\n:END:"
                                               :target (file+head "%<%Y-%m-%d>.org"
                                                                  "#+title: %<%Y-%m-%d>\n\n"))))
 

@@ -323,12 +323,39 @@
 (use-package! org-super-agenda
   :when (modulep! :lang org)
   :after (org org-agenda)
-  :init (setq org-super-agenda-groups '((:name "Today"
-                                         :date today :order 1)
-                                        (:name "Overdue"
-                                         :scheduled past :order 0)
-                                        (:name "All"
-                                         :todo t :order 2)))
+  :init (setq org-log-done 'time
+              org-log-redeadline 'time
+              org-log-reschedule 'time
+              org-treat-insert-todo-heading-as-state-change t
+              org-agenda-skip-scheduled-if-done t
+              org-agenda-skip-deadline-if-done t
+              org-archive-mark-done t
+              org-todo-keywords '((sequence "TODO(t)" "WORKING(w)" "BLOCKED(b)" "IDEA(i)" "|" "DONE(d)" "CANCELED(c)" "DELEGATE(D)")
+                                  (sequence "[ ](T)" "[-](W)" "[?](B)" "|" "[X](D)"))
+              org-agenda-time-grid '((daily today require-timed) (800 1000 1200 1400 1600 1800 2000) "......" "----------------"))
+
+  (setq org-agenda-custom-commands
+        '(("d" "Daily Digest"
+           ((todo "" ((org-agenda-overriding-header "Top Priority")
+                      (org-super-agenda-groups
+                       '((:name none
+                          :priority "A"
+                          :order 1)
+                         (:name none
+                          :deadline past
+                          :order 2)
+                         (:name "Due Today"
+                          :deadline today
+                          :order 3)
+                         (:discard (:anything t))))))
+            (todo "" ((org-agenda-overriding-header "")
+                      (org-super-agenda-groups
+                       '((:discard (:priority "A"))
+                         (:discard (:deadline today))
+                         (:name "TODO"
+                          :todo "TODO"
+                          :order 2)))))))))
+
   :config
   (map! (:map org-super-agenda-header-map
               "j" nil
