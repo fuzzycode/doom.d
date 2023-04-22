@@ -181,13 +181,6 @@
   (set-popup-rule! "^\\*chatgpt\\*$" :side 'bottom :size .5 :select t :quit 'current)
   (set-popup-rule! "^\\*dall-e\\*$" :side 'bottom :size .5 :select t :quit 'current)
 
-  (after! org-babel
-    (require 'ob-chatgpt-shell)
-    (ob-chatgpt-shell-setup)
-
-    (require 'ob-dall-e-shell)
-    (ob-dall-e-shell-setup))
-
   (map! :leader
         (:prefix "o"
          :desc "ChatGPT Shell" "c" #'chatgpt-shell
