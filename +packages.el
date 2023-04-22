@@ -206,6 +206,10 @@
   :defer t
   :hook (doom-first-input . smart-newline-mode))
 
+(use-package! lang-mode
+  :defer t)
+
+;;GIT
 (use-package! ssh-agency
   :when IS-WINDOWS
   :when (modulep! :tools magit))
@@ -237,9 +241,6 @@
   :init (map! :leader (:prefix "g"
                        :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
-
-(use-package! lang-mode
-  :defer t)
 
 (use-package! gh-notify
   :when (modulep! :tools magit)
