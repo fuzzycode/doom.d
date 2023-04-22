@@ -1,5 +1,7 @@
 ;;; .yas-setup.el -*- lexical-binding: t; -*-
 
+(require 'consult)
+
 ;; https://tecosaur.github.io/emacs-config/config.html#packages-visuals
 (defun +yas/org-src-header-p ()
   "Determine whether `point' is within a src-block header or header-args."
