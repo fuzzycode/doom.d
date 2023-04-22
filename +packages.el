@@ -173,6 +173,32 @@
 (use-package! metal-mode
   :defer t)
 
+(use-package! chatgpt-shell
+  :defer t
+  :init (setq chatgpt-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com"))
+              dall-e-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com")))
+
+  (set-popup-rule! "^\\*chatgpt\\*$" :side 'bottom :size .5 :select t :quit 'current)
+  (set-popup-rule! "^\\*dall-e\\*$" :side 'bottom :size .5 :select t :quit 'current)
+
+  (after! org-babel
+    (require 'ob-chatgpt-shell)
+    (ob-chatgpt-shell-setup)
+
+    (require 'ob-dall-e-shell)
+    (ob-dall-e-shell-setup))
+
+  (map! :leader
+        (:prefix "o"
+         :desc "ChatGPT Shell" "c" #'chatgpt-shell
+         :desc "Dall-E Shell" "C" #'dall-e-shell)
+        (:prefix "c"
+         (:prefix ("g" . "Gpt")
+          :desc "Describe" "d" #'chatgpt-shell-describe-code
+          :desc "Explain" "e" #'chatgpt-shell-explain-code
+          :desc "Send & Review Region" "s" #'chatgpt-shell-send-and-review-region
+          :desc "Send Region" "S" #'chatgpt-shell-send-region))))
+
 (use-package! evil-textobj-line
   :when (modulep! :editor evil)
   :after evil)
