@@ -2,8 +2,8 @@
 
 
 ;; C++
-(package! ninja-mode :recipe (:files ("*.el")) :pin "2d9083b2608bd60c31583193d321d13a81a75beb")
-(package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style") :pin "ad896213408f6961dd95ce384c36ebcced7b9f1a")
+(package! ninja-mode :recipe (:files ("*.el")) :pin "adf9bddd73869084a505fac83246e55c35880079")
+(package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
 
 (package! shader-mode :pin "fe5a1982ba69e4a98b834141a46a1908f132df15") ;; This is also a part of the csharp module but I only want this package from it
 (package! metal-mode :recipe (:host github :repo "masfj/metal-mode") :pin "686ad916f53589d59797613c1050922dd424d492")
@@ -25,7 +25,7 @@
 (when (modulep! :lang org)
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
   (package! org-super-agenda :pin "f4f528985397c833c870967884b013cf91a1da4a")
-  (package! idle-org-agenda)
+  (package! idle-org-agenda :pin "8e6052fc4923c30132052d67d794b76c92851c20")
   (package! vulpea :pin "f4d3448b6ccdb314c5fe3defea66e750e1371a10")
   (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
   (package! org-ql :pin "1d98c7d07c6f2af5c84e8358cb6c5db71e8f1006")
@@ -34,7 +34,7 @@
 
 ;;ELISP
 (when (modulep! :lang emacs-lisp)
-  (package! inspector :pin "878e1696640793550998cbb941bba6430ac42629")
+  (package! inspector :pin "8c952bade833d1b27ab4455f73a8f3393ce32322")
   (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
 ;; MAIL
@@ -43,7 +43,7 @@
 
 (when (and (modulep! :email mu4e)
            (featurep 'xwidget-internal))
-  (package! mu4e-views :pin "fa47f35e56edcc84f00d622e415ae970cc5df0dd"))
+  (package! mu4e-views :pin "b02e360d36c54cd9a5f59cdf266be88214a966d2"))
 
 (when (modulep! :emacs dired)
   (package! dired+ :pin "90fc0d5a110063278e3fe320dd903ec07be5dba7"))
@@ -56,15 +56,15 @@
 (package! sort-words :pin "7b6e108f80237363faf7ec28b2c58dec270b8601")
 (package! smart-backspace :pin "a10ec44ff325ec8c4c98b1a6e44e89e60a9aa4ac")
 (package! open-junk-file :pin "558bec7372b0fed4c4cb6074ab906535fae615bd")
-(package! pandoc-mode :pin "8f955abec9c1d75acd9b03389b90a276ec4e2137")
+(package! pandoc-mode :pin "da3f0f5238a8b1e5f09f2ec97e683dc488d25be0")
 (package! centered-cursor-mode :pin "ebaeb80fba0bafdf6f95706308123dec2cf4b99f")
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
 (package! string-inflection :pin "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
 (package! ialign :pin "bc4d30d79f2f4b413288195ef19894ac0fd258b7")
-(package! s :pin "e957dcb0677da18b2bb60ad867db5df5c35b5616")
-(package! deadgrep :pin "67c0fd0afcc6c34a613bbf3298744228f1c3cd59")
+(package! s :pin "dda84d38fffdaf0c9b12837b504b402af910d01d")
+(package! deadgrep :pin "f65a20d5c3d42aa649314f13976bc18020a9fc2a")
 
 (package! shell-maker :recipe (:host github :repo "xenodium/chatgpt-shell")) ;; A requirement for chatgpt-shell
 (package! chatgpt-shell :recipe (:host github :repo "xenodium/chatgpt-shell")) ;; Leave unpinned, it moves fast right now
