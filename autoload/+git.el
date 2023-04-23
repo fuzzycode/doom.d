@@ -11,8 +11,10 @@
 
 ;;;###autoload
 (defun +bl/move-to-next-slot ()
-  "Advances to the next empty line passed a comment line. This works because my commit message template is set up
-to have a comment line as a header for each slot where text should/could be inserted."
+  "Advances to the next empty line passed a comment line.
+This works because my commit message template is set up
+to have a comment line as a header for each slot where
+text should/could be inserted."
   (interactive)
   (re-search-forward "^#.*")
   (while (not (+bl/current-line-empty-p))
