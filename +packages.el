@@ -177,7 +177,8 @@
 
 (use-package! chatgpt-shell
   :defer t
-  :init (setq chatgpt-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com"))
+  :init (setq shell-maker-history-path doom-data-dir
+              chatgpt-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com"))
               dall-e-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com")))
 
   (set-popup-rule! "^\\*chatgpt\\*$" :side 'bottom :size .5 :select t :quit 'current)
