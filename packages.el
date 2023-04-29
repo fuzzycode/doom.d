@@ -66,8 +66,7 @@
 (package! s :pin "dda84d38fffdaf0c9b12837b504b402af910d01d")
 (package! deadgrep :pin "f65a20d5c3d42aa649314f13976bc18020a9fc2a")
 
-(package! shell-maker :recipe (:host github :repo "xenodium/chatgpt-shell")) ;; A requirement for chatgpt-shell
-(package! chatgpt-shell :recipe (:host github :repo "xenodium/chatgpt-shell")) ;; Leave unpinned, it moves fast right now
+(package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
 
 
 (when (modulep! :lang web)
