@@ -94,7 +94,7 @@
        rest
        (rust +lsp +tree-sitter)
        rst
-       (sh +lsp +tree-sitter)
+       (sh +lsp +tree-sitter +fish +powershell)
        web
        (yaml +lsp)
 

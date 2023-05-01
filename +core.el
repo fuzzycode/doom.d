@@ -79,6 +79,15 @@
                                     (:from-or-to . 20)
                                     (:subject))))
 
+(after! vterm
+  (setq vterm-shell (+bl/get-shell))
+
+  (setq vterm-eval-cmds '(("find-file" find-file)
+                          ("message" message)
+                          ("vterm-clear-scrollback" vterm-clear-scrollback)
+                          ("dired" dired)
+                          ("ediff-files" ediff-files))))
+
 (after! recentf
   (add-to-list 'recentf-exclude "/private/var/folders/.*")
   (add-to-list 'recentf-exclude #'directory-name-p) ;; Filter out all directories from the list
