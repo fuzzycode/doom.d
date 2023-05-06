@@ -28,7 +28,8 @@
                                     :post (when (bound-and-true-p magit-blame-mode)
                                             (magit-blame-quit)))
   "
-[_b_] Blame Further [_q_] Quit
+[_b_] Blame Further [_y_] copy hash [_q_] Quit
 "
   ("b" magit-blame-addition)
+  ("y" magit-blame-copy-hash)
   ("q" nil :exit t))
