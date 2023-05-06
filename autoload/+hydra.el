@@ -9,13 +9,14 @@
                                           :post (when (bound-and-true-p git-timemachine-mode)
                                                   (git-timemachine-quit)))
   "
-[_p_/_N_] previous [_n_] next [_c_] current [_g_] goto nth rev [_Y_] copy hash [_q_] quit
+[_p_/_N_] previous [_n_] next [_c_] current [_g_] goto nth rev [_y_] copy hash [_Y_] copy full hash [_q_] quit
 "
   ("c" git-timemachine-show-current-revision)
   ("g" git-timemachine-show-nth-revision)
   ("p" git-timemachine-show-previous-revision)
   ("n" git-timemachine-show-next-revision)
   ("N" git-timemachine-show-previous-revision)
+  ("y" git-timemachine-kill-abbreviated-revision)
   ("Y" git-timemachine-kill-revision)
   ("q" nil :exit t))
 
