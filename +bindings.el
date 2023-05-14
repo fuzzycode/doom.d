@@ -37,6 +37,9 @@
       :desc "Shell Command" "!" #'shell-command
       :desc "Async Shell Command" "&" #'async-shell-command
 
+      (:prefix "b"
+       :desc "Switch to Message Buffer" "L" #'+bl/switch-to-message-buffer)
+
       ;; Insert
       (:prefix "i"
        (:when (modulep! :editor evil)
