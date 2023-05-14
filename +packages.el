@@ -178,22 +178,26 @@
 (use-package! chatgpt-shell
   :defer t
   :init (setq shell-maker-history-path doom-data-dir
-              chatgpt-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com"))
-              dall-e-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com")))
+              chatgpt-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com")))
 
   (set-popup-rule! "^\\*chatgpt\\*$" :side 'bottom :size .5 :select t :quit 'current)
-  (set-popup-rule! "^\\*dall-e\\*$" :side 'bottom :size .5 :select t :quit 'current)
 
   (map! :leader
         (:prefix "o"
-         :desc "ChatGPT Shell" "c" #'chatgpt-shell
-         :desc "Dall-E Shell" "C" #'dall-e-shell)
+         :desc "ChatGPT Shell" "c" #'chatgpt-shell)
         (:prefix "c"
-         (:prefix ("g" . "Gpt")
+         (:prefix ("g" . "GPT")
           :desc "Describe" "d" #'chatgpt-shell-describe-code
           :desc "Explain" "e" #'chatgpt-shell-explain-code
           :desc "Send & Review Region" "s" #'chatgpt-shell-send-and-review-region
           :desc "Send Region" "S" #'chatgpt-shell-send-region))))
+
+(use-package! dall-e-shell
+  :defer t
+  :init (setq dall-e-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com")))
+  (map! :leader (:prefix "o"
+                         :desc "Dall-E Shell" "C" #'dall-e-shell))
+  (set-popup-rule! "^\\*dall-e\\*$" :side 'bottom :size .5 :select t :quit 'current))
 
 (use-package! evil-textobj-line
   :when (modulep! :editor evil)

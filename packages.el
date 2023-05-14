@@ -67,7 +67,7 @@
 (package! deadgrep :pin "f65a20d5c3d42aa649314f13976bc18020a9fc2a")
 
 (package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
-
+(package! dall-e-shell)
 
 (when (modulep! :lang web)
   (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))
