@@ -15,11 +15,12 @@
     (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
   (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
   (package! magit-imerge :pin "5a1833d33e1516c7819521a5b35135527d9409f9")
+  (package! magit-lfs :pin "cd9f46e1840270be27e2c2d9dcf036ff0781f66d")
   (package! rigid-tabs :pin "872a10c8751574c9610cba1800f541a6eda24997")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
 (when (modulep! :tools magit +forge)
-  (package! gh-notify))
+  (package! gh-notify :pin "e1afdd49deb8ddf1a988e8d3fa699b06dfa92f5f"))
 
 ;;ORG
 (when (modulep! :lang org)

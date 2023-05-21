@@ -260,6 +260,10 @@
   (transient-insert-suffix 'magit-dispatch "!" '("#" "Ignore" magit-gitignore))
   (transient-append-suffix 'magit-merge "n" '("g" "iMerge" magit-imerge)))
 
+(use-package! magit-lfs
+  :when (modulep! :tools magit)
+  :after magit)
+
 (use-package! gitignore-templates
   :defer t
   :when (modulep! :tools magit)
