@@ -8,7 +8,7 @@
 (defvar +bl/org-roam-project-ignored-files '("inbox.org")) ;; Inbox will always be marked as having work because I also update it from outside Emacs
 
 ;;;###autoload
-(defun +bl/open-efeed-files ()
+(defun +bl/open-elfeed-files ()
   "Open all elfeed files."
   (interactive)
   (dolist (file rmh-elfeed-org-files)
