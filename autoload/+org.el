@@ -54,7 +54,8 @@
 
 ;;;###autoload
 (defun +bl/expire-and-archive-tasks-in-buffer ()
-  "Expire all expired tasks in buffer and archive all completed tasks in current buffer."
+  "Expire all expired tasks in buffer
+and archive all completed tasks in current buffer."
   (interactive)
   (+bl/close-expired-in-buffer)
   (save-buffer)
@@ -75,7 +76,8 @@
 
 ;;;###autoload
 (defun +bl/prepare-time (time)
-  "Converts to active/inactive time stamp depending on the value of `'org-expiry-inactive-timestamps "
+  "Converts to active/inactive time stamp
+depending on the value of `org-expiry-inactive-timestamps' "
   (require 'org-expiry)
   (if org-expiry-inactive-timestamps
       (replace-regexp-in-string "<\\(.*?\\)>" "[\\1]" time)
@@ -83,7 +85,8 @@
 
 ;;;###autoload
 (defun +bl/expire-on-scheduled ()
-  "Sets the expiry date and time to be the same as the scheduled date+time of the entry."
+  "Sets the expiry date and time to be the same
+ as the scheduled date+time of the entry."
   (interactive)
   (require 'org-expiry)
   (let* ((schedule (org-entry-get nil "SCHEDULED")))
@@ -92,7 +95,8 @@
 
 ;;;###autoload
 (defun +bl/expire-on-deadline ()
-  "Sets the expiry date and time to be the same as the deadline date+time of the entry."
+  "Sets the expiry date and time to be the same
+ as the deadline date+time of the entry."
   (interactive)
   (require 'org-expiry)
   (let* ((deadline (org-entry-get nil "DEADLINE")))
@@ -101,7 +105,8 @@
 
 ;;;###autoload
 (defun +bl/expire-on-time-dwim ()
-  "If there is a deadline for this entry, set the expiry to be the same as the deadline, otherwise set the expiry
+  "If there is a deadline for this entry,
+set the expiry to be the same as the deadline, otherwise set the expiry
 to be that of the scheduled date+time."
   (interactive)
   (let* ((schedule (org-entry-get nil "SCHEDULED"))
@@ -266,7 +271,8 @@ Creating a stub node with a todo entry to fill out the information. "
 ;;; https://github.com/tecosaur/emacs-config/blob/master/config.org#modeline-file-name
 ;;;###autoload
 (defadvice! doom-modeline--buffer-file-name-roam-aware-a (orig-fun)
-  "Turns a org-roam file name with timestamp and slug and make it more user friendly to read."
+  "Turns a org-roam file name with timestamp
+and slug and make it more user friendly to read."
   :around #'doom-modeline-buffer-file-name ; takes no args
   (if (s-contains-p org-roam-directory (or buffer-file-name ""))
       (replace-regexp-in-string
