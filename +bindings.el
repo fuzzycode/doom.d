@@ -51,7 +51,10 @@
        :desc "Goto Char Timer" "j" #'avy-goto-char-timer
        :desc "Find Other File" "o" #'projectile-find-other-file
        :desc "Find Other File Other Window" "O" #'projectile-find-other-file-other-window
-       :desc "Ace Window" "w" #'ace-window)
+       :desc "Ace Window" "w" #'ace-window
+       (:after smartparens
+        :desc "Forward S-exp" "f" #'sp-forward-sexp
+        :desc "Backward S-exp" "b" #'sp-backward-sexp))
 
       ;; Git
       (:prefix "g"
@@ -301,6 +304,8 @@
   :ngi "M-o" #'projectile-find-file-dwim)
  (:after smartparens
   (:map smartparens-mode-map
+   :n "gF" #'sp-forward-sexp
+   :n "gB" #'sp-backward-sexp
    :ngi "C-<right>" #'sp-forward-slurp-sexp
    :ngi "C-<left>" #'sp-forward-barf-sexp
    :ngi "C-M-<right>" #'sp-backward-slurp-sexp
