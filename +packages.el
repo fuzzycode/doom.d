@@ -122,6 +122,7 @@
 
 (use-package! diff-dired
   :defer t
+  :commands (diff-dired-list-added diff-dired-listmodified diff-dired-list-changed)
   :when (modulep! :tools magit)
   :init (map! (:leader (:prefix "g"
                         (:prefix "l"
