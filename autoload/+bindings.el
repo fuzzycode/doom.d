@@ -12,7 +12,7 @@
 ;;;###autoload
 (defun +bl/beautify-evil (value)
   "Beautify evil function name in VALUE."
-  (+bl/format-command-name (replace-regexp-in-string "\\+?evil\\(?:nc\\|em\\)?[:/-]\\(?:a-\\|motion-\\)?\\(.+\\)" "\\1" value)))
+  (+bl/format-command-name (replace-regexp-in-string "\\+?evil\\(?:nc\\)?[-:/]\\(?:a\\|inner\\|outer\\)?\\(.+\\)" "\\1" value)))
 
 ;;;###autoload
 (defun +bl/beautify-org (value)
