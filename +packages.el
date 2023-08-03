@@ -1,16 +1,5 @@
 ;;; +packages.el -*- lexical-binding: t; -*-
 
-;;; Added in from doom +emacs configuration
-(use-package! expand-region
-  :commands (er/contract-region er/mark-symbol er/mark-word)
-  :init (map! (:leader :desc "Expand Region" "v" #'er/expand-region))
-  :config
-  (defadvice! doom--quit-expand-region-a (&rest _)
-    "Properly abort an expand-region region."
-    :before '(evil-escape doom/escape)
-    (when (memq last-command '(er/expand-region er/contract-region))
-      (er/contract-region 0))))
-
 (use-package! visual-regexp-steroids
   :after visual-regexp)
 
