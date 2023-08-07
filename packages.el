@@ -47,7 +47,7 @@
   (package! mu4e-views :pin "b02e360d36c54cd9a5f59cdf266be88214a966d2"))
 
 (when (modulep! :emacs dired)
-  (package! dired+ :pin "850f80756b4e95035735e4af3ce5da31f612de13"))
+  (package! dired+ :pin "36d7958a7226fe26a62cf26cba5e37dd14ddab70"))
 
 (package! swedish-holidays :recipe (:host github :repo "fuzzycode/swedish-holidays"))
 (package! lang-mode :recipe (:host github :repo "fuzzycode/lang-mode"))
