@@ -35,7 +35,7 @@
 
 ;;ELISP
 (when (modulep! :lang emacs-lisp)
-  (package! inspector :pin "5f32ed1f9f7e6b66b1c4027cdf71c113dd650226")
+  (package! inspector :pin "d912e8c52e99b1eb257138392876008774c4825b")
   (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
 ;; MAIL
@@ -63,7 +63,7 @@
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
 (package! string-inflection :pin "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
 (package! ialign :pin "bc4d30d79f2f4b413288195ef19894ac0fd258b7")
-(package! deadgrep :pin "b36dc1b2e5d5e8cd53c1977eeea9b6469ad42381")
+(package! deadgrep :pin "f720ce8cf958cf7bb5588512de9eb1b8526e417c")
 
 (package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
 (package! dall-e-shell)
