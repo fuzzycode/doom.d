@@ -12,8 +12,8 @@
       line-spacing 1)
 
 ;Load Specific files
-(load! "+bindings")
 (load! "+core")
+(load! "+bindings")
 (load! "+org")
 (load! "+packages")
 

@@ -262,6 +262,9 @@
 ;; SETTINGS
 ;;
 
+
+(setq warning-minimum-level :error) ;; Only show popup on errors, warnings are still logged though
+
 (setq plantuml-indent-level 2)
 
 (setq ws-butler-convert-leading-tabs-or-spaces t)
