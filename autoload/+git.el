@@ -86,7 +86,7 @@ text should/could be inserted."
   (interactive)
   (unless (and (not smerge-mode) (called-interactively-p 'any))
     (smerge-mode 1))
-  (smerge-transient))
+  (call-interactively smerge-transient))
 
 ;;;###autoload
 (defun +bl/maybe-show-smerge-transient-h ()
