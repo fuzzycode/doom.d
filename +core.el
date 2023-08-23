@@ -262,7 +262,6 @@
 ;; SETTINGS
 ;;
 
-
 (setq warning-minimum-level :error) ;; Only show popup on errors, warnings are still logged though
 
 (setq plantuml-indent-level 2)
@@ -290,6 +289,19 @@
       search-whitespace-regexp ".*?"
       isearch-regexp-lax-whitespace nil
       isearch-lazy-highlight t)
+
+;;iBuffer
+(setq ibuffer-formats
+      '((mark modified read-only " "
+              (name 36 36 :left :elide) ; change: 30s were originally 18s
+              " "
+              (size 9 -1 :right)
+              " "
+              (mode 16 16 :left :elide)
+              " " filename-and-process)
+        (mark " "
+              (name 16 -1)
+              " " filename)))
 
 ;; Don't confirm closing emacs with running processes
 (setq confirm-kill-processes nil)
