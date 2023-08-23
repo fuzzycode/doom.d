@@ -268,15 +268,15 @@
    "C-j" #'magit-section-forward-sibling
    "C-k" #'magit-section-backward-sibling)
   (:map magit-revision-mode-map
-   :n "yu" #'+bl/kill-url-to-commit-at-point)
-  (:map magit-log-mode-map
-   :n "yu" #'+bl/kill-url-to-commit-at-point)
-  (:map  magit-todos-item-section-map
-   "b" nil
-   "B" #'magit-todos-branch-list-toggle)
-  (:map magit-todos-section-map
-   "b" nil
-   "B" #'magit-todos-branch-list-toggle))
+   :n "yu" #'+bl/kill-url-to-commit-at-point))
+  ;; (:map magit-log-mode-map
+  ;;  :n "yu" #'+bl/kill-url-to-commit-at-point)
+  ;; (:map  magit-todos-item-section-map
+  ;;  "b" nil
+  ;;  "B" #'magit-todos-branch-list-toggle)
+  ;; (:map magit-todos-section-map
+  ;;  "b" nil
+  ;;  "B" #'magit-todos-branch-list-toggle))
  (:after (forge code-review)
   (:map magit-status-mode-map
    "C-c C-r" #'+magit/start-code-review

@@ -254,8 +254,6 @@
 
 (add-hook 'prog-mode-hook (lambda () (setq display-line-numbers-type 'relative)))
 
-(add-hook 'doom-first-file-hook #'magit-todos-mode)
-
 (add-hook 'code-review-mode-hook (lambda () (persp-add-buffer (current-buffer))))
 
 ;;

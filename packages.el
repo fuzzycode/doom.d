@@ -1,6 +1,8 @@
 ;; -*- lexical-binding: t; -*-
 
 
+(package! magit-todos :disable t)
+
 ;; C++
 (package! ninja-mode :recipe (:files ("*.el")) :pin "36843d387cb0621c1a288179af223d4f1410be73")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
