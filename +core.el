@@ -37,12 +37,15 @@
   (show-smartparens-global-mode +1))
 
 (after! doom-modeline
-  (setq doom-modeline-major-mode-icon t
+  (setq auto-revert-check-vc-info t
+        doom-modeline-height 35 ;; default is 25 and that is a bit too small for me
+        doom-modeline-major-mode-icon (display-graphic-p)
+        doom-modeline-major-mode-color-icon (display-graphic-p)
         doom-modeline-indent-info t
         doom-modeline-checker-simple-format nil
         doom-modeline-buffer-file-name-style 'truncate-with-project
         doom-modeline-persp-name t
-        doom-modeline-vcs-max-length 45))
+        doom-modeline-vcs-max-length 60))
 
 
 (after! company
