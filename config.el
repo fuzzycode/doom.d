@@ -11,10 +11,6 @@
       ;; doom-serif-font (font-spec :family "IBM Plex Mono" :weight 'light)
       line-spacing 1)
 
-(setq shell-file-name (executable-find "bash"))
-(setq-default vterm-shell (executable-find "fish"))
-(setq-default explicit-shell-file-name (executable-find "fish"))
-
 ;; Load Specific files
 (load! "+core")
 (load! "+bindings")
