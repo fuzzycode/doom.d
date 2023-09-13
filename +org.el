@@ -25,5 +25,19 @@
                                               :target (file+head "%<%Y-%m-%d>.org"
                                                                  "#+title: %<%Y-%m-%d>\n\n"))))
 
+  (when (modulep! :ui +wokspaces)
+    (defadvice! +bl/org-roam-in-workspace-a (&rest _)
+      "Place Org-roam buffers in dedicated workspace."
+      :before #'org-roam-node-find
+      :before #'org-roam-node-random
+      :before #'org-roam-buffer-display-dedicated
+      :before #'org-roam-buffer-toggle
+      :before #'org-roam-dailies-goto-today
+      :before #'org-roam-dailies-goto-date
+      :before #'org-roam-dailies-goto-tomorrow
+      :before #'org-roam-dailies-goto-yesterday
+      (+workspace-switch "Org-roam" t)))
+
+
   (add-hook 'find-file-hook #'+bl/org-roam-project-update-tag)
   (add-hook 'before-save-hook #'+bl/org-roam-project-update-tag))
