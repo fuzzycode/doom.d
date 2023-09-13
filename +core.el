@@ -338,6 +338,8 @@
 
 (electric-indent-mode -1) ;; Not needed, newline and indent will take care of it
 
+(pixel-scroll-mode t)
+
 ;; mac specifics
 (when IS-MAC
   (setq mac-option-key-is-meta nil
