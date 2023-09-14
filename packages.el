@@ -76,3 +76,7 @@
 ;; Add evil packages
 (when (modulep! :editor evil)
   (package! evil-textobj-line :pin "9eaf9a5485c2b5c05e16552b34632ca520cd681d"))
+
+
+;; Allow local config packages
+(load! "~/.packages.local.el" "" t)
