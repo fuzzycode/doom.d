@@ -4,7 +4,7 @@
 (package! magit-todos :disable t)
 
 ;; C++
-(package! ninja-mode :recipe (:files ("*.el")) :pin "36843d387cb0621c1a288179af223d4f1410be73")
+(package! ninja-mode :recipe (:files ("*.el")) :pin "22b778ca197562d55e64bd07faa3b37b064492a7")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
 
 (package! shader-mode :pin "fe5a1982ba69e4a98b834141a46a1908f132df15") ;; This is also a part of the csharp module but I only want this package from it
@@ -18,7 +18,7 @@
   (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
   (package! magit-imerge :pin "b7cfe49a197c2cf5948109921e053711b156389d")
   (package! magit-lfs :pin "cd9f46e1840270be27e2c2d9dcf036ff0781f66d")
-  (package! rigid-tabs :pin "872a10c8751574c9610cba1800f541a6eda24997")
+  (package! rigid-tabs :pin "9553118e76fcbc1d8f0bcb960de13c7e3f07b9df")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
 ;;ORG
@@ -26,15 +26,15 @@
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
   (package! org-super-agenda :pin "f4f528985397c833c870967884b013cf91a1da4a")
   (package! idle-org-agenda :pin "8e6052fc4923c30132052d67d794b76c92851c20")
-  (package! vulpea :pin "de199a16e294056e2368a2e031b19008cf9f9e52")
-  (package! org-make-toc :pin "26fbd6a7e1e7f8e473fe3a5f74faec715c3a05aa")
-  (package! org-ql :pin "eb5377320fcfd38354d6e9e3e655969ae3c0e052")
+  (package! vulpea :pin "1b8445a0838c34c8e79cdd9ee3694bae55e421aa")
+  (package! org-make-toc :pin "469d6ea09f915de955ee322e0eb68b3f3085fef6")
+  (package! org-ql :pin "131407814ebfd8d409f23bc5cceeeb2b5da1a8d9")
   (package! ox-gfm :pin "46faa67dbb3fb0cd7a76c3fe518f16e4195c22c7")
   (package! ox-asciidoc :pin "3a8aad85c6df84155266ba5232f1cbadda8abc58"))
 
 ;;ELISP
 (when (modulep! :lang emacs-lisp)
-  (package! inspector :pin "d912e8c52e99b1eb257138392876008774c4825b")
+  (package! inspector :pin "9ecef872f9b3e66df03a0eb930a65a0a2dbb1c73")
   (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
 ;; MAIL
@@ -56,13 +56,13 @@
 (package! smart-backspace :pin "a10ec44ff325ec8c4c98b1a6e44e89e60a9aa4ac")
 (package! open-junk-file :pin "558bec7372b0fed4c4cb6074ab906535fae615bd")
 (package! pandoc-mode :pin "da3f0f5238a8b1e5f09f2ec97e683dc488d25be0")
-(package! centered-cursor-mode :pin "ebaeb80fba0bafdf6f95706308123dec2cf4b99f")
+(package! centered-cursor-mode :pin "67ef719e685407dbc455c7430765e4e685fd95a9")
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
 (package! string-inflection :pin "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
 (package! ialign :pin "bc4d30d79f2f4b413288195ef19894ac0fd258b7")
-(package! deadgrep :pin "f720ce8cf958cf7bb5588512de9eb1b8526e417c")
+(package! deadgrep :pin "415b69394960677a8a013d32a3cf67cb9956eef6")
 
 (package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
 (package! dall-e-shell)
