@@ -95,8 +95,8 @@
        (rust +lsp +tree-sitter)
        rst
        (sh +lsp +tree-sitter +fish +powershell)
-       web
-       (yaml +lsp)
+       (web +lsp +tree-sitter)
+       (yaml +lsp +tree-sitter)
 
        :email
        (:if (executable-find "mu") mu4e)
