@@ -2,9 +2,10 @@
 
 
 (package! magit-todos :disable t)
+(package! ccls :disable t)
 
 ;; C++
-(package! ninja-mode :recipe (:files ("*.el")) :pin "22b778ca197562d55e64bd07faa3b37b064492a7")
+(package! ninja-mode :recipe (:files ("*.el")) :pin "08cfea52fcd535d32bbca6abf893164c8bb2f7e9")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
 
 (package! shader-mode :pin "fe5a1982ba69e4a98b834141a46a1908f132df15") ;; This is also a part of the csharp module but I only want this package from it
@@ -24,17 +25,17 @@
 ;;ORG
 (when (modulep! :lang org)
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
-  (package! org-super-agenda :pin "f4f528985397c833c870967884b013cf91a1da4a")
+  (package! org-super-agenda :pin "4efc0bdfa3c9760256a651dc4d510658f41afe81")
   (package! idle-org-agenda :pin "8e6052fc4923c30132052d67d794b76c92851c20")
   (package! vulpea :pin "1b8445a0838c34c8e79cdd9ee3694bae55e421aa")
   (package! org-make-toc :pin "469d6ea09f915de955ee322e0eb68b3f3085fef6")
-  (package! org-ql :pin "131407814ebfd8d409f23bc5cceeeb2b5da1a8d9")
+  (package! org-ql :pin "95abce2340efabecc6f07626eb3f28159929709f")
   (package! ox-gfm :pin "46faa67dbb3fb0cd7a76c3fe518f16e4195c22c7")
   (package! ox-asciidoc :pin "3a8aad85c6df84155266ba5232f1cbadda8abc58"))
 
 ;;ELISP
 (when (modulep! :lang emacs-lisp)
-  (package! inspector :pin "9ecef872f9b3e66df03a0eb930a65a0a2dbb1c73")
+  (package! inspector :pin "c825b7f41bf10666563101d264ea5466f88726b3")
   (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
 ;; MAIL
