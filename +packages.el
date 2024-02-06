@@ -227,7 +227,7 @@
 
 ;;GIT
 (use-package! ssh-agency
-  :when IS-WINDOWS
+  :when (featurep :system 'windows)
   :when (modulep! :tools magit))
 
 (use-package! git-commit

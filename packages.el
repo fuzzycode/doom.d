@@ -14,7 +14,7 @@
 
 ;; GIT
 (when (modulep! :tools magit)
-  (when IS-WINDOWS
+  (when (featurep :system 'windows)
     (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
   (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
   (package! magit-imerge :pin "34a057b452de7f856fd3bdef4a9e34309d2be9dc")
@@ -70,7 +70,7 @@
 (when (modulep! :lang web)
   (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))
 
-(when IS-MAC
+(when (featurep :system 'macos)
   (package! reveal-in-osx-finder :pin "5710e5936e47139a610ec9a06899f72e77ddc7bc"))
 
 ;; Add evil packages

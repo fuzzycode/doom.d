@@ -24,7 +24,7 @@
        (popup +all +defaults)
        (treemacs +lsp)
        ophints
-       (:unless IS-WINDOWS vc-gutter)
+       (:unless (featurep :system 'windows) vc-gutter)
        vi-tilde-fringe
        window-select
        workspaces

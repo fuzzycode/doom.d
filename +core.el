@@ -55,7 +55,7 @@
         company-idle-delay 0.0))
 
 (after! mu4e-alert
-  (when (and IS-MAC
+  (when (and (featurep :system 'macos)
              (executable-find "terminal-notifier"))
     (mu4e-alert-set-default-style 'notifier))
   (setq mu4e-alert-interesting-mail-query (mapconcat #'identity '("flag:unread" "AND NOT" "flag:trashed" "AND" "maildir:/inbox") " ")))
@@ -348,7 +348,7 @@
 (pixel-scroll-mode t)
 
 ;; mac specifics
-(when IS-MAC
+(when (featurep :system 'macos)
   (setq mac-option-key-is-meta nil
         mac-command-key-is-meta t
         mac-command-modifier 'meta

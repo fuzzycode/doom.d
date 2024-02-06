@@ -31,7 +31,7 @@ text should/could be inserted."
 ;;;###autoload
 (add-hook 'find-file-hook (lambda ()
                              (when (string-suffix-p "COMMIT_EDITMSG" buffer-file-name)
-                               (when IS-WINDOWS
+                               (when (featurep :system 'windows)
                                  (+bl/delete-carrage-returns))
                                (goto-char (point-min))
                                (when (looking-at-p "^[[:space:]]*#.*$")
