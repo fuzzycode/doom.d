@@ -56,7 +56,6 @@
        editorconfig
        ein
        (eval +overlay)
-       gist
        (lookup +dictionary +docsets)
        (lsp +peek)
        (magit +forge)
