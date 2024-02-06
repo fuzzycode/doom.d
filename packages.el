@@ -30,7 +30,7 @@
   (package! org-make-toc :pin "238be02dcf041a7635734769a041e848f0aeb10d")
   (package! org-ql :pin "8d3c93b8838bd5d5347dd8962b68cc3cabcf0147")
   (package! ox-gfm :pin "4f774f13d34b3db9ea4ddb0b1edc070b1526ccbb")
-  (package! ox-asciidoc :pin "c0b8db599ba1032820b5f9092e8f2d1e60b6c197"))
+  (package! ox-asciidoc :pin "1eb437627541146afdeb72e373c4f1ae594d830a"))
 
 ;;ELISP
 (when (modulep! :lang emacs-lisp)
