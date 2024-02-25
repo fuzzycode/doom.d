@@ -3,6 +3,7 @@
 
 (package! magit-todos :disable t)
 (package! ccls :disable t)
+(package! typescript-mode :disable t)
 
 ;; C++
 (package! ninja-mode :recipe (:files ("*.el")) :pin "fd7067652cae480190bf13b2ee5475efdf09ac7d")
