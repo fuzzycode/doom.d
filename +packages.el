@@ -155,6 +155,10 @@
   :defer t
   :hook (c-mode-common . ff-add-c-style))
 
+(use-package! tspew
+  :defer t
+  :hook (compilation-mode . tspew-mode))
+
 (use-package! cmake-font-lock
   :defer t)
 
