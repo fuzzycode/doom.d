@@ -3,7 +3,6 @@
 
 (package! magit-todos :disable t)
 (package! ccls :disable t)
-(package! typescript-mode :disable t)
 (package! rtags :disable t)
 
 ;; C++

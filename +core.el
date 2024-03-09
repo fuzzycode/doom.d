@@ -289,12 +289,6 @@
       use-dialog-box nil
       use-file-dialog nil)
 
-;; Tree-sitter
-(after! treesit
-  (setq treesit-language-source-alist
-        '((typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src" nil nil)
-          (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src" nil nil))))
-
 ;; iSeach
 (setq isearch-lax-whitespace t
       search-whitespace-regexp ".*?"

@@ -229,12 +229,6 @@
 (use-package! lang-mode
   :defer t)
 
-(use-package typescript-ts-mode
-  :mode (("\\.ts\\'" . typescript-ts-mode)
-         ("\\.tsx\\'" . tsx-ts-mode))
-  :config
-  (add-hook! '(typescript-ts-mode-hook tsx-ts-mode-hook) #'lsp!))
-
 ;;GIT
 (use-package! ssh-agency
   :when (featurep :system 'windows)
