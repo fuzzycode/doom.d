@@ -10,7 +10,7 @@
 
 (doom!
        :completion
-       company
+       (corfu +icons +orderless +dabbrev)
        (vertico +icons)
 
        :ui
