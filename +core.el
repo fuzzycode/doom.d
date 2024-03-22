@@ -259,6 +259,9 @@
 
 (add-hook 'code-review-mode-hook (lambda () (persp-add-buffer (current-buffer))))
 
+(add-hook 'text-mode-hook (lambda () (add-hook 'completion-at-point-functions #'ispell-completion-at-point 10 t)))
+
+
 ;;
 ;; SETTINGS
 ;;
