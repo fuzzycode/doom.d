@@ -20,7 +20,7 @@
                      (read-directory-name "Directory:" nil default-directory t nil)))
   (deadgrep search-term directory))
 
-;; Back ported from emacs 30
+;; Back ported from Emacs 30
 ;;;###autoload
 (defun ispell-completion-at-point ()
   "Word completion function for use in `completion-at-point-functions'."
@@ -40,5 +40,5 @@
              (setcdr cur (cddr cur)))
            (setq cur (cdr cur)))
          (list beg end (cdr all)
-               :annotation-function (lambda (_) " Dict. word")
+               :annotation-function (lambda (_) " Dictionary")
                :exclusive 'no))))))

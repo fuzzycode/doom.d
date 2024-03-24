@@ -259,9 +259,17 @@
 
 (add-hook 'code-review-mode-hook (lambda () (persp-add-buffer (current-buffer))))
 
-(add-hook 'text-mode-hook (lambda () (add-hook 'completion-at-point-functions #'ispell-completion-at-point 10 t)))
+(add-hook 'text-mode-hook (lambda () (setq-local completion-at-point-functions
+                                                 (list (cape-capf-super #'cape-dabbrev #'ispell-completion-at-point #'yasnippet-capf)))))
 
 
+(add-hook! prog-mode
+           (defun +bl/add-comment-spelling-capf-h ()
+             (add-hook 'completion-at-point-functions (cape-capf-super (cape-capf-inside-comment #'ispell-completion-at-point) #'cape-dabbrev #'yasnippet-capf) 10 t)))
+
+(add-hook! prog-mode
+           (defun +bl/add-string-spelling-capf-h ()
+             (add-hook 'completion-at-point-functions (cape-capf-super (cape-capf-inside-string #'ispell-completion-at-point) #'cape-dabbrev #'yasnippet-capf) 10 t)))
 ;;
 ;; SETTINGS
 ;;
