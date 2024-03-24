@@ -6,7 +6,7 @@
 (package! rtags :disable t)
 
 ;; C++
-(package! ninja-mode :recipe (:files ("*.el")) :pin "fd7067652cae480190bf13b2ee5475efdf09ac7d")
+(package! ninja-mode :recipe (:files ("*.el")) :pin "903a05ce0e9befa8fb2767dd83a5a36499771087")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
 (package! tspew :recipe (:host github :repo "jefftrull/tspew" :files ("*.el")))
 
@@ -27,12 +27,12 @@
 ;;ORG
 (when (modulep! :lang org)
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
-  (package! org-super-agenda :pin "ee3379ae92b90c084717fb2a7614060ce12283cb")
+  (package! org-super-agenda :pin "51c9da5ce7b791150758984bab469d2222516844")
   (package! vulpea :pin "e1ea8480daf3e480effdd7ba3799126295a4a59a")
-  (package! org-make-toc :pin "238be02dcf041a7635734769a041e848f0aeb10d")
-  (package! org-ql :pin "8d3c93b8838bd5d5347dd8962b68cc3cabcf0147")
+  (package! org-make-toc :pin "3ac2024694a9f974a7d263748642182fc7e829d1")
+  (package! org-ql :pin "e41fe9018a4699532ec875bedddc9746f8e362aa")
   (package! ox-gfm :pin "4f774f13d34b3db9ea4ddb0b1edc070b1526ccbb")
-  (package! ox-asciidoc :pin "1eb437627541146afdeb72e373c4f1ae594d830a"))
+  (package! ox-asciidoc :pin "d6736852a5479c73c253d2ea8b352dcb232d02f8"))
 
 ;;ELISP
 (when (modulep! :lang emacs-lisp)
@@ -48,7 +48,7 @@
   (package! mu4e-views :pin "b02e360d36c54cd9a5f59cdf266be88214a966d2"))
 
 (when (modulep! :emacs dired)
-  (package! dired+ :pin "377ec04347b8dd8a91df1a33d820fa862fe0efa8"))
+  (package! dired+ :pin "d75d3d390b119b21016e5d0aaa2b78aeafba6cf3"))
 
 (package! swedish-holidays :recipe (:host github :repo "fuzzycode/swedish-holidays"))
 (package! lang-mode :recipe (:host github :repo "fuzzycode/lang-mode"))
@@ -57,7 +57,7 @@
 (package! sort-words :pin "7b6e108f80237363faf7ec28b2c58dec270b8601")
 (package! smart-backspace :pin "a10ec44ff325ec8c4c98b1a6e44e89e60a9aa4ac")
 (package! open-junk-file :pin "558bec7372b0fed4c4cb6074ab906535fae615bd")
-(package! pandoc-mode :pin "340da8787d6305640d042af46d2bd609bd5a7518")
+(package! pandoc-mode :pin "c7fa568ab9cfbb2abfb9b22f419d28ce570d7b22")
 (package! centered-cursor-mode :pin "67ef719e685407dbc455c7430765e4e685fd95a9")
 (package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
