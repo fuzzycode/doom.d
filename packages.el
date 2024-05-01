@@ -5,8 +5,9 @@
 (package! ccls :disable t)
 (package! rtags :disable t)
 
+
 ;; C++
-(package! ninja-mode :recipe (:files ("*.el")) :pin "903a05ce0e9befa8fb2767dd83a5a36499771087")
+(package! ninja-mode :recipe (:files ("*.el")) :pin "ad50063a99d52f882ceb71979a9926a9f5e3b974")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
 (package! tspew :recipe (:host github :repo "jefftrull/tspew" :files ("*.el")))
 
@@ -21,7 +22,7 @@
   (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
   (package! magit-imerge :pin "34a057b452de7f856fd3bdef4a9e34309d2be9dc")
   (package! magit-lfs :pin "cd9f46e1840270be27e2c2d9dcf036ff0781f66d")
-  (package! rigid-tabs :pin "9553118e76fcbc1d8f0bcb960de13c7e3f07b9df")
+  (package! rigid-tabs :pin "c05d4c692fbda3859fb764b673c4c52b7d6cd3e5")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
 
 ;;ORG
@@ -30,7 +31,7 @@
   (package! org-super-agenda :pin "51c9da5ce7b791150758984bab469d2222516844")
   (package! vulpea :pin "e1ea8480daf3e480effdd7ba3799126295a4a59a")
   (package! org-make-toc :pin "3ac2024694a9f974a7d263748642182fc7e829d1")
-  (package! org-ql :pin "e41fe9018a4699532ec875bedddc9746f8e362aa")
+  (package! org-ql :pin "c9370982bfd4df04b590762bd795a7da3012c4dd")
   (package! ox-gfm :pin "4f774f13d34b3db9ea4ddb0b1edc070b1526ccbb")
   (package! ox-asciidoc :pin "d6736852a5479c73c253d2ea8b352dcb232d02f8"))
 
@@ -45,7 +46,7 @@
 
 (when (and (modulep! :email mu4e)
            (featurep 'xwidget-internal))
-  (package! mu4e-views :pin "b02e360d36c54cd9a5f59cdf266be88214a966d2"))
+  (package! mu4e-views :pin "e0f60e314d034e02fbc3696c3cb9e3598eed9070"))
 
 (when (modulep! :emacs dired)
   (package! dired+ :pin "d75d3d390b119b21016e5d0aaa2b78aeafba6cf3"))
@@ -63,8 +64,8 @@
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
 (package! string-inflection :pin "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
-(package! ialign :pin "bc4d30d79f2f4b413288195ef19894ac0fd258b7")
-(package! deadgrep :pin "38abe362997d2f18633a75d04c09da751bf8085e")
+(package! ialign :pin "1195901aa0c44812ba03b869b199ebbe0e840ae3")
+(package! deadgrep :pin "eafc642c551e6d5df7eb1fee9aa7596e59811178")
 
 (package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
 (package! dall-e-shell)
