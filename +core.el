@@ -158,7 +158,7 @@
 
 (after! magit
   (transient-append-suffix 'magit-branch "m" '("M" "Delete Merged" +bl/delete-merged-branches))
-
+  (transient-append-suffix 'magit-log "-n" '("-M" "Ignore Merges" "--no-merges"))
 
   ;; Show 10 open topics and 10 closed ones, but only after they are toggled on
   (setq forge-topic-list-limit '(10 . -10))
