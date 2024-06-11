@@ -62,25 +62,25 @@
 
 (after! mu4e-compose
   (setq mu4e-compose-dont-reply-to-self t
-              mu4e-compose-keep-self-cc nil
-              mu4e-compose-complete-addresses t))
+        mu4e-compose-keep-self-cc nil
+        mu4e-compose-complete-addresses t))
 
 (after! mu4e
   (setq mu4e-root-maildir (expand-file-name "~/.mail")
-              mu4e-drafts-folder "/drafts"
-              mu4e-sent-folder   "/sent"
-              mu4e-trash-folder  "/trash"
-              mu4e-refile-folder "/archive"
-              mu4e-update-interval 120
-              mu4e-headers-auto-update t
-              mu4e-headers-date-format "%Y-%m-%d %H:%M"
-              mu4e-change-filenames-when-moving t
-              mu4e-sent-messages-behavior 'delete
-              mu4e-use-fancy-chars nil
-              mu4e-headers-fields `((:human-date . 18)
-                                    (:flags . 4)
-                                    (:from-or-to . 20)
-                                    (:subject))))
+        mu4e-drafts-folder "/drafts"
+        mu4e-sent-folder   "/sent"
+        mu4e-trash-folder  "/trash"
+        mu4e-refile-folder "/archive"
+        mu4e-update-interval 120
+        mu4e-headers-auto-update t
+        mu4e-headers-date-format "%Y-%m-%d %H:%M"
+        mu4e-change-filenames-when-moving t
+        mu4e-sent-messages-behavior 'delete
+        mu4e-use-fancy-chars nil
+        mu4e-headers-fields `((:human-date . 18)
+                              (:flags . 4)
+                              (:from-or-to . 20)
+                              (:subject))))
 
 (after! vterm
   (setq vterm-shell (+bl/get-shell))
@@ -195,6 +195,29 @@
                                    (:help-echo "Local changes not in upstream")))
                                  ("Path" 99 magit-repolist-column-path nil)))
 
+  (setq magit-submodule-list-columns '(("Path" 50 magit-modulelist-column-path nil)
+                                       ("Version" 35 magit-repolist-column-version
+                                        ((:sort magit-repolist-version<)))
+                                       ("Branch" 35 magit-repolist-column-branch nil)
+                                       ("B<U" 3 magit-repolist-column-unpulled-from-upstream
+                                        ((:right-align t)
+                                         (:sort <)))
+                                       ("B>U" 3 magit-repolist-column-unpushed-to-upstream
+                                        ((:right-align t)
+                                         (:sort <)))
+                                       ("B<P" 3 magit-repolist-column-unpulled-from-pushremote
+                                        ((:right-align t)
+                                         (:sort <)))
+                                       ("B>P" 3 magit-repolist-column-unpushed-to-pushremote
+                                        ((:right-align t)
+                                         (:sort <)))
+                                       ("B" 3 magit-repolist-column-branches
+                                        ((:right-align t)
+                                         (:sort <)))
+                                       ("S" 3 magit-repolist-column-stashes
+                                        ((:right-align t)
+                                         (:sort <)))))
+
   (when (modulep! :tools magit +forge)
     (magit-add-section-hook 'magit-status-sections-hook
                             'magit-insert-modules-unpushed-to-pushremote
@@ -264,12 +287,12 @@
 
 
 (add-hook! prog-mode
-           (defun +bl/add-comment-spelling-capf-h ()
-             (add-hook 'completion-at-point-functions (cape-capf-super (cape-capf-inside-comment #'ispell-completion-at-point) #'cape-dabbrev #'yasnippet-capf) 10 t)))
+  (defun +bl/add-comment-spelling-capf-h ()
+    (add-hook 'completion-at-point-functions (cape-capf-super (cape-capf-inside-comment #'ispell-completion-at-point) #'cape-dabbrev #'yasnippet-capf) 10 t)))
 
 (add-hook! prog-mode
-           (defun +bl/add-string-spelling-capf-h ()
-             (add-hook 'completion-at-point-functions (cape-capf-super (cape-capf-inside-string #'ispell-completion-at-point) #'cape-dabbrev #'yasnippet-capf) 10 t)))
+  (defun +bl/add-string-spelling-capf-h ()
+    (add-hook 'completion-at-point-functions (cape-capf-super (cape-capf-inside-string #'ispell-completion-at-point) #'cape-dabbrev #'yasnippet-capf) 10 t)))
 ;;
 ;; SETTINGS
 ;;
@@ -309,12 +332,12 @@
 ;;iBuffer
 (setq ibuffer-formats
       '((mark modified read-only " "
-              (name 36 36 :left :elide) ; change: 30s were originally 18s
-              " "
-              (size 9 -1 :right)
-              " "
-              (mode 16 16 :left :elide)
-              " " filename-and-process)
+         (name 36 36 :left :elide) ; change: 30s were originally 18s
+         " "
+         (size 9 -1 :right)
+         " "
+         (mode 16 16 :left :elide)
+         " " filename-and-process)
         (mark " "
               (name 16 -1)
               " " filename)))
