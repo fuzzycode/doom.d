@@ -151,11 +151,6 @@
 (after! (evil forge)
   (evil-set-initial-state 'forge-post-mode 'insert))
 
-(after! forge
-  (transient-append-suffix 'forge-dispatch "l p" '("l P" "authored PRs" forge-list-authored-pullreqs))
-  (transient-append-suffix 'forge-dispatch "l i" '("l I" "authored issues" forge-list-authored-issues)))
-
-
 (after! magit
   (transient-append-suffix 'magit-branch "m" '("M" "Delete merged" +bl/delete-merged-branches))
   (transient-append-suffix 'magit-log "-n" '("-M" "Ignore merges" "--no-merges"))
@@ -221,19 +216,7 @@
   (when (modulep! :tools magit +forge)
     (magit-add-section-hook 'magit-status-sections-hook
                             'magit-insert-modules-unpushed-to-pushremote
-                            'magit-insert-modules-overview)
-
-    (magit-add-section-hook 'magit-status-sections-hook
-                            'forge-insert-requested-reviews
-                            'forge-insert-pullreqs)
-
-    (magit-add-section-hook 'magit-status-sections-hook
-                            'forge-insert-authored-pullreqs
-                            'forge-insert-requested-reviews)
-
-    (magit-add-section-hook 'magit-status-sections-hook
-                            'forge-insert-assigned-issues
-                            'forge-insert-issues)))
+                            'magit-insert-modules-overview)))
 
 (after! transient
   (transient-define-prefix smerge-transient ()
