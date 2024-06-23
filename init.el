@@ -82,7 +82,7 @@
        emacs-lisp
        (graphql +lsp)
        (java +lsp +tree-sitter)
-       (javascript +tree-sitter)
+       (javascript +lsp +tree-sitter)
        (json +lsp +tree-sitter)
        (latex +latexmk +lsp)
        markdown
