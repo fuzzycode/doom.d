@@ -61,7 +61,6 @@
        (magit +forge)
        pdf
        prodigy
-       rgb
        tmux
        tree-sitter
        upload
