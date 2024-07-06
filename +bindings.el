@@ -26,8 +26,6 @@
 
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
       (:prefix ("x" . "text")
-       (:when (modulep! :ui hydra)
-        :desc "Zoom" "z" #'+hydra/text-zoom/body)
        (:when (modulep! :editor rotate-text)
         :desc "Rotate text" "r" #'rotate-text))
 
@@ -58,9 +56,6 @@
 
       ;; Git
       (:prefix "g"
-       (:when (modulep! :ui hydra)
-        :desc "Blame" "B" #'+bl/blame-hydra/body
-        :desc "Git Time Machine" "t" #'+bl/timemachine-hydra/body)
        (:when (modulep! :tools magit +forge)
          (:prefix "l"
           :desc "List Labeled Pull-requests" "l" #'forge-list-labeled-pullreqs

@@ -17,7 +17,6 @@
        doom
        doom-dashboard
        hl-todo
-       hydra
        modeline
        nav-flash
 
