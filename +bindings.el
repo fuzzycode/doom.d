@@ -13,21 +13,22 @@
 
       ;; Remove deft keybinding if not using
       (:unless (modulep! :ui deft)
-       (:prefix "n"
-        "d" nil))
+        (:prefix "n"
+                 "d" nil))
 
       ;; I do not use org clock feature so these can be removed
       (:prefix "n"
-       "o" nil)
+               "o" nil)
 
       (:when (modulep! :tools lsp)
-       (:prefix "c"
-        :desc "IMenu" "I" #'lsp-ui-imenu))
+        (:prefix "c"
+         :desc "IMenu" "I" #'lsp-ui-imenu))
 
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
       (:prefix ("x" . "text")
+       :desc "Scale" "z" #'text-zoom-transient
        (:when (modulep! :editor rotate-text)
-        :desc "Rotate text" "r" #'rotate-text))
+         :desc "Rotate text" "r" #'rotate-text))
 
       :desc "M-x" "<SPC>" #'execute-extended-command
       :desc "Eval Expression" ":" #'eval-expression
@@ -40,9 +41,9 @@
 
       ;; Insert
       (:prefix "i"
-       (:when (modulep! :editor evil)
-        :desc "New Line Above" "k" #'+evil/insert-newline-above
-        :desc "New Line Below" "j" #'+evil/insert-newline-below))
+               (:when (modulep! :editor evil)
+                 :desc "New Line Above" "k" #'+evil/insert-newline-above
+                 :desc "New Line Below" "j" #'+evil/insert-newline-below))
 
       ;; Jump
       (:prefix "j"
@@ -56,14 +57,14 @@
 
       ;; Git
       (:prefix "g"
-       (:when (modulep! :tools magit +forge)
-         (:prefix "l"
-          :desc "List Labeled Pull-requests" "l" #'forge-list-labeled-pullreqs
-          :desc "List Requested Reviews" "v" #'forge-list-requested-reviews
-          :desc "List Authored Pull-requests" "u" #'forge-list-authored-pullreqs
-          :desc "List Owned Pull-requests" "o" #'forge-list-owned-pullreqs))
-       :desc "SMerge" "m" #'+bl/smerge-repeatedly
-       :desc "Yank current Branch" "k" #'+bl/magit-add-current-branch-to-kill-ring)
+               (:when (modulep! :tools magit +forge)
+                 (:prefix "l"
+                  :desc "List Labeled Pull-requests" "l" #'forge-list-labeled-pullreqs
+                  :desc "List Requested Reviews" "v" #'forge-list-requested-reviews
+                  :desc "List Authored Pull-requests" "u" #'forge-list-authored-pullreqs
+                  :desc "List Owned Pull-requests" "o" #'forge-list-owned-pullreqs))
+               :desc "SMerge" "m" #'+bl/smerge-repeatedly
+               :desc "Yank current Branch" "k" #'+bl/magit-add-current-branch-to-kill-ring)
 
       (:prefix "s"
        :desc "Fd Dired" "F" #'fd-dired)
@@ -77,20 +78,20 @@
 
       ;; Notes
       (:prefix "n"
-        "e" nil
-        :desc "Org Agenda List" "a" #'org-agenda-list
-        :desc "Org Agenda" "A" #'org-agenda
-        :desc "Org Roam Capture" "c" #'org-roam-capture
-        :desc "Find Node" "f" #'org-roam-node-find
-        :desc "Capture Snippet" "C" #'+bl/org-roam-capture-snippet
-        :desc "Capture Daily" "d" #'org-roam-dailies-capture-today
-        :desc "Capture Inbox" "i" #'+bl/org-roam-capture-inbox
-        :desc "Open Inbox" "I" #'+bl/org-roam-open-inbox
-        :desc "Org Roam Find Node" "n" #'+bl/org-roam-capture-default
-        :desc "Org Capture" "N" #'org-capture
-        :desc "Find Project" "p" #'+bl/org-roam-find-project
-        :desc "Add Project Task" "P" #'+bl/org-roam-capture-project-task
-        :desc "Org Ql Search" "q" #'org-ql-search)
+       "e" nil
+       :desc "Org Agenda List" "a" #'org-agenda-list
+       :desc "Org Agenda" "A" #'org-agenda
+       :desc "Org Roam Capture" "c" #'org-roam-capture
+       :desc "Find Node" "f" #'org-roam-node-find
+       :desc "Capture Snippet" "C" #'+bl/org-roam-capture-snippet
+       :desc "Capture Daily" "d" #'org-roam-dailies-capture-today
+       :desc "Capture Inbox" "i" #'+bl/org-roam-capture-inbox
+       :desc "Open Inbox" "I" #'+bl/org-roam-open-inbox
+       :desc "Org Roam Find Node" "n" #'+bl/org-roam-capture-default
+       :desc "Org Capture" "N" #'org-capture
+       :desc "Find Project" "p" #'+bl/org-roam-find-project
+       :desc "Add Project Task" "P" #'+bl/org-roam-capture-project-task
+       :desc "Org Ql Search" "q" #'org-ql-search)
 
       ;; Open
       (:prefix "o"
@@ -99,9 +100,9 @@
        (:when (modulep! :emacs vc)
          :desc "Browse At Remote" "B" #'browse-at-remote)
        (:when (modulep! :tools prodigy)
-        :desc "Prodigy" "y" #'prodigy)
+         :desc "Prodigy" "y" #'prodigy)
        (:when (modulep! :app rss)
-        :desc "Rss" "s" #'=rss))
+         :desc "Rss" "s" #'=rss))
 
       ;; Project
       (:prefix "p"
@@ -173,21 +174,21 @@
         :desc "Text Properties" "T" #'describe-text-properties
         :desc "What cursor position" "w" #'what-cursor-position)
        (:prefix ("D" . "Doom")
-        (:prefix ("b" . "Bump")
-         :desc "Packages In Buffer" "b" #'doom/bump-packages-in-buffer
-         :desc "Commit Bumps" "c" #'doom/commit-bumps
-         :desc "Module" "m" #'doom/bump-module
-         :desc "Package" "p" #'doom/bump-package
-         :desc "Package At Point" "P" #'doom/bump-package-at-point)
-        :desc "Info" "i" #'doom/info
-        :desc "Issue Tracker" "I" #'doom/issue-tracker
-        :desc "Homepage" "h" #'doom/homepage
-        :desc "News" "n" #'doom/help-news
-        :desc "Discourse" "d" #'doom/discourse
-        :desc "Doom Manual" "D" #'doom/help
-        :desc "Report Bug" "r" #'doom/report-bug
-        :desc "Doom Reload" "R" #'doom/reload
-        :desc "Version" "V" #'doom/version)))
+                (:prefix ("b" . "Bump")
+                 :desc "Packages In Buffer" "b" #'doom/bump-packages-in-buffer
+                 :desc "Commit Bumps" "c" #'doom/commit-bumps
+                 :desc "Module" "m" #'doom/bump-module
+                 :desc "Package" "p" #'doom/bump-package
+                 :desc "Package At Point" "P" #'doom/bump-package-at-point)
+                :desc "Info" "i" #'doom/info
+                :desc "Issue Tracker" "I" #'doom/issue-tracker
+                :desc "Homepage" "h" #'doom/homepage
+                :desc "News" "n" #'doom/help-news
+                :desc "Discourse" "d" #'doom/discourse
+                :desc "Doom Manual" "D" #'doom/help
+                :desc "Report Bug" "r" #'doom/report-bug
+                :desc "Doom Reload" "R" #'doom/reload
+                :desc "Version" "V" #'doom/version)))
 
 (after! magit
   (map! :localleader
@@ -208,9 +209,9 @@
 ;; Bindings with no leader key
 (map!
  (:when (not (modulep! :editor evil))
-  "<A-up>" #'join-line)
+   "<A-up>" #'join-line)
  (:when (modulep! :editor evil)
-  "<A-down>" #'evil-join)
+   "<A-down>" #'evil-join)
 
 
  "<mouse-4>" #'previous-buffer
@@ -228,107 +229,107 @@
  :n "q" nil
 
  (:when (modulep! :editor evil) ;; Cleanup g prefix
-  :nv "gi" nil
-  :nv "g#" nil
-  :nv "g$" nil
-  :nv "g^" nil
-  :nv "ge" nil
-  :nv "gE" nil
-  :nv "g8" nil
-  :nv "gQ" nil
-  :nv "g?" nil
-  :nv "gr" #'+lookup/references
-  :nv "ga" #'evil-avy-goto-char-timer
-  :nv "gb" #'better-jumper-jump-backward
+   :nv "gi" nil
+   :nv "g#" nil
+   :nv "g$" nil
+   :nv "g^" nil
+   :nv "ge" nil
+   :nv "gE" nil
+   :nv "g8" nil
+   :nv "gQ" nil
+   :nv "g?" nil
+   :nv "gr" #'+lookup/references
+   :nv "ga" #'evil-avy-goto-char-timer
+   :nv "gb" #'better-jumper-jump-backward
 
-  :v "s" #'evil-surround-region
+   :v "s" #'evil-surround-region
 
-  (:when (modulep! :ui window-select +numbers)
-   :n "g1" #'winum-select-window-1
-   :n "g2" #'winum-select-window-2
-   :n "g3" #'winum-select-window-3
-   :n "g4" #'winum-select-window-4
-   :n "g5" #'winum-select-window-5
-   :n "g6" #'winum-select-window-6
-   :n "g7" #'winum-select-window-7
-   :n "g8" #'winum-select-window-8
-   :n "g9" #'winum-select-window-9
-   :n "g0" #'winum-select-window-0-or-10))
+   (:when (modulep! :ui window-select +numbers)
+     :n "g1" #'winum-select-window-1
+     :n "g2" #'winum-select-window-2
+     :n "g3" #'winum-select-window-3
+     :n "g4" #'winum-select-window-4
+     :n "g5" #'winum-select-window-5
+     :n "g6" #'winum-select-window-6
+     :n "g7" #'winum-select-window-7
+     :n "g8" #'winum-select-window-8
+     :n "g9" #'winum-select-window-9
+     :n "g0" #'winum-select-window-0-or-10))
  (:after magit
-  (:map magit-status-mode-map
-   :n "yu" #'+bl/kill-url-to-commit-at-point
-   :n "X" #'magit-reset
-   :n "o" #'magit-submodule
-   :n "O" #'magit-subtree
-   "C-j" #'magit-section-forward-sibling
-   "C-k" #'magit-section-backward-sibling)
-  (:map magit-revision-mode-map
-   :n "yu" #'+bl/kill-url-to-commit-at-point))
-  ;; (:map magit-log-mode-map
-  ;;  :n "yu" #'+bl/kill-url-to-commit-at-point)
-  ;; (:map  magit-todos-item-section-map
-  ;;  "b" nil
-  ;;  "B" #'magit-todos-branch-list-toggle)
-  ;; (:map magit-todos-section-map
-  ;;  "b" nil
-  ;;  "B" #'magit-todos-branch-list-toggle))
+         (:map magit-status-mode-map
+          :n "yu" #'+bl/kill-url-to-commit-at-point
+          :n "X" #'magit-reset
+          :n "o" #'magit-submodule
+          :n "O" #'magit-subtree
+          "C-j" #'magit-section-forward-sibling
+          "C-k" #'magit-section-backward-sibling)
+         (:map magit-revision-mode-map
+          :n "yu" #'+bl/kill-url-to-commit-at-point))
+ ;; (:map magit-log-mode-map
+ ;;  :n "yu" #'+bl/kill-url-to-commit-at-point)
+ ;; (:map  magit-todos-item-section-map
+ ;;  "b" nil
+ ;;  "B" #'magit-todos-branch-list-toggle)
+ ;; (:map magit-todos-section-map
+ ;;  "b" nil
+ ;;  "B" #'magit-todos-branch-list-toggle))
  (:after (forge code-review)
-  (:map magit-status-mode-map
-   "C-c C-r" #'+magit/start-code-review
-   "C-c C-t" #'forge-toggle-display-in-status-buffer)
-  (:map forge-pullreq-list-mode-map
-   "C-c C-r" #'+magit/start-code-review)
-  (:map forge-topic-mode-map
-   "r" #'+magit/start-code-review)
-  (:map code-review-feedback-section-map
-   "x" #'code-review-delete-feedback)
-  (:map code-review-local-comment-section-map
-   "x" #'code-review-section-delete-comment)
-  (:map code-review-reply-comment-section-map
-   "x" #'code-review-section-delete-comment)
-  (:map code-review-mode-map
-   :n "gr" #'code-review-reload))
+         (:map magit-status-mode-map
+               "C-c C-r" #'+magit/start-code-review
+               "C-c C-t" #'forge-toggle-display-in-status-buffer)
+         (:map forge-pullreq-list-mode-map
+               "C-c C-r" #'+magit/start-code-review)
+         (:map forge-topic-mode-map
+               "r" #'+magit/start-code-review)
+         (:map code-review-feedback-section-map
+               "x" #'code-review-delete-feedback)
+         (:map code-review-local-comment-section-map
+               "x" #'code-review-section-delete-comment)
+         (:map code-review-reply-comment-section-map
+               "x" #'code-review-section-delete-comment)
+         (:map code-review-mode-map
+          :n "gr" #'code-review-reload))
  (:after flyspell
-  (:map flyspell-mode-map
-   :ngi "M-i" #'flyspell-correct-wrapper))
+         (:map flyspell-mode-map
+          :ngi "M-i" #'flyspell-correct-wrapper))
  (:after (projectile cc-mode)
-  (:map c++-mode-map
-   :n "go" #'+bl/toggle-header-source
-   :ngi "<A-tab>" #'+bl/toggle-header-source))
+         (:map c++-mode-map
+          :n "go" #'+bl/toggle-header-source
+          :ngi "<A-tab>" #'+bl/toggle-header-source))
  (:after projectile
   :ngi "M-o" #'projectile-find-file-dwim)
  (:after smartparens
-  (:map smartparens-mode-map
-   :n "gF" #'sp-forward-sexp
-   :n "gB" #'sp-backward-sexp
-   :ngi "C-<right>" #'sp-forward-slurp-sexp
-   :ngi "C-<left>" #'sp-forward-barf-sexp
-   :ngi "C-M-<right>" #'sp-backward-slurp-sexp
-   :ngi "C-M-<left>" #'sp-backward-barf-sexp))
+         (:map smartparens-mode-map
+          :n "gF" #'sp-forward-sexp
+          :n "gB" #'sp-backward-sexp
+          :ngi "C-<right>" #'sp-forward-slurp-sexp
+          :ngi "C-<left>" #'sp-forward-barf-sexp
+          :ngi "C-M-<right>" #'sp-backward-slurp-sexp
+          :ngi "C-M-<left>" #'sp-backward-barf-sexp))
  (:after org-mode
-  (:map org-mode-map
-   "C-M-i" #'completion-at-point))
+         (:map org-mode-map
+               "C-M-i" #'completion-at-point))
  (:after lsp-mode
-  (:map lsp-mode-map
-   :ngi "<A-return>" #'lsp-execute-code-action))
+         (:map lsp-mode-map
+          :ngi "<A-return>" #'lsp-execute-code-action))
  (:map lsp-ui-peek-mode-map
-  "<tab>" #'lsp-ui-peek--toggle-file)
+       "<tab>" #'lsp-ui-peek--toggle-file)
  (:after ranger
-  (:map ranger-mode-map
-   [escape] #'ranger-close))
+         (:map ranger-mode-map
+               [escape] #'ranger-close))
  (:after ibuffer
-  (:map ibuffer-mode-map
-   :n [escape] #'kill-current-buffer))
+         (:map ibuffer-mode-map
+          :n [escape] #'kill-current-buffer))
  (:after org-agenda
-  (:map org-agenda-mode-map
-   [escape] #'+popup/quit-window
-   :ng "q" #'+popup/quit-window))
+         (:map org-agenda-mode-map
+          [escape] #'+popup/quit-window
+          :ng "q" #'+popup/quit-window))
  (:after org-roam
-  (:map org-mode-map
-   :ngvi "M-n" #'+bl/org-roam-node-insert-immediate))
+         (:map org-mode-map
+          :ngvi "M-n" #'+bl/org-roam-node-insert-immediate))
  (:after tabulated-list
-  (:map tabulated-list-mode-map
-   :ng "q" #'quit-window)))
+         (:map tabulated-list-mode-map
+          :ng "q" #'quit-window)))
 
 (after! which-key
   (pushnew! which-key-replacement-alist

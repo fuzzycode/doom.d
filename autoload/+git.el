@@ -46,7 +46,7 @@ text should/could be inserted."
     (if branch
         (progn (kill-new branch)
                (message "%s" branch))
-      (user-error "There is not current branch"))))
+      (user-error "There is no current branch"))))
 
 
 ;;;###autoload
@@ -81,17 +81,25 @@ text should/could be inserted."
       (message "No commit found at point"))))
 
 ;;;###autoload
-(defun +bl/smerge-repeatedly ()
-  "Perform smerge actions again and again"
-  (interactive)
-  (unless (and (not smerge-mode) (called-interactively-p 'any))
-    (smerge-mode 1))
-  (call-interactively smerge-transient))
-
-;;;###autoload
 (defun +bl/maybe-show-smerge-transient-h ()
   (when smerge-mode
-    (+bl/smerge-repeatedly)))
+    (call-interactively 'smerge-transient)))
 
 ;;;###autoload
 (add-hook 'magit-diff-visit-file-hook #'+bl/maybe-show-smerge-transient-h)
+
+;;;###autoload
+(defun +bl/maybe-show-time-machine-transient-h ()
+  (when git-timemachine-mode
+    (call-interactively 'git-timemachine-transient)))
+
+;;;###autoload
+(add-hook 'git-timemachine-mode-hook #'+bl/maybe-show-time-machine-transient-h)
+
+;;;###autoload
+(defun +bl/maybe-show-blame-transient-h ()
+  (when magit-blame-mode
+    (call-interactively 'magit-blame-transient)))
+
+;;;###autoload
+(add-hook 'magit-blame-mode-hook #'+bl/maybe-show-blame-transient-h)

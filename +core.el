@@ -42,7 +42,7 @@
         doom-modeline-major-mode-icon (display-graphic-p)
         doom-modeline-major-mode-color-icon (display-graphic-p)
         doom-modeline-indent-info t
-        doom-modeline-checker-simple-format nil
+        doom-modeline-check-simple-format nil
         doom-modeline-buffer-file-name-style 'truncate-with-project
         doom-modeline-persp-name t
         doom-modeline-vcs-max-length 60))
@@ -162,7 +162,6 @@
   (setq magit-revision-show-gravatars t)
 
   (magit-wip-after-save-mode)
-  (transient-bind-q-to-quit)
 
   (add-to-list 'magit-no-confirm 'stage-all-changes)
   (add-to-list 'magit-no-confirm 'trash)
@@ -219,28 +218,95 @@
                             'magit-insert-modules-overview)))
 
 (after! transient
-  (transient-define-prefix smerge-transient ()
-    "SMerge controlls"
-    [["Move"
-      ("n" "next" (lambda () (interactive) (ignore-errors (smerge-next)) (+bl/smerge-repeatedly)))
-      ("p" "previous" (lambda () (interactive) (ignore-errors (smerge-prev)) (+bl/smerge-repeatedly)))]
-     ["Keep"
-      ("b" "base" (lambda () (interactive) (ignore-errors (smerge-keep-base)) (+bl/smerge-repeatedly)))
-      ("u" "upper" (lambda () (interactive) (ignore-errors (smerge-keep-upper)) (+bl/smerge-repeatedly)))
-      ("l" "lower" (lambda () (interactive) (ignore-errors (smerge-keep-lower)) (+bl/smerge-repeatedly)))
-      ("a" "all" (lambda () (interactive) (ignore-errors (smerge-keep-all)) (+bl/smerge-repeatedly)))
-      ("RET" "current" (lambda () (interactive) (ignore-errors (smerge-keep-current)) (+bl/smerge-repeatedly)))]
-     ["Diff"
-      ("<" "upper/base" (lambda () (interactive) (ignore-errors (smerge-diff-base-upper)) (+bl/smerge-repeatedly)))
-      ("=" "upper/lower" (lambda () (interactive) (ignore-errors (smerge-diff-upper-lower)) (+bl/smerge-repeatedly)))
-      (">" "base/lower" (lambda () (interactive) (ignore-errors (smerge-diff-base-lower)) (+bl/smerge-repeatedly)))
-      ("R" "refine" (lambda () (interactive) (ignore-errors (smerge-refine)) (+bl/smerge-repeatedly)))
-      ("E" "ediff" (lambda () (interactive) (ignore-errors (smerge-ediff))))]
-     ["Other"
-      ("c" "combine" (lambda () (interactive) (ignore-errors (smerge-combine-with-next)) (+bl/smerge-repeatedly)))
-      ("r" "resolve" (lambda () (interactive) (ignore-errors (smerge-resolve)) (+bl/smerge-repeatedly)))
-      ("k" "kill current" (lambda () (interactive) (ignore-errors (smerge-kill-current)) (+bl/smerge-repeatedly)))
-      ("q" "quit" (lambda () (interactive) (smerge-auto-leave)))]]))
+  (transient-bind-q-to-quit)
+
+  (defvar +bl/transient--exit-function nil
+    "Temporarily store the cleanup function to use when exiting a transient")
+  
+  (transient-define-prefix text-zoom-transient ()
+    "Text Size Controlls"
+    :transient-suffix 'transient--do-stay
+    [["Size"
+      ("j" "Increase" doom/increase-font-size)
+      ("k" "Decrease" doom/decrease-font-size)
+      ("0" "Reset" doom/reset-font-size :transient transient--do-quit-one)]
+     ["Toggle"
+      ("B" "Big Font" doom-big-font-mode :transient transient--do-quit-one)]])
+
+  (transient-define-prefix git-timemachine-transient ()
+    "Git Time Machine"
+    :transient-suffix 'transient--do-stay
+    [["Show Revision"
+      ("c" "Current Revision" git-timemachine-show-current-revision )
+      ("g" "Nth Revision" git-timemachine-show-nth-revision)
+      ("p" "Previous Revision" git-timemachine-show-previous-revision)
+      ("n" "Next Revision" git-timemachine-show-next-revision)
+      ("N" "Previous Revision" git-timemachine-show-previous-revision)]
+     ["Copy Revision"
+      ("y" "Abbreviated Revision" git-timemachine-kill-abbreviated-revision)
+      ("Y" "Full Revision" git-timemachine-kill-revision)]]
+    (interactive)
+    (let ((cleanup (lambda ()
+                     (when git-timemachine-mode
+                       (call-interactively 'git-timemachine-quit))
+                     (remove-hook 'transient-exit-hook +bl/transient--exit-function)
+                     (setq +bl/transient--exit-function nil))))
+      (setq +bl/transient--exit-function cleanup)
+      (add-hook 'transient-exit-hook cleanup))
+    (transient-setup 'git-timemachine-transient))
+
+  (transient-define-prefix magit-blame-transient ()
+    "Git Blame"
+    :transient-suffix 'transient--do-quit-one
+    [["Blame"
+      ("b" "Blame Further" magit-blame-addition :transient transient--do-stay)]
+     ["Copy"
+      ("y" "Revision" magit-blame-copy-hash)]]
+     (interactive)
+     (let ((cleanup (lambda ()
+                      (when magit-blame-mode
+                        (call-interactively 'magit-blame-quit))
+                      (remove-hook 'transient-exit-hook +bl/transient--exit-function)
+                      (setq +bl/transient--exit-function nil))))
+       (setq +bl/transient--exit-function cleanup)
+       (add-hook 'transient-exit-hook cleanup))
+     (transient-setup 'magit-blame-transient))
+
+    (transient-define-prefix smerge-transient ()
+      "SMerge controlls"
+      :transient-suffix 'transient--do-stay
+      [["Move"
+        ("n" "Next" smerge-next)
+        ("N" "Next(All Files)" smerge-vc-next-conflict)
+        ("p" "Previous" smerge-prev)]
+       ["Keep"
+        ("b" "Base" smerge-keep-base)
+        ("u" "Upper(Mine)" smerge-keep-upper)
+        ("l" "Lower(Other)" smerge-keep-lower)
+        ("a" "All" smerge-keep-all)
+        ("RET" "Current" smerge-keep-current)]
+       ["Diff"
+        ("<" "Base/Upper" smerge-diff-base-upper)
+        ("=" "Upper/Lower" smerge-diff-upper-lower)
+        (">" "Base/Lower" smerge-diff-base-lower)
+        ("F" "Refine" smerge-refine)
+        ("E" "Ediff" smerge-ediff)]
+       ["Other"
+        ("c" "Combine" smerge-combine-with-next)
+        ("C" "Auto Combine" smerge-auto-combine)
+        ("r" "Resolve" smerge-resolve)
+        ("R" "Resolve All" smerge-resolve-all)
+        ("k" "Kill Current" smerge-kill-current)]]
+      (interactive)
+      (let ((cleanup (lambda ()
+                       (when smerge-mode
+                         (smerge-mode -1))
+                       (remove-hook 'transient-exit-hook +bl/transient--exit-function)
+                       (setq +bl/transient--exit-function nil))))
+        (setq +bl/transient--exit-function cleanup)
+        (add-hook 'transient-exit-hook cleanup))
+      (transient-setup 'smerge-transient))
+)
 
 (after! (magit transient)
   (transient-define-suffix magit-submodule-update-all (args)
