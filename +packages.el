@@ -197,19 +197,6 @@
   :when (modulep! :editor evil)
   :after evil)
 
-(use-package! mu4e-views
-  :when (modulep! :email mu4e)
-  :after mu4e
-  :if (featurep 'xwidget-internal) ;; Test if emacs is built with xwidget support
-  :init (setq mu4e-views-default-view-method "html"
-              mu4e-views-next-previous-message-behaviour #'stick-to-current-window)
-  :config (mu4e-views-mu4e-use-view-msg-method "html"))
-
-(use-package mu4e-maildirs-extension
-  :when (modulep! :email mu4e)
-  :after mu4e
-  :config (mu4e-maildirs-extension-load))
-
 (use-package! string-inflection
   :defer t
   :init (map! (:leader

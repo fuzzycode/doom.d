@@ -95,9 +95,6 @@
        (web +lsp +tree-sitter)
        (yaml +lsp +tree-sitter)
 
-       :email
-       (:if (executable-find "mu") mu4e)
-
        :app
        (rss +org)
 

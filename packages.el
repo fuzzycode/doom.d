@@ -40,14 +40,6 @@
   (package! inspector :pin "7fd65dddac9875c2e30e364b8702c0d72915c3ac")
   (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
-;; MAIL
-(when (modulep! :email mu4e)
-  (package! mu4e-maildirs-extension :pin "df5a7540d5eb55380417fb29694e97b064a4078f"))
-
-(when (and (modulep! :email mu4e)
-           (featurep 'xwidget-internal))
-  (package! mu4e-views :pin "e0f60e314d034e02fbc3696c3cb9e3598eed9070"))
-
 (when (modulep! :emacs dired)
   (package! dired+ :pin "d75d3d390b119b21016e5d0aaa2b78aeafba6cf3"))
 
