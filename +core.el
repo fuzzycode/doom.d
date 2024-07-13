@@ -229,11 +229,18 @@
 
   (transient-define-prefix magit-blame-transient ()
     "Git Blame"
-    :transient-suffix 'transient--do-quit-one
+    :transient-suffix 'transient--do-stay
     [["Blame"
-      ("b" "Blame Further" magit-blame-addition :transient transient--do-stay)]
-     ["Copy"
-      ("y" "Revision" magit-blame-copy-hash)]]
+      ("b" "Blame Further" magit-blame-addition)]
+     ["Move"
+      ("n" "Next Chunk" magit-blame-next-chunk)
+      ("N" "Next Chunk(Same Commit)" magit-blame-next-chunk-same-commit)
+      ("p" "Previous Chunk" magit-blame-previous-chunk)
+      ("P" "Previous Chunk(Same Commit)" magit-blame-previous-chunk-same-commit)]
+     ["Other"
+      ("c" "Cycle Style" magit-blame-cycle-style)
+      ("y" "Copy Revision" magit-blame-copy-hash :transient transient--do-quit-one)
+      ("v" "Visit Blob" magit-blame-visit-file :transient transient--do-quit-one)]]
      (interactive)
      (let ((cleanup (lambda ()
                       (when magit-blame-mode
