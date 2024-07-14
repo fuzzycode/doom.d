@@ -31,7 +31,7 @@
        :editor
        (evil +everywhere)
        file-templates
-       format
+       (format +lsp)
        multiple-cursors
        rotate-text
        snippets
@@ -65,7 +65,7 @@
        upload
 
        :checkers
-       syntax
+       (syntax +icons)
        grammar
        (spell +everywhere +flyspell
               (:cond ((executable-find "enchant-2") +enchant)
