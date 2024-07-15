@@ -103,3 +103,12 @@ text should/could be inserted."
 
 ;;;###autoload
 (add-hook 'magit-blame-mode-hook #'+bl/maybe-show-blame-transient-h)
+
+;;;###autoload
+(defadvice! +bl/smerge-recenter-after-move-a (&rest _)
+  :after #'smerge-next
+  :after #'smerge-prev
+  (save-excursion
+    (beginning-of-line)
+    (when (looking-at smerge-begin-re)
+      (recenter))))
