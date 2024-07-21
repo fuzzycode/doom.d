@@ -8,7 +8,7 @@
 
 ;;;###autoload
 (defun +bl/uniquify-lines-buffer ()
-  "Uniwuify lines in whole buffer"
+  "Uniquify lines in whole buffer"
   (interactive)
   (save-excursion
     (set-mark (point-min))
