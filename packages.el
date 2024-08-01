@@ -58,6 +58,7 @@
 (package! string-inflection :pin "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
 (package! ialign :pin "1195901aa0c44812ba03b869b199ebbe0e840ae3")
 (package! deadgrep :pin "eafc642c551e6d5df7eb1fee9aa7596e59811178")
+(package! copy-as-format :pin "b9f6f725ca9701c5a02bfb479573fdfcce2e1e30")
 
 (package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
 (package! dall-e-shell)

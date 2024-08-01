@@ -10,6 +10,9 @@
       "h" nil ;; I am used to my setup of help so I will use that
       ":" nil
       "<SPC>" nil
+      "y" nil
+
+      (:prefix ("y" . "Yank"))
 
       ;; Remove deft keybinding if not using
       (:unless (modulep! :ui deft)

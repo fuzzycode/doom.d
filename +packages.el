@@ -97,6 +97,17 @@
   (add-to-list 'hardhat-fullpath-editable-regexps ".*COMMIT_EDITMSG$")
   (add-to-list 'hardhat-fullpath-editable-regexps ".+/\\.git/.+/magit/posts/.+"))
 
+(use-package! copy-as-format
+  :defer t
+  :init (map! (:leader (:prefix "y"
+                        :desc "Copy As Format" "y" #'copy-as-format
+                        :desc "Copy As Github" "g" #'copy-as-format-github
+                        :desc "Copy As Slack" "s" #'copy-as-format-slack
+                        :desc "Copy As Markdown" "m" #'copy-as-format-markdown
+                        :desc "Copy As Org-mode" "o" #'copy-as-format-org-mode)))
+  :config (setq copy-as-format-default "github"))
+
+
 (use-package! subword
   :hook (prog-mode . subword-mode))
 
