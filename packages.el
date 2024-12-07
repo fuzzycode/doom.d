@@ -7,7 +7,7 @@
 
 
 ;; C++
-(package! ninja-mode :recipe (:files ("*.el")) :pin "ad50063a99d52f882ceb71979a9926a9f5e3b974")
+(package! ninja-mode :recipe (:files ("*.el"))  :pin "573c3aaedc6e90e9a8954bb70a24e079af7df390")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
 (package! tspew :recipe (:host github :repo "jefftrull/tspew" :files ("*.el")))
 
@@ -20,7 +20,7 @@
   (when (featurep :system 'windows)
     (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
   (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
-  (package! magit-imerge :pin "34a057b452de7f856fd3bdef4a9e34309d2be9dc")
+  (package! magit-imerge :pin "e9955c3b4dac2661f67d9882ed3367471e529cfc")
   (package! magit-lfs :pin "cd9f46e1840270be27e2c2d9dcf036ff0781f66d")
   (package! rigid-tabs :pin "c05d4c692fbda3859fb764b673c4c52b7d6cd3e5")
   (package! gitignore-templates :pin "d28cd1cec00242b688861648d36d086818b06099"))
@@ -28,20 +28,20 @@
 ;;ORG
 (when (modulep! :lang org)
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
-  (package! org-super-agenda :pin "51c9da5ce7b791150758984bab469d2222516844")
-  (package! vulpea :pin "e1ea8480daf3e480effdd7ba3799126295a4a59a")
-  (package! org-make-toc :pin "3ac2024694a9f974a7d263748642182fc7e829d1")
-  (package! org-ql :pin "c9370982bfd4df04b590762bd795a7da3012c4dd")
+  (package! org-super-agenda :pin "c07e35416ce749b42cbb70ff8d4e814362111bb5")
+  (package! vulpea :pin "f5c7a68b5308336927d24a166681a2a1903289c3")
+  (package! org-make-toc :pin "5f0f39b11c091a5abf49ddf78a6f740252920f78")
+  (package! org-ql :pin "98c62ab0a6c084ae4132110e24d9fe1ace91d363")
   (package! ox-gfm :pin "4f774f13d34b3db9ea4ddb0b1edc070b1526ccbb")
-  (package! ox-asciidoc :pin "d6736852a5479c73c253d2ea8b352dcb232d02f8"))
+  (package! ox-asciidoc :pin "a8d49c44cc9aa8a3f384155f0ae052dbf36df00c"))
 
 ;;ELISP
 (when (modulep! :lang emacs-lisp)
-  (package! inspector :pin "7fd65dddac9875c2e30e364b8702c0d72915c3ac")
+  (package! inspector :pin "49b106f38e75b290911ecc3e3e582c2fc8cda792")
   (package! eval-sexp-fu :pin "36d2fe3bcf602e15ca10a7f487da103515ef391a"))
 
 (when (modulep! :emacs dired)
-  (package! dired+ :pin "d75d3d390b119b21016e5d0aaa2b78aeafba6cf3"))
+  (package! dired+ :pin "0e7f906ec8254646caa154433436958122338799"))
 
 (package! swedish-holidays :recipe (:host github :repo "fuzzycode/swedish-holidays"))
 (package! lang-mode :recipe (:host github :repo "fuzzycode/lang-mode"))
@@ -50,14 +50,14 @@
 (package! sort-words :pin "7b6e108f80237363faf7ec28b2c58dec270b8601")
 (package! smart-backspace :pin "a10ec44ff325ec8c4c98b1a6e44e89e60a9aa4ac")
 (package! open-junk-file :pin "558bec7372b0fed4c4cb6074ab906535fae615bd")
-(package! pandoc-mode :pin "c7fa568ab9cfbb2abfb9b22f419d28ce570d7b22")
+(package! pandoc-mode :pin "c0e77f36307ae417cceae2f15c6bab4f927bb6f0")
 (package! centered-cursor-mode :pin "67ef719e685407dbc455c7430765e4e685fd95a9")
-(package! ssh-config-mode :pin "d560a0876a93ad4130baf33dae1b9405ad37a405")
+(package! ssh-config-mode :pin "2d8e321c34a7535ae6dd0f6a1b0fd54e47aba612")
 (package! smart-newline :pin "0553a9e4be7188352de1a28f2eddfd28e7436f94")
 (package! hardhat :pin "908cb130be3d56921a3687a00b974ba5eef3a11f")
-(package! string-inflection :pin "50ad54970b3cc79b6b83979bde9889ad9a9e1a9c")
-(package! ialign :pin "1195901aa0c44812ba03b869b199ebbe0e840ae3")
-(package! deadgrep :pin "eafc642c551e6d5df7eb1fee9aa7596e59811178")
+(package! string-inflection :pin "617df25e91351feffe6aff4d9e4724733449d608")
+(package! ialign :pin "fd1ad6bae74961e0b6bdf0bd15e6d9679186aaed")
+(package! deadgrep :pin "d89468d82abb778ef0938c5753be4498d5802a10")
 (package! copy-as-format :pin "b9f6f725ca9701c5a02bfb479573fdfcce2e1e30")
 
 (package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
