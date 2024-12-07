@@ -92,7 +92,7 @@
        (rust +lsp +tree-sitter)
        rst
        (sh +lsp +tree-sitter +fish +powershell)
-       scheme
+       (scheme +racket)
        (web +lsp +tree-sitter)
        (yaml +lsp +tree-sitter)
 
