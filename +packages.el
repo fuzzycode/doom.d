@@ -188,9 +188,10 @@
 (use-package! chatgpt-shell
   :defer t
   :init (setq shell-maker-history-path doom-data-dir
-              chatgpt-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com")))
+              chatgpt-shell-google-key (lambda () (auth-source-pick-first-password :host "Google AI API Key" :user "password"))
+              chatgpt-shell-openai-key (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
 
-  (set-popup-rule! "^\\*chatgpt\\*$" :side 'bottom :size .5 :select t :quit 'current)
+  (set-popup-rule! "^\\*\\(chatgpt\\|gemini\\).*$" :side 'bottom :size .5 :select t :quit 'current)
 
   (map! :leader
         (:prefix "o"
@@ -204,7 +205,7 @@
 
 (use-package! dall-e-shell
   :defer t
-  :init (setq dall-e-shell-openai-key (lambda () (auth-source-pick-first-password :host "api.openai.com")))
+  :init (setq dall-e-shell-openai-key (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
   (map! :leader (:prefix "o"
                          :desc "Dall-E Shell" "C" #'dall-e-shell))
   (set-popup-rule! "^\\*dall-e\\*$" :side 'bottom :size .5 :select t :quit 'current))
@@ -275,6 +276,16 @@
                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
 
 ;; ORG
+(use-package! ob-chatgpt-shell
+  :when (modulep! :lang org)
+  :defer t
+  :hook (org-mode . ob-chatgpt-shell-setup))
+
+(use-package! ob-dall-e-shell
+  :when (modulep! :lang org)
+  :defer t
+  :hook (org-mode . ob-dall-e-shell-setup))
+
 (use-package! org-block-capf
   :when (modulep! :lang org)
   :hook (org-mode . org-block-capf-add-to-completion-at-point-functions))
