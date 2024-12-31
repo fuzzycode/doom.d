@@ -270,6 +270,10 @@
                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
 
 ;; ORG
+(use-package! org-block-capf
+  :when (modulep! :lang org)
+  :hook (org-mode . org-block-capf-add-to-completion-at-point-functions))
+
 (use-package! ob-mermaid
   :defer t)
 

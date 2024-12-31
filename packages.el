@@ -27,6 +27,7 @@
 
 ;;ORG
 (when (modulep! :lang org)
+  (package! org-block-capf :recipe (:host github :repo "xenodium/org-block-capf") :pin "080cfd2ed630a6739633b07a8ab6b896a1b5ef4a")
   (package! ob-mermaid :pin "a6cf080da59500ad6764db78e4b2771bc479b8e6")
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
   (package! org-super-agenda :pin "c07e35416ce749b42cbb70ff8d4e814362111bb5")
