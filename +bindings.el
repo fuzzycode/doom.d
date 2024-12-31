@@ -231,6 +231,8 @@
  "C-u" #'undo-fu-only-undo
  "C-j" #'evil-scroll-down
  "C-k" #'evil-scroll-up
+ "M-g" #'avy-goto-line
+ "M-g M-g" #'avy-goto-line
 
  :n "D" #'+lookup:dash
  :ng "M-." #'+lookup/definition
