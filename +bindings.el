@@ -29,6 +29,11 @@
 
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
       (:prefix ("x" . "text")
+       (:prefix ("n" . "narrow")
+        :nv "r" #'narrow-to-region
+        :nv "d" #'narrow-to-defun
+        :nv "p" #'narrow-to-page
+        :nv "w" #'widen)
        :desc "Scale" "z" #'text-zoom-transient
        (:when (modulep! :editor rotate-text)
          :desc "Rotate text" "r" #'rotate-text))
