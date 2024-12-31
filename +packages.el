@@ -204,6 +204,11 @@
                          :desc "Dall-E Shell" "C" #'dall-e-shell))
   (set-popup-rule! "^\\*dall-e\\*$" :side 'bottom :size .5 :select t :quit 'current))
 
+(use-package! mermaid-ts-mode
+  :defer t
+  :init (after! ob
+          (add-to-list 'org-src-lang-modes '("mermaid" . mermaid-ts))))
+
 (use-package! evil-textobj-line
   :when (modulep! :editor evil)
   :after evil)
@@ -265,6 +270,9 @@
                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
 
 ;; ORG
+(use-package! ob-mermaid
+  :defer t)
+
 (use-package! swedish-holidays
   :when (modulep! :lang org)
   :after calendar

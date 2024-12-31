@@ -27,6 +27,7 @@
 
 ;;ORG
 (when (modulep! :lang org)
+  (package! ob-mermaid :pin "a6cf080da59500ad6764db78e4b2771bc479b8e6")
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
   (package! org-super-agenda :pin "c07e35416ce749b42cbb70ff8d4e814362111bb5")
   (package! vulpea :pin "f5c7a68b5308336927d24a166681a2a1903289c3")
@@ -59,6 +60,7 @@
 (package! ialign :pin "fd1ad6bae74961e0b6bdf0bd15e6d9679186aaed")
 (package! deadgrep :pin "d89468d82abb778ef0938c5753be4498d5802a10")
 (package! copy-as-format :pin "b9f6f725ca9701c5a02bfb479573fdfcce2e1e30")
+(package! mermaid-ts-mode  :pin "4f95d4544d5ca2d48ab93c0a133c48d94aed86d3")
 
 (package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
 (package! dall-e-shell)
