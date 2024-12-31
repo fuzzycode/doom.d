@@ -9,7 +9,7 @@
 ;; C++
 (package! ninja-mode :recipe (:files ("*.el"))  :pin "573c3aaedc6e90e9a8954bb70a24e079af7df390")
 (package! ff-c-style :recipe (:host github :repo "fuzzycode/ff-c-style"))
-(package! tspew :recipe (:host github :repo "jefftrull/tspew" :files ("*.el")))
+(package! tspew :recipe (:host github :repo "jefftrull/tspew" :files ("*.el"))) ;;Improve template error messages
 
 (package! shader-mode :pin "fe5a1982ba69e4a98b834141a46a1908f132df15") ;; This is also a part of the csharp module but I only want this package from it
 (package! metal-mode :recipe (:host github :repo "masfj/metal-mode") :pin "686ad916f53589d59797613c1050922dd424d492")
