@@ -87,6 +87,11 @@
 (use-package! ssh-config-mode
   :defer t)
 
+(use-package! auth-source-1password
+  :defer t
+  :init (setq auth-source-1password-vault "Development")
+  :hook (doom-first-input . auth-source-1password-enable))
+
 (use-package! hardhat
   :defer t
   :init (setq hardhat-less-feedback t)
