@@ -281,6 +281,12 @@
   :defer t
   :hook (org-mode . ob-chatgpt-shell-setup))
 
+(use-package! org-auto-tangle
+  :when (modulep! :lang org)
+  :defer t
+  :init (setq org-auto-tangle-default t)
+  :hook (org-mode . org-auto-tangle-mode))
+
 (use-package! ob-dall-e-shell
   :when (modulep! :lang org)
   :defer t
