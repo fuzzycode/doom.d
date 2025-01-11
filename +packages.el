@@ -23,25 +23,20 @@
   :init (map! (:leader (:prefix "p" :desc "Deadgrep Project" "G" #'deadgrep)
                        (:prefix "s" :desc "Deadgrep Directory" "G" #'+bl/deadgrep-directory)))
   :config
+  (set-popup-rule! "^\\*deadgrep.*$" :side 'right :size .5 :select t :quit 'current :modeline t)
   (when (modulep! :editor evil)
     (+evil-collection-init 'deadgrep))
-  (map! (:map deadgrep-edit-mode-map
+  (map! (:map deadgrep-mode-map
               (:prefix "g"
                :n "o" #'deadgrep-visit-result
                :n "O" #'deadgrep-visit-result-other-window)
-              :n "C-j" #'deadgrep-forward-filename
-              :n "C-k" #'deadgrep-backward-filename
-              :nvg "C-c C-c" #'deadgrep-mode
-              :n [escape] #'deadgrep-mode
-              :n "q" #'deadgrep-mode)
-        (:map deadgrep-mode-map
-              (:prefix "g"
-               :n "o" #'deadgrep-visit-result
-               :n "O" #'deadgrep-visit-result-other-window)
-              :n "C-j" #'deadgrep-forward-filename
-              :n "C-k" #'deadgrep-backward-filename
-              :n "C-c C-e" #'deadgrep-edit-mode
+              :nv "C-j" #'deadgrep-forward-filename
+              :nv "C-k" #'deadgrep-backward-filename
+              :n "C-c C-e" #'wgrep-change-to-wgrep-mode
               :n [escape] #'quit-window)))
+
+(use-package! wgrep-deadgrep
+  :after deadgrep)
 
 (use-package! ialign
   :defer t

@@ -63,6 +63,7 @@
 (package! string-inflection :pin "617df25e91351feffe6aff4d9e4724733449d608")
 (package! ialign :pin "fd1ad6bae74961e0b6bdf0bd15e6d9679186aaed")
 (package! deadgrep :pin "d89468d82abb778ef0938c5753be4498d5802a10")
+(package! wgrep-deadgrep :pin "49f09ab9b706d2312cab1199e1eeb1bcd3f27f6f")
 (package! copy-as-format :pin "b9f6f725ca9701c5a02bfb479573fdfcce2e1e30")
 (package! auth-source-1password :pin "7bb8ad3507c58cc642b2ebbd7e57a91efab80e14")
 (package! mermaid-ts-mode  :pin "4f95d4544d5ca2d48ab93c0a133c48d94aed86d3")
