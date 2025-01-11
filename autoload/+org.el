@@ -304,3 +304,13 @@ and slug and make it more user friendly to read."
 
 ;;;###autoload
 (add-hook 'org-mode-hook #'flyspell-mode)
+
+;;;###autoload
+(defun +bl/insert-todays-date (prefix)
+  ""
+  (interactive "P")
+  (let ((format (cond
+                 ((not prefix) '("[%s]" "%Y-%m-%d"))
+                 ((equal prefix '(4)) '("<%s>" "%Y-%m-%d"))
+                 ((equal prefix '(16)) '("%s" "%A, %B %d, %Y")))))
+    (insert (format (first format) (format-time-string (car (last format)))))))
