@@ -82,7 +82,9 @@
 
 (after! evil
   (setq evil-want-fine-undo t
-        evil-kill-on-visual-paste nil))
+        evil-kill-on-visual-paste nil
+        evil-insert-state-message nil
+        evil-visual-state-message nil))
 
 (after! evil-surround
   (let ((pairs '((?g "$" . "$")
