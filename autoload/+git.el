@@ -112,3 +112,18 @@ text should/could be inserted."
     (beginning-of-line)
     (when (looking-at smerge-begin-re)
       (recenter))))
+
+;;;###autoload
+(defun +bl/ediff-copy-both-to-c ()
+  "Add both A and B to the resulting C buffer. Accepting both changes."
+  (interactive)
+  (ediff-copy-diff ediff-current-difference nil 'C nil
+                   (concat
+                    (ediff-get-region-contents ediff-current-difference 'A ediff-control-buffer)
+                    (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
+
+;;;###autoload
+(defun +bl/add-c-to-ediff-mode-map-h () (define-key ediff-mode-map (kbd "c") #'+bl/ediff-copy-both-to-c))
+
+;;;###autoload
+(add-hook 'ediff-keymap-setup-hook #'+bl/add-c-to-ediff-mode-map-h)
