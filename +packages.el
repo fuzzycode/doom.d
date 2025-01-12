@@ -52,11 +52,9 @@
   :defer t
   :when (modulep! :ui treemacs)
   :init (advice-add #'treemacs-visit-node-default :around #'doom-set-jump-a)
-  (with-eval-after-load 'winum
-    (define-key winum-keymap (kbd "M-0") #'treemacs-select-window))
-  :bind (:map treemacs-mode-map
-         ("SPC" . #'treemacs-visit-node-default))
-  :config (treemacs-follow-mode +1))
+  :config (treemacs-follow-mode +1)
+  (map! :leader (:prefix "t"
+                 :desc "Project Sidebar" "p" #'+treemacs/toggle)))
 
 (use-package! pandoc-mode
   :defer t)
