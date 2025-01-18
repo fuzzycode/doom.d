@@ -287,7 +287,8 @@
 
 (use-package! org-block-capf
   :when (modulep! :lang org)
-  :hook (org-mode . org-block-capf-add-to-completion-at-point-functions))
+  :after org
+  :config (setq org-block-capf-edit-style 'inline))
 
 (use-package! ob-mermaid
   :defer t)
