@@ -192,7 +192,7 @@
 (after! transient
   (transient-bind-q-to-quit)
 
-  (defvar +bl/transient--exit-function nil
+  (defvar-local +bl/transient--exit-function nil
     "Temporarily store the cleanup function to use when exiting a transient")
   
   (transient-define-prefix text-zoom-transient ()
@@ -215,8 +215,8 @@
       ("n" "Next Revision" git-timemachine-show-next-revision)
       ("N" "Previous Revision" git-timemachine-show-previous-revision)]
      ["Copy Revision"
-      ("y" "Abbreviated Revision" git-timemachine-kill-abbreviated-revision)
-      ("Y" "Full Revision" git-timemachine-kill-revision)]]
+      ("y" "Abbreviated Revision" git-timemachine-kill-abbreviated-revision :transient transient--do-quit-one)
+      ("Y" "Full Revision" git-timemachine-kill-revision :transient transient--do-quit-one)]]
     (interactive)
     (let ((cleanup (lambda ()
                      (when git-timemachine-mode
@@ -269,7 +269,7 @@
         ("=" "Upper/Lower" smerge-diff-upper-lower)
         (">" "Base/Lower" smerge-diff-base-lower)
         ("F" "Refine" smerge-refine)
-        ("E" "Ediff" smerge-ediff)]
+        ("E" "Ediff" smerge-ediff :transient transient--do-quit-one)]
        ["Other"
         ("c" "Combine" smerge-combine-with-next)
         ("C" "Auto Combine" smerge-auto-combine)
