@@ -40,6 +40,12 @@
         #'cape-dict
         (+bl/capf-fallback)))
 
+;;;###autoload
+(defun +bl/capf-setup:text ()
+  (list (cape-capf-super
+         #'cape-dict
+         #'cape-dabbrev
+         #'yasnippet-capf)))
 
 ;;;###autoload
 (add-hook 'lsp-managed-mode-hook (lambda () (setq-local completion-at-point-functions (+bl/capf-setup:lsp))))
@@ -52,3 +58,6 @@
 
 ;;;###autoload
 (add-hook 'comint-mode-hook (lambda () (setq-local completion-at-point-functions (+bl/capf-setup:comint))))
+
+;;;###autoload
+(add-hook 'text-mode-hook (lambda () (setq-local completion-at-point-functions (+bl/capf-setup:text))))
