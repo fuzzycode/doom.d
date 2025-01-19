@@ -123,10 +123,10 @@
   :commands (diff-dired-list-added diff-dired-listmodified diff-dired-list-changed)
   :when (modulep! :tools magit)
   :init (map! (:leader (:prefix "g"
-                        (:prefix "l"
-                         :desc "List Added Files" "a" #'diff-dired-list-added
-                         :desc "List Modified Files" "m" #'diff-dired-list-modified
-                         :desc "List Changed Files" "c" #'diff-dired-list-changed)))))
+                                (:prefix "l"
+                                 :desc "List Added Files" "a" #'diff-dired-list-added
+                                 :desc "List Modified Files" "m" #'diff-dired-list-modified
+                                 :desc "List Changed Files" "c" #'diff-dired-list-changed)))))
 
 (use-package! yaml-mode
   :defer t
@@ -148,10 +148,10 @@
                 :desc "Inspect Last Sexp" "i" #'inspect-last-sexp
                 :desc "Inspect Expression" "e" #'inspect-expression))
               (:map inspector-mode-map
-               "q" #'inspector-pop
-               [escape] #'inspector-quit
-               "<tab>" #'forward-button
-               "S-<tab>" #'backward-button)))
+                    "q" #'inspector-pop
+                    [escape] #'inspector-quit
+                    "<tab>" #'forward-button
+                    "S-<tab>" #'backward-button)))
 
 (use-package! dired+
   :when (modulep! :emacs dired)
@@ -190,17 +190,17 @@
         (:prefix "o"
          :desc "ChatGPT Shell" "c" #'chatgpt-shell)
         (:prefix "c"
-         (:prefix ("g" . "GPT")
-          :desc "Describe" "d" #'chatgpt-shell-describe-code
-          :desc "Explain" "e" #'chatgpt-shell-explain-code
-          :desc "Send & Review Region" "s" #'chatgpt-shell-send-and-review-region
-          :desc "Send Region" "S" #'chatgpt-shell-send-region))))
+                 (:prefix ("g" . "GPT")
+                  :desc "Describe" "d" #'chatgpt-shell-describe-code
+                  :desc "Explain" "e" #'chatgpt-shell-explain-code
+                  :desc "Send & Review Region" "s" #'chatgpt-shell-send-and-review-region
+                  :desc "Send Region" "S" #'chatgpt-shell-send-region))))
 
 (use-package! dall-e-shell
   :defer t
   :init (setq dall-e-shell-openai-key (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
   (map! :leader (:prefix "o"
-                         :desc "Dall-E Shell" "C" #'dall-e-shell))
+                 :desc "Dall-E Shell" "C" #'dall-e-shell))
   (set-popup-rule! "^\\*dall-e\\*$" :side 'bottom :size .5 :select t :quit 'current))
 
 (use-package! mermaid-ts-mode
@@ -243,15 +243,15 @@
   (when (modulep! :editor evil)
     (add-hook 'git-commit-mode-hook #'evil-insert-state))
   :bind (:map git-commit-mode-map
-         ([tab] . #'+bl/move-to-next-slot)))
+              ([tab] . #'+bl/move-to-next-slot)))
 
 (use-package! magit-imerge
   :when (modulep! :tools magit)
   :after magit
   :config
   (map! (:map magit-status-mode-map
-         "i" #'magit-imerge
-         "#" #'magit-gitignore))
+              "i" #'magit-imerge
+              "#" #'magit-gitignore))
   (transient-insert-suffix 'magit-dispatch "I" '("i" "iMerge" magit-imerge))
   (transient-insert-suffix 'magit-dispatch "!" '("#" "Ignore" magit-gitignore))
   (transient-append-suffix 'magit-merge "n" '("g" "iMerge" magit-imerge)))
@@ -307,7 +307,7 @@
   :after org
   :commands org-expiry-insert-expiry
   :bind (:map org-mode-map
-         ("C-c C-e" . #'org-expiry-insert-expiry))
+              ("C-c C-e" . #'org-expiry-insert-expiry))
   :init (setq org-expiry-inactive-timestamps t))
 
 (use-package! org-ql
