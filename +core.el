@@ -312,7 +312,7 @@
 
 (add-hook 'help-mode-hook #'rainbow-mode)
 
-(add-hook 'prog-mode-hook (lambda () (setq display-line-numbers-type 'relative)))
+(add-hook 'prog-mode-hook (lambda () (setq-local display-line-numbers-type 'relative)))
 
 (add-hook 'code-review-mode-hook (lambda () (persp-add-buffer (current-buffer))))
 
