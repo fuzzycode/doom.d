@@ -306,6 +306,18 @@ and slug and make it more user friendly to read."
 (add-hook 'org-mode-hook #'flyspell-mode)
 
 ;;;###autoload
+(defun +bl/insert-auto-tangle-property (prefix)
+  "Insert the auto tangle header property into the file"
+  (interactive "P" org-mode)
+  (save-excursion
+    (evil-org-open-below 1)
+    (insert (format "#+auto_tangle: %s"
+                    (if prefix "t"
+                      "nil")))
+    (evil-force-normal-state)))
+
+
+;;;###autoload
 (defun +bl/insert-todays-date (prefix)
   ""
   (interactive "P")
