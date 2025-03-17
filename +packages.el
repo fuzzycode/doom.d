@@ -178,6 +178,9 @@
 (use-package! metal-mode
   :defer t)
 
+(use-package! catppuccin-theme
+  :init (setq doom-theme 'catppuccin))
+
 (use-package! chatgpt-shell
   :defer t
   :init (setq shell-maker-history-path doom-data-dir

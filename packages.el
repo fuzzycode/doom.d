@@ -67,6 +67,7 @@
 (package! copy-as-format :pin "b9f6f725ca9701c5a02bfb479573fdfcce2e1e30")
 (package! auth-source-1password :pin "7bb8ad3507c58cc642b2ebbd7e57a91efab80e14")
 (package! mermaid-ts-mode  :pin "4f95d4544d5ca2d48ab93c0a133c48d94aed86d3")
+(package! catppuccin-theme)
 
 (package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
 (package! dall-e-shell)
