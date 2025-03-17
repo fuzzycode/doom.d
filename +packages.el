@@ -178,6 +178,9 @@
 (use-package! metal-mode
   :defer t)
 
+(use-package! platformio-mode
+  :defer t)
+
 (use-package! catppuccin-theme
   :init (setq doom-theme 'catppuccin))
 
