@@ -13,6 +13,7 @@
       "y" nil
 
       (:prefix ("y" . "Yank"))
+      (:prefix ("l" . "LLMs"))
 
       ;; Remove deft keybinding if not using
       (:unless (modulep! :ui deft)
@@ -235,7 +236,8 @@
  "M-g M-g" #'avy-goto-line
 
  :n "D" #'+lookup:dash
- :ng "M-." #'+lookup/definition
+ (:when (modulep! :completion vertico)
+   :ng "M-." #'embark-dwim)
  :n "q" nil
 
  (:when (modulep! :editor evil) ;; Cleanup g prefix
@@ -253,6 +255,9 @@
    :nv "gb" #'better-jumper-jump-backward
 
    :v "s" #'evil-surround-region
+   :v "v" #'er/expand-region
+   :v "V" #'er/contract-region
+
 
    (:when (modulep! :ui window-select +numbers)
      :n "g1" #'winum-select-window-1
