@@ -70,6 +70,10 @@
 (package! mermaid-ts-mode  :pin "4f95d4544d5ca2d48ab93c0a133c48d94aed86d3")
 (package! catppuccin-theme)
 
+;; AI packages
+(package! copilot :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")) :pin "7d105d708a23d16cdfd5240500be8bb02f95a46e")
+(package! copilot-chat :pin "fe28abe5ba3ef98d848c036630abf965b65e9ca8")
+(package! gptel :pin "4be3d8da7c924daaf34fbde91e0dd77340740f5a")
 (package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
 (package! dall-e-shell)
 

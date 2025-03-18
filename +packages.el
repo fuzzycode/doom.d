@@ -202,6 +202,30 @@
                   :desc "Send & Review Region" "s" #'chatgpt-shell-send-and-review-region
                   :desc "Send Region" "S" #'chatgpt-shell-send-region))))
 
+(use-package! copilot
+  :hook (prog-mode . copilot-mode)
+  :config (progn (setq copilot-idle-delay 0.5)
+                 (add-to-list 'copilot-enable-predicates #'+bl/enable-copilot-p))
+  :init (map! (:leader (:prefix "t" :desc "Copilot" "a" #'copilot-mode)))
+  :bind (:map copilot-completion-map
+             ("M-RET" . #'copilot-accept-completion)
+             ("S-M-RET" . #'copilot-accept-completion-by-word)))
+
+(use-package! copilot-chat
+  :defer t
+  :init (setq copilot-chat-frontend 'shell-maker)
+  (map! :leader (:prefix "o"
+                         :desc "Copilot Chat" "A" #'copilot-chat-transient))
+  (set-popup-rule! "^\\*Copilot Chat.*\\*$" :side 'right :size .3 :select t :quit 'current))
+
+(use-package! gptel
+  :defer t
+  :commands (gptel gptel-send gptel-menu)
+  :init (map! (:leader (:prefix "o"
+                                :desc "GPTel" "g" #'gptel
+                                :desc "GPT Menu" "G" #'gptel-menu)))
+  (set-popup-rule! "^\\*ChatGPT\\*$" :side 'right :size .3 :select t :quit 'current))
+
 (use-package! dall-e-shell
   :defer t
   :init (setq dall-e-shell-openai-key (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
