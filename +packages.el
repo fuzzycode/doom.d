@@ -179,6 +179,7 @@
   :defer t)
 
 (use-package! platformio-mode
+  :when (executable-find "pio")
   :defer t)
 
 (use-package! catppuccin-theme
@@ -187,6 +188,7 @@
 (use-package! chatgpt-shell
   :defer t
   :init (setq shell-maker-history-path doom-data-dir
+              chatgpt-shell-root-path doom-data-dir
               chatgpt-shell-google-key (lambda () (auth-source-pick-first-password :host "Google AI API Key" :user "password"))
               chatgpt-shell-openai-key (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
 
