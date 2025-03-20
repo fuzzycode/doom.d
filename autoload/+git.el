@@ -123,6 +123,12 @@ text should/could be inserted."
                     (ediff-get-region-contents ediff-current-difference 'B ediff-control-buffer))))
 
 ;;;###autoload
+(defun +bl/git-link-dispatch ()
+  (interactive)
+  (require 'git-link-transient)
+  (git-link-dispatch))
+
+;;;###autoload
 (defun +bl/add-c-to-ediff-mode-map-h () (define-key ediff-mode-map (kbd "c") #'+bl/ediff-copy-both-to-c))
 
 ;;;###autoload

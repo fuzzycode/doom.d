@@ -20,6 +20,7 @@
 (when (modulep! :tools magit)
   (when (featurep :system 'windows)
     (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
+  (package! git-link)
   (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
   (package! magit-imerge :pin "05532a364f52b0dfed445256cb052592234183a5")
   (package! magit-lfs :pin "cd9f46e1840270be27e2c2d9dcf036ff0781f66d")

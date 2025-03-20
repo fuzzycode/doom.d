@@ -273,6 +273,12 @@
   :when (featurep :system 'windows)
   :when (modulep! :tools magit))
 
+(use-package! git-link
+  :defer t
+  :init (map! :leader
+              (:prefix "g"
+               :desc "Git Link" "w" #'git-link)))
+
 (use-package! git-commit
   :defer t
   :when (modulep! :tools magit)
