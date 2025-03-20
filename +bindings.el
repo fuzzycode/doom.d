@@ -258,6 +258,9 @@
    :v "v" #'er/expand-region
    :v "V" #'er/contract-region
 
+   :i "C-y" #'evil-paste-after
+   :i "C-Y" #'evil-paste-before
+
 
    (:when (modulep! :ui window-select +numbers)
      :n "g1" #'winum-select-window-1
