@@ -20,7 +20,7 @@
 (when (modulep! :tools magit)
   (when (featurep :system 'windows)
     (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
-  (package! git-link)
+  (package! git-link :pin "8d0f98cf36f6b9c31285329b054ae77f9a3d9b33")
   (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
   (package! magit-imerge :pin "05532a364f52b0dfed445256cb052592234183a5")
   (package! magit-lfs :pin "cd9f46e1840270be27e2c2d9dcf036ff0781f66d")
@@ -69,7 +69,8 @@
 (package! copy-as-format :pin "b9f6f725ca9701c5a02bfb479573fdfcce2e1e30")
 (package! auth-source-1password :pin "7bb8ad3507c58cc642b2ebbd7e57a91efab80e14")
 (package! mermaid-ts-mode  :pin "4f95d4544d5ca2d48ab93c0a133c48d94aed86d3")
-(package! catppuccin-theme)
+(package! catppuccin-theme :pin "206f823ce870c41c2d2306fce260a643c5985832")
+(package! chezmoi :pin "1389782f8c0780c7e66f8e77b10345ba1f4eabae")
 
 ;; AI packages
 (package! copilot :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")) :pin "7d105d708a23d16cdfd5240500be8bb02f95a46e")

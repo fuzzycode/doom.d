@@ -268,6 +268,18 @@
 (use-package! lang-mode
   :defer t)
 
+(use-package! chezmoi
+  :when (executable-find "chezmoi")
+  :defer t
+  :init (map! :leader (:prefix "f"
+                               (:prefix ("." . "chezmoi")
+                                :desc "Find File" "f" #'chezmoi-find
+                                :desc "Write" "w" #'chezmoi-write
+                                :desc "Open Other" "o" #'chezmoi-open-other
+                                :desc "Diff" "d" #'chezmoi-diff
+                                :desc "Sync" "s" #'chezmoi-sync-files
+                                ))))
+
 ;;GIT
 (use-package! ssh-agency
   :when (featurep :system 'windows)
