@@ -132,28 +132,28 @@ tasks."
           'todo))
     nil 'first-match))
 
-;;;###autoload
-(defun +bl/org-roam-project-update-tag ()
-  "Update PROJECT tag in the current buffer."
-  (require 'vulpea)
-  (when (and (not (active-minibuffer-window))
-             (+bl/org-roam-buffer-p)
-             (not (member (file-name-nondirectory buffer-file-name) +bl/org-roam-project-ignored-files)))
-    (save-excursion
-      (goto-char (point-min))
-      (let* ((tags (vulpea-buffer-tags-get))
-             (original-tags tags))
-        (if (+bl/org-roam-project-p)
-            (setq tags (cons "work" tags))
-          (setq tags (remove "work" tags)))
+;; ;;;###autoload
+;; (defun +bl/org-roam-project-update-tag ()
+;;   "Update PROJECT tag in the current buffer."
+;;   (require 'vulpea)
+;;   (when (and (not (active-minibuffer-window))
+;;              (+bl/org-roam-buffer-p)
+;;              (not (member (file-name-nondirectory buffer-file-name) +bl/org-roam-project-ignored-files)))
+;;     (save-excursion
+;;       (goto-char (point-min))
+;;       (let* ((tags (vulpea-buffer-tags-get))
+;;              (original-tags tags))
+;;         (if (+bl/org-roam-project-p)
+;;             (setq tags (cons "work" tags))
+;;           (setq tags (remove "work" tags)))
 
-        ;; cleanup duplicates
-        (setq tags (seq-uniq tags))
+;;         ;; cleanup duplicates
+;;         (setq tags (seq-uniq tags))
 
-        ;; update tags if changed
-        (when (or (seq-difference tags original-tags)
-                  (seq-difference original-tags tags))
-          (apply #'vulpea-buffer-tags-set tags))))))
+;;         ;; update tags if changed
+;;         (when (or (seq-difference tags original-tags)
+;;                   (seq-difference original-tags tags))
+;;           (apply #'vulpea-buffer-tags-set tags))))))
 
 (defun +bl/org-roam-maybe-get-project-name (&optional dir)
   ""

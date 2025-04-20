@@ -359,11 +359,6 @@
               "k" nil))
   (shut-up (org-super-agenda-mode)))
 
-(use-package! vulpea
-  :defer t
-  :when (modulep! :lang org)
-  :hook ((org-roam-db-autosync-mode . vulpea-db-autosync-enable)))
-
 (use-package! ox-gfm
   :when (modulep! :lang org)
   :after ox)
