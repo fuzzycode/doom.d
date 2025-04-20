@@ -49,6 +49,7 @@
        vterm
 
        :tools
+       ai
        debugger
        direnv
        docker

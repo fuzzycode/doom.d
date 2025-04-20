@@ -186,59 +186,6 @@
   :defer t
   :init (setq doom-theme 'catppuccin))
 
-(use-package! chatgpt-shell
-  :defer t
-  :init (setq shell-maker-history-path doom-data-dir
-              chatgpt-shell-root-path doom-data-dir
-              chatgpt-shell-anthropic-key (lambda () (auth-source-pick-first-password :host "Claude API" :user "password"))
-              chatgpt-shell-google-key (lambda () (auth-source-pick-first-password :host "Google AI API Key" :user "password"))
-              chatgpt-shell-openai-key (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
-
-  (set-popup-rule! "^\\*\\(chatgpt\\|gemini\\\|claude\\).*$" :side 'bottom :size .5 :select t :quit 'current)
-
-  (map! :leader
-        (:prefix "l"
-         :desc "ChatGPT Shell" "c" #'chatgpt-shell)
-        (:prefix "c"
-                 (:prefix ("g" . "GPT")
-                  :desc "Describe" "d" #'chatgpt-shell-describe-code
-                  :desc "Explain" "e" #'chatgpt-shell-explain-code
-                  :desc "Send & Review Region" "s" #'chatgpt-shell-send-and-review-region
-                  :desc "Send Region" "S" #'chatgpt-shell-send-region))))
-
-(use-package! copilot
-  :hook (prog-mode . copilot-mode)
-  :config (progn (setq copilot-idle-delay 0.5)
-                 (add-to-list 'copilot-enable-predicates #'+bl/enable-copilot-p))
-  :init (map! (:leader (:prefix "t" :desc "Copilot" "a" #'copilot-mode)
-                       (:prefix "c"
-                                (:prefix "g"
-                                 :desc "Copilot Fix" "f" #'copilot-chat-fix))))
-  :bind (:map copilot-completion-map
-              ("M-RET" . #'copilot-accept-completion)
-              ("S-M-RET" . #'copilot-accept-completion-by-word)))
-
-(use-package! copilot-chat
-  :defer t
-  :init (setq copilot-chat-frontend 'org)
-  (map! :leader (:prefix "l"
-                 :desc "Copilot Chat" "A" #'copilot-chat-transient))
-  (set-popup-rule! "^\\*Copilot Chat.*\\*$" :side 'bottom :size .5 :select t :quit 'current))
-
-(use-package! gptel
-  :defer t
-  :commands (gptel gptel-send gptel-menu)
-  :init (map! (:leader (:prefix "l"
-                        :desc "GPTel" "g" #'gptel
-                        :desc "GPT Menu" "G" #'gptel-menu)))
-  (set-popup-rule! "^\\*ChatGPT\\*$" :side 'bottom :size .5 :select t :quit 'current))
-
-(use-package! dall-e-shell
-  :defer t
-  :init (setq dall-e-shell-openai-key (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
-  (map! :leader (:prefix "l"
-                 :desc "Dall-E Shell" "C" #'dall-e-shell))
-  (set-popup-rule! "^\\*dall-e\\*$" :side 'bottom :size .5 :select t :quit 'current))
 
 (use-package! mermaid-ts-mode
   :defer t
@@ -323,9 +270,6 @@
                        :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
 
-;; ORG
-(use-package! ob-chatgpt-shell
-  :when (modulep! :lang org)
   :defer t
   :hook (org-mode . ob-chatgpt-shell-setup))
 
@@ -334,11 +278,6 @@
   :defer t
   :init (setq org-auto-tangle-default t)
   :hook (org-mode . org-auto-tangle-mode))
-
-(use-package! ob-dall-e-shell
-  :when (modulep! :lang org)
-  :defer t
-  :hook (org-mode . ob-dall-e-shell-setup))
 
 (use-package! org-block-capf
   :when (modulep! :lang org)

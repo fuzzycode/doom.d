@@ -1,0 +1,163 @@
+;;; tools/ai/autoload/copilot.el -*- lexical-binding: t; -*-
+
+(defvar +bl/chat-history-dir
+  "~/Documents/chat-history/"
+  "The default directory where chats are saved and loaded from")
+
+(defvar +bl/gptel-lookup--history nil
+  "Store the history of previous quick lookups that was done during the session")
+
+(defvar +bl/gptel-default-review-prompt
+  "You are an expert coder. Please review the following code and provide feedback on its correctness, efficiency, and style.
+If you find any issues, please suggest improvements or alternatives. If the code is correct, please confirm that it is correct.
+If you provide any suggestions or improvements, please explain why they are better than the original code
+and include code examples to explain the suggested changes."
+  "The default prompt when asking gptel to review the region or buffer.")
+
+(defvar +bl/gptel-lookup-buffer "*gptel-lookup*"
+  "The name of the buffer used for gptel lookups.")
+
+(defvar +bl/gptel-review-buffer "*gptel-review*"
+  "The name of the buffer used for gptel reviews.")
+
+;;;###autoload
+(defun +bl/gptel-backend-and-model-maybe ()
+  "Return the backend and model for gptel if they are set."
+  (let ((backend (if (boundp 'gptel-backend) (aref gptel-backend 1) ""))
+        (model (if (boundp 'gptel-model) gptel-model "")))
+    (when (and backend model)
+      (cons backend (symbol-name model)))))
+
+;;;###autoload
+(defun +bl/gptel-lookup (prompt)
+  "Ask the agent a question(PROMPT) and get a response in a dedicated buffer."
+  (interactive (list (read-string (format "Ask Agent%s: " (+bl/gptel-backend-and-model-maybe)) nil +bl/gptel-lookup--history)))
+  (when (string-empty-p prompt) (user-error "A prompt is required to ask the agent"))
+  (gptel-request prompt
+    :callback (lambda (response info)
+                (if (not response)
+                    (message "Lookup failed with error %s" (plist-get info :status))
+                  (with-current-buffer (get-buffer-create +bl/gptel-lookup-buffer)
+                    (let ((inhibit-read-only t))
+                      (erase-buffer)
+                      (insert response)
+                      (goto-char (point-min)))
+                    (special-mode)
+                    (visual-line-mode)
+                    (display-buffer (current-buffer)))))))
+
+;;;###autoload
+(defun +bl/gptel-review-code (bounds &optional prompt)
+  "Review code using gptel.
+
+BOUNDS will either be the active region or the whole buffer.
+By providing the universal argument the PROMPT can be tailored
+for each individual request."
+  (interactive
+   (list
+    (if (use-region-p)
+        (cons (region-beginning) (region-end))
+      (cons (point-min) (point-max)))
+    (and current-prefix-arg
+         (read-string (format "Agent Directive%s: " (+bl/gptel-backend-and-model-maybe))
+                      +bl/gptel-default-review-prompt))))
+  (gptel-request
+      (buffer-substring-no-properties (car bounds) (cdr bounds))
+    :system (or prompt +bl/gptel-default-review-prompt)
+    :context (cons (set-marker (make-marker) (car bounds))
+                   (set-marker (make-marker) (cdr bounds)))
+    :callback (lambda (response info)
+                (if (not response)
+                    (message "Review call failed with error %s" (plist-get info :status))
+                  (with-current-buffer (get-buffer-create +bl/gptel-lookup-buffer)
+                    (let ((inhibit-read-only t))
+                      (erase-buffer)
+                      (insert response)
+                      (goto-char (point-min)))
+                    (special-mode)
+                    (visual-line-mode)
+                    (display-buffer (current-buffer)))))))
+
+;;;###autoload
+(defun +bl/gptel-mode-auto-h ()
+  "Ensures that the gptel-mode local variable is
+added and true in the current file."
+  (let ((enable-local-variables t)
+        (inhibit-read-only t))
+    (add-file-local-variable 'gptel-mode t)))
+
+;;;###autoload
+(defun +bl/gptel-normal-state-after-send-h ()
+  "A hook to automatically enter normal state after a request has been sent."
+  (when (featurep 'evil)
+    (evil-normal-state)))
+
+;;;###autoload
+(defun +bl/gptel-browse-chats ()
+  (interactive)
+  (if (file-directory-p +bl/chat-history-dir)
+      (dired +bl/chat-history-dir)
+    (message "%s does not exist" +bl/chat-history-dir)))
+
+;;;###autoload
+(defun +bl/gptel-insert-response-properteis-h (begin end)
+  "Inserts the response meta properties for the response between BEGIN and END."
+  (unless (eq begin end) ;; If the call fails they are the same
+    (save-excursion
+      (save-restriction
+        (narrow-to-region begin end)
+        (org-back-to-heading t)
+        (let ((time (format-time-string "[%Y-%m-%d %a %H:%M]")))
+          (org-entry-put begin "Created" time))
+        (when-let ((backend-and-model (+bl/gptel-backend-and-model-maybe)))
+          (org-entry-put begin "Backend" (car backend-and-model))
+          (org-entry-put begin "Model" (cdr backend-and-model)))
+        (widen)))))
+
+;;;###autoload
+(defun +bl/point-in-prompt-p (prefix)
+  "Return non-nil if point is on a heading starting
+with PREFIX or in text directly under it.
+Does not return true if point is in a sub-heading."
+  (save-excursion
+    (let ((initial-level (org-current-level)))
+      (or (and (org-at-heading-p)
+               (string-prefix-p prefix
+                                (buffer-substring-no-properties
+                                 (line-beginning-position)
+                                 (line-end-position))))
+          (and (org-back-to-heading t)
+               (let ((heading-line (buffer-substring-no-properties
+                                    (line-beginning-position)
+                                    (line-end-position)))
+                     (prompt-level (org-current-level)))
+                 (and (string-prefix-p prefix heading-line)
+                      (or (null initial-level)
+                          (= initial-level prompt-level)))))))))
+
+;;;###autoload
+(defun +bl/gptel-ctr-c-ctr-c-h ()
+  "If inside a prompt this will cause C-C C-c to send the request."
+  (let ((prefix (gptel-prompt-prefix-string)))
+    (if (+bl/point-in-prompt-p prefix)
+        (progn
+          (gptel-send)
+          t)
+      nil)))
+
+;;;###autoload
+(defun +bl/gptel-find-last-prefix-match (prefix)
+"Find the last match for PREFIX in the current buffer."
+  (save-excursion
+   (let ((regexp (concat "^" (regexp-quote prefix))))
+     (goto-char (point-max))
+     (if (re-search-backward regexp nil t)
+         (match-end 0)
+       (message "No match found for prefix: %s" prefix))) ))
+
+;;;###autoload
+(defun +bl/goto-empty-prompt-maybe ()
+"Move point to the empty prompt if it exists."
+  (interactive)
+  (when-let ((pos (+bl/gptel-find-last-prefix-match (gptel-prompt-prefix-string))))
+    (goto-char pos)))

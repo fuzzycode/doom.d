@@ -32,8 +32,6 @@
   (package! org-auto-tangle :pin "817eabf902e759e96782bdc54d2dab36c4a2c5ab")
   (package! org-block-capf :recipe (:host github :repo "xenodium/org-block-capf") :pin "080cfd2ed630a6739633b07a8ab6b896a1b5ef4a")
   (package! ob-mermaid :pin "9cffa17625aab01cb7b0d8ba87691eba5d96e8d3")
-  (package! ob-chatgpt-shell)
-  (package! ob-dall-e-shell)
   (package! demo-it :pin "e399fd7ceb73caeae7cb50b247359bafcaee2a3f")
   (package! org-super-agenda :pin "c07e35416ce749b42cbb70ff8d4e814362111bb5")
   (package! vulpea :pin "1217e4e2ef498da82663a8e23eb62a07b219887c")
@@ -71,13 +69,6 @@
 (package! mermaid-ts-mode  :pin "4f95d4544d5ca2d48ab93c0a133c48d94aed86d3")
 (package! catppuccin-theme :pin "206f823ce870c41c2d2306fce260a643c5985832")
 (package! chezmoi :pin "1389782f8c0780c7e66f8e77b10345ba1f4eabae")
-
-;; AI packages
-(package! copilot :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")) :pin "7d105d708a23d16cdfd5240500be8bb02f95a46e")
-(package! copilot-chat :pin "fe28abe5ba3ef98d848c036630abf965b65e9ca8")
-(package! gptel :pin "4be3d8da7c924daaf34fbde91e0dd77340740f5a")
-(package! chatgpt-shell) ;; Leave unpinned, it moves fast right now
-(package! dall-e-shell)
 
 (when (modulep! :lang web)
   (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))
