@@ -172,6 +172,7 @@
         :desc "Function" "f" #'describe-function
         :desc "Face" "F" #'describe-face
         :desc "Key" "k" #'describe-key
+        :desc "Key Map" "K" #'describe-keymap
         :desc "Language Environment" "L" #'describe-language-environment
         :desc "Mode" "m" #'describe-mode
         :desc "Active Mode" "M" #'doom/describe-active-minor-mode
