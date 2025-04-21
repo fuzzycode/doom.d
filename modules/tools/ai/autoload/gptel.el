@@ -29,9 +29,17 @@ and include code examples to explain the suggested changes."
       (cons backend (symbol-name model)))))
 
 ;;;###autoload
+(defun +bl/gptel-backend-stringify ()
+  "Return backend and model as a string."
+  (let ((backend-and-model (+bl/gptel-backend-and-model-maybe)))
+    (if backend-and-model
+        (format "%s:%s" (car backend-and-model) (cdr backend-and-model))
+      "n/a")))
+
+;;;###autoload
 (defun +bl/gptel-lookup (prompt)
   "Ask the agent a question(PROMPT) and get a response in a dedicated buffer."
-  (interactive (list (read-string (format "Ask Agent%s: " (+bl/gptel-backend-and-model-maybe)) nil +bl/gptel-lookup--history)))
+  (interactive (list (read-string (format "Ask Agent%s: " (+bl/gptel-backend-stringify)) nil +bl/gptel-lookup--history)))
   (when (string-empty-p prompt) (user-error "A prompt is required to ask the agent"))
   (gptel-request prompt
     :callback (lambda (response info)
@@ -79,12 +87,22 @@ for each individual request."
                     (display-buffer (current-buffer)))))))
 
 ;;;###autoload
+(defun +bl/has-prop-line ()
+  "Check if the current line has a property line."
+  (and (save-excursion
+               (goto-char (point-min))
+               (looking-at ".*-\\*-"))))
+
+;;;###autoload
 (defun +bl/gptel-mode-auto-h ()
   "Ensures that the gptel-mode local variable is
 added and true in the current file."
   (let ((enable-local-variables t)
         (inhibit-read-only t))
-    (add-file-local-variable 'gptel-mode t)))
+    (when (+bl/has-prop-line)
+      (modify-file-local-variable-prop-line 'eval nil 'delete))
+    (add-file-local-variable-prop-line 'eval
+                                       '(and (fboundp gptel-mode) (gptel-mode 1)))))
 
 ;;;###autoload
 (defun +bl/gptel-normal-state-after-send-h ()
@@ -121,29 +139,25 @@ with PREFIX or in text directly under it.
 Does not return true if point is in a sub-heading."
   (save-excursion
     (let ((initial-level (org-current-level)))
-      (or (and (org-at-heading-p)
-               (string-prefix-p prefix
-                                (buffer-substring-no-properties
-                                 (line-beginning-position)
-                                 (line-end-position))))
-          (and (org-back-to-heading t)
-               (let ((heading-line (buffer-substring-no-properties
-                                    (line-beginning-position)
-                                    (line-end-position)))
-                     (prompt-level (org-current-level)))
-                 (and (string-prefix-p prefix heading-line)
-                      (or (null initial-level)
-                          (= initial-level prompt-level)))))))))
+      (and (org-back-to-heading t)
+           (let ((heading-line (buffer-substring-no-properties
+                                (line-beginning-position)
+                                (line-end-position)))
+                 (prompt-level (org-current-level)))
+             (and (string-prefix-p prefix heading-line)
+                  (or (null initial-level)
+                      (= initial-level prompt-level))))))))
 
 ;;;###autoload
 (defun +bl/gptel-ctr-c-ctr-c-h ()
   "If inside a prompt this will cause C-C C-c to send the request."
-  (let ((prefix (gptel-prompt-prefix-string)))
-    (if (+bl/point-in-prompt-p prefix)
-        (progn
-          (gptel-send)
-          t)
-      nil)))
+  (when (bound-and-true-p gptel-mode)
+    (let ((prefix (gptel-prompt-prefix-string)))
+      (if (+bl/point-in-prompt-p prefix)
+          (progn
+            (gptel-send)
+            t)
+        nil))))
 
 ;;;###autoload
 (defun +bl/gptel-find-last-prefix-match (prefix)

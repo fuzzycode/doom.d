@@ -42,8 +42,8 @@
   :bind ("C-c RET" . #'gptel-send)
   :init (setq gptel-default-mode 'org-mode
               gptel-expert-commands t
-              gptel-prompt-prefix-alist '((markdown-mode . "##") (org-mode . "** *Prompt*: ") (text-mode . "##"))
-              gptel-response-prefix-alist '((markdown-mode . "###") (org-mode . "*** *Response*: ") (text-mode . "###")))
+              gptel-prompt-prefix-alist '((markdown-mode . "##") (org-mode . "* ") (text-mode . "##"))
+              gptel-response-prefix-alist '((markdown-mode . "###") (org-mode . "** ") (text-mode . "###")))
   (map! :map gptel-mode-map
         :nmg "G" #'+bl/goto-empty-prompt-maybe)
   (map! (:leader (:prefix "l"
@@ -51,6 +51,7 @@
                            :desc "Ask" "a" #'+bl/gptel-lookup
                            :desc "Open Chat" "g" #'gptel
                            :desc "Open Menu" "G" #'gptel-menu
+                           :desc "Send" "s" #'gptel-send
                            :desc "Review" "r" #'+bl/gptel-review-code
                            :desc "Rewrite Region" "R" #'gptel-rewrite))))
   :config
