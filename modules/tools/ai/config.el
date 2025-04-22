@@ -15,8 +15,14 @@
                 (:prefix ("g" . "gptel")))
        (:prefix "c" (:prefix ("l" . "llms")))))
 
-(use-package! mcp
-  :defer t)
+(defun +bl/gptel-mcp-register-tools ()
+  "Register all mcp tools with gptel."
+  (interactive)
+  (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
+    (mapcar #'(lambda (tool)
+                (apply #'gptel-make-tool
+                       tool))
+            tools)))
 
 (defun +bl/gptel-setup-tools ()
   "Setup the list of available tools provided to LLMs."
@@ -37,6 +43,24 @@
                  :type string
                  :description "The name of the function or variable whose documentation is to be retrieved"))
    :category "Emacs"))
+
+(use-package! mcp
+  :when (executable-find "uv") ;; not strictly needed but I only use servers that run through uvx for now
+  :defer t
+  :init
+  (setq mcp-hub-servers
+        '(("fetch" . (:command "uvx" :args ("mcp-server-fetch")))))
+
+  (map! :leader (:prefix "l"
+                         :desc "MCP Hub" "M" #'mcp-hub))
+
+  (add-hook 'doom-first-file-hook #'mcp-hub-start-all-server)
+
+  (after! gptel
+    (+bl/gptel-mcp-register-tools))
+
+  :config
+  (set-popup-rule! "\\*Mcp-Hub\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil))
 
 (use-package! gptel
   :defer t
@@ -83,7 +107,7 @@
   (+bl/gptel-setup-tools)
 
   ;; Catch the gptel tooling windows
-  (set-popup-rule! "\\*gptel-\\(lookup\\|review\\)\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil)
+  (set-popup-rule! "\\*gptel-\\(lookup\\|review\\\word\\)\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil)
 
   ;; Catch all gptel chat buffers
   (set-popup-rule!
