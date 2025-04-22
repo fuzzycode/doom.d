@@ -14,6 +14,13 @@ If you provide any suggestions or improvements, please explain why they are bett
 and include code examples to explain the suggested changes."
   "The default prompt when asking gptel to review the region or buffer.")
 
+(defvar +bl/gptel-default-define-word-prompt
+  "You are a dictionary. Please provide the definition of the word. Give 3 examples of how to use the word in a sentence."
+  "The system prompt used when asking gptel to define a word.")
+
+(defvar +bl/gptel-define-word-buffer "*gptel-word*"
+  "The name of the buffer used for gptel word lookups.")
+
 (defvar +bl/gptel-lookup-buffer "*gptel-lookup*"
   "The name of the buffer used for gptel lookups.")
 
@@ -35,6 +42,34 @@ and include code examples to explain the suggested changes."
     (if backend-and-model
         (format "%s:%s" (car backend-and-model) (cdr backend-and-model))
       "n/a")))
+
+;;;###autoload
+(defun +bl/gptel-define-word (&optional arg-or-word)
+  "Define word possibly provided by ARG-OR-WORD.
+If a word is provided as argument, that is used.
+If given the universal argument, the user is prompted for a word.
+If no word is provided, the word at point is used. "
+  (interactive "P")
+  (let ((word (cond
+               ((stringp arg-or-word) arg-or-word)
+               ((and arg-or-word (called-interactively-p 'any)) (read-string "Word to Define: "))
+               (t (or (thing-at-point 'word t)
+                      (user-error "No word found to lookup")))))
+        (context (or (thing-at-point 'sentence t) "")))
+    (gptel-request word
+      :context context
+      :system +bl/gptel-default-define-word-prompt
+      :callback (lambda (response info)
+                  (if (not response)
+                      (Message "Lookup failed with error %s" (plist-get info :status))
+                    (with-current-buffer (get-buffer-create +bl/gptel-define-word-buffer)
+                      (let ((inhibit-read-only t))
+                        (erase-buffer)
+                        (insert response)
+                        (goto-char (point-min)))
+                      (special-mode)
+                      (visual-line-mode)
+                      (display-buffer (current-buffer))))))))
 
 ;;;###autoload
 (defun +bl/gptel-lookup (prompt)
@@ -90,8 +125,8 @@ for each individual request."
 (defun +bl/has-prop-line ()
   "Check if the current line has a property line."
   (and (save-excursion
-               (goto-char (point-min))
-               (looking-at ".*-\\*-"))))
+         (goto-char (point-min))
+         (looking-at ".*-\\*-"))))
 
 ;;;###autoload
 (defun +bl/gptel-mode-auto-h ()
@@ -99,10 +134,12 @@ for each individual request."
 added and true in the current file."
   (let ((enable-local-variables t)
         (inhibit-read-only t))
-    (when (+bl/has-prop-line)
-      (modify-file-local-variable-prop-line 'eval nil 'delete))
-    (add-file-local-variable-prop-line 'eval
-                                       '(and (fboundp gptel-mode) (gptel-mode 1)))))
+    (save-excursion
+      (save-restriction
+        (when (+bl/has-prop-line)
+          (modify-file-local-variable-prop-line 'eval nil 'delete))
+        (add-file-local-variable-prop-line 'eval
+                                           '(and (fboundp gptel-mode) (gptel-mode 1)))))))
 
 ;;;###autoload
 (defun +bl/gptel-normal-state-after-send-h ()
@@ -161,17 +198,43 @@ Does not return true if point is in a sub-heading."
 
 ;;;###autoload
 (defun +bl/gptel-find-last-prefix-match (prefix)
-"Find the last match for PREFIX in the current buffer."
+  "Find the last match for PREFIX in the current buffer."
   (save-excursion
-   (let ((regexp (concat "^" (regexp-quote prefix))))
-     (goto-char (point-max))
-     (if (re-search-backward regexp nil t)
-         (match-end 0)
-       (message "No match found for prefix: %s" prefix))) ))
+    (let ((regexp (concat "^" (regexp-quote prefix))))
+      (goto-char (point-max))
+      (if (re-search-backward regexp nil t)
+          (match-end 0)
+        (message "No match found for prefix: %s" prefix))) ))
 
 ;;;###autoload
 (defun +bl/goto-empty-prompt-maybe ()
-"Move point to the empty prompt if it exists."
+  "Move point to the empty prompt if it exists."
   (interactive)
   (when-let ((pos (+bl/gptel-find-last-prefix-match (gptel-prompt-prefix-string))))
     (goto-char pos)))
+
+;;;###autoload
+(defun +bl/get-ollama-models ()
+  "Get a list of installed Ollama models (first column names only)."
+  (interactive)
+  (if (executable-find "ollama")
+      (let* ((output (shell-command-to-string "ollama list"))
+             (models (+bl/parse-first-column output)))
+        (if (called-interactively-p 'any)
+            (message "Installed Ollama models: %s" models)
+          models))
+    (user-error "Ollama executable not found in path")))
+
+;;;###autoload
+(defun +bl/parse-first-column (text)
+  "Parse TEXT and return a list of items from the first column, excluding header.
+TEXT is assumed to be in a tabular format with columns separated by whitespace."
+  (let ((lines (split-string text "\n" t))
+        result)
+    (when (> (length lines) 1)
+      (setq lines (cdr lines))
+      (dolist (line lines)
+        (when (not (string-empty-p (string-trim line)))
+          (let ((first-column (car (split-string line "\\s-\\s-+" t))))
+            (push (string-trim first-column) result)))))
+    (nreverse result)))

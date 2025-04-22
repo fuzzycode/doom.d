@@ -7,6 +7,8 @@
 (defvar +bl/openai-api-key
   (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
 
+(defvar +bl/ollama-host "localhost:11434"
+  "The host for the ollama server.")
 
 (map! (:leader
        (:prefix ("l" . "llms")
@@ -49,6 +51,7 @@
   (map! (:leader (:prefix "l"
                           (:prefix "g"
                            :desc "Ask" "a" #'+bl/gptel-lookup
+                           :desc "Define Word" "d" #'+bl/gptel-define-word
                            :desc "Open Chat" "g" #'gptel
                            :desc "Open Menu" "G" #'gptel-menu
                            :desc "Send" "s" #'gptel-send
@@ -63,6 +66,8 @@
   (gptel-make-anthropic "Claude" :stream t :key +bl/anthropic-api-key)
   (gptel-make-gemini "Gemini" :stream t :key +bl/google-api-key)
   (gptel-make-openai "OpenAi" :stream t :key +bl/openai-api-key)
+  (when (executable-find "ollama")
+    (gptel-make-ollama "Ollama" :stream t :host +bl/ollama-host :models (+bl/get-ollama-models)))
 
   ;; Configure behavior
   (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
