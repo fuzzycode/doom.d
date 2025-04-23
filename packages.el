@@ -20,6 +20,7 @@
 (when (modulep! :tools magit)
   (when (featurep :system 'windows)
     (package! ssh-agency :pin "a5377e4317365a3d5442e06d5c255d4a7c7618db"))
+  (package! pr-review)
   (package! git-link :pin "8d0f98cf36f6b9c31285329b054ae77f9a3d9b33")
   (package! diff-dired :recipe (:host github :repo "fuzzycode/diff-dired"))
   (package! magit-imerge :pin "05532a364f52b0dfed445256cb052592234183a5")
@@ -68,6 +69,7 @@
 (package! mermaid-ts-mode  :pin "4f95d4544d5ca2d48ab93c0a133c48d94aed86d3")
 (package! catppuccin-theme :pin "206f823ce870c41c2d2306fce260a643c5985832")
 (package! chezmoi :pin "1389782f8c0780c7e66f8e77b10345ba1f4eabae")
+(package! obsidian :pin "0b31775d5da1dfd3d1ffcf9fa05908a3ba26ed15")
 
 (when (modulep! :lang web)
   (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))

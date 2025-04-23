@@ -36,8 +36,4 @@
       :before #'org-roam-dailies-goto-date
       :before #'org-roam-dailies-goto-tomorrow
       :before #'org-roam-dailies-goto-yesterday
-      (+workspace-switch "Org-roam" t)))
-
-
-  (add-hook 'find-file-hook #'+bl/org-roam-project-update-tag)
-  (add-hook 'before-save-hook #'+bl/org-roam-project-update-tag))
+      (+workspace-switch "Org-roam" t))))
