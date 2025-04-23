@@ -270,9 +270,18 @@
                        :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
 
-  :defer t
-  :hook (org-mode . ob-chatgpt-shell-setup))
+(use-package pr-review
+  :disabled
+  :defer t)
 
+(use-package! obsidian
+  :disabled
+  :defer t
+  :hook (doom-first-input . global-obsidian-mode)
+  :init (map! :leader (:prefix ("N" . "Obsidian")
+                               )))
+
+;; ORG
 (use-package! org-auto-tangle
   :when (modulep! :lang org)
   :defer t
