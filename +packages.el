@@ -224,8 +224,7 @@
                                 :desc "Write" "w" #'chezmoi-write
                                 :desc "Open Other" "o" #'chezmoi-open-other
                                 :desc "Diff" "d" #'chezmoi-diff
-                                :desc "Sync" "s" #'chezmoi-sync-files
-                                ))))
+                                :desc "Sync" "s" #'chezmoi-sync-files))))
 
 ;;GIT
 (use-package! ssh-agency
