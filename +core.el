@@ -324,6 +324,8 @@
 (setq-default vterm-shell (executable-find "fish"))
 (setq-default explicit-shell-file-name (executable-find "fish"))
 
+(setq epg-pinentry-mode 'loopback)
+
 (setq warning-minimum-level :error) ;; Only show popup on errors, warnings are still logged though
 
 (setq plantuml-indent-level 2)
