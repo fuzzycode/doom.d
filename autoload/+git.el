@@ -30,12 +30,12 @@ text should/could be inserted."
 
 ;;;###autoload
 (add-hook 'find-file-hook (lambda ()
-                             (when (string-suffix-p "COMMIT_EDITMSG" buffer-file-name)
-                               (when (featurep :system 'windows)
-                                 (+bl/delete-carrage-returns))
-                               (goto-char (point-min))
-                               (when (looking-at-p "^[[:space:]]*#.*$")
-                                 (+bl/move-to-next-slot)))))
+                            (when (string-suffix-p "COMMIT_EDITMSG" buffer-file-name)
+                              (when (featurep :system 'windows)
+                                (+bl/delete-carrage-returns))
+                              (goto-char (point-min))
+                              (when (looking-at-p "^[[:space:]]*#.*$")
+                                (+bl/move-to-next-slot)))))
 
 ;;;###autoload
 (defun +bl/magit-add-current-branch-to-kill-ring ()
@@ -133,3 +133,40 @@ text should/could be inserted."
 
 ;;;###autoload
 (add-hook 'ediff-keymap-setup-hook #'+bl/add-c-to-ediff-mode-map-h)
+
+;;;###autoload
+(defun +bl/pr-review-from-forge-maybe ()
+  "Try to start a PR review using URL of forge target at point."
+  (interactive)
+  (if-let* ((target (forge--browse-target))
+            (url (forge-get-url target)))
+      (pr-review url)
+    (user-error "No PR to review at point")))
+
+;;;###autoload
+(defun +bl/git-repo-sync ()
+  "Sync the current git repository with the remote.
+This will fetch all changes from origin and pull all forge topics"
+  (interactive)
+  (magit-git-fetch "origin" "")
+  (forge-pull))
+
+;;;###autoload
+(defun +bl/forge-insert-reviews-todo ()
+  (forge-insert-topics 'todo-pullreq "Prioritized Reviews"
+    (lambda (repo)
+      (and-let* ((me (ghub--username repo)))
+        (forge--topics-spec :type 'pullreq :active t :reviewer me)))))
+
+;;;###autoload
+(defun +bl/ghub--token-a (orig-fun host username package &optional nocreate forge)
+  "A hack to try harder to find the token in 1Password first.
+
+The 1Password auth-source integration expects the spec to be in a specific format
+that is not used nativly by ghub. This tries first to rearrange the keys to fit 1Password
+and then falls back to the original function.
+"
+  (if-let* ((user (format "%s-%s" username package))
+            (token (auth-source-pick-first-password :host user :user "password")))
+      token
+    (funcall orig-fun host username package nocreate forge)))
