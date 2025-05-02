@@ -185,6 +185,11 @@
                                          (:sort <)))))
 
   (when (modulep! :tools magit +forge)
+    (advice-add 'ghub--token :around #'+bl/ghub--token-a)
+
+    (magit-add-section-hook 'magit-status-sections-hook
+                            #'+bl/forge-insert-reviews-todo
+                            #'forge-insert-pullreqs)
     (magit-add-section-hook 'magit-status-sections-hook
                             'magit-insert-modules-unpushed-to-pushremote
                             'magit-insert-modules-overview)))
