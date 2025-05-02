@@ -270,8 +270,7 @@
                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
 
 (use-package pr-review
-  :disabled
-  :defer t)
+  :after forge)
 
 (use-package! obsidian
   :disabled
