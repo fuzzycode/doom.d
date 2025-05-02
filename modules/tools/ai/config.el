@@ -71,7 +71,7 @@
               gptel-prompt-prefix-alist '((markdown-mode . "##") (org-mode . "* ") (text-mode . "##"))
               gptel-response-prefix-alist '((markdown-mode . "###") (org-mode . "** ") (text-mode . "###")))
   (map! :map gptel-mode-map
-        :nmg "G" #'+bl/goto-empty-prompt-maybe)
+        :n "G" #'+bl/goto-empty-prompt-maybe)
   (map! (:leader (:prefix "l"
                           (:prefix "g"
                            :desc "Ask" "a" #'+bl/gptel-lookup
@@ -82,6 +82,7 @@
                            :desc "Review" "r" #'+bl/gptel-review-code
                            :desc "Rewrite Region" "R" #'gptel-rewrite))))
   :config
+
   ;; Make copilot with sonnet 3.7 the default
   (setq gptel-model 'claude-3.7-sonnet
         gptel-backend (gptel-make-gh-copilot "Copilot"))
