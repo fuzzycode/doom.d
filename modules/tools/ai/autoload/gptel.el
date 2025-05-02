@@ -192,6 +192,7 @@ Does not return true if point is in a sub-heading."
     (let ((prefix (gptel-prompt-prefix-string)))
       (if (+bl/point-in-prompt-p prefix)
           (progn
+            (org-end-of-subtree)
             (gptel-send)
             t)
         nil))))
