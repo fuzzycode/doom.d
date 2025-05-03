@@ -118,16 +118,6 @@
   :defer t
   :hook (dired-mode . auto-revert-mode))
 
-(use-package! diff-dired
-  :defer t
-  :commands (diff-dired-list-added diff-dired-listmodified diff-dired-list-changed)
-  :when (modulep! :tools magit)
-  :init (map! (:leader (:prefix "g"
-                                (:prefix "l"
-                                 :desc "List Added Files" "a" #'diff-dired-list-added
-                                 :desc "List Modified Files" "m" #'diff-dired-list-modified
-                                 :desc "List Changed Files" "c" #'diff-dired-list-changed)))))
-
 (use-package! yaml-mode
   :defer t
   :mode (("\\.clang-format$" . yaml-mode)
@@ -227,51 +217,6 @@
                                 :desc "Sync" "s" #'chezmoi-sync-files))))
 
 ;;GIT
-(use-package! ssh-agency
-  :when (featurep :system 'windows)
-  :when (modulep! :tools magit))
-
-(use-package! git-link
-  :defer t
-  :init (map! :leader
-              (:prefix "g"
-               :desc "Git Link" "w" #'git-link)))
-
-(use-package! git-commit
-  :defer t
-  :when (modulep! :tools magit)
-  :init (add-hook 'git-commit-mode-hook #'display-fill-column-indicator-mode)
-  (when (modulep! :editor evil)
-    (add-hook 'git-commit-mode-hook #'evil-insert-state))
-  :bind (:map git-commit-mode-map
-              ([tab] . #'+bl/move-to-next-slot)))
-
-(use-package! magit-imerge
-  :when (modulep! :tools magit)
-  :after magit
-  :config
-  (map! (:map magit-status-mode-map
-              "i" #'magit-imerge
-              "#" #'magit-gitignore))
-  (transient-insert-suffix 'magit-dispatch "I" '("i" "iMerge" magit-imerge))
-  (transient-insert-suffix 'magit-dispatch "!" '("#" "Ignore" magit-gitignore))
-  (transient-append-suffix 'magit-merge "n" '("g" "iMerge" magit-imerge)))
-
-(use-package! magit-lfs
-  :when (modulep! :tools magit)
-  :after magit)
-
-(use-package! gitignore-templates
-  :defer t
-  :when (modulep! :tools magit)
-  :commands (gitignore-templates-insert gitignore-templates-new-file)
-  :init (map! :leader (:prefix "g"
-                       :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
-                       :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
-
-(use-package pr-review
-  :after forge)
-
 (use-package! obsidian
   :disabled
   :defer t

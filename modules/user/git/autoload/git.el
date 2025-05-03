@@ -1,6 +1,4 @@
-;; -*- lexical-binding: t; -*-
-;;;###if (modulep! :tools magit)
-
+;;; user/git/autoload/git.el -*- lexical-binding: t; -*-
 
 ;;;###autoload
 (defun +bl/current-line-empty-p ()
@@ -148,7 +146,7 @@ text should/could be inserted."
   "Sync the current git repository with the remote.
 This will fetch all changes from origin and pull all forge topics"
   (interactive)
-  (magit-git-fetch "origin" "")
+  (magit-fetch-all nil)
   (forge-pull))
 
 ;;;###autoload

@@ -101,4 +101,7 @@
        (rss +org)
 
        :config
-       (default +smartparens +bindings))
+       (default +smartparens +bindings)
+
+       :user
+       git)
