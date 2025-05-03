@@ -216,7 +216,6 @@
                                 :desc "Diff" "d" #'chezmoi-diff
                                 :desc "Sync" "s" #'chezmoi-sync-files))))
 
-;;GIT
 (use-package! obsidian
   :disabled
   :defer t

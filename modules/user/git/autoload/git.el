@@ -8,15 +8,18 @@
 
 
 ;;;###autoload
-(defun +bl/move-to-next-slot ()
+(defun +bl/move-to-next-slot (&optional backward)
   "Advances to the next empty line passed a comment line.
 This works because my commit message template is set up
 to have a comment line as a header for each slot where
 text should/could be inserted."
-  (interactive)
-  (re-search-forward "^#.*")
-  (while (not (+bl/current-line-empty-p))
-    (forward-line 1)))
+  (interactive "P")
+  (let ((search-fn (if backward 're-search-backward 're-search-forward))
+        (direction (if backward -1 1)))
+    (funcall search-fn "^#.*")
+    (while (not (+bl/current-line-empty-p))
+      (forward-line direction))))
+
 
 ;;;###autoload
 (defun +bl/delete-carrage-returns ()
@@ -56,27 +59,6 @@ text should/could be inserted."
         (when (yes-or-no-p (format "Really delete %s ?" (mapconcat 'identity merged ", ")))
           (magit-branch-delete merged))
       (message "No merged branches found"))))
-
-
-(defun +bl/get-commit-at-point ()
-  "Tries to get the commit at point."
-  (cond
-   ((or (eq major-mode 'magit-status-mode) (eq major-mode 'magit-log-mode))
-    (call-interactively 'magit-copy-section-value))
-
-   ((or (eq major-mode 'magit-commit-mode) (eq major-mode 'magit-revision-mode))
-    (call-interactively 'magit-copy-buffer-revision))))
-
-;;;###autoload
-(defun +bl/kill-url-to-commit-at-point ()
-  "Copies the URL to the current commit at point."
-  (interactive)
-  (let ((commit (+bl/get-commit-at-point)))
-    (if commit
-        (progn
-          (require 'browse-at-remote)
-          (kill-new (message "%s" (browse-at-remote--commit-url commit))))
-      (message "No commit found at point"))))
 
 ;;;###autoload
 (defun +bl/maybe-show-smerge-transient-h ()
