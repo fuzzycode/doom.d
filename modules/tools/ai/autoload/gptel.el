@@ -139,7 +139,7 @@ added and true in the current file."
         (when (+bl/has-prop-line)
           (modify-file-local-variable-prop-line 'eval nil 'delete))
         (add-file-local-variable-prop-line 'eval
-                                           '(and (fboundp gptel-mode) (gptel-mode 1)))))))
+                                           '(and (require 'gptel nil t) (fboundp 'gptel-mode) (gptel-mode 1)))))))
 
 ;;;###autoload
 (defun +bl/gptel-normal-state-after-send-h ()
