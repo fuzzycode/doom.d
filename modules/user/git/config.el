@@ -51,13 +51,10 @@
   :when (modulep! :tools magit)
   :after magit)
 
-;; (use-package! gitignore-templates
-;;   :defer t
-;;   :when (modulep! :tools magit)
-;;   :commands (gitignore-templates-insert gitignore-templates-new-file)
-;;   :init (map! :leader (:prefix "g"
-;;                        :desc "Insert Ignore Template" :ng "i" #'gitignore-templates-insert
-;;                        :desc "New Ignore File" :ng "I" #'gitignore-templates-new-file)))
+(use-package! gitignore-templates
+  :defer t
+  :when (modulep! :tools magit)
+  :commands (gitignore-templates-insert gitignore-templates-new-file))
 
 (use-package pr-review
   :defer t)
