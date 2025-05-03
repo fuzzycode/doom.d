@@ -73,6 +73,7 @@
                   :desc "List Authored Pull-requests" "u" #'forge-list-authored-pullreqs
                   :desc "List Owned Pull-requests" "o" #'forge-list-owned-pullreqs))
                :desc "SMerge" "m" #'+bl/smerge-repeatedly
+               :desc "Update" "u" #'+bl/git-repo-sync
                :desc "Yank current Branch" "k" #'+bl/magit-add-current-branch-to-kill-ring)
 
       (:prefix "s"
