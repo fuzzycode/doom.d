@@ -49,7 +49,6 @@
        vterm
 
        :tools
-       ai
        debugger
        direnv
        docker
@@ -104,4 +103,5 @@
        (default +smartparens +bindings)
 
        :user
+       ai
        git)
