@@ -66,6 +66,10 @@
 
       ;; Git
       (:prefix "g"
+       (:when (modulep! :tools magit +forge)
+         (:prefix "p"
+          :desc "List (forge)" "l" #'forge-list-pullreqs))
+
        :desc "SMerge" "m" #'+bl/smerge-repeatedly
        :desc "Update" "u" #'+bl/git-repo-sync
        :desc "Yank current Branch" "k" #'+bl/magit-add-current-branch-to-kill-ring)

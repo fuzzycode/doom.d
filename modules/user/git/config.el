@@ -164,28 +164,7 @@
 (after! transient
   (transient-bind-q-to-quit)
 
-  (setq  transient-enable-popup-navigation t)
-
-  (defun +bl/magit-blame-quit-all ()
-    "Ensure that all magit-blame buffers are removed when we exit the menu."
-    (when (bound-and-true-p magit-blame-mode)
-      (call-interactively #'magit-blame-quit))
-
-    (dolist (buffer (buffer-list))
-      (with-current-buffer buffer
-        ;; Check if this buffer has magit-blame-mode active
-        (when (bound-and-true-p magit-blame-mode)
-          (call-interactively #'magit-blame-quit)))))
-
-  (defun +bl/transient-cleanup-h ()
-    "Quit the current state that transient was used for."
-    (cond
-     ((bound-and-true-p magit-blame-mode) (+bl/magit-blame-quit-all))
-     ((bound-and-true-p smerge-mode) (smerge-mode -1))
-     ((bound-and-true-p git-timemachine-mode) (git-timemachine-quit))
-     (t nil)))
-
-  (add-hook 'transient-post-exit-hook #'+bl/transient-cleanup-h)
+  (setq transient-enable-popup-navigation t)
 
   (transient-define-prefix text-zoom-transient ()
     "Text Size Controlls"
@@ -200,6 +179,7 @@
   (transient-define-prefix git-timemachine-transient ()
     "Git Time Machine"
     :transient-suffix 'transient--do-stay
+    :transient-non-suffix t
     [["Show Revision"
       ("c" "Current Revision" git-timemachine-show-current-revision )
       ("g" "Nth Revision" git-timemachine-show-nth-revision)
@@ -229,6 +209,7 @@
       (transient-define-prefix smerge-transient ()
         "SMerge controlls"
         :transient-suffix 'transient--do-stay
+        :transient-non-suffix t
         [["Move"
           ("n" "Next" smerge-next)
           ("N" "Next(All Files)" smerge-vc-next-conflict)
@@ -250,5 +231,4 @@
           ("C" "Auto Combine" smerge-auto-combine)
           ("r" "Resolve" smerge-resolve)
           ("R" "Resolve All" smerge-resolve-all)
-          ("k" "Kill Current" smerge-kill-current)]])
-  )
+          ("k" "Kill Current" smerge-kill-current)]]))

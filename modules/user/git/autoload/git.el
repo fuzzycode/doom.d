@@ -83,6 +83,30 @@ text should/could be inserted."
 (add-hook 'git-timemachine-mode-hook #'+bl/maybe-show-time-machine-transient-h)
 
 ;;;###autoload
+(defun +bl/magit-blame-quit-all ()
+  "Ensure that all magit-blame buffers are removed when we exit the menu."
+  (when (bound-and-true-p magit-blame-mode)
+    (call-interactively #'magit-blame-quit))
+
+  (dolist (buffer (buffer-list))
+    (with-current-buffer buffer
+      ;; Check if this buffer has magit-blame-mode active
+      (when (bound-and-true-p magit-blame-mode)
+        (call-interactively #'magit-blame-quit)))))
+
+;;;###autoload
+(defun +bl/transient-cleanup-h ()
+  "Quit the current state that transient was used for."
+  (cond
+   ((bound-and-true-p magit-blame-mode) (+bl/magit-blame-quit-all))
+   ((bound-and-true-p smerge-mode) (smerge-mode -1))
+   ((bound-and-true-p git-timemachine-mode) (git-timemachine-quit))
+   (t nil)))
+
+;;;###autoload
+(add-hook 'transient-post-exit-hook #'+bl/transient-cleanup-h)
+
+;;;###autoload
 (defun +bl/maybe-show-blame-transient-h ()
   (when magit-blame-mode
     (call-interactively 'magit-blame-transient)))
