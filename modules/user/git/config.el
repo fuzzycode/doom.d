@@ -188,7 +188,9 @@
       ("N" "Previous Revision" git-timemachine-show-previous-revision)]
      ["Copy Revision"
       ("y" "Abbreviated Revision" git-timemachine-kill-abbreviated-revision :transient transient--do-quit-one)
-      ("Y" "Full Revision" git-timemachine-kill-revision :transient transient--do-quit-one)]])
+      ("Y" "Full Revision" git-timemachine-kill-revision :transient transient--do-quit-one)]
+     ["Copy Link"
+      ("l" "Copy Link" git-link :transient transient--do-quit-one :inapt-if-not (lambda () (fboundp 'git-link)))]])
 
   (transient-define-prefix magit-blame-transient ()
     "Git Blame"
@@ -206,29 +208,29 @@
       ("y" "Copy Revision" magit-blame-copy-hash :transient transient--do-quit-one)
       ("v" "Visit Blob" magit-blame-visit-file :transient transient--do-quit-one)]])
 
-      (transient-define-prefix smerge-transient ()
-        "SMerge controlls"
-        :transient-suffix 'transient--do-stay
-        :transient-non-suffix t
-        [["Move"
-          ("n" "Next" smerge-next)
-          ("N" "Next(All Files)" smerge-vc-next-conflict)
-          ("p" "Previous" smerge-prev)]
-         ["Keep"
-          ("b" "Base" smerge-keep-base)
-          ("u" "Upper(Mine)" smerge-keep-upper)
-          ("l" "Lower(Other)" smerge-keep-lower)
-          ("a" "All" smerge-keep-all)
-          ("RET" "Current" smerge-keep-current)]
-         ["Diff"
-          ("<" "Base/Upper" smerge-diff-base-upper)
-          ("=" "Upper/Lower" smerge-diff-upper-lower)
-          (">" "Base/Lower" smerge-diff-base-lower)
-          ("F" "Refine" smerge-refine)
-          ("E" "Ediff" smerge-ediff :transient transient--do-quit-one)]
-         ["Other"
-          ("c" "Combine" smerge-combine-with-next)
-          ("C" "Auto Combine" smerge-auto-combine)
-          ("r" "Resolve" smerge-resolve)
-          ("R" "Resolve All" smerge-resolve-all)
-          ("k" "Kill Current" smerge-kill-current)]]))
+  (transient-define-prefix smerge-transient ()
+    "SMerge controlls"
+    :transient-suffix 'transient--do-stay
+    :transient-non-suffix t
+    [["Move"
+      ("n" "Next" smerge-next)
+      ("N" "Next(All Files)" smerge-vc-next-conflict)
+      ("p" "Previous" smerge-prev)]
+     ["Keep"
+      ("b" "Base" smerge-keep-base :inapt-if-not (lambda () (smerge-check 2)))
+      ("u" "Upper(Mine)" smerge-keep-upper :inapt-if-not (lambda () (smerge-check 1)))
+      ("l" "Lower(Other)" smerge-keep-lower :inapt-if-not (lambda () (smerge-check 3)))
+      ("a" "All" smerge-keep-all :inapt-if-not (lambda () (smerge-check 1)))
+      ("RET" "Current" smerge-keep-current :inapt-if-not (lambda () (ignore-errors (and (smerge-check 1) (> (smerge-get-current) 0)))))]
+     ["Diff"
+      ("<" "Base/Upper" smerge-diff-base-upper :inapt-if-not (lambda () (smerge-check 2)))
+      ("=" "Upper/Lower" smerge-diff-upper-lower :inapt-if-not (lambda () (smerge-check 1)))
+      (">" "Base/Lower" smerge-diff-base-lower :inapt-if-not (lambda () (smerge-check 2)))
+      ("F" "Refine" smerge-refine :inapt-if-not (lambda () (smerge-check 1)))
+      ("E" "Ediff" smerge-ediff :transient transient--do-quit-one :inapt-if-not (lambda () (smerge-check 1)))]
+     ["Other"
+      ("c" "Combine" smerge-combine-with-next :inapt-if-not (lambda () (smerge-check 1)))
+      ("C" "Auto Combine" smerge-auto-combine :inapt-if-not (lambda () (smerge-check 1)))
+      ("r" "Resolve" smerge-resolve :inapt-if-not (lambda () (smerge-check 1)))
+      ("R" "Resolve All" smerge-resolve-all)
+      ("k" "Kill Current" smerge-kill-current)]]))
