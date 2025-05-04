@@ -60,6 +60,8 @@
   :when (modulep! :tools magit)
   :init (map! :leader (:prefix "gp"
                        :desc "Search" "s" #'pr-review-search
+                       :desc "Mine" "p" (cmd! (pr-review-search "is:pr is:open author:@me"))
+                       :desc "Todo" "t" (cmd! (pr-review-search "is:pr is:open review-requested:@me -review:approved -is:draft"))
                        :desc "Review" "r" #'pr-review))
   (evil-ex-define-cmd "prr" #'pr-review)
   (evil-ex-define-cmd "prs" #'pr-review-search)
@@ -234,3 +236,14 @@
       ("r" "Resolve" smerge-resolve :inapt-if-not (lambda () (smerge-check 1)))
       ("R" "Resolve All" smerge-resolve-all)
       ("k" "Kill Current" smerge-kill-current)]]))
+
+(after! ediff
+  ;; Make quitting out of ediff easier
+  (setq ediff-autostore-merges t)
+
+  (defadvice! +bl/ediff-quit-noprompt (orig-fn &rest args)
+    "Quit ediff without prompting for confirmation."
+    :around #'ediff-quit
+    (cl-letf (((symbol-function 'y-or-n-p) (lambda (&rest _) t))
+              ((symbol-function 'yes-or-no-p) (lambda (&rest _) t)))
+      (apply orig-fn args))))
