@@ -68,6 +68,7 @@
       (:prefix "g"
        (:when (modulep! :tools magit +forge)
          (:prefix "p"
+          :desc "Create" "c" #'forge-create-pullreq
           :desc "List (forge)" "l" #'forge-list-pullreqs))
 
        :desc "SMerge" "m" #'+bl/smerge-repeatedly
