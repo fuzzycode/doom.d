@@ -1,7 +1,6 @@
 ;;; user/git/config.el -*- lexical-binding: t; -*-
 
-;; Clear the gl prefix to use for my needs
-(map! :leader "gl" nil)
+(map! :leader (:prefix "g" (:prefix ("p" . "PR"))))
 
 ;;
 ;; Packages added by this module
@@ -57,7 +56,20 @@
   :commands (gitignore-templates-insert gitignore-templates-new-file))
 
 (use-package pr-review
-  :defer t)
+  :defer t
+  :when (modulep! :tools magit)
+  :init (map! :leader (:prefix "gp"
+                       :desc "Search" "s" #'pr-review-search
+                       :desc "Review" "r" #'pr-review))
+  (evil-ex-define-cmd "prr" #'pr-review)
+  (evil-ex-define-cmd "prs" #'pr-review-search)
+  (evil-ex-define-cmd "prn" #'pr-review-notification)
+
+  (after! evil
+    (evil-set-initial-state 'pr-review-input-mode 'insert))
+
+  :bind (:map magit-status-mode-map
+              ("C-c C-r" . #'+bl/pr-review-from-forge-maybe)))
 
 ;;
 ;; Configuration of related packages added by other modules
@@ -82,7 +94,6 @@
 (after! magit
   ;;   (transient-append-suffix 'magit-branch "m" '("M" "Delete merged" +bl/delete-merged-branches))
   (transient-append-suffix 'magit-log "-n" '("-M" "Ignore merges" "--no-merges"))
-
 
   (transient-replace-suffix 'magit-dispatch "O" '("X" "Reset" magit-reset))
 
@@ -153,109 +164,91 @@
 (after! transient
   (transient-bind-q-to-quit)
 
-  (setq  transient-enable-popup-navigation t))
-;;   (defvar-local +bl/transient--exit-function nil
-;;     "Temporarily store the cleanup function to use when exiting a transient")
+  (setq  transient-enable-popup-navigation t)
 
-;;   (transient-define-prefix text-zoom-transient ()
-;;     "Text Size Controlls"
-;;     :transient-suffix 'transient--do-stay
-;;     [["Size"
-;;       ("j" "Increase" doom/increase-font-size)
-;;       ("k" "Decrease" doom/decrease-font-size)
-;;       ("0" "Reset" doom/reset-font-size :transient transient--do-quit-one)]
-;;      ["Toggle"
-;;       ("B" "Big Font" doom-big-font-mode :transient transient--do-quit-one)]])
+  (defun +bl/magit-blame-quit-all ()
+    "Ensure that all magit-blame buffers are removed when we exit the menu."
+    (when (bound-and-true-p magit-blame-mode)
+      (call-interactively #'magit-blame-quit))
 
-;;   (transient-define-prefix git-timemachine-transient ()
-;;     "Git Time Machine"
-;;     :transient-suffix 'transient--do-stay
-;;     [["Show Revision"
-;;       ("c" "Current Revision" git-timemachine-show-current-revision )
-;;       ("g" "Nth Revision" git-timemachine-show-nth-revision)
-;;       ("p" "Previous Revision" git-timemachine-show-previous-revision)
-;;       ("n" "Next Revision" git-timemachine-show-next-revision)
-;;       ("N" "Previous Revision" git-timemachine-show-previous-revision)]
-;;      ["Copy Revision"
-;;       ("y" "Abbreviated Revision" git-timemachine-kill-abbreviated-revision :transient transient--do-quit-one)
-;;       ("Y" "Full Revision" git-timemachine-kill-revision :transient transient--do-quit-one)]]
-;;     (interactive)
-;;     (let ((cleanup (lambda ()
-;;                      (when git-timemachine-mode
-;;                        (call-interactively 'git-timemachine-quit))
-;;                      (remove-hook 'transient-exit-hook +bl/transient--exit-function)
-;;                      (setq +bl/transient--exit-function nil))))
-;;       (setq +bl/transient--exit-function cleanup)
-;;       (add-hook 'transient-exit-hook cleanup))
-;;     (transient-setup 'git-timemachine-transient))
+    (dolist (buffer (buffer-list))
+      (with-current-buffer buffer
+        ;; Check if this buffer has magit-blame-mode active
+        (when (bound-and-true-p magit-blame-mode)
+          (call-interactively #'magit-blame-quit)))))
 
-;;   (transient-define-prefix magit-blame-transient ()
-;;     "Git Blame"
-;;     :transient-suffix 'transient--do-stay
-;;     [["Blame"
-;;       ("b" "Blame Further" magit-blame-addition)]
-;;      ["Move"
-;;       ("n" "Next Chunk" magit-blame-next-chunk)
-;;       ("N" "Next Chunk(Same Commit)" magit-blame-next-chunk-same-commit)
-;;       ("p" "Previous Chunk" magit-blame-previous-chunk)
-;;       ("P" "Previous Chunk(Same Commit)" magit-blame-previous-chunk-same-commit)]
-;;      ["Other"
-;;       ("c" "Cycle Style" magit-blame-cycle-style)
-;;       ("y" "Copy Revision" magit-blame-copy-hash :transient transient--do-quit-one)
-;;       ("v" "Visit Blob" magit-blame-visit-file :transient transient--do-quit-one)]]
-;;      (interactive)
-;;      (let ((cleanup (lambda ()
-;;                       (when magit-blame-mode
-;;                         (call-interactively 'magit-blame-quit))
-;;                       (remove-hook 'transient-exit-hook +bl/transient--exit-function)
-;;                       (setq +bl/transient--exit-function nil))))
-;;        (setq +bl/transient--exit-function cleanup)
-;;        (add-hook 'transient-exit-hook cleanup))
-;;      (transient-setup 'magit-blame-transient))
+  (defun +bl/transient-cleanup-h ()
+    "Quit the current state that transient was used for."
+    (cond
+     ((bound-and-true-p magit-blame-mode) (+bl/magit-blame-quit-all))
+     ((bound-and-true-p smerge-mode) (smerge-mode -1))
+     ((bound-and-true-p git-timemachine-mode) (git-timemachine-quit))
+     (t nil)))
 
-;;     (transient-define-prefix smerge-transient ()
-;;       "SMerge controlls"
-;;       :transient-suffix 'transient--do-stay
-;;       [["Move"
-;;         ("n" "Next" smerge-next)
-;;         ("N" "Next(All Files)" smerge-vc-next-conflict)
-;;         ("p" "Previous" smerge-prev)]
-;;        ["Keep"
-;;         ("b" "Base" smerge-keep-base)
-;;         ("u" "Upper(Mine)" smerge-keep-upper)
-;;         ("l" "Lower(Other)" smerge-keep-lower)
-;;         ("a" "All" smerge-keep-all)
-;;         ("RET" "Current" smerge-keep-current)]
-;;        ["Diff"
-;;         ("<" "Base/Upper" smerge-diff-base-upper)
-;;         ("=" "Upper/Lower" smerge-diff-upper-lower)
-;;         (">" "Base/Lower" smerge-diff-base-lower)
-;;         ("F" "Refine" smerge-refine)
-;;         ("E" "Ediff" smerge-ediff :transient transient--do-quit-one)]
-;;        ["Other"
-;;         ("c" "Combine" smerge-combine-with-next)
-;;         ("C" "Auto Combine" smerge-auto-combine)
-;;         ("r" "Resolve" smerge-resolve)
-;;         ("R" "Resolve All" smerge-resolve-all)
-;;         ("k" "Kill Current" smerge-kill-current)]]
-;;       (interactive)
-;;       (let ((cleanup (lambda ()
-;;                        (when smerge-mode
-;;                          (smerge-mode -1))
-;;                        (remove-hook 'transient-exit-hook +bl/transient--exit-function)
-;;                        (setq +bl/transient--exit-function nil))))
-;;         (setq +bl/transient--exit-function cleanup)
-;;         (add-hook 'transient-exit-hook cleanup))
-;;       (transient-setup 'smerge-transient))
-;; )
+  (add-hook 'transient-post-exit-hook #'+bl/transient-cleanup-h)
 
-;; (after! (magit transient)
-;;   (transient-define-suffix magit-submodule-update-all (args)
-;;     "Update all submodules"
-;;     :class 'magit--git-submodule-suffix
-;;     :description "Update all modules git submodule update --init [--recursive]"
-;;     (interactive (list (magit-submodule-arguments "--recursive")))
-;;     (magit-with-toplevel
-;;       (magit-run-git-async "submodule" "update" "--init" args)))
+  (transient-define-prefix text-zoom-transient ()
+    "Text Size Controlls"
+    :transient-suffix 'transient--do-stay
+    [["Size"
+      ("j" "Increase" doom/increase-font-size)
+      ("k" "Decrease" doom/decrease-font-size)
+      ("0" "Reset" doom/reset-font-size :transient transient--do-quit-one)]
+     ["Toggle"
+      ("B" "Big Font" doom-big-font-mode :transient transient--do-quit-one)]])
 
-;;   (transient-append-suffix 'magit-submodule '(2 -1) '("U" magit-submodule-update-all)))
+  (transient-define-prefix git-timemachine-transient ()
+    "Git Time Machine"
+    :transient-suffix 'transient--do-stay
+    [["Show Revision"
+      ("c" "Current Revision" git-timemachine-show-current-revision )
+      ("g" "Nth Revision" git-timemachine-show-nth-revision)
+      ("p" "Previous Revision" git-timemachine-show-previous-revision)
+      ("n" "Next Revision" git-timemachine-show-next-revision)
+      ("N" "Previous Revision" git-timemachine-show-previous-revision)]
+     ["Copy Revision"
+      ("y" "Abbreviated Revision" git-timemachine-kill-abbreviated-revision :transient transient--do-quit-one)
+      ("Y" "Full Revision" git-timemachine-kill-revision :transient transient--do-quit-one)]])
+
+  (transient-define-prefix magit-blame-transient ()
+    "Git Blame"
+    :transient-suffix 'transient--do-stay
+    :transient-non-suffix t
+    [["Blame"
+      ("b" "Blame Further" magit-blame-addition)]
+     ["Move"
+      ("n" "Next Chunk" magit-blame-next-chunk)
+      ("N" "Next Chunk(Same Commit)" magit-blame-next-chunk-same-commit)
+      ("p" "Previous Chunk" magit-blame-previous-chunk)
+      ("P" "Previous Chunk(Same Commit)" magit-blame-previous-chunk-same-commit)]
+     ["Other"
+      ("c" "Cycle Style" magit-blame-cycle-style)
+      ("y" "Copy Revision" magit-blame-copy-hash :transient transient--do-quit-one)
+      ("v" "Visit Blob" magit-blame-visit-file :transient transient--do-quit-one)]])
+
+      (transient-define-prefix smerge-transient ()
+        "SMerge controlls"
+        :transient-suffix 'transient--do-stay
+        [["Move"
+          ("n" "Next" smerge-next)
+          ("N" "Next(All Files)" smerge-vc-next-conflict)
+          ("p" "Previous" smerge-prev)]
+         ["Keep"
+          ("b" "Base" smerge-keep-base)
+          ("u" "Upper(Mine)" smerge-keep-upper)
+          ("l" "Lower(Other)" smerge-keep-lower)
+          ("a" "All" smerge-keep-all)
+          ("RET" "Current" smerge-keep-current)]
+         ["Diff"
+          ("<" "Base/Upper" smerge-diff-base-upper)
+          ("=" "Upper/Lower" smerge-diff-upper-lower)
+          (">" "Base/Lower" smerge-diff-base-lower)
+          ("F" "Refine" smerge-refine)
+          ("E" "Ediff" smerge-ediff :transient transient--do-quit-one)]
+         ["Other"
+          ("c" "Combine" smerge-combine-with-next)
+          ("C" "Auto Combine" smerge-auto-combine)
+          ("r" "Resolve" smerge-resolve)
+          ("R" "Resolve All" smerge-resolve-all)
+          ("k" "Kill Current" smerge-kill-current)]])
+  )

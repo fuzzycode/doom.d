@@ -30,14 +30,14 @@
 
       (:prefix ("j" . "jump")) ;; Claim the j prefix for me
       (:prefix ("x" . "text")
-       (:prefix ("n" . "narrow")
-        :nv "r" #'narrow-to-region
-        :nv "d" #'narrow-to-defun
-        :nv "p" #'narrow-to-page
-        :nv "w" #'widen)
-       :desc "Scale" "z" #'text-zoom-transient
-       (:when (modulep! :editor rotate-text)
-         :desc "Rotate text" "r" #'rotate-text))
+               (:prefix ("n" . "narrow")
+                :nv "r" #'narrow-to-region
+                :nv "d" #'narrow-to-defun
+                :nv "p" #'narrow-to-page
+                :nv "w" #'widen)
+               :desc "Scale" "z" #'text-zoom-transient
+               (:when (modulep! :editor rotate-text)
+                 :desc "Rotate text" "r" #'rotate-text))
 
       :desc "M-x" "<SPC>" #'execute-extended-command
       :desc "Eval Expression" ":" #'eval-expression
@@ -66,15 +66,9 @@
 
       ;; Git
       (:prefix "g"
-               (:when (modulep! :tools magit +forge)
-                 (:prefix "l"
-                  :desc "List Labeled Pull-requests" "l" #'forge-list-labeled-pullreqs
-                  :desc "List Requested Reviews" "v" #'forge-list-requested-reviews
-                  :desc "List Authored Pull-requests" "u" #'forge-list-authored-pullreqs
-                  :desc "List Owned Pull-requests" "o" #'forge-list-owned-pullreqs))
-               :desc "SMerge" "m" #'+bl/smerge-repeatedly
-               :desc "Update" "u" #'+bl/git-repo-sync
-               :desc "Yank current Branch" "k" #'+bl/magit-add-current-branch-to-kill-ring)
+       :desc "SMerge" "m" #'+bl/smerge-repeatedly
+       :desc "Update" "u" #'+bl/git-repo-sync
+       :desc "Yank current Branch" "k" #'+bl/magit-add-current-branch-to-kill-ring)
 
       (:prefix "s"
        :desc "Fd Dired" "F" #'fd-dired)
@@ -277,38 +271,14 @@
      :n "g0" #'winum-select-window-0-or-10))
  (:after magit
          (:map magit-status-mode-map
-          :n "yu" #'+bl/kill-url-to-commit-at-point
           :n "X" #'magit-reset
           :n "o" #'magit-submodule
           :n "O" #'magit-subtree
           "C-j" #'magit-section-forward-sibling
-          "C-k" #'magit-section-backward-sibling)
-         (:map magit-revision-mode-map
-          :n "yu" #'+bl/kill-url-to-commit-at-point))
- ;; (:map magit-log-mode-map
- ;;  :n "yu" #'+bl/kill-url-to-commit-at-point)
- ;; (:map  magit-todos-item-section-map
- ;;  "b" nil
- ;;  "B" #'magit-todos-branch-list-toggle)
- ;; (:map magit-todos-section-map
- ;;  "b" nil
- ;;  "B" #'magit-todos-branch-list-toggle))
- (:after (forge code-review)
+          "C-k" #'magit-section-backward-sibling))
+ (:after (forge pr-review)
          (:map magit-status-mode-map
-               "C-c C-r" #'+magit/start-code-review
-               "C-c C-t" #'forge-toggle-display-in-status-buffer)
-         (:map forge-pullreq-list-mode-map
-               "C-c C-r" #'+magit/start-code-review)
-         (:map forge-topic-mode-map
-               "r" #'+magit/start-code-review)
-         (:map code-review-feedback-section-map
-               "x" #'code-review-delete-feedback)
-         (:map code-review-local-comment-section-map
-               "x" #'code-review-section-delete-comment)
-         (:map code-review-reply-comment-section-map
-               "x" #'code-review-section-delete-comment)
-         (:map code-review-mode-map
-          :n "gr" #'code-review-reload))
+               "C-c C-r" #'+bl/pr-review-from-forge-maybe))
  (:after flyspell
          (:map flyspell-mode-map
           :ngi "M-i" #'flyspell-correct-wrapper))

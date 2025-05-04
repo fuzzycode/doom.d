@@ -6,7 +6,6 @@
     (beginning-of-line)
     (looking-at-p "[[:space:]]*$")))
 
-
 ;;;###autoload
 (defun +bl/move-to-next-slot (&optional backward)
   "Advances to the next empty line passed a comment line.
@@ -19,7 +18,6 @@ text should/could be inserted."
     (funcall search-fn "^#.*")
     (while (not (+bl/current-line-empty-p))
       (forward-line direction))))
-
 
 ;;;###autoload
 (defun +bl/delete-carrage-returns ()
@@ -59,6 +57,14 @@ text should/could be inserted."
         (when (yes-or-no-p (format "Really delete %s ?" (mapconcat 'identity merged ", ")))
           (magit-branch-delete merged))
       (message "No merged branches found"))))
+
+;;;###autoload
+(defun +bl/smerge-repeatedly ()
+  "Perform smerge actions again and again"
+  (interactive)
+  (unless (and (not smerge-mode) (called-interactively-p 'any))
+    (smerge-mode 1))
+  (smerge-transient))
 
 ;;;###autoload
 (defun +bl/maybe-show-smerge-transient-h ()
@@ -142,9 +148,9 @@ This will fetch all changes from origin and pull all forge topics"
 (defun +bl/ghub--token-a (orig-fun host username package &optional nocreate forge)
   "A hack to try harder to find the token in 1Password first.
 
-The 1Password auth-source integration expects the spec to be in a specific format
-that is not used nativly by ghub. This tries first to rearrange the keys to fit 1Password
-and then falls back to the original function.
+The 1Password auth-source integration expects the spec to be in a specific
+format that is not used nativly by ghub. This tries first to rearrange the
+keys to fit 1Password and then falls back to the original function.
 "
   (if-let* ((user (format "%s-%s" username package))
             (token (auth-source-pick-first-password :host user :user "password")))
