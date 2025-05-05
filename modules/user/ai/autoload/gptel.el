@@ -239,3 +239,15 @@ TEXT is assumed to be in a tabular format with columns separated by whitespace."
           (let ((first-column (car (split-string line "\\s-\\s-+" t))))
             (push (string-trim first-column) result)))))
     (nreverse result)))
+
+;;;###autoload
+(defun +bl/open-project-agent-file ()
+  "Open agent.org file in the project root if it exists.
+   Does nothing if not in a project or if the file doesn't exist."
+  (interactive)
+  (if-let ((project-root (doom-project-root)))
+      (let ((agent-file (expand-file-name "agent.org" project-root)))
+        (if (file-exists-p agent-file)
+            (find-file agent-file)
+          (message "No agent.org file found in project root: %s" project-root)))
+    (message "Not in a project")))

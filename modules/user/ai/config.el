@@ -52,7 +52,7 @@
         '(("fetch" . (:command "uvx" :args ("mcp-server-fetch")))))
 
   (map! :leader (:prefix "l"
-                         :desc "MCP Hub" "M" #'mcp-hub))
+                 :desc "MCP Hub" "M" #'mcp-hub))
 
   (add-hook 'doom-first-file-hook #'mcp-hub-start-all-server)
 
@@ -80,7 +80,9 @@
                            :desc "Open Menu" "G" #'gptel-menu
                            :desc "Send" "s" #'gptel-send
                            :desc "Review" "r" #'+bl/gptel-review-code
-                           :desc "Rewrite Region" "R" #'gptel-rewrite))))
+                           :desc "Rewrite Region" "R" #'gptel-rewrite))
+                 (:prefix "p"
+                           :desc "Open Agent" "A" #'+bl/open-project-agent-file)))
   :config
 
   ;; Make copilot with sonnet 3.7 the default
