@@ -82,6 +82,7 @@
 
 (use-package! auth-source-1password
   :defer t
+  :when (executable-find "op")
   :init (setq auth-source-1password-vault "Development")
   :hook (doom-first-input . auth-source-1password-enable))
 
