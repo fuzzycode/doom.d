@@ -74,7 +74,8 @@
         :n "G" #'+bl/goto-empty-prompt-maybe)
   (map! (:leader (:prefix "l"
                           (:prefix "g"
-                           :desc "Ask" "a" #'+bl/gptel-lookup
+                           :desc "Add" "a" #'gptel-add
+                           :desc "Ask" "A" #'+bl/gptel-lookup
                            :desc "Define Word" "d" #'+bl/gptel-define-word
                            :desc "Open Chat" "g" #'gptel
                            :desc "Open Menu" "G" #'gptel-menu
