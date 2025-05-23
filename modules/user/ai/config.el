@@ -42,7 +42,46 @@
    :args (list '(:name "name"
                  :type string
                  :description "The name of the function or variable whose documentation is to be retrieved"))
-   :category "Emacs"))
+   :category "Emacs")
+
+  (gptel-make-tool
+   :function #'+bl/gptel-tool-apropos-search
+   :name "apropos_search"
+   :description "Search Emacs for functions, variables, and other symbols matching a pattern. Returns formatted results as text."
+   :args (list '(:name "pattern"
+                 :type string
+                 :description "A string containing a regular expression to match against symbol names.")
+               '(:name "do_all"
+                 :type boolean
+                 :description "If true, search all symbols, not just user-facing ones like commands and variables."
+                 :optional t)
+               '(:name "type"
+                 :type string
+                 :enum ["command" "function" "variable"]
+                 :description "Restrict search to a specific type of symbol."
+                 :optional t))
+   :category "Emacs"
+   :include t)
+
+  (gptel-make-tool
+   :function #'+bl/gptel-tool-get-function-implementation
+   :name "get_function_implementation"
+   :description "Get the implementation of a function with macros expanded given its name. Returns the function's source code as text, or nil if not a function or not found."
+   :args (list '(:name "function_name"
+                 :type string
+                 :description "The name of the function whose implementation you want to see."))
+   :category "Emacs"
+   :include t)
+
+  (gptel-make-tool
+   :function #'+bl/gptel-tool-get-function-source
+   :name "get_function_source"
+   :description "Get the source code of a function given its name. Returns the function's original source code without expanding macros, or nil if not a function or not found."
+   :args (list '(:name "function_name"
+                 :type string
+                 :description "The name of the function whose source code you want to see."))
+   :category "Emacs"
+   :include t))
 
 (use-package! mcp
   :when (executable-find "uv") ;; not strictly needed but I only use servers that run through uvx for now
@@ -78,12 +117,12 @@
                            :desc "Ask" "A" #'+bl/gptel-lookup
                            :desc "Define Word" "d" #'+bl/gptel-define-word
                            :desc "Open Chat" "g" #'gptel
-                           :desc "Open Menu" "G" #'gptel-menu
+                           :desc "Open Menu" "m" #'gptel-menu
                            :desc "Send" "s" #'gptel-send
                            :desc "Review" "r" #'+bl/gptel-review-code
                            :desc "Rewrite Region" "R" #'gptel-rewrite))
                  (:prefix "p"
-                           :desc "Open Agent" "A" #'+bl/open-project-agent-file)))
+                  :desc "Open Agent" "A" #'+bl/open-project-agent-file)))
   :config
 
   ;; Make copilot with sonnet 3.7 the default
