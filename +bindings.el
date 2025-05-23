@@ -147,6 +147,7 @@
        :desc "Upcase" "u" #'upcase-dwim)
       ;; Help
       (:prefix "h"
+       :desc "Helpful At Point" "h" #'helpful-at-point
        :desc "Info" "i" #'info
        :desc "Emacs News" "n" #'view-emacs-news
        :desc "Emacs Tutorial" "t" #'help-with-tutorial
