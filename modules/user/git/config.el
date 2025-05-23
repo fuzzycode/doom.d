@@ -93,14 +93,16 @@
   ;; Show 10 open topics and 10 closed ones, but only after they are toggled on
   (setq forge-topic-list-limit '(10 . -10)))
 
+(after! ghub
+  ;; Hack to make ghub--token try to find it in 1password first
+  (advice-add 'ghub--token :around #'+bl/ghub--token-a))
+
 (after! magit
   ;;   (transient-append-suffix 'magit-branch "m" '("M" "Delete merged" +bl/delete-merged-branches))
   (transient-append-suffix 'magit-log "-n" '("-M" "Ignore merges" "--no-merges"))
 
   (transient-replace-suffix 'magit-dispatch "O" '("X" "Reset" magit-reset))
 
-  ;; Hack to make ghub--token try to find it in 1password first
-  (advice-add 'ghub--token :around #'+bl/ghub--token-a)
 
   ;; Show images in commit buffers
   (setq magit-revision-show-gravatars t)
