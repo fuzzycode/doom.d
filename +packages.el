@@ -125,6 +125,11 @@
          ("\\.clang-tidy$" . yaml-mode)
          ("\\.clangd$" . yaml-mode)))
 
+(use-package! graphql-mode
+  :defer t
+  :config
+  (set-popup-rule! "^\\*GraphQL\\*$" :side 'bottom :size 0.4 :select nil :quit t))
+
 (use-package! eval-sexp-fu
   :when (modulep! :lang emacs-lisp)
   :defer t
