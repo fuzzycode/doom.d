@@ -11,6 +11,7 @@
       ":" nil
       "<SPC>" nil
       "y" nil
+      "RET" nil
 
       (:prefix ("y" . "Yank"))
       (:prefix ("l" . "LLMs"))

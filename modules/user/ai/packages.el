@@ -3,6 +3,9 @@
 ;; gptel
 (package! gptel :pin "93c98514d0daf3d10a116e03a96042a8e263f5d3")
 (package! gptel-quick :recipe (:host github :repo "karthink/gptel-quick"))
+(package! gptel-aibo)
+(package! elisp-dev-mcp)
+(package! gptel-prompts :recipe (:host github :repo "jwiegley/gptel-prompts"))
 
 ;; copilot
 (package! copilot :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")) :pin "fe3f51b636dea1c9ac55a0d5dc5d7df02dcbaa48")

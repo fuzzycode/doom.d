@@ -27,24 +27,6 @@
 (defun +bl/gptel-setup-tools ()
   "Setup the list of available tools provided to LLMs."
   (gptel-make-tool
-   :name "print_message"
-   :function #'+bl/gptel-tool-print-message
-   :description "Send a message to the *Messages* buffer"
-   :args (list '(:name "text"
-                 :type string
-                 :description "The text to send to the messages buffer"))
-   :category "Emacs")
-
-  (gptel-make-tool
-   :name "read_documentation"
-   :function #'+bl/gptel-tool-read-documentation
-   :description "Read the documentation for a given function or variable"
-   :args (list '(:name "name"
-                 :type string
-                 :description "The name of the function or variable whose documentation is to be retrieved"))
-   :category "Emacs")
-
-  (gptel-make-tool
    :function #'+bl/gptel-tool-apropos-search
    :name "apropos_search"
    :description "Search Emacs for functions, variables, and other symbols matching a pattern. Returns formatted results as text."
@@ -61,26 +43,6 @@
                  :description "Restrict search to a specific type of symbol."
                  :optional t))
    :category "Emacs"
-   :include t)
-
-  (gptel-make-tool
-   :function #'+bl/gptel-tool-get-function-implementation
-   :name "get_function_implementation"
-   :description "Get the implementation of a function with macros expanded given its name. Returns the function's source code as text, or nil if not a function or not found."
-   :args (list '(:name "function_name"
-                 :type string
-                 :description "The name of the function whose implementation you want to see."))
-   :category "Emacs"
-   :include t)
-
-  (gptel-make-tool
-   :function #'+bl/gptel-tool-get-function-source
-   :name "get_function_source"
-   :description "Get the source code of a function given its name. Returns the function's original source code without expanding macros, or nil if not a function or not found."
-   :args (list '(:name "function_name"
-                 :type string
-                 :description "The name of the function whose source code you want to see."))
-   :category "Emacs"
    :include t))
 
 (use-package! mcp
@@ -88,12 +50,16 @@
   :defer t
   :init
   (setq mcp-hub-servers
-        '(("fetch" . (:command "uvx" :args ("mcp-server-fetch")))))
+        '(("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
+          ("elisp" . (:command "~/.emacs.d/.local/straight/repos/mcp-server-lib.el/emacs-mcp-stdio.sh"
+                      :args ("--init-function=elisp-dev-mcp-enable" "--stop-function=elisp-dev-mcp-disable")))
+          ("mermaid" . (:command "npx" :args ("-y" "mcp-mermaid")))))
 
   (map! :leader (:prefix "l"
                  :desc "MCP Hub" "M" #'mcp-hub))
 
-  (add-hook 'doom-first-file-hook #'mcp-hub-start-all-server)
+  (add-hook 'doom-first-file-hook #'mcp-server-lib-start 80) ;; Make sure elisp-dev-mcp is started before mcp-hub
+  (add-hook 'doom-first-file-hook #'mcp-hub-start-all-server 90)
 
   (after! gptel
     (+bl/gptel-mcp-register-tools))
@@ -101,29 +67,37 @@
   :config
   (set-popup-rule! "\\*Mcp-Hub\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil))
 
+(use-package! elisp-dev-mcp
+  :after mcp)
+
 (use-package! gptel
   :defer t
   :commands (gptel gptel-send gptel-menu)
   :bind ("C-c RET" . #'gptel-send)
   :init (setq gptel-default-mode 'org-mode
               gptel-expert-commands t
-              gptel-prompt-prefix-alist '((markdown-mode . "##") (org-mode . "* ") (text-mode . "##"))
-              gptel-response-prefix-alist '((markdown-mode . "###") (org-mode . "** ") (text-mode . "###")))
+              gptel-org-branching-context t
+              gptel-prompt-prefix-alist '((markdown-mode . "##") (org-mode . "@user\n") (text-mode . "##"))
+              gptel-response-prefix-alist '((markdown-mode . "###") (org-mode . "@assistant\n") (text-mode . "###")))
   (map! :map gptel-mode-map
         :n "G" #'+bl/goto-empty-prompt-maybe)
-  (map! (:leader (:prefix "l"
-                          (:prefix "g"
-                           :desc "Add" "a" #'gptel-add
-                           :desc "Ask" "A" #'+bl/gptel-lookup
-                           :desc "Define Word" "d" #'+bl/gptel-define-word
-                           :desc "Open Chat" "g" #'gptel
-                           :desc "Open Menu" "m" #'gptel-menu
-                           :desc "Send" "s" #'gptel-send
-                           :desc "Review" "r" #'+bl/gptel-review-code
-                           :desc "Rewrite Region" "R" #'gptel-rewrite))
-                 (:prefix "p"
-                  :desc "Open Agent" "A" #'+bl/open-project-agent-file)))
+  (map! (:leader
+         :desc "Gptel" "RET" #'gptel-menu
+         (:prefix "l"
+                  (:prefix "g"
+                   :desc "Add" "a" #'gptel-add
+                   :desc "Ask" "A" #'+bl/gptel-lookup
+                   :desc "Define Word" "d" #'+bl/gptel-define-word
+                   :desc "Open Chat" "g" #'gptel
+                   :desc "Open Menu" "m" #'gptel-menu
+                   :desc "Send" "s" #'gptel-send
+                   :desc "Review" "r" #'+bl/gptel-review-code
+                   :desc "Rewrite Region" "R" #'gptel-rewrite))
+         (:prefix "p"
+          :desc "Open Agent" "A" #'+bl/open-project-agent-file)))
   :config
+  ;;Load MCP integration
+  (require 'gptel-integrations nil t)
 
   ;; Make copilot with sonnet 3.7 the default
   (setq gptel-model 'claude-3.7-sonnet
@@ -146,7 +120,7 @@
   (when (eq gptel-default-mode 'org-mode)
     (add-hook 'org-ctrl-c-ctrl-c-hook #'+bl/gptel-ctr-c-ctr-c-h))
 
-  ;; Add the tools
+  ;; Add the local tools
   (+bl/gptel-setup-tools)
 
   ;; Catch the gptel tooling windows
@@ -159,6 +133,18 @@
         (and gptel-mode
              (memq major-mode '(org-mode markdown-mode)))))
     :size 0.4 :side 'right :select t :quit nil :ttl nil :modeline t))
+
+(use-package! gptel-prompts
+  :after gptel
+  :init (setq gptel-prompts-directory (expand-file-name "prompts" doom-user-dir))
+  :config
+  (gptel-prompts-update)
+  ;; Ensure prompts are updated if prompt files change
+  (gptel-prompts-add-update-watchers))
+
+(use-package! gptel-aibo
+  :after (gptel flycheck)
+  :init (map! (:leader (:prefix "l" (:prefix "g" :desc "Aibo Summon" "s" #'gptel-aibo-summon)))))
 
 (use-package! gptel-quick
   :after gptel
