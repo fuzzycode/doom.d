@@ -8,8 +8,8 @@ This function wraps Emacs apropos functionality for use with gptel.
 PATTERN is a string containing a regexp to match.
 Optional DO-ALL, if non-nil, finds all symbols, not just commands,
 variables, etc.
-Optional TYPE restricts search to a specific type: 'command,
-'function, or 'variable.
+Optional TYPE restricts search to a specific type: \='command,
+\='function, or \='variable.
 
 Returns a formatted string with the search results."
   (with-temp-buffer
@@ -21,7 +21,7 @@ Returns a formatted string with the search results."
          ((eq type 'command) (apropos-command pattern do-all nil))
          ((eq type 'function) (apropos-function pattern do-all nil))
          ((eq type 'variable) (apropos-variable pattern do-all nil))
-         (t (apropos pattern do-all nil)))
+         (t (apropos pattern do-all)))
 
         ;; Return the collected output as a string
         (let ((result (buffer-string)))
