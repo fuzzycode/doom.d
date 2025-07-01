@@ -77,8 +77,8 @@
   :init (setq gptel-default-mode 'org-mode
               gptel-expert-commands t
               gptel-org-branching-context t
-              gptel-prompt-prefix-alist '((markdown-mode . "##") (org-mode . "@user\n") (text-mode . "##"))
-              gptel-response-prefix-alist '((markdown-mode . "###") (org-mode . "@assistant\n") (text-mode . "###")))
+              gptel-prompt-prefix-alist '((markdown-mode . "##") (org-mode . "*@user*\n") (text-mode . "##"))
+              gptel-response-prefix-alist '((markdown-mode . "###") (org-mode . "*@assistant*\n") (text-mode . "###")))
   (map! :map gptel-mode-map
         :n "G" #'+bl/goto-empty-prompt-maybe)
   (map! (:leader
