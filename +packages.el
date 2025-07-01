@@ -226,10 +226,12 @@
   :disabled
   :defer t
   :hook (doom-first-input . global-obsidian-mode)
-  :init (map! :leader (:prefix ("N" . "Obsidian")
-                               )))
+  :init (map! :leader (:prefix ("N" . "Obsidian"))))
 
 ;; ORG
+(use-package! verb
+  :after org)
+
 (use-package! org-auto-tangle
   :when (modulep! :lang org)
   :defer t

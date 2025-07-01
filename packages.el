@@ -60,6 +60,7 @@
 (package! chezmoi :pin "1389782f8c0780c7e66f8e77b10345ba1f4eabae")
 (package! obsidian :pin "0b31775d5da1dfd3d1ffcf9fa05908a3ba26ed15")
 (package! graphql-mode)
+(package! verb)
 
 (when (modulep! :lang web)
   (package! yarn-mode :pin "8239d4dc7d8a52fa1e3fa81bd32c904a359fcfc1"))
