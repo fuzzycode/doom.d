@@ -43,7 +43,7 @@
         doom-modeline-check-simple-format nil
         doom-modeline-buffer-file-name-style 'truncate-with-project
         doom-modeline-persp-name t
-        doom-modeline-vcs-max-length 60))
+        doom-modeline-vcs-max-length 120))
 
 
 (after! company
