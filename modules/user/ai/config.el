@@ -197,3 +197,10 @@
   :when (modulep! :lang org)
   :defer t
   :hook (org-mode . ob-dall-e-shell-setup))
+
+(use-package! eca
+  :defer t
+  :init (map! :leader (:prefix "l" :desc "ECA" "e" #'eca))
+  (map! :map eca-chat-mode-map
+        :n "q" #'quit-window
+        :n [escape] #'kill-current-buffer))
