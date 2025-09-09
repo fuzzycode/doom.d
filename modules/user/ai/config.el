@@ -46,7 +46,6 @@
    :include t))
 
 (use-package! mcp
-  :when (executable-find "uv") ;; not strictly needed but I only use servers that run through uvx for now
   :defer t
   :init
   (setq mcp-hub-servers
@@ -99,8 +98,8 @@
   ;;Load MCP integration
   (require 'gptel-integrations nil t)
 
-  ;; Make copilot with sonnet 3.7 the default
-  (setq gptel-model 'claude-3.7-sonnet
+  ;; Make copilot with Claude the default
+  (setq gptel-model 'claude-opus-4
         gptel-backend (gptel-make-gh-copilot "Copilot"))
 
   ;; Add providers
