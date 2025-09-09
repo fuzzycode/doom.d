@@ -11,7 +11,7 @@
 (doom!
        :completion
        (corfu +icons +orderless +dabbrev)
-       (vertico +icons)
+       (vertico +icons +childframe)
 
        :ui
        doom
