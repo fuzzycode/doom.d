@@ -261,9 +261,8 @@
    :v "v" #'er/expand-region
    :v "V" #'er/contract-region
 
-   :i "C-y" #'evil-paste-after
-   :i "C-Y" #'evil-paste-before
-
+   :i "C-y" (cmd! (evil-paste-after 1) (unless (eolp) (forward-char 1)))
+   :i "C-Y" (cmd! (evil-paste-before 1) (forward-char 1))
 
    (:when (modulep! :ui window-select +numbers)
      :n "g1" #'winum-select-window-1
