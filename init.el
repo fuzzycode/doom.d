@@ -57,7 +57,7 @@
        (eval +overlay)
        (lookup +dictionary +docsets)
        (lsp +peek)
-       (magit +forge)
+       magit
        pdf
        prodigy
        tmux
