@@ -36,6 +36,7 @@
        rotate-text
        snippets
        word-wrap
+       (whitespace +trim)
 
        :emacs
        (dired +icons +dirvish)
