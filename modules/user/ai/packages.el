@@ -8,7 +8,9 @@
 (package! gptel-prompts :recipe (:host github :repo "jwiegley/gptel-prompts"))
 
 ;; copilot
-(package! copilot :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")) :pin "4f51b3c21c42756d09ee17011201ea7d6e18ff69")
+;; (package! copilot :recipe (:host github :repo "zerolfx/copilot.el" :files ("*.el" "dist")) :pin "4f51b3c21c42756d09ee17011201ea7d6e18ff69")
+(package! copilot
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
 
 ;; chatgpt-shell
 (package! chatgpt-shell :pin "c5b9394fed338eb5bb129590aa29edb14f6d9ba7")
