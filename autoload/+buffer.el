@@ -43,3 +43,10 @@
     (set (make-local-variable 'window-point-insertion-type) t)
     (goto-char (point-max))
     (+popup-display-buffer-stacked-side-window-fn buffer alist)))
+
+;;;###autoload
+(defun +bl/platformio-maybe-h ()
+  "If a \='platformio.ini\=' file is found in the current project root,
+ enable the platformio-mode."
+  (when (and (buffer-file-name) (locate-dominating-file (buffer-file-name) "platformio.ini"))
+    (platformio-mode)))

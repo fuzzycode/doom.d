@@ -176,7 +176,9 @@
 
 (use-package! platformio-mode
   :when (executable-find "pio")
-  :defer t)
+  :defer t
+  :hook (find-file . #'+bl/platformio-maybe-h)
+  :init (set-popup-rule! "\\*platformio-compilation\\*.*" :side 'bottom :size 0.4 :select nil :quit t))
 
 (use-package! catppuccin-theme
   :defer t
