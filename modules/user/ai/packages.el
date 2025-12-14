@@ -7,9 +7,9 @@
 ;; (package! elisp-dev-mcp)
 ;; (package! gptel-prompts :recipe (:host github :repo "jwiegley/gptel-prompts"))
 
-;; ;; copilot
-;; (package! copilot
-;;   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+;; copilot
+(package! copilot
+  :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
 
 ;; ;; chatgpt-shell
 ;; (package! chatgpt-shell :pin "c5b9394fed338eb5bb129590aa29edb14f6d9ba7")
