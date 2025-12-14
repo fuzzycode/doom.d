@@ -1,14 +1,14 @@
 ;;; tools/ai/config.el -*- lexical-binding: t; -*-
 
-;; (defvar +bl/google-api-key
-;;   (lambda () (auth-source-pick-first-password :host "Google AI API Key" :user "password")))
-;; (defvar +bl/anthropic-api-key
-;;   (lambda () (auth-source-pick-first-password :host "Claude API" :user "password")))
-;; (defvar +bl/openai-api-key
-;;   (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
+(defvar +bl/google-api-key
+  (lambda () (auth-source-pick-first-password :host "Google AI API Key" :user "password")))
+(defvar +bl/anthropic-api-key
+  (lambda () (auth-source-pick-first-password :host "Claude API" :user "password")))
+(defvar +bl/openai-api-key
+  (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
 
-;; (defvar +bl/ollama-host "localhost:11434"
-;;   "The host for the ollama server.")
+(defvar +bl/ollama-host "localhost:11434"
+  "The host for the ollama server.")
 
 ;; (map! (:leader
 ;;        (:prefix ("l" . "llms")
@@ -69,9 +69,44 @@
 ;; (use-package! elisp-dev-mcp
 ;;   :after mcp)
 
-;; (use-package! gptel
-;;   :defer t
-;;   :commands (gptel gptel-send gptel-menu)
+  ;; Tuning the menu options
+  ;; (transient-suffix-put 'gptel-menu (kbd "-m") :key "M")
+  ;; (transient-suffix-put 'gptel-menu (kbd "-i") :key "I")
+  ;; (transient-suffix-put 'gptel-menu (kbd "-c") :key "L")
+  ;; (transient-suffix-put 'gptel-menu (kbd "-v") :key "V")
+  ;; (transient-suffix-put 'gptel-menu (kbd "-t") :key "T")
+  ;; (transient-suffix-put 'gptel-menu (kbd "-T") :key "C")
+  ;; (transient-suffix-put 'gptel-menu (kbd "=") :key "S")
+  ;; (transient-suffix-put 'gptel-menu (kbd "-n") :key "N")
+  ;; (transient-suffix-put 'gptel-menu (kbd "-b") :key "B")
+  ;; (transient-suffix-put 'gptel-menu (kbd "-f") :key "F")
+(use-package! gptel
+  :defer t
+  :commands (gptel gptel-send gptel-menu)
+  :init (setq gptel-expert-commands t)
+  :config
+
+  ;; Make copilot with Claude the default
+  (setq gptel-model 'claude-opus-4
+        gptel-backend (gptel-make-gh-copilot "Copilot"))
+
+  ;; Add other providers
+  (gptel-make-anthropic "Claude" :stream t :key +bl/anthropic-api-key)
+  (gptel-make-gemini "Gemini" :stream t :key +bl/google-api-key)
+  (gptel-make-openai "OpenAi" :stream t :key +bl/openai-api-key)
+
+  ;; Catch the gptel tooling windows
+  (set-popup-rule! "\\*gptel-\\(lookup\\|review\\\word\\)\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil)
+
+  ;; Catch all gptel chat buffers
+  (set-popup-rule!
+    (lambda (buf &rest _)
+      (with-current-buffer buf
+        (and gptel-mode
+             (memq major-mode '(org-mode markdown-mode)))))
+    :size 0.4 :side 'right :select t :quit nil :ttl nil :modeline t)
+
+  )
 ;;   :bind ("C-c RET" . #'gptel-send)
 ;;   :init (setq gptel-default-mode 'org-mode
 ;;               gptel-expert-commands t
@@ -131,7 +166,8 @@
 ;;       (with-current-buffer buf
 ;;         (and gptel-mode
 ;;              (memq major-mode '(org-mode markdown-mode)))))
-;;     :size 0.4 :side 'right :select t :quit nil :ttl nil :modeline t))
+;;     :size 0.4 :side 'right :select t :quit nil :ttl nil :modeline t)
+;;     )
 
 ;; (use-package! gptel-prompts
 ;;   :after gptel

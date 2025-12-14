@@ -1,7 +1,7 @@
 ;;; tools/ai/packages.el -*- lexical-binding: t; -*-
 
 ;; ;; gptel
-;; (package! gptel :pin "dd5e71734cd3ec3953cfc3a6b611f066e40ba9a0")
+(package! gptel :pin "195f240a61336d64bda950f6201db3eaec9ea060")
 ;; (package! gptel-quick :recipe (:host github :repo "karthink/gptel-quick"))
 ;; (package! gptel-aibo)
 ;; (package! elisp-dev-mcp)
