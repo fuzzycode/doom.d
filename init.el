@@ -54,7 +54,6 @@
        direnv
        docker
        editorconfig
-       ein
        (eval +overlay)
        (lookup +dictionary +docsets)
        (lsp +peek)
