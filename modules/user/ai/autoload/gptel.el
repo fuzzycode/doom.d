@@ -121,31 +121,31 @@
 ;;                     (visual-line-mode)
 ;;                     (display-buffer (current-buffer)))))))
 
-;; ;;;###autoload
-;; (defun +bl/has-prop-line ()
-;;   "Check if the current line has a property line."
-;;   (and (save-excursion
-;;          (goto-char (point-min))
-;;          (looking-at ".*-\\*-"))))
+;;;###autoload
+(defun +bl/has-prop-line ()
+  "Check if the current line has a property line."
+  (and (save-excursion
+         (goto-char (point-min))
+         (looking-at ".*-\\*-"))))
 
-;; ;;;###autoload
-;; (defun +bl/gptel-mode-auto-h ()
-;;   "Ensures that the gptel-mode local variable is
-;; added and true in the current file."
-;;   (let ((enable-local-variables t)
-;;         (inhibit-read-only t))
-;;     (save-excursion
-;;       (save-restriction
-;;         (when (+bl/has-prop-line)
-;;           (modify-file-local-variable-prop-line 'eval nil 'delete))
-;;         (add-file-local-variable-prop-line 'eval
-;;                                            '(and (require 'gptel nil t) (fboundp 'gptel-mode) (gptel-mode 1)))))))
+;;;###autoload
+(defun +bl/gptel-mode-auto-h ()
+  "Ensures that the gptel-mode local variable is
+added and true in the current file."
+  (let ((enable-local-variables t)
+        (inhibit-read-only t))
+    (save-excursion
+      (save-restriction
+        (when (+bl/has-prop-line)
+          (modify-file-local-variable-prop-line 'eval nil 'delete))
+        (add-file-local-variable-prop-line 'eval
+                                           '(and (require 'gptel nil t) (fboundp 'gptel-mode) (gptel-mode 1)))))))
 
-;; ;;;###autoload
-;; (defun +bl/gptel-normal-state-after-send-h ()
-;;   "A hook to automatically enter normal state after a request has been sent."
-;;   (when (featurep 'evil)
-;;     (evil-normal-state)))
+;;;###autoload
+(defun +bl/gptel-normal-state-after-send-h ()
+  "A hook to automatically enter normal state after a request has been sent."
+  (when (featurep 'evil)
+    (evil-normal-state)))
 
 ;; ;;;###autoload
 ;; (defun +bl/gptel-browse-chats ()
@@ -185,17 +185,17 @@
 ;;                   (or (null initial-level)
 ;;                       (= initial-level prompt-level))))))))
 
-;; ;;;###autoload
-;; (defun +bl/gptel-ctr-c-ctr-c-h ()
-;;   "If inside a prompt this will cause C-C C-c to send the request."
-;;   (when (bound-and-true-p gptel-mode)
-;;     (let ((prefix (gptel-prompt-prefix-string)))
-;;       (if (+bl/point-in-prompt-p prefix)
-;;           (progn
-;;             (org-end-of-subtree)
-;;             (gptel-send)
-;;             t)
-;;         nil))))
+;;;###autoload
+(defun +bl/gptel-ctr-c-ctr-c-h ()
+  "If inside a prompt this will cause C-C C-c to send the request."
+  (when (bound-and-true-p gptel-mode)
+    (let ((prefix (gptel-prompt-prefix-string)))
+      (if (+bl/point-in-prompt-p prefix)
+          (progn
+            (org-end-of-subtree)
+            (gptel-send)
+            t)
+        nil))))
 
 ;; ;;;###autoload
 ;; (defun +bl/gptel-find-last-prefix-match (prefix)

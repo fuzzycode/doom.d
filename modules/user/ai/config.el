@@ -10,10 +10,11 @@
 (defvar +bl/ollama-host "localhost:11434"
   "The host for the ollama server.")
 
-;; (map! (:leader
-;;        (:prefix ("l" . "llms")
-;;                 (:prefix ("g" . "gptel")))
-;;        (:prefix "c" (:prefix ("l" . "llms")))))
+;; Add a place to store AI key bindings
+(map! (:leader
+       (:prefix ("l" . "llms")
+                (:prefix ("g" . "gptel")))
+       (:prefix "c" (:prefix ("l" . "llms")))))
 
 ;; (defun +bl/gptel-mcp-register-tools ()
 ;;   "Register all mcp tools with gptel."
@@ -45,55 +46,67 @@
 ;;    :category "Emacs"
 ;;    :include t))
 
-;; (use-package! mcp
-;;   :defer t
-;;   :init
-;;   (setq mcp-hub-servers
-;;         '(("fetch" . (:command "uvx" :args ("mcp-server-fetch")))
-;;           ("elisp" . (:command "~/.emacs.d/.local/straight/repos/mcp-server-lib.el/emacs-mcp-stdio.sh"
-;;                       :args ("--init-function=elisp-dev-mcp-enable" "--stop-function=elisp-dev-mcp-disable")))
-;;           ("mermaid" . (:command "npx" :args ("-y" "mcp-mermaid")))))
+(use-package! mcp
+  :after gptel
+  :init (setq mcp-hub-servers '())
+  (map! :leader (:prefix "l"
+                 :desc "MCP Hub" "M" #'mcp-hub))
 
-;;   (map! :leader (:prefix "l"
-;;                  :desc "MCP Hub" "M" #'mcp-hub))
-
-;;   (add-hook 'doom-first-file-hook #'mcp-server-lib-start 80) ;; Make sure elisp-dev-mcp is started before mcp-hub
-;;   (add-hook 'doom-first-file-hook #'mcp-hub-start-all-server 90)
-
-;;   (after! gptel
-;;     (+bl/gptel-mcp-register-tools))
-
-;;   :config
-;;   (set-popup-rule! "\\*Mcp-Hub\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil))
-
-;; (use-package! elisp-dev-mcp
-;;   :after mcp)
-
-  ;; Tuning the menu options
-  ;; (transient-suffix-put 'gptel-menu (kbd "-m") :key "M")
-  ;; (transient-suffix-put 'gptel-menu (kbd "-i") :key "I")
-  ;; (transient-suffix-put 'gptel-menu (kbd "-c") :key "L")
-  ;; (transient-suffix-put 'gptel-menu (kbd "-v") :key "V")
-  ;; (transient-suffix-put 'gptel-menu (kbd "-t") :key "T")
-  ;; (transient-suffix-put 'gptel-menu (kbd "-T") :key "C")
-  ;; (transient-suffix-put 'gptel-menu (kbd "=") :key "S")
-  ;; (transient-suffix-put 'gptel-menu (kbd "-n") :key "N")
-  ;; (transient-suffix-put 'gptel-menu (kbd "-b") :key "B")
-  ;; (transient-suffix-put 'gptel-menu (kbd "-f") :key "F")
-(use-package! gptel
-  :defer t
-  :commands (gptel gptel-send gptel-menu)
-  :init (setq gptel-expert-commands t)
   :config
+  (set-popup-rule! "\\*Mcp-Hub\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil))
+
+
+(use-package! gptel
+  :commands (gptel gptel-send gptel-menu)
+  :bind ("C-c RET" . #'gptel-send)
+  :init (setq gptel-expert-commands t
+              gptel-default-mode 'org-mode)
+  (map! (:leader :desc "Gptel" "RET" #'gptel-menu))
+  (map! (:leader
+         (:prefix "l"
+                  (:prefix "g"
+                   :desc "Add" "a" #'gptel-add
+                   :desc "Open Chat" "g" #'gptel
+                   :desc "Open Menu" "m" #'gptel-menu
+                   :desc "Send" "s" #'gptel-send
+                   :desc "Rewrite Region" "R" #'gptel-rewrite))
+         (:prefix "p"
+          :desc "Open Agent" "A" #'+bl/open-project-agent-file)))
+  :config
+  (require 'gptel-integrations nil t)
 
   ;; Make copilot with Claude the default
-  (setq gptel-model 'claude-opus-4
+  (setq gptel-model 'claude-opus-4.5
         gptel-backend (gptel-make-gh-copilot "Copilot"))
 
   ;; Add other providers
   (gptel-make-anthropic "Claude" :stream t :key +bl/anthropic-api-key)
   (gptel-make-gemini "Gemini" :stream t :key +bl/google-api-key)
   (gptel-make-openai "OpenAi" :stream t :key +bl/openai-api-key)
+
+  ;; (after! (:and transient gptel-menu)
+  ;;   ;; Tuning the menu options
+  ;;   (transient-suffix-put 'gptel-menu (kbd "-m") :key "M")
+  ;;   (transient-suffix-put 'gptel-menu (kbd "-i") :key "I")
+  ;;   (transient-suffix-put 'gptel-menu (kbd "-c") :key "L")
+  ;;   (transient-suffix-put 'gptel-menu (kbd "-v") :key "V")
+  ;;   (transient-suffix-put 'gptel-menu (kbd "-t") :key "T")
+  ;;   (transient-suffix-put 'gptel-menu (kbd "-T") :key "C")
+  ;;   (transient-suffix-put 'gptel-menu (kbd "=") :key "S")
+  ;;   (transient-suffix-put 'gptel-menu (kbd "-n") :key "N")
+  ;;   (transient-suffix-put 'gptel-menu (kbd "-b") :key "B")
+  ;;   (transient-suffix-put 'gptel-menu (kbd "-f") :key "F")
+  ;;   (transient-suffix-put 'gptel-menu (kbd "-R") :key "R"))
+
+  ;; Configure behavior
+  (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
+  ;; (add-hook 'gptel-post-response-functions #'+bl/gptel-insert-response-properteis-h)
+  (add-hook 'gptel-post-response-functions #'gptel-end-of-response 100)
+  (add-hook 'gptel-save-state-hook #'+bl/gptel-mode-auto-h)
+  (add-hook 'gptel-post-request-hook #'+bl/gptel-normal-state-after-send-h)
+
+  (when (eq gptel-default-mode 'org-mode)
+    (add-hook 'org-ctrl-c-ctrl-c-hook #'+bl/gptel-ctr-c-ctr-c-h))
 
   ;; Catch the gptel tooling windows
   (set-popup-rule! "\\*gptel-\\(lookup\\|review\\\word\\)\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil)
@@ -104,10 +117,24 @@
       (with-current-buffer buf
         (and gptel-mode
              (memq major-mode '(org-mode markdown-mode)))))
-    :size 0.4 :side 'right :select t :quit nil :ttl nil :modeline t)
+    :size 0.4 :side 'right :select t :quit nil :ttl nil :modeline t))
 
-  )
+;; Community driven set of tools for gptel
+(use-package! gptel-tool-library
+  :after gptel
+  :init (setq gptel-tool-library-use-maybe-safe t
+              gptel-tool-library-use-unsafe nil)
+  :config
+  ;; Other available modules '("bbdb" "gnus" "os")
+  (dolist (module '("buffer" "elisp" "emacs"))
+    (gptel-tool-library-load-module module)))
 
+(use-package! gptel-agent
+  :after gptel
+  :init (setq gptel-agent-dirs (list (expand-file-name "agents" doom-user-dir)))
+  :config (gptel-agent-update))
+
+;; Provides copilot based completions
 (use-package! copilot
   :hook (prog-mode . +bl/try-enable-copilot)
   :init (setq copilot-idle-delay 0.5)
@@ -119,6 +146,11 @@
               ("M-RET" . #'copilot-accept-completion)
               ("S-M-RET" . #'copilot-accept-completion-by-word)
               ("C-M-RET" . #'copilot-accept-completion-by-line)))
+
+;; (use-package! copilot-chat
+;;   :defer t
+;;   :init (setq copilot-chat-frontend 'shell-maker)
+;;   )
 
 
 ;;   :bind ("C-c RET" . #'gptel-send)
@@ -195,25 +227,12 @@
 ;;   :after (gptel flycheck)
 ;;   :init (map! (:leader (:prefix "l" (:prefix "g" :desc "Aibo Summon" "s" #'gptel-aibo-summon)))))
 
-;; (use-package! gptel-quick
-;;   :after gptel
-;;   :commands (gptel-quick)
-;;   :init (after! embark
-;;           (keymap-set embark-general-map "?" #'gptel-quick))
-;;   (map! (:leader (:prefix "l" (:prefix "g" :desc "Quick" "q" #'gptel-quick)))))
-
-
-;; (use-package! copilot
-;;   :hook (prog-mode . copilot-mode)
-;;   :init (setq copilot-idle-delay 0.5)
-;;   (map! (:leader (:prefix "t" :desc "Copilot" "a" #'copilot-mode)))
-;;   :config
-;;   ;;Tailor how and when Copilot is active
-;;   (add-to-list 'copilot-enable-predicates #'+bl/enable-copilot-p)
-;;   :bind (:map copilot-completion-map
-;;               ("M-RET" . #'copilot-accept-completion)
-;;               ("S-M-RET" . #'copilot-accept-completion-by-word)
-;;               ("C-M-RET" . #'copilot-accept-completion-by-line)))
+(use-package! gptel-quick
+  :after gptel
+  :commands (gptel-quick)
+  :init (after! embark
+          (keymap-set embark-general-map "?" #'gptel-quick))
+  (map! (:leader (:prefix "l" (:prefix "g" :desc "Quick" "q" #'gptel-quick)))))
 
 ;; (use-package! chatgpt-shell
 ;;   :defer t
@@ -247,10 +266,3 @@
 ;;   :when (modulep! :lang org)
 ;;   :defer t
 ;;   :hook (org-mode . ob-dall-e-shell-setup))
-
-;; (use-package! eca
-;;   :defer t
-;;   :init (map! :leader (:prefix "l" :desc "ECA" "e" #'eca))
-;;   (map! :map eca-chat-mode-map
-;;         :n "q" #'quit-window
-;;         :n [escape] #'kill-current-buffer))

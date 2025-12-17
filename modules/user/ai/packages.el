@@ -2,24 +2,25 @@
 
 ;; ;; gptel
 (package! gptel :pin "195f240a61336d64bda950f6201db3eaec9ea060")
-;; (package! gptel-quick :recipe (:host github :repo "karthink/gptel-quick"))
+(package! gptel-quick :recipe (:host github :repo "karthink/gptel-quick") :pin "018ff2be8f860a1e8fe3966eec418ad635620c38")
+(package! gptel-agent :pin "99a8b940271fbe68cdfb7c2329d090dc4ef04b99")
 ;; (package! gptel-aibo)
 ;; (package! elisp-dev-mcp)
 ;; (package! gptel-prompts :recipe (:host github :repo "jwiegley/gptel-prompts"))
+(package! gptel-tool-library :recipe (:host github :repo "aard-fi/gptel-tool-library") :pin "baffc3b0d74a2b7cbda0d5cd6dd7726d6ccaca83")
 
 ;; copilot
 (package! copilot
   :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
+;; (package! copilot-chat :pin "ca446c226f08ae13fa6d173f4e3094a2e54adf09")
+;; (package! shell-maker)
 
 ;; ;; chatgpt-shell
 ;; (package! chatgpt-shell :pin "c5b9394fed338eb5bb129590aa29edb14f6d9ba7")
 ;; (package! dall-e-shell :pin "428125f9fa8578703a9ca85d173b2cc9a3eb16b9")
 
-;; (package! mcp :recipe (:host github :repo "lizqwerscott/mcp.el") :pin "5f06a78fe74f58888f115bf30838ede5e013f4af")
+(package! mcp :recipe (:host github :repo "lizqwerscott/mcp.el") :pin "963b4af6ce743fbb6224f61bb61f05de1c37f511")
 
 ;; (when (modulep! :lang org)
 ;;   (package! ob-chatgpt-shell :pin "0e592d19528f8f3283a93e0e2844299e9ea21fcc")
 ;;   (package! ob-dall-e-shell :pin "9c052b7d55b33d7e76747a4dde0eb130a17c33e1"))
-
-;; ;; ECA
-;; (package! eca :recipe (:host github :repo "editor-code-assistant/eca-emacs" :files ("*.el")))

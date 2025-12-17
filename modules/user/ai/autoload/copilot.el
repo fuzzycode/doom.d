@@ -29,6 +29,7 @@ On Windows, this checks the file attributes."
 (defun +bl/try-enable-copilot ()
   "Tries to enable Copilot if the language server is installed."
   (interactive)
+  (require 'copilot)
   (if (ignore-errors (copilot-server-executable))
       (copilot-mode)
     (message "Copilot language server is not installed")))
