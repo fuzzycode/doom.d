@@ -27,21 +27,21 @@
 ;; (defvar +bl/gptel-review-buffer "*gptel-review*"
 ;;   "The name of the buffer used for gptel reviews.")
 
-;; ;;;###autoload
-;; (defun +bl/gptel-backend-and-model-maybe ()
-;;   "Return the backend and model for gptel if they are set."
-;;   (let ((backend (if (boundp 'gptel-backend) (aref gptel-backend 1) ""))
-;;         (model (if (boundp 'gptel-model) gptel-model "")))
-;;     (when (and backend model)
-;;       (cons backend (symbol-name model)))))
+;;;###autoload
+(defun +bl/gptel-backend-and-model-maybe ()
+  "Return the backend and model for gptel if they are set."
+  (let ((backend (if (boundp 'gptel-backend) (aref gptel-backend 1) ""))
+        (model (if (boundp 'gptel-model) gptel-model "")))
+    (when (and backend model)
+      (cons backend (symbol-name model)))))
 
-;; ;;;###autoload
-;; (defun +bl/gptel-backend-stringify ()
-;;   "Return backend and model as a string."
-;;   (let ((backend-and-model (+bl/gptel-backend-and-model-maybe)))
-;;     (if backend-and-model
-;;         (format "%s:%s" (car backend-and-model) (cdr backend-and-model))
-;;       "n/a")))
+;;;###autoload
+(defun +bl/gptel-backend-stringify ()
+  "Return backend and model as a string."
+  (let ((backend-and-model (+bl/gptel-backend-and-model-maybe)))
+    (if backend-and-model
+        (format "%s:%s" (car backend-and-model) (cdr backend-and-model))
+      "n/a")))
 
 ;; ;;;###autoload
 ;; (defun +bl/gptel-define-word (&optional arg-or-word)
@@ -147,43 +147,45 @@ added and true in the current file."
   (when (featurep 'evil)
     (evil-normal-state)))
 
-;; ;;;###autoload
-;; (defun +bl/gptel-browse-chats ()
-;;   (interactive)
-;;   (if (file-directory-p +bl/chat-history-dir)
-;;       (dired +bl/chat-history-dir)
-;;     (message "%s does not exist" +bl/chat-history-dir)))
+;;;###autoload
+(defun +bl/abort-completions-h ()
+  "Disable any lingering completion windows."
+  (when (featurep 'company)
+    (company-abort))
+  (when (featurep 'corfu)
+    (corfu-quit)))
 
-;; ;;;###autoload
-;; (defun +bl/gptel-insert-response-properteis-h (begin end)
-;;   "Inserts the response meta properties for the response between BEGIN and END."
-;;   (unless (eq begin end) ;; If the call fails they are the same
-;;     (save-excursion
-;;       (save-restriction
-;;         (narrow-to-region begin end)
-;;         (org-back-to-heading t)
-;;         (let ((time (format-time-string "[%Y-%m-%d %a %H:%M]")))
-;;           (org-entry-put begin "Created" time))
-;;         (when-let ((backend-and-model (+bl/gptel-backend-and-model-maybe)))
-;;           (org-entry-put begin "Backend" (car backend-and-model))
-;;           (org-entry-put begin "Model" (cdr backend-and-model)))
-;;         (widen)))))
 
-;; ;;;###autoload
-;; (defun +bl/point-in-prompt-p (prefix)
-;;   "Return non-nil if point is on a heading starting
-;; with PREFIX or in text directly under it.
-;; Does not return true if point is in a sub-heading."
-;;   (save-excursion
-;;     (let ((initial-level (org-current-level)))
-;;       (and (org-back-to-heading t)
-;;            (let ((heading-line (buffer-substring-no-properties
-;;                                 (line-beginning-position)
-;;                                 (line-end-position)))
-;;                  (prompt-level (org-current-level)))
-;;              (and (string-prefix-p prefix heading-line)
-;;                   (or (null initial-level)
-;;                       (= initial-level prompt-level))))))))
+;;;###autoload
+(defun +bl/gptel-insert-response-properteis-h (begin end)
+  "Inserts the response meta properties for the response between BEGIN and END."
+  (unless (eq begin end) ;; If the call fails they are the same
+    (save-excursion
+      (save-restriction
+        (narrow-to-region begin end)
+        (org-back-to-heading t)
+        (let ((time (format-time-string "[%Y-%m-%d %a %H:%M]")))
+          (org-entry-put begin "Created" time))
+        (when-let ((backend-and-model (+bl/gptel-backend-and-model-maybe)))
+          (org-entry-put begin "Backend" (car backend-and-model))
+          (org-entry-put begin "Model" (cdr backend-and-model)))
+        (widen)))))
+
+;;;###autoload
+(defun +bl/point-in-prompt-p (prefix)
+  "Return non-nil if point is on a heading starting
+with PREFIX or in text directly under it.
+Does not return true if point is in a sub-heading."
+  (save-excursion
+    (let ((initial-level (org-current-level)))
+      (and (org-back-to-heading t)
+           (let ((heading-line (buffer-substring-no-properties
+                                (line-beginning-position)
+                                (line-end-position)))
+                 (prompt-level (org-current-level)))
+             (and (string-prefix-p prefix heading-line)
+                  (or (null initial-level)
+                      (= initial-level prompt-level))))))))
 
 ;;;###autoload
 (defun +bl/gptel-ctr-c-ctr-c-h ()
@@ -197,48 +199,76 @@ added and true in the current file."
             t)
         nil))))
 
-;; ;;;###autoload
-;; (defun +bl/gptel-find-last-prefix-match (prefix)
-;;   "Find the last match for PREFIX in the current buffer."
-;;   (save-excursion
-;;     (let ((regexp (concat "^" (regexp-quote prefix))))
-;;       (goto-char (point-max))
-;;       (if (re-search-backward regexp nil t)
-;;           (match-end 0)
-;;         (message "No match found for prefix: %s" prefix))) ))
+;;;###autoload
+(defun +bl/gptel-select-session ()
+  "Select an existing gptel session or create a new one.
+Lists all buffers with `gptel-mode' enabled and offers to create a new session."
+  (interactive)
+  (require 'gptel)
+  (let* ((backend (default-value 'gptel-backend))
+         (new-buffer-name (generate-new-buffer-name
+                           (concat "*" (gptel-backend-name backend) "*")))
+         (buffer-name
+          (read-buffer
+           "Select or create gptel session: "
+           new-buffer-name
+           nil
+           (lambda (buf-name)
+             "Predicate to filter gptel buffers and allow new buffer creation."
+             (when (consp buf-name) (setq buf-name (car buf-name)))
+             (let ((buf (get-buffer buf-name)))
+               (or (null buf)  ; Allow creating new buffers
+                   (buffer-local-value 'gptel-mode buf)))))))
+    (gptel buffer-name nil nil t)))
 
-;; ;;;###autoload
-;; (defun +bl/goto-empty-prompt-maybe ()
-;;   "Move point to the empty prompt if it exists."
-;;   (interactive)
-;;   (when-let ((pos (+bl/gptel-find-last-prefix-match (gptel-prompt-prefix-string))))
-;;     (goto-char pos)))
 
-;; ;;;###autoload
-;; (defun +bl/get-ollama-models ()
-;;   "Get a list of installed Ollama models (first column names only)."
-;;   (interactive)
-;;   (if (executable-find "ollama")
-;;       (let* ((output (shell-command-to-string "ollama list"))
-;;              (models (+bl/parse-first-column output)))
-;;         (if (called-interactively-p 'any)
-;;             (message "Installed Ollama models: %s" models)
-;;           models))
-;;     (user-error "Ollama executable not found in path")))
+;;;###autoload
+(defun +bl/gptel-find-last-prefix-match (prefix)
+  "Find the last match for PREFIX in the current buffer."
+  (save-excursion
+    (let ((regexp (concat "^" (regexp-quote prefix))))
+      (goto-char (point-max))
+      (if (re-search-backward regexp nil t)
+          (match-end 0)
+        (message "No match found for prefix: %s" prefix))) ))
 
-;; ;;;###autoload
-;; (defun +bl/parse-first-column (text)
-;;   "Parse TEXT and return a list of items from the first column, excluding header.
-;; TEXT is assumed to be in a tabular format with columns separated by whitespace."
-;;   (let ((lines (split-string text "\n" t))
-;;         result)
-;;     (when (> (length lines) 1)
-;;       (setq lines (cdr lines))
-;;       (dolist (line lines)
-;;         (when (not (string-empty-p (string-trim line)))
-;;           (let ((first-column (car (split-string line "\\s-\\s-+" t))))
-;;             (push (string-trim first-column) result)))))
-;;     (nreverse result)))
+;;;###autoload
+(defun +bl/goto-empty-prompt-maybe ()
+  "Move point to the empty prompt if it exists."
+  (interactive)
+  (when-let ((pos (+bl/gptel-find-last-prefix-match (gptel-prompt-prefix-string))))
+    (goto-char pos)))
+
+;;;###autoload
+(defun +bl/goto-empty-prompt-maybe-h (_ _)
+  "After response hook to move point to the empty prompt."
+  (+bl/goto-empty-prompt-maybe))
+
+;;;###autoload
+(defun +bl/get-ollama-models ()
+  "Get a list of installed Ollama models (first column names only)."
+  (interactive)
+  (if (executable-find "ollama")
+      (let* ((output (shell-command-to-string "ollama list"))
+             (models (+bl/parse-first-column output)))
+        (if (called-interactively-p 'any)
+            (message "Installed Ollama models: %s" models)
+          models))
+    (user-error "Ollama executable not found in path")))
+
+;;;###autoload
+(defun +bl/parse-first-column (text)
+  "Parse TEXT and return a list of items from the first column, excluding header.
+TEXT is assumed to be in a tabular format with columns separated by whitespace."
+  (let ((lines (split-string text "\n" t))
+        result)
+    (when (> (length lines) 1)
+      (setq lines (cdr lines))
+      (dolist (line lines)
+        (when (not (string-empty-p (string-trim line)))
+          (let ((first-column (car (split-string line "\\s-\\s-+" t))))
+            (push (string-trim first-column) result)))))
+    (nreverse result)))
 
 ;; ;;;###autoload
 ;; (defun +bl/open-project-agent-file ()

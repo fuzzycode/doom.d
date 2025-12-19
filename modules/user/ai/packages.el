@@ -8,6 +8,8 @@
 ;; (package! elisp-dev-mcp)
 ;; (package! gptel-prompts :recipe (:host github :repo "jwiegley/gptel-prompts"))
 (package! gptel-tool-library :recipe (:host github :repo "aard-fi/gptel-tool-library") :pin "baffc3b0d74a2b7cbda0d5cd6dd7726d6ccaca83")
+(package! llm-tool-colection :recipe (:host github :repo "skissue/llm-tool-collection") :pin "a383ccf3df6c86684da77fb61ea4ebe67a21eedb")
+(package! ragmacs :recipe (:host github :repo "positron-solutions/ragmacs") :pin "d3ad46ded557a651faa959f1545ca4df48da78f0")
 
 ;; copilot
 (package! copilot
