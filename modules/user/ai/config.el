@@ -102,19 +102,6 @@
   (gptel-make-gemini "Gemini" :stream t :key +bl/google-api-key)
   (gptel-make-openai "OpenAi" :stream t :key +bl/openai-api-key)
 
-  (after! gptel-transient
-    ;; Tuning the menu options
-    (transient-suffix-put 'gptel-menu (kbd "-m") :key "M")
-    (transient-suffix-put 'gptel-menu (kbd "-i") :key "I")
-    (transient-suffix-put 'gptel-menu (kbd "-c") :key "L")
-    (transient-suffix-put 'gptel-menu (kbd "-v") :key "V")
-    (transient-suffix-put 'gptel-menu (kbd "-t") :key "T")
-    (transient-suffix-put 'gptel-menu (kbd "-T") :key "C")
-    (transient-suffix-put 'gptel-menu (kbd "=") :key "S")
-    (transient-suffix-put 'gptel-menu (kbd "-n") :key "N")
-    (transient-suffix-put 'gptel-menu (kbd "-b") :key "B")
-    (transient-suffix-put 'gptel-menu (kbd "-f") :key "F")
-    (transient-suffix-put 'gptel-menu (kbd "-R") :key "R"))
 
   ;; Configure behavior
   ;; (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
@@ -128,7 +115,6 @@
   (when (eq gptel-default-mode 'org-mode)
     (add-hook 'org-ctrl-c-ctrl-c-hook #'+bl/gptel-ctr-c-ctr-c-h))
 
-  ;; Add the local tools
   (+bl/gptel-setup-tools)
   (+bl/gptel-make-presets)
 
@@ -142,6 +128,10 @@
         (and gptel-mode
              (memq major-mode '(org-mode markdown-mode)))))
     :size 0.4 :side 'right :select t :quit nil :ttl nil :modeline t))
+
+(use-package! gptel-prompt-file
+  :after gptel
+  :config (push '(file . (gptel-prompt-from-file-dynamic)) gptel-directives))
 
 ;; Community driven set of tools for gptel
 (use-package! gptel-tool-library
@@ -233,16 +223,23 @@
 (defconst +bl/project-tools '("get_project_root"))
 (defconst +bl/developer-tools (append +bl/time-tools +bl/web-tools +bl/buffer-tools +bl/file-system-tools +bl/project-tools))
 (defconst +bl/lisp-tools '("elisp-fuzzy-match" "elisp-describe-symbol" "elisp-function-doc" "elisp-variable-doc" "defun-region"))
+(defconst +bl/github-read-only-tools (mapcar #'+bl/get-tool-name (seq-filter #'+bl/read-only-github-tool-p (+bl/get-tools "github"))))
 
 
 (defun +bl/gptel-make-presets ()
   (gptel-make-preset 'json
+    :description "Inline preset to specify JSON schema on the fly"
     :pre (lambda ()
            (setq-local gptel--schema
                        (buffer-substring-no-properties
                         (point) (point-max)))
            (delete-region (point) (point-max)))
     :include-reasoning nil)
+
+  (gptel-make-preset 'default
+    :tools '()
+    :description "A plain and default preset with no tools or special behavior."
+    :system 'default)
 
   (gptel-make-preset 'base
     :description "Base preset that others will inherit from"
@@ -260,15 +257,47 @@ If the user provides a specific programming language or framework, tailor your r
 Always prioritize readability and maintainability in your code examples.
 You should not ask to provide any further steps unless explicitly asked."))
 
+  (gptel-make-preset 'vb
+    :description "A preset that provides access to visible buffers"
+    :context '(:eval (+bl/visible-buffer-list)))
+
+  (gptel-make-preset 'ab
+    :description "A preset that provides access to all open buffers"
+    :context '(:eval (+bl/workspace-buffer-list)))
+
+  (gptel-make-preset 'project
+    :tools (append +bl/developer-tools +bl/github-read-only-tools)
+    :description "A project oriented preset"
+    :system 'file)
+
+  (gptel-make-preset 'lisp-project
+    :description "A Lisp project oriented preset"
+    :tools (append +bl/developer-tools +bl/lisp-tools +bl/github-read-only-tools)
+    :system 'file)
+
   (gptel-make-preset 'lisper
-    :tools (append +bl/developer-tools +bl/lisp-tools))
-  :parents '(developer)
-  :description "Developer preset tailored for Lisp languages"
-  :system '(:prepend "You are an expert Lisp developer.
+    :tools (append +bl/developer-tools +bl/lisp-tools)
+    :parents '(developer)
+    :description "Developer preset tailored for Lisp languages"
+    :system '(:prepend "You are an expert Lisp developer.
 Provide accurate and efficient
 Lisp. New code should follow the code standards of existing code."))
 
-(gptel-make-preset 'github-read-only
-  :description "Provide read-only GitHub tools"
-  :pre (lambda () (gptel-mcp-connect '("github") 'sync))
-  :tools '(:eval (mapcar #'+bl/get-tool-name (seq-filter #'+bl/read-only-github-tool-p (+bl/get-tools "github"))))))
+  (gptel-make-preset 'github-read-only
+    :description "Provide read-only GitHub tools"
+    :pre (lambda () (gptel-mcp-connect '("github") 'sync))
+    :tools +bl/github-read-only-tools)
+
+  (gptel-make-preset 'github
+    :description "Provide all github tools"
+    :pre (lambda () (gptel-mcp-connect '("github") 'sync))
+    :tools '(:append ("mcp-github")))
+
+  (gptel-make-preset 'explain
+    :description "A preset that comes with a tutor tuned system prompt"
+    :system (gptel-prompt-from-file-dynamic (expand-file-name "prompts/explain.md" (file-name-directory (buffer-file-name)))))
+
+  (gptel-make-preset 'inline
+    :description ""
+    :system " Output only the requested content. No explanations, no preamble, no commentary, no markdown code fences unless explicitly requested. Your response will be inserted directly into a document."
+    :include-reasoning nil))

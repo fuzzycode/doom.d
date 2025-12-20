@@ -292,6 +292,52 @@ TEXT is assumed to be in a tabular format with columns separated by whitespace."
      (string-match-p "search_" name)
      (string-match-p "_read" name))))
 
+;;;###autoload
+(defun +bl/context-buffer-p (buf)
+  "Return non-nil if BUF is a buffer that can be included in a context."
+  (when-let ((name (buffer-name buf)))
+    (not
+     (or
+      ;; Filter out buffers with names starting with space (internal)
+      (string-prefix-p " " name)
+      ;; Filter out *foo* style buffers
+      (and (string-prefix-p "*" name)
+           (string-suffix-p "*" name))
+      ;; Filter out buffers visiting hidden files
+      (when-let ((file (buffer-file-name buf)))
+        (string-prefix-p "." (file-name-nondirectory file)))))))
+
+;;;###autoload
+(defun +bl/visible-buffer-list ()
+  "Return a list of visible buffers in the current frame.
+Only includes buffers currently displayed in windows.
+Filters out:
+- Buffers visiting hidden files (starting with '.')
+- Internal/uninteresting buffers (typically *foo* style buffers)
+- Buffers with names starting with a space"
+  (let ((buffers (mapcar #'window-buffer
+                         (window-list nil 'no-minibuf))))
+    (cl-remove-if
+     (lambda (buf)
+       (not (+bl/context-buffer-p buf)))
+     (cl-remove-duplicates buffers))))
+
+;;;###autoload
+(defun +bl/workspace-buffer-list ()
+  "Return a list of buffers in the current workspace.
+Filters out:
+- Buffers visiting hidden files (starting with '.')
+- Internal/uninteresting buffers (typically *foo* style buffers)
+- Buffers with names starting with a space"
+  (let ((buffers (if (and (bound-and-true-p persp-mode)
+                          (not *persp-pretend-switched-off*))
+                     (safe-persp-buffers (get-current-persp))
+                   (buffer-list))))
+    (cl-remove-if
+     (lambda (buf)
+       (not (+bl/context-buffer-p buf)))
+     buffers)))
+
 ;; ;;;###autoload
 ;; (defun +bl/open-project-agent-file ()
 ;;   "Open agent.org file in the project root if it exists.
