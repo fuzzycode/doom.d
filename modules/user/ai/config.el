@@ -16,35 +16,35 @@
                 (:prefix ("g" . "gptel")))
        (:prefix "c" (:prefix ("l" . "llms")))))
 
-;; (defun +bl/gptel-mcp-register-tools ()
-;;   "Register all mcp tools with gptel."
-;;   (interactive)
-;;   (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
-;;     (mapcar #'(lambda (tool)
-;;                 (apply #'gptel-make-tool
-;;                        tool))
-;;             tools)))
+(defun +bl/gptel-mcp-register-tools ()
+  "Register all mcp tools with gptel."
+  (interactive)
+  (let ((tools (mcp-hub-get-all-tool :asyncp t :categoryp t)))
+    (mapcar #'(lambda (tool)
+                (apply #'gptel-make-tool
+                       tool))
+            tools)))
 
 (defun +bl/gptel-setup-tools ()
   "Setup the list of available tools provided to LLMs."
-  (gptel-make-tool
-   :function #'+bl/gptel-tool-apropos-search
-   :name "apropos_search"
-   :description "Search Emacs for functions, variables, and other symbols matching a pattern. Returns formatted results as text."
-   :args (list '(:name "pattern"
-                 :type string
-                 :description "A string containing a regular expression to match against symbol names.")
-               '(:name "do_all"
-                 :type boolean
-                 :description "If true, search all symbols, not just user-facing ones like commands and variables."
-                 :optional t)
-               '(:name "type"
-                 :type string
-                 :enum ["command" "function" "variable"]
-                 :description "Restrict search to a specific type of symbol."
-                 :optional t))
-   :category "emacs"
-   :include t)
+  ;; (gptel-make-tool
+  ;;  :function #'+bl/gptel-tool-apropos-search
+  ;;  :name "apropos_search"
+  ;;  :description "Search Emacs for functions, variables, and other symbols matching a pattern. Returns formatted results as text."
+  ;;  :args (list '(:name "pattern"
+  ;;                :type string
+  ;;                :description "A string containing a regular expression to match against symbol names.")
+  ;;              '(:name "do_all"
+  ;;                :type boolean
+  ;;                :description "If true, search all symbols, not just user-facing ones like commands and variables."
+  ;;                :optional t)
+  ;;              '(:name "type"
+  ;;                :type string
+  ;;                :enum ["command" "function" "variable"]
+  ;;                :description "Restrict search to a specific type of symbol."
+  ;;                :optional t))
+  ;;  :category "emacs"
+  ;;  :include t)
 
   (gptel-make-tool
    :function #'+bl/get-project-root
@@ -66,6 +66,8 @@
   :config
   (require 'gptel-integrations nil t)
 
+  (gptel-mcp-connect nil '+bl/gptel-mcp-register-tools nil)
+
   (set-popup-rule! "\\*Mcp-Hub\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil))
 
 
@@ -74,6 +76,7 @@
   :bind ("C-c RET" . #'gptel-send)
   :init (setq gptel-expert-commands t
               gptel-default-mode 'org-mode
+              gptel-include-reasoning " *llm-thoughts*"
               gptel-prompt-prefix-alist '((markdown-mode . "# ") (org-mode . "* ") (text-mode . "## "))
               gptel-response-prefix-alist '((markdown-mode . "## ") (org-mode . "** *@assistant*\n") (text-mode . "### ")))
   (map! :leader :desc "Gptel" "RET" #'gptel-menu)
@@ -127,6 +130,7 @@
 
   ;; Add the local tools
   (+bl/gptel-setup-tools)
+  (+bl/gptel-make-presets)
 
   ;; Catch the gptel tooling windows
   (set-popup-rule! "\\*gptel-\\(lookup\\|review\\\word\\)\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil)
@@ -153,10 +157,7 @@
 (use-package! llm-tool-collection
   :after gptel
   :config (mapc (apply-partially #'apply #'gptel-make-tool)
-                  (llm-tool-collection-get-all)))
-
-(use-package! ragmacs
-  :after gptel)
+                (llm-tool-collection-get-all)))
 
 (use-package! gptel-agent
   :after gptel
@@ -223,3 +224,51 @@
 ;;   :when (modulep! :lang org)
 ;;   :defer t
 ;;   :hook (org-mode . ob-dall-e-shell-setup))
+
+;; Define toolsets to be used in presets
+(defconst +bl/time-tools '("mcp-time"))
+(defconst +bl/web-tools '("WebFetch" "WebSearch"))
+(defconst +bl/buffer-tools '("view_buffer" "list_buffers" "buffer_search"))
+(defconst +bl/file-system-tools '("read_file" "list_directory" "view_file" "glob" "grep" "ls"))
+(defconst +bl/project-tools '("get_project_root"))
+(defconst +bl/developer-tools (append +bl/time-tools +bl/web-tools +bl/buffer-tools +bl/file-system-tools +bl/project-tools))
+(defconst +bl/lisp-tools '("elisp-fuzzy-match" "elisp-describe-symbol" "elisp-function-doc" "elisp-variable-doc" "defun-region"))
+
+
+(defun +bl/gptel-make-presets ()
+  (gptel-make-preset 'json
+    :pre (lambda ()
+           (setq-local gptel--schema
+                       (buffer-substring-no-properties
+                        (point) (point-max)))
+           (delete-region (point) (point-max)))
+    :include-reasoning nil)
+
+  (gptel-make-preset 'base
+    :description "Base preset that others will inherit from"
+    :system "If you find that you are in an org-mode buffer, make any headings you create start at level 3.")
+
+
+  (gptel-make-preset 'developer
+    :tools +bl/developer-tools
+    :parents '(base)
+    :description "Base for all developer presets"
+    :system '(:prepend "You are an expert software developer.
+Provide accurate and efficient code snippets in response to user requests.
+When asked to write code, ensure it is well-structured, follows best practices, and includes comments for clarity.
+If the user provides a specific programming language or framework, tailor your responses accordingly.
+Always prioritize readability and maintainability in your code examples.
+You should not ask to provide any further steps unless explicitly asked."))
+
+  (gptel-make-preset 'lisper
+    :tools (append +bl/developer-tools +bl/lisp-tools))
+  :parents '(developer)
+  :description "Developer preset tailored for Lisp languages"
+  :system '(:prepend "You are an expert Lisp developer.
+Provide accurate and efficient
+Lisp. New code should follow the code standards of existing code."))
+
+(gptel-make-preset 'github-read-only
+  :description "Provide read-only GitHub tools"
+  :pre (lambda () (gptel-mcp-connect '("github") 'sync))
+  :tools '(:eval (mapcar #'+bl/get-tool-name (seq-filter #'+bl/read-only-github-tool-p (+bl/get-tools "github"))))))

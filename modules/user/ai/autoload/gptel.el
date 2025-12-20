@@ -270,6 +270,28 @@ TEXT is assumed to be in a tabular format with columns separated by whitespace."
             (push (string-trim first-column) result)))))
     (nreverse result)))
 
+;;;###autoload
+(defun +bl/get-tools (server-name)
+  "Return all tools for SERVER-NAME."
+  (if-let ((connection (gethash server-name mcp-server-connections)))
+      (mcp--tools connection)
+    '()))
+
+;;;###autoload
+(defun +bl/get-tool-name (tool)
+  "Get the name of TOOL."
+  (plist-get tool :name))
+
+;;;###autoload
+(defun +bl/read-only-github-tool-p (tool)
+  "Predicate to identify if TOOL is a read-only GitHub tool."
+  (when-let ((name (plist-get tool :name)))
+    (or
+     (string-match-p "list_" name)
+     (string-match-p "get_" name)
+     (string-match-p "search_" name)
+     (string-match-p "_read" name))))
+
 ;; ;;;###autoload
 ;; (defun +bl/open-project-agent-file ()
 ;;   "Open agent.org file in the project root if it exists.
