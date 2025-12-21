@@ -1,31 +1,229 @@
 ;;; tools/ai/autoload/copilot.el -*- lexical-binding: t; -*-
 
-;; (defvar +bl/chat-history-dir
-;;   "~/Documents/chat-history/"
-;;   "The default directory where chats are saved and loaded from")
+(defvar +bl/gptel-archive-directory
+  (expand-file-name "gptel-archive/" (or (getenv "XDG_DATA_HOME") "~/.local/share/"))
+  "Root directory for archived gptel conversations.")
 
-;; (defvar +bl/gptel-lookup--history nil
-;;   "Store the history of previous quick lookups that was done during the session")
+;;;###autoload
+(defun +bl/gptel-archive-subtree (&optional choose-location)
+  "Archive the current level-1 subtree to a date-organized file.
 
-;; (defvar +bl/gptel-default-review-prompt
-;;   "You are an expert coder. Please review the following code and provide feedback on its correctness, efficiency, and style.
-;; If you find any issues, please suggest improvements or alternatives. If the code is correct, please confirm that it is correct.
-;; If you provide any suggestions or improvements, please explain why they are better than the original code
-;; and include code examples to explain the suggested changes."
-;;   "The default prompt when asking gptel to review the region or buffer.")
+The subtree containing point is moved to a file at:
+  `+bl/gptel-archive-directory'/YYYY/MM/DD.org
 
-;; (defvar +bl/gptel-default-define-word-prompt
-;;   "You are a dictionary. Please provide the definition of the word. Give 3 examples of how to use the word in a sentence."
-;;   "The system prompt used when asking gptel to define a word.")
+With prefix argument CHOOSE-LOCATION, prompt for an existing
+archive file to append to instead of using today's date.
 
-;; (defvar +bl/gptel-define-word-buffer "*gptel-word*"
-;;   "The name of the buffer used for gptel word lookups.")
+This only works in buffers with `gptel-mode' enabled."
+  (interactive "P")
+  (unless (bound-and-true-p gptel-mode)
+    (user-error "Not in a gptel buffer"))
+  (unless (derived-mode-p 'org-mode)
+    (user-error "Not in an org-mode buffer"))
+  (save-excursion
+    ;; Navigate to level 1 heading
+    (org-back-to-heading t)
+    (while (> (org-current-level) 1)
+      (org-up-heading-safe)))
+  ;; Now at level 1 heading - get the subtree
+  (let* ((target-file (if choose-location
+                          (+bl/gptel-archive--choose-file)
+                        (expand-file-name
+                         (format-time-string "%Y/%m/%d.org")
+                         +bl/gptel-archive-directory)))
+         (element (org-element-at-point))
+         (begin (org-element-property :begin element))
+         (end (org-element-property :end element))
+         (subtree-text (buffer-substring-no-properties begin end)))
+    ;; Ensure directory exists
+    (make-directory (file-name-directory target-file) t)
+    ;; Append to archive file (ensure newline separation)
+    (with-temp-buffer
+      (when (file-exists-p target-file)
+        (insert-file-contents target-file)
+        (goto-char (point-max))
+        ;; Ensure we start on a fresh line
+        (unless (bolp)
+          (insert "\n")))
+      (goto-char (point-max))
+      (insert subtree-text)
+      (write-region (point-min) (point-max) target-file))
+    ;; Remove from current buffer
+    (delete-region begin end)
+    (message "Archived to %s" target-file)))
 
-;; (defvar +bl/gptel-lookup-buffer "*gptel-lookup*"
-;;   "The name of the buffer used for gptel lookups.")
+(defun +bl/gptel-archive--choose-file ()
+  "Prompt user to choose an existing archive file or enter a new path.
+Returns an absolute path within `+bl/gptel-archive-directory'."
+  (let* ((default-directory +bl/gptel-archive-directory)
+         (existing-files (when (file-directory-p +bl/gptel-archive-directory)
+                           (directory-files-recursively
+                            +bl/gptel-archive-directory
+                            "\\.org$")))
+         (relative-files (mapcar (lambda (f)
+                                   (file-relative-name f +bl/gptel-archive-directory))
+                                 existing-files))
+         (default-choice (format-time-string "%Y/%m/%d.org"))
+         (choice (completing-read
+                  "Archive to: "
+                  (cons default-choice relative-files)
+                  nil nil nil nil default-choice)))
+    (expand-file-name choice +bl/gptel-archive-directory)))
 
-;; (defvar +bl/gptel-review-buffer "*gptel-review*"
-;;   "The name of the buffer used for gptel reviews.")
+;;;###autoload
+(defun +bl/gptel-archive-browse ()
+  "Browse gptel archive files.
+Opens a file browser in the archive directory."
+  (interactive)
+  (unless (file-directory-p +bl/gptel-archive-directory)
+    (user-error "Archive directory does not exist: %s" +bl/gptel-archive-directory))
+  (find-file +bl/gptel-archive-directory))
+
+;;;###autoload
+(defun +bl/gptel-archive-search (&optional initial)
+  "Search gptel archive using ripgrep.
+INITIAL is the optional initial search input."
+  (interactive)
+  (unless (file-directory-p +bl/gptel-archive-directory)
+    (user-error "Archive directory does not exist: %s" +bl/gptel-archive-directory))
+  (consult-ripgrep +bl/gptel-archive-directory initial))
+
+;;;###autoload
+(defun +bl/gptel-archive-find ()
+  "Find a file in the gptel archive."
+  (interactive)
+  (unless (file-directory-p +bl/gptel-archive-directory)
+    (user-error "Archive directory does not exist: %s" +bl/gptel-archive-directory))
+  (let ((default-directory +bl/gptel-archive-directory))
+    (call-interactively #'find-file)))
+
+;;; Chat history functionality for gptel
+(defvar +bl/gptel-history-directory
+  (expand-file-name "gptel-history/" (or (getenv "XDG_DATA_HOME") "~/.local/share/"))
+  "Root directory for saved gptel conversation files.")
+
+(defvar +bl/gptel-name-prompt
+  "Generate a short, descriptive filename (2-5 words, lowercase, hyphens between words) for this conversation.
+Output ONLY the filename, no extension, no explanation, no quotes."
+  "System prompt for generating conversation names.")
+
+(defvar-local +bl/gptel-generated-name nil
+  "Buffer-local variable storing the AI-generated name for this conversation.")
+
+;;;###autoload
+(defun +bl/gptel-generate-name ()
+  "Generate a descriptive name for the current gptel conversation using AI.
+The generated name is stored in `+bl/gptel-generated-name' and used
+when saving the buffer. Also renames the buffer if it's not visiting a file."
+  (interactive)
+  (unless (bound-and-true-p gptel-mode)
+    (user-error "Not in a gptel buffer"))
+  (let ((content (buffer-substring-no-properties
+                  (point-min)
+                  (min (point-max) (+ (point-min) 2000))))) ;; First ~2000 chars
+    (when (string-empty-p (string-trim content))
+      (user-error "Buffer is empty, nothing to name"))
+    (message "Generating name...")
+    (gptel-request content
+      :system +bl/gptel-name-prompt
+      :callback
+      (lambda (response info)
+        (if (not (stringp response))
+            (message "Failed to generate name: %s" (plist-get info :status))
+          (let* ((name (string-trim response))
+                 ;; Clean up the name: lowercase, hyphens, no special chars
+                 (clean-name (replace-regexp-in-string
+                              "[^a-z0-9-]" ""
+                              (replace-regexp-in-string
+                               "[ _]+" "-"
+                               (downcase name)))))
+            (when (string-empty-p clean-name)
+              (setq clean-name "untitled"))
+            (setq +bl/gptel-generated-name clean-name)
+            ;; Rename buffer if not visiting a file
+            (unless (buffer-file-name)
+              (rename-buffer (concat "*" clean-name "*") t))
+            (message "Generated name: %s" clean-name)))))))
+
+;;;###autoload
+(defun +bl/gptel-history-save ()
+  "Save the current gptel buffer to the history directory.
+Uses `+bl/gptel-generated-name' if available, otherwise asks user
+if they want to save with a timestamp. If declined, aborts.
+Only acts on gptel-mode buffers not visiting a file."
+  (interactive)
+  (unless (bound-and-true-p gptel-mode)
+    (user-error "Not in a gptel buffer"))
+  (when (buffer-file-name)
+    ;; Already visiting a file, use normal save
+    (call-interactively #'save-buffer)
+    (cl-return-from +bl/gptel-history-save))
+  (let* ((name (or +bl/gptel-generated-name
+                   (if (y-or-n-p "No name found. Save with timestamp? ")
+                       (format-time-string "%Y%m%d-%H%M%S")
+                     (user-error "Save aborted"))))
+         (extension (pcase major-mode
+                      ('org-mode ".org")
+                      ('markdown-mode ".md")
+                      (_ ".txt")))
+         (filename (concat name extension))
+         (target-file (expand-file-name filename +bl/gptel-history-directory)))
+    ;; Ensure unique filename
+    (when (file-exists-p target-file)
+      (let ((counter 1))
+        (while (file-exists-p target-file)
+          (setq target-file (expand-file-name
+                             (concat name "-" (number-to-string counter) extension)
+                             +bl/gptel-history-directory))
+          (cl-incf counter))))
+    ;; Ensure directory exists
+    (make-directory +bl/gptel-history-directory t)
+    ;; Set the filename and save
+    (set-visited-file-name target-file t)
+    (save-buffer)
+    (message "Saved to %s" target-file)))
+
+(defun +bl/gptel-history--write-contents ()
+  "Hook function to handle saving gptel buffers not visiting a file.
+Added to `write-contents-functions' in gptel-mode buffers."
+  (when (and (bound-and-true-p gptel-mode)
+             (not (buffer-file-name)))
+    (+bl/gptel-history-save)
+    t)) ;; Return t to indicate the buffer has been saved
+
+;;;###autoload
+(defun +bl/gptel-history-enable-h ()
+  "Enable automatic saving to history for the current gptel buffer."
+  (add-hook 'write-contents-functions #'+bl/gptel-history--write-contents nil t))
+
+;;;###autoload
+(defun +bl/gptel-history-browse ()
+  "Browse saved gptel conversation files."
+  (interactive)
+  (unless (file-directory-p +bl/gptel-history-directory)
+    (user-error "History directory does not exist: %s" +bl/gptel-history-directory))
+  (find-file +bl/gptel-history-directory))
+
+;;;###autoload
+(defun +bl/gptel-history-find ()
+  "Find and open a saved gptel conversation.
+Uses completing-read to select from available history files."
+  (interactive)
+  (unless (file-directory-p +bl/gptel-history-directory)
+    (user-error "History directory does not exist: %s" +bl/gptel-history-directory))
+  (let* ((files (directory-files +bl/gptel-history-directory nil "\\.\\(org\\|md\\|txt\\)$"))
+         (choice (completing-read "Open conversation: " files nil t)))
+    (when choice
+      (find-file (expand-file-name choice +bl/gptel-history-directory)))))
+
+;;;###autoload
+(defun +bl/gptel-history-search (&optional initial)
+  "Search gptel conversation history using ripgrep.
+INITIAL is the optional initial search input."
+  (interactive)
+  (unless (file-directory-p +bl/gptel-history-directory)
+    (user-error "History directory does not exist: %s" +bl/gptel-history-directory))
+  (consult-ripgrep +bl/gptel-history-directory initial))
 
 ;;;###autoload
 (defun +bl/gptel-backend-and-model-maybe ()

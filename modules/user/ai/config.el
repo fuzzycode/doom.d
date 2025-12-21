@@ -83,10 +83,15 @@
   (map! (:leader
          (:prefix "l"
                   (:prefix "g"
+                   :desc "Search History" "s" #'+bl/gptel-history-search
+                   :desc "Find History" "f" #'+bl/gptel-history-find
+                   :desc "Browse History" "b" #'+bl/gptel-history-browse
+                   :desc "Search Archive" "S" #'+bl/gptel-archive-search
+                   :desc "Find Archive" "F" #'+bl/gptel-archive-find
+                   :desc "Browse Archive" "B" #'+bl/gptel-archive-browse
                    :desc "Add" "a" #'gptel-add
                    :desc "Open Chat" "g" #'gptel
                    :desc "Open Menu" "m" #'gptel-menu
-                   :desc "Send" "s" #'gptel-send
                    :desc "Rewrite Region" "R" #'gptel-rewrite)
                   :desc "Select Session" "l" #'+bl/gptel-select-session)
          (:prefix "p"
@@ -104,13 +109,14 @@
 
 
   ;; Configure behavior
-  ;; (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
+  (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
   (add-hook 'gptel-post-response-functions #'+bl/gptel-insert-response-properteis-h)
   (add-hook 'gptel-post-response-functions #'+bl/gptel-goto-response-start-h)
   (add-hook 'gptel-save-state-hook #'+bl/gptel-mode-auto-h)
   (add-hook 'gptel-pre-response-hook #'+bl/gptel-normal-state-after-send-h)
   (add-hook 'gptel-post-request-hook #'+bl/abort-completions-h)
   (add-hook 'gptel-mode-hook #'gptel--prettify-preset)
+  (add-hook 'gptel-mode-hook #'+bl/gptel-history-enable-h)
 
   (when (eq gptel-default-mode 'org-mode)
     (add-hook 'org-ctrl-c-ctrl-c-hook #'+bl/gptel-ctr-c-ctr-c-h))
@@ -186,15 +192,15 @@
   (map! (:leader (:prefix "l" (:prefix "g" :desc "Quick" "q" #'gptel-quick)))))
 
 (after! mcp
-;; Define toolsets to be used in presets
-(defconst +bl/time-tools '("mcp-time"))
-(defconst +bl/web-tools '("WebFetch" "WebSearch"))
-(defconst +bl/buffer-tools '("view_buffer" "list_buffers" "buffer_search"))
-(defconst +bl/file-system-tools '("read_file" "list_directory" "view_file" "glob" "grep" "ls"))
-(defconst +bl/project-tools '("get_project_root"))
-(defconst +bl/developer-tools (append +bl/time-tools +bl/web-tools +bl/buffer-tools +bl/file-system-tools +bl/project-tools))
-(defconst +bl/lisp-tools '("elisp-fuzzy-match" "elisp-describe-symbol" "elisp-function-doc" "elisp-variable-doc" "defun-region"))
-(defconst +bl/github-read-only-tools (mapcar #'+bl/get-tool-name (seq-filter #'+bl/read-only-github-tool-p (+bl/get-tools "github"))))
+  ;; Define toolsets to be used in presets
+  (defconst +bl/time-tools '("mcp-time"))
+  (defconst +bl/web-tools '("WebFetch" "WebSearch"))
+  (defconst +bl/buffer-tools '("view_buffer" "list_buffers" "buffer_search"))
+  (defconst +bl/file-system-tools '("read_file" "list_directory" "view_file" "glob" "grep" "ls"))
+  (defconst +bl/project-tools '("get_project_root"))
+  (defconst +bl/developer-tools (append +bl/time-tools +bl/web-tools +bl/buffer-tools +bl/file-system-tools +bl/project-tools))
+  (defconst +bl/lisp-tools '("elisp-fuzzy-match" "elisp-describe-symbol" "elisp-function-doc" "elisp-variable-doc" "defun-region"))
+  (defconst +bl/github-read-only-tools (mapcar #'+bl/get-tool-name (seq-filter #'+bl/read-only-github-tool-p (+bl/get-tools "github"))))
 
 
   (gptel-make-preset 'json
@@ -211,21 +217,21 @@
     :description "A plain and default preset with no tools or special behavior."
     :system 'default)
 
-  (gptel-make-preset 'base
-    :description "Base preset that others will inherit from"
-    :system "If you find that you are in an org-mode buffer, make any headings you create start at level 3.")
+  ;;   (gptel-make-preset 'base
+  ;;                      :description "Base preset that others will inherit from"
+  ;;                      :system "If you find that you are in an org-mode buffer, make any headings you create start at level 3.")
 
 
-  (gptel-make-preset 'developer
-    :tools +bl/developer-tools
-    :parents '(base)
-    :description "Base for all developer presets"
-    :system '(:prepend "You are an expert software developer.
-Provide accurate and efficient code snippets in response to user requests.
-When asked to write code, ensure it is well-structured, follows best practices, and includes comments for clarity.
-If the user provides a specific programming language or framework, tailor your responses accordingly.
-Always prioritize readability and maintainability in your code examples.
-You should not ask to provide any further steps unless explicitly asked."))
+  ;;   (gptel-make-preset 'developer
+  ;;                      :tools +bl/developer-tools
+  ;;                      :parents '(base)
+  ;;                      :description "Base for all developer presets"
+  ;;                      :system '(:prepend "You are an expert software developer.
+  ;; Provide accurate and efficient code snippets in response to user requests.
+  ;; When asked to write code, ensure it is well-structured, follows best practices, and includes comments for clarity.
+  ;; If the user provides a specific programming language or framework, tailor your responses accordingly.
+  ;; Always prioritize readability and maintainability in your code examples.
+  ;; You should not ask to provide any further steps unless explicitly asked."))
 
   (gptel-make-preset 'vb
     :description "A preset that provides access to visible buffers"
@@ -235,40 +241,44 @@ You should not ask to provide any further steps unless explicitly asked."))
     :description "A preset that provides access to all open buffers"
     :context '(:eval (+bl/workspace-buffer-list)))
 
-  (gptel-make-preset 'project
-    :tools (append +bl/developer-tools +bl/github-read-only-tools)
-    :description "A project oriented preset"
-    :system 'file)
+  ;;   (gptel-make-preset 'project
+  ;;                      :tools (append +bl/developer-tools +bl/github-read-only-tools)
+  ;;                      :description "A project oriented preset"
+  ;;                      :system 'file)
 
-  (gptel-make-preset 'lisp-project
-    :description "A Lisp project oriented preset"
-    :tools (append +bl/developer-tools +bl/lisp-tools +bl/github-read-only-tools)
-    :system 'file)
+  ;;   (gptel-make-preset 'lisp-project
+  ;;                      :description "A Lisp project oriented preset"
+  ;;                      :tools (append +bl/developer-tools +bl/lisp-tools +bl/github-read-only-tools)
+  ;;                      :system 'file)
 
-  (gptel-make-preset 'lisper
-    :tools (append +bl/developer-tools +bl/lisp-tools)
-    :parents '(developer)
-    :description "Developer preset tailored for Lisp languages"
-    :system '(:prepend "You are an expert Lisp developer.
-Provide accurate and efficient
-Lisp. New code should follow the code standards of existing code."))
+  ;;   (gptel-make-preset 'lisper
+  ;;                      :tools (append +bl/developer-tools +bl/lisp-tools)
+  ;;                      :parents '(developer)
+  ;;                      :description "Developer preset tailored for Lisp languages"
+  ;;                      :system '(:prepend "You are an expert Lisp developer.
+  ;; Provide accurate and efficient
+  ;; Lisp. New code should follow the code standards of existing code."))
 
-  (gptel-make-preset 'github-read-only
-    :description "Provide read-only GitHub tools"
-    :pre (lambda () (gptel-mcp-connect '("github") 'sync))
-    :tools +bl/github-read-only-tools)
+  ;;   (gptel-make-preset 'github-read-only
+  ;;                      :description "Provide read-only GitHub tools"
+  ;;                      :pre (lambda () (gptel-mcp-connect '("github") 'sync))
+  ;;                      :tools +bl/github-read-only-tools)
 
-  (gptel-make-preset 'github
-    :description "Provide all github tools"
-    :pre (lambda () (gptel-mcp-connect '("github") 'sync))
-    :tools '(:append ("mcp-github")))
+  ;;   (gptel-make-preset 'github
+  ;;                      :description "Provide all github tools"
+  ;;                      :pre (lambda () (gptel-mcp-connect '("github") 'sync))
+  ;;                      :tools '(:append ("mcp-github")))
 
   (gptel-make-preset 'explain
     :description "A preset that comes with a tutor tuned system prompt"
     :system (gptel-prompt-from-file-dynamic (expand-file-name "prompts/explain.md" (file-name-directory (buffer-file-name)))))
 
+  (gptel-make-preset 'explore
+    :description "A preset that comes with an exploratory tuned system prompt"
+    :system (gptel-prompt-from-file-dynamic (expand-file-name "prompts/explore.md" (file-name-directory (buffer-file-name)))))
+
   (gptel-make-preset 'inline
-    :description ""
+    :description "A preset intended for inline responses"
     :system " Output only the requested content. No explanations, no preamble, no commentary, no markdown code fences unless explicitly requested. Your response will be inserted directly into a document."
     :include-reasoning nil)
 
@@ -308,5 +318,4 @@ Lisp. New code should follow the code standards of existing code."))
   (gptel-make-preset 'gemini-2.5
     :description "Gemini 2.5 Pro via Copilot"
     :backend "Copilot"
-    :model 'gemini-2.5-pro)
-)
+    :model 'gemini-2.5-pro))
