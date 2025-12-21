@@ -106,17 +106,20 @@
   ;; Configure behavior
   ;; (add-hook 'gptel-post-stream-hook #'gptel-auto-scroll)
   (add-hook 'gptel-post-response-functions #'+bl/gptel-insert-response-properteis-h)
-  (add-hook 'gptel-post-response-functions #'+bl/goto-empty-prompt-maybe-h)
+  (add-hook 'gptel-post-response-functions #'+bl/gptel-goto-response-start-h)
   (add-hook 'gptel-save-state-hook #'+bl/gptel-mode-auto-h)
-  (add-hook 'gptel-post-request-hook #'+bl/gptel-normal-state-after-send-h)
+  (add-hook 'gptel-pre-response-hook #'+bl/gptel-normal-state-after-send-h)
   (add-hook 'gptel-post-request-hook #'+bl/abort-completions-h)
   (add-hook 'gptel-mode-hook #'gptel--prettify-preset)
 
   (when (eq gptel-default-mode 'org-mode)
     (add-hook 'org-ctrl-c-ctrl-c-hook #'+bl/gptel-ctr-c-ctr-c-h))
 
+  (when (boundp 'persp-mode)
+    (add-hook 'gptel-mode-hook (lambda () (persp-add-buffer (current-buffer)))))
+
+
   (+bl/gptel-setup-tools)
-  (+bl/gptel-make-presets)
 
   ;; Catch the gptel tooling windows
   (set-popup-rule! "\\*gptel-\\(lookup\\|review\\\word\\)\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil)
@@ -182,39 +185,7 @@
           (keymap-set embark-general-map "?" #'gptel-quick))
   (map! (:leader (:prefix "l" (:prefix "g" :desc "Quick" "q" #'gptel-quick)))))
 
-;; (use-package! chatgpt-shell
-;;   :defer t
-;;   :init (setq shell-maker-history-path doom-data-dir
-;;               chatgpt-shell-root-path doom-data-dir
-;;               chatgpt-shell-anthropic-key +bl/anthropic-api-key
-;;               chatgpt-shell-google-key +bl/google-api-key
-;;               chatgpt-shell-openai-key +bl/openai-api-key)
-;;   (map! :leader (:prefix "l"
-;;                  :desc "ChatGPT" "c" #'chatgpt-shell))
-;;   :config
-;;   (set-popup-rule! (lambda (buf &rest _)
-;;                      (with-current-buffer buf
-;;                        (eq major-mode 'chatgpt-shell-mode)))
-;;     :size 0.5 :side 'bottom :select t :quit t :ttl nil))
-
-;; (use-package! dall-e-shell
-;;   :defer t
-;;   :init (setq dall-e-shell-openai-key +bl/openai-api-key)
-;;   (map! :leader (:prefix "l"
-;;                  :desc "DALL-E" "d" #'dall-e-shell))
-;;   :config
-;;   (set-popup-rule! "^\\*dall-e\\*$" :side 'bottom :size .5 :select t :quit 'current))
-
-;; (use-package! ob-chatgpt-shell
-;;   :when (modulep! :lang org)
-;;   :defer t
-;;   :hook (org-mode . ob-chatgpt-shell-setup))
-
-;; (use-package! ob-dall-e-shell
-;;   :when (modulep! :lang org)
-;;   :defer t
-;;   :hook (org-mode . ob-dall-e-shell-setup))
-
+(after! mcp
 ;; Define toolsets to be used in presets
 (defconst +bl/time-tools '("mcp-time"))
 (defconst +bl/web-tools '("WebFetch" "WebSearch"))
@@ -226,7 +197,6 @@
 (defconst +bl/github-read-only-tools (mapcar #'+bl/get-tool-name (seq-filter #'+bl/read-only-github-tool-p (+bl/get-tools "github"))))
 
 
-(defun +bl/gptel-make-presets ()
   (gptel-make-preset 'json
     :description "Inline preset to specify JSON schema on the fly"
     :pre (lambda ()
@@ -300,4 +270,43 @@ Lisp. New code should follow the code standards of existing code."))
   (gptel-make-preset 'inline
     :description ""
     :system " Output only the requested content. No explanations, no preamble, no commentary, no markdown code fences unless explicitly requested. Your response will be inserted directly into a document."
-    :include-reasoning nil))
+    :include-reasoning nil)
+
+  ;; GPT models
+  (gptel-make-preset 'gpt-4.1
+    :description "GPT-4.1 via Copilot"
+    :backend "Copilot"
+    :model 'gpt-4.1)
+
+  (gptel-make-preset 'gpt-5
+    :description "GPT-5 via Copilot"
+    :backend "Copilot"
+    :model 'gpt-5)
+
+  (gptel-make-preset 'gpt-5-mini
+    :description "GPT-5 Mini via Copilot"
+    :backend "Copilot"
+    :model 'gpt-5-mini)
+
+  (gptel-make-preset 'o4-mini
+    :description "o4-mini (reasoning) via Copilot"
+    :backend "Copilot"
+    :model 'o4-mini)
+
+  ;; Claude models
+  (gptel-make-preset 'sonnet
+    :description "Claude Sonnet 4 via Copilot"
+    :backend "Copilot"
+    :model 'claude-sonnet-4)
+
+  ;; Gemini models
+  (gptel-make-preset 'gemini-3
+    :description "Gemini 3 Pro via Copilot"
+    :backend "Copilot"
+    :model 'gemini-3-pro-preview)
+
+  (gptel-make-preset 'gemini-2.5
+    :description "Gemini 2.5 Pro via Copilot"
+    :backend "Copilot"
+    :model 'gemini-2.5-pro)
+)

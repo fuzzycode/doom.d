@@ -148,6 +148,12 @@ added and true in the current file."
     (evil-normal-state)))
 
 ;;;###autoload
+(defun +bl/gptel-goto-response-start-h (beg _end)
+  "Move point to the beginning of the response."
+  (when beg
+    (goto-char beg)))
+
+;;;###autoload
 (defun +bl/abort-completions-h ()
   "Disable any lingering completion windows."
   (when (featurep 'company)
