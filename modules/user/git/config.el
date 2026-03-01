@@ -171,7 +171,7 @@
   (setq transient-enable-popup-navigation t)
 
   (transient-define-prefix text-zoom-transient ()
-    "Text Size Controlls"
+    "Text Size Controls"
     :transient-suffix 'transient--do-stay
     [["Size"
       ("j" "Increase" doom/increase-font-size)

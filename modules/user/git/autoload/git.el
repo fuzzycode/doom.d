@@ -20,7 +20,7 @@ text should/could be inserted."
       (forward-line direction))))
 
 ;;;###autoload
-(defun +bl/delete-carrage-returns ()
+(defun +bl/delete-carriage-returns ()
   (interactive)
   (save-excursion
     (goto-char 0)
@@ -31,7 +31,7 @@ text should/could be inserted."
 (add-hook 'find-file-hook (lambda ()
                             (when (string-suffix-p "COMMIT_EDITMSG" buffer-file-name)
                               (when (featurep :system 'windows)
-                                (+bl/delete-carrage-returns))
+                                (+bl/delete-carriage-returns))
                               (goto-char (point-min))
                               (when (looking-at-p "^[[:space:]]*#.*$")
                                 (+bl/move-to-next-slot)))))
@@ -173,7 +173,7 @@ This will fetch all changes from origin and pull all forge topics"
   "A hack to try harder to find the token in 1Password first.
 
 The 1Password auth-source integration expects the spec to be in a specific
-format that is not used nativly by ghub. This tries first to rearrange the
+format that is not used natively by ghub. This tries first to rearrange the
 keys to fit 1Password and then falls back to the original function.
 "
   (if-let* ((user (format "%s-%s" username package))

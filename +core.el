@@ -154,13 +154,13 @@
       use-dialog-box nil
       use-file-dialog nil)
 
-;; iSeach
+;; iSearch
 (setq isearch-lax-whitespace t
       search-whitespace-regexp ".*?"
       isearch-regexp-lax-whitespace nil
       isearch-lazy-highlight t)
 
-;;iBuffer
+;; iBuffer
 (setq ibuffer-formats
       '((mark modified read-only " "
          (name 36 36 :left :elide) ; change: 30s were originally 18s

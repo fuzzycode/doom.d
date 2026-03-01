@@ -21,5 +21,5 @@
 
 ;;;###autoload
 (defun +bl/beautify-doom (value)
-  "Beautify org function name in VALUE."
+  "Beautify doom function name in VALUE."
   (+bl/format-command-name (replace-regexp-in-string "\\+\\(.+\\)[:/]\\(.+\\)" "\\1 \\2" value)))
