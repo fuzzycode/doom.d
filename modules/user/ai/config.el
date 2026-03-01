@@ -141,7 +141,7 @@
 
 (use-package! gptel-prompt-file
   :after gptel
-  :config (push '(file . (gptel-prompt-from-file-dynamic)) gptel-directives))
+  :config (push `(file . ,(gptel-prompt-from-file-dynamic)) gptel-directives))
 
 ;; Community driven set of tools for gptel
 (use-package! gptel-tool-library
@@ -215,68 +215,70 @@
 
   (gptel-make-preset 'default
     :tools '()
+    :model gptel-model
+    :temperature 1.0
     :description "A plain and default preset with no tools or special behavior."
-    :system 'default)
+    :system 'default
+    :include-reasoning nil
+    :context '())
 
-  ;;   (gptel-make-preset 'base
-  ;;                      :description "Base preset that others will inherit from"
-  ;;                      :system "If you find that you are in an org-mode buffer, make any headings you create start at level 3.")
-
-
-  ;;   (gptel-make-preset 'developer
-  ;;                      :tools +bl/developer-tools
-  ;;                      :parents '(base)
-  ;;                      :description "Base for all developer presets"
-  ;;                      :system '(:prepend "You are an expert software developer.
-  ;; Provide accurate and efficient code snippets in response to user requests.
-  ;; When asked to write code, ensure it is well-structured, follows best practices, and includes comments for clarity.
-  ;; If the user provides a specific programming language or framework, tailor your responses accordingly.
-  ;; Always prioritize readability and maintainability in your code examples.
-  ;; You should not ask to provide any further steps unless explicitly asked."))
-
+  ;; Context presets
   (gptel-make-preset 'vb
     :description "A preset that provides access to visible buffers"
     :context '(:eval (+bl/visible-buffer-list)))
 
   (gptel-make-preset 'ab
-    :description "A preset that provides access to all open buffers"
+    :description "A preset that provides access to all buffers in the workspace"
     :context '(:eval (+bl/workspace-buffer-list)))
 
-  ;;   (gptel-make-preset 'project
-  ;;                      :tools (append +bl/developer-tools +bl/github-read-only-tools)
-  ;;                      :description "A project oriented preset"
-  ;;                      :system 'file)
+  ;; Tools presets
+  (gptel-make-preset 'time
+    :description "Provide time related tools"
+    :pre (lambda () (gptel-mcp-connect '("time") 'sync))
+    :tools '(:append ("mcp-time")))
 
-  ;;   (gptel-make-preset 'lisp-project
-  ;;                      :description "A Lisp project oriented preset"
-  ;;                      :tools (append +bl/developer-tools +bl/lisp-tools +bl/github-read-only-tools)
-  ;;                      :system 'file)
+  (gptel-make-preset 'web
+    :description "Provide web browsing tools"
+    :tools '(:append ("WebFetch" "WebSearch")))
 
-  ;;   (gptel-make-preset 'lisper
-  ;;                      :tools (append +bl/developer-tools +bl/lisp-tools)
-  ;;                      :parents '(developer)
-  ;;                      :description "Developer preset tailored for Lisp languages"
-  ;;                      :system '(:prepend "You are an expert Lisp developer.
-  ;; Provide accurate and efficient
-  ;; Lisp. New code should follow the code standards of existing code."))
+  (gptel-make-preset 'buffer-readonly
+    :description "Provide read-only buffer tools"
+    :tools '(:append ("view_buffer" "list_buffers" "buffer_search")))
 
-  ;;   (gptel-make-preset 'github-read-only
-  ;;                      :description "Provide read-only GitHub tools"
-  ;;                      :pre (lambda () (gptel-mcp-connect '("github") 'sync))
-  ;;                      :tools +bl/github-read-only-tools)
+  (gptel-make-preset 'system-readonly
+    :description "Provide read-only file system tools"
+    :tools '(:append ("read_file" "list_directory" "view_file" "glob" "grep" "ls")))
 
-  ;;   (gptel-make-preset 'github
-  ;;                      :description "Provide all github tools"
-  ;;                      :pre (lambda () (gptel-mcp-connect '("github") 'sync))
-  ;;                      :tools '(:append ("mcp-github")))
+  (gptel-make-preset 'project
+    :description "Provide project related tools"
+    :tools '(:append ("get_project_root")))
+
+  (gptel-make-preset 'github-readonly
+    :description "Provide read-only GitHub tools"
+    :pre (lambda () (gptel-mcp-connect '("github") 'sync))
+    :tools `(:append ,+bl/github-read-only-tools))
+
+  (gptel-make-preset 'github
+    :description "Provide all github tools"
+    :pre (lambda () (gptel-mcp-connect '("github") 'sync))
+    :tools '(:append ("mcp-github")))
+
+  ;; System prompt presets
+  (gptel-make-preset 'file
+    :description "A preset that loads a system prompt from a file"
+    :system 'file)
 
   (gptel-make-preset 'explain
     :description "A preset that comes with a tutor tuned system prompt"
-    :system (gptel-prompt-from-file-dynamic (expand-file-name "prompts/explain.md" (file-name-directory (buffer-file-name)))))
+    :system (gptel-prompt-from-file-dynamic (expand-file-name "modules/user/ai/prompts/explain.md" doom-user-dir)))
 
   (gptel-make-preset 'explore
     :description "A preset that comes with an exploratory tuned system prompt"
-    :system (gptel-prompt-from-file-dynamic (expand-file-name "prompts/explore.md" (file-name-directory (buffer-file-name)))))
+    :system (gptel-prompt-from-file-dynamic (expand-file-name "modules/user/ai/prompts/explore.md" doom-user-dir)))
+
+  (gptel-make-preset 'develop
+    :description "A preset that comes with a developer tuned system prompt"
+    :system (gptel-prompt-from-file-dynamic (expand-file-name "modules/user/ai/prompts/develop.md" doom-user-dir)))
 
   (gptel-make-preset 'inline
     :description "A preset intended for inline responses"
