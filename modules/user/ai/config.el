@@ -115,7 +115,7 @@
   (add-hook 'gptel-pre-response-hook #'+bl/gptel-normal-state-after-send-h)
   (add-hook 'gptel-post-request-hook #'+bl/abort-completions-h)
   (add-hook 'gptel-mode-hook #'gptel--prettify-preset)
-  (add-hook 'gptel-mode-hook #'+bl/gptel-history-enable-h)
+
 
   (when (eq gptel-default-mode 'org-mode)
     (add-hook 'org-ctrl-c-ctrl-c-hook #'+bl/gptel-ctr-c-ctr-c-h))
