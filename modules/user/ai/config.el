@@ -66,7 +66,7 @@
   :config
   (require 'gptel-integrations nil t)
 
-  (gptel-mcp-connect nil '+bl/gptel-mcp-register-tools nil)
+  ;; (gptel-mcp-connect nil '+bl/gptel-mcp-register-tools nil)
 
   (set-popup-rule! "\\*Mcp-Hub\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil))
 
@@ -79,6 +79,8 @@
               gptel-include-reasoning " *llm-thoughts*"
               gptel-prompt-prefix-alist '((markdown-mode . "# ") (org-mode . "* ") (text-mode . "## "))
               gptel-response-prefix-alist '((markdown-mode . "## ") (org-mode . "** *@assistant*\n") (text-mode . "### ")))
+  (map! :map gptel-mode-map
+        :n "G" #'+bl/goto-empty-prompt-maybe)
   (map! :leader :desc "Gptel" "RET" #'gptel-menu)
   (map! (:leader
          (:prefix "l"
@@ -192,13 +194,13 @@
 
 (after! mcp
   ;; Define toolsets to be used in presets
-  (defconst +bl/time-tools '("mcp-time"))
-  (defconst +bl/web-tools '("WebFetch" "WebSearch"))
-  (defconst +bl/buffer-tools '("view_buffer" "list_buffers" "buffer_search"))
-  (defconst +bl/file-system-tools '("read_file" "list_directory" "view_file" "glob" "grep" "ls"))
-  (defconst +bl/project-tools '("get_project_root"))
-  (defconst +bl/developer-tools (append +bl/time-tools +bl/web-tools +bl/buffer-tools +bl/file-system-tools +bl/project-tools))
-  (defconst +bl/lisp-tools '("elisp-fuzzy-match" "elisp-describe-symbol" "elisp-function-doc" "elisp-variable-doc" "defun-region"))
+  ;; (defconst +bl/time-tools '("mcp-time"))
+  ;; (defconst +bl/web-tools '("WebFetch" "WebSearch"))
+  ;; (defconst +bl/buffer-tools '("view_buffer" "list_buffers" "buffer_search"))
+  ;; (defconst +bl/file-system-tools '("read_file" "list_directory" "view_file" "glob" "grep" "ls"))
+  ;; (defconst +bl/project-tools '("get_project_root"))
+  ;; (defconst +bl/developer-tools (append +bl/time-tools +bl/web-tools +bl/buffer-tools +bl/file-system-tools +bl/project-tools))
+  ;; (defconst +bl/lisp-tools '("elisp-fuzzy-match" "elisp-describe-symbol" "elisp-function-doc" "elisp-variable-doc" "defun-region"))
   (defconst +bl/github-read-only-tools (mapcar #'+bl/get-tool-name (seq-filter #'+bl/read-only-github-tool-p (+bl/get-tools "github"))))
 
 

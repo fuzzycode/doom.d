@@ -221,12 +221,19 @@ Does not return true if point is in a sub-heading."
 
 ;;;###autoload
 (defun +bl/gptel-ctr-c-ctr-c-h ()
-  "If inside a prompt this will cause C-C C-c to send the request."
+  "If inside a prompt this will cause C-C C-c to send the request.
+Positions point at the end of the subtree but before any local variables."
   (when (bound-and-true-p gptel-mode)
     (let ((prefix (gptel-prompt-prefix-string)))
       (if (+bl/point-in-prompt-p prefix)
           (progn
             (org-end-of-subtree)
+            ;; Move before local variables section if present
+            (when (re-search-backward "^# Local Variables:" nil t)
+              (forward-line -1)
+              (while (and (not (bobp)) (looking-at-p "^[[:space:]]*$"))
+                (forward-line -1))
+              (end-of-line))
             (gptel-send)
             t)
         nil))))
