@@ -46,12 +46,6 @@
         doom-modeline-vcs-max-length 120))
 
 
-(after! company
-  (setq company-tooltip-minimum-width 80
-        company-tooltip-maximum-width 80
-        company-minimum-prefix-length 1
-        company-idle-delay 0.0))
-
 (after! vterm
   (setq vterm-shell (+bl/get-shell))
 
@@ -209,7 +203,7 @@
 
 (electric-indent-mode -1) ;; Not needed, newline and indent will take care of it
 
-(pixel-scroll-mode t)
+(pixel-scroll-precision-mode t)
 
 ;; mac specifics
 (when (featurep :system 'macos)
