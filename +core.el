@@ -31,7 +31,7 @@
 
   (sp-local-pair 'c++-mode "/**" "*/" :actions '(navigate)) ;; Handle doxygen comment "pairs"
 
-  (smartparens-strict-mode) ;; Start out in strict mode
+  (add-hook 'smartparens-enabled-hook #'smartparens-strict-mode) ;; Start out in strict mode
   (show-smartparens-global-mode +1))
 
 (after! doom-modeline

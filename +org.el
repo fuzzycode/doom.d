@@ -13,8 +13,6 @@
 
 
 (after! org-roam
-  (setq org-roam-v2-ack t)
-
   (setq org-roam-capture-templates '(("d" "default" plain "%?"
                                       :target (file+head +bl/org-roam-file-format  "#+title: ${title}\n#+date: %U\n")
                                       :unnarrowed t)))

@@ -333,9 +333,3 @@
             ;; TODO: Make this skip my +bl/ functions
             ;; '((nil . "\\+\\(.+\\)[:/]\\(.+\\)") . (nil . +bl/beautify-doom))
             ))
-
-;; (after! which-key (pushnew! which-key-replacement-alist
-;;             '((nil . "\\+?evil\\(?:nc\\|em\\)?[:/-]\\(?:a-\\|motion-\\)?\\(.+\\)") . (nil . +bl/beautify-evil))
-;;             '((nil . "\\(?:\\?\\|consult-\\)?org[:/-]\\(.+\\)") . (nil . +bl/beautify-org))
-;;             '((nil . "\\+\\(.+\\)[:/]\\(.+\\)") . (nil . +bl/beautify-doom))
-;;             '((nil . ".+-.+") . (nil . +bl/format-command-name))))

@@ -127,7 +127,7 @@
   (+bl/gptel-setup-tools)
 
   ;; Catch the gptel tooling windows
-  (set-popup-rule! "\\*gptel-\\(lookup\\|review\\\word\\)\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil)
+  (set-popup-rule! "\\*gptel-\\(lookup\\|review\\|word\\)\\*" :size 0.4 :side 'bottom :select t :quit 'current :ttl nil)
 
   ;; Catch all gptel chat buffers
   (set-popup-rule!

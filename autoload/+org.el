@@ -148,7 +148,7 @@ tasks."
 
 ;;;###autoload
 (defun +bl/org-roam-project-files ()
-  "Return a list of note files containing `work' tag." ;
+  "Return a list of note files containing the `work' tag."
   (seq-uniq
    (seq-map
     #'car
@@ -302,4 +302,4 @@ and slug and make it more user friendly to read."
                  ((not prefix) '("[%s]" "%Y-%m-%d"))
                  ((equal prefix '(4)) '("<%s>" "%Y-%m-%d"))
                  ((equal prefix '(16)) '("%s" "%A, %B %d, %Y")))))
-    (insert (format (first format) (format-time-string (car (last format)))))))
+    (insert (format (car format) (format-time-string (car (last format)))))))

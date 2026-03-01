@@ -16,7 +16,7 @@
     (if (not (zerop status))
         (print! (error "Issue running `fc-list' on your system"))
       (insert output)
-      (dolist (font (remove-duplicates (list doom-font doom-unicode-font doom-big-font doom-variable-pitch-font doom-serif-font)
+      (dolist (font (cl-remove-duplicates (list doom-font doom-unicode-font doom-big-font doom-variable-pitch-font doom-serif-font)
                                        :test (lambda (lhs rhs) (eq (font-get lhs :family) (font-get rhs :family)))))
         (let ((family (format "%s" (font-get font :family))))
           (if (save-excursion (re-search-backward family nil t))

@@ -5,4 +5,4 @@
   "Find the \"best\" shell to use for example vterm."
   (let ((shells '("fish" "zsh" "bash"))
         (default (or (getenv "SHELL") "/bin/zsh")))
-    (seq-find #'identity (map 'list #'executable-find shells) default)))
+    (seq-find #'identity (mapcar #'executable-find shells) default)))
