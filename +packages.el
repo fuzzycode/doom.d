@@ -187,7 +187,7 @@
 
 (use-package! mermaid-ts-mode
   :defer t
-  :init (after! ob
+  :init (after! org
           (add-to-list 'org-src-lang-modes '("mermaid" . mermaid-ts))))
 
 (use-package! evil-textobj-line

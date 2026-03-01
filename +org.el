@@ -25,7 +25,7 @@
                                               :target (file+head "%<%Y-%m-%d>.org"
                                                                  "#+title: %<%Y-%m-%d>\n\n"))))
 
-  (when (modulep! :ui +wokspaces)
+  (when (modulep! :ui +workspaces)
     (defadvice! +bl/org-roam-in-workspace-a (&rest _)
       "Place Org-roam buffers in dedicated workspace."
       :before #'org-roam-node-find

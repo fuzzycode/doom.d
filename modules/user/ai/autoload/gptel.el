@@ -1,4 +1,4 @@
-;;; tools/ai/autoload/copilot.el -*- lexical-binding: t; -*-
+;;; tools/ai/autoload/gptel.el -*- lexical-binding: t; -*-
 
 (defvar +bl/gptel-archive-directory
   (expand-file-name "gptel-archive/" (or (getenv "XDG_DATA_HOME") "~/.local/share/"))

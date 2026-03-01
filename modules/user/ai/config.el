@@ -94,8 +94,7 @@
                    :desc "Open Menu" "m" #'gptel-menu
                    :desc "Rewrite Region" "R" #'gptel-rewrite)
                   :desc "Select Session" "l" #'+bl/gptel-select-session)
-         (:prefix "p"
-          :desc "Open Agent" "A" #'+bl/open-project-agent-file)))
+))
   :config
 
   ;; Make copilot with Claude the default
