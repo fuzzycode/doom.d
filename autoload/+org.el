@@ -1,7 +1,7 @@
 ;; -*- lexical-binding: t; -*-
 ;;;###if (modulep! :lang org)
 
-(defvar +bl/org-roam-file-fomat "%<%Y%m%d%H%M%S>-${slug}.org")
+(defvar +bl/org-roam-file-format "%<%Y%m%d%H%M%S>-${slug}.org")
 (defvar +bl/org-roam-project-template "#+title: ${title}\n#+date:%U\n#+category: ${title}\n#+filetags: :project:\n\n")
 (defvar +bl/org-roam-default-template  "#+title: ${title}\n#+date: %u\n#+category: notes\n")
 (defvar +bl/org-roam-inbox "inbox.org")
@@ -192,7 +192,7 @@ tasks."
                         nil
                         :templates
                         `(("p" "project" plain "\n* Tasks\n\n* Links\n\n"
-                           :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-project-template)
+                           :target (file+head ,+bl/org-roam-file-format ,+bl/org-roam-project-template)
                            :unnarrowed t)))))
 
 ;;;###autoload
@@ -223,14 +223,14 @@ tasks."
                               (+bl/org-roam-filter-by-tag "Project"))
                        :templates `(("p" "project" plain "** TODO %?\n:PROPERTIES:\n:CREATED: %u\n:END:\n"
                                      :empty-lines 1
-                                     :target (file+head+olp ,+bl/org-roam-file-fomat ,+bl/org-roam-project-template ("Tasks")))))))
+                                     :target (file+head+olp ,+bl/org-roam-file-format ,+bl/org-roam-project-template ("Tasks")))))))
 ;;;###autoload
 (defun +bl/org-roam-capture-default ()
   "Directly capture using the default template"
   (interactive)
   (let ((templates `(("d" "default" plain "%?"
                       :unnarrowed t
-                      :target (file+head ,+bl/org-roam-file-fomat ,+bl/org-roam-default-template)))))
+                      :target (file+head ,+bl/org-roam-file-format ,+bl/org-roam-default-template)))))
     (org-roam-capture :keys "d" :templates templates)))
 
 ;;;###autoload
@@ -242,7 +242,7 @@ Creating a stub node with a todo entry to fill out the information. "
         (org-roam-capture-templates `(("d" "default" plain "* TODO Insert content about ${title}%?\n:PROPERTIES:\n:CREATED: %u\n:END:\n"
                                        :empty-lines 1
                                        :immediate-finish t
-                                       :target (file+head ,+bl/org-roam-file-fomat "#+title: ${title}\n#+date: %u\n#+filetags: :stub:\n")))))
+                                       :target (file+head ,+bl/org-roam-file-format "#+title: ${title}\n#+date: %u\n#+filetags: :stub:\n")))))
     (apply #'org-roam-node-insert args)))
 
 ;;; https://github.com/tecosaur/emacs-config/blob/master/config.org#modeline-file-name
@@ -271,7 +271,7 @@ and slug and make it more user friendly to read."
                                                    (if func-name (format " (%s)" func-name) "")
                                                    (or babel-name ""))
                           :unnarrowed t
-                          :target (file+head ,+bl/org-roam-file-fomat "#+title: ${title}\n#+date: %U\n#+filetags: :code:")))))
+                          :target (file+head ,+bl/org-roam-file-format "#+title: ${title}\n#+date: %U\n#+filetags: :code:")))))
 
         (org-roam-capture :keys "c" :templates templates))
     (message "No region highlighted")))
