@@ -84,7 +84,7 @@
        (json +lsp +tree-sitter)
        (latex +latexmk +lsp)
        markdown
-       (org +dragndrop +gnuplot +hugo +jupyter +noter +pandoc +present +roam2 +pretty)
+       (org +dragndrop +gnuplot +jupyter +noter +pandoc +present +roam2 +pretty)
        plantuml
        (python +pyenv +lsp +tree-sitter)
        qt
