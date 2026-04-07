@@ -107,7 +107,7 @@
   ;; Show images in commit buffers
   (setq magit-revision-show-gravatars t)
 
-  (magit-wip-after-save-mode)
+  (magit-wip-mode)
 
   (add-to-list 'magit-no-confirm 'stage-all-changes)
   (add-to-list 'magit-no-confirm 'trash)
@@ -118,7 +118,7 @@
 
   (setq magit-save-repository-buffers 'dontask
         magit-section-visibility-indicator nil
-        magit-wip-merge-branch t
+        magit-wip-merge-branch 'immediately
         magit-refs-primary-column-width '(16 . 92)
         magit-process-apply-ansi-colors t)
 
