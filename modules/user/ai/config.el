@@ -322,3 +322,10 @@
     :description "Gemini 2.5 Pro via Copilot"
     :backend "Copilot"
     :model 'gemini-2.5-pro))
+
+(use-package! agent-shell
+  :defer t
+  :init (map! :leader)
+  :config
+  (setq agent-shell-github-default-model-id "claude-opus-4.6-1m"
+        agent-shell-preferred-agent-config (agent-shell-github-make-copilot-config)))

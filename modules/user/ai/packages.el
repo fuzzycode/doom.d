@@ -13,3 +13,5 @@
 (package! copilot :recipe (:host github :repo "copilot-emacs/copilot.el" :files ("*.el")))
 
 (package! mcp :recipe (:host github :repo "lizqwerscott/mcp.el") :pin "125e0a4478ff1404880ea4e593f5e4ff0122cb83")
+
+(package! agent-shell)
