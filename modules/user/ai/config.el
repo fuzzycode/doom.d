@@ -164,18 +164,18 @@
 ;;   :init (setq gptel-agent-dirs (list (expand-file-name "agents" doom-user-dir)))
 ;;   :config (gptel-agent-update))
 
-;; ;; Provides copilot based completions
-;; (use-package! copilot
-;;   :hook (prog-mode . +bl/try-enable-copilot)
-;;   :init (setq copilot-idle-delay 0.5)
-;;   (map! (:leader (:prefix "t" :desc "Copilot" "a" #'+bl/try-enable-copilot)))
-;;   :config
-;;   ;;Tailor how and when Copilot is active
-;;   (add-to-list 'copilot-enable-predicates #'+bl/enable-copilot-p)
-;;   :bind (:map copilot-completion-map
-;;               ("M-RET" . #'copilot-accept-completion)
-;;               ("S-M-RET" . #'copilot-accept-completion-by-word)
-;;               ("C-M-RET" . #'copilot-accept-completion-by-line)))
+;; Provides copilot based completions
+(use-package! copilot
+  :hook (prog-mode . +bl/try-enable-copilot)
+  :init (setq copilot-idle-delay 0.5)
+  (map! (:leader (:prefix "t" :desc "Copilot" "a" #'+bl/try-enable-copilot)))
+  :config
+  ;;Tailor how and when Copilot is active
+  (add-to-list 'copilot-enable-predicates #'+bl/enable-copilot-p)
+  :bind (:map copilot-completion-map
+              ("M-RET" . #'copilot-accept-completion)
+              ("S-M-RET" . #'copilot-accept-completion-by-word)
+              ("C-M-RET" . #'copilot-accept-completion-by-line)))
 
 ;; ;; (use-package! gptel-prompts
 ;; ;;   :after gptel
