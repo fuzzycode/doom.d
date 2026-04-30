@@ -1,11 +1,11 @@
 ;;; tools/ai/config.el -*- lexical-binding: t; -*-
 
-;; (defvar +bl/google-api-key
-;;   (lambda () (auth-source-pick-first-password :host "Google AI API Key" :user "password")))
-;; (defvar +bl/anthropic-api-key
-;;   (lambda () (auth-source-pick-first-password :host "Claude API" :user "password")))
-;; (defvar +bl/openai-api-key
-;;   (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
+(defvar +bl/google-api-key
+  (lambda () (auth-source-pick-first-password :host "Google AI API Key" :user "password")))
+(defvar +bl/anthropic-api-key
+  (lambda () (auth-source-pick-first-password :host "Claude API" :user "password")))
+(defvar +bl/openai-api-key
+  (lambda () (auth-source-pick-first-password :host "OpenAI API Key" :user "password")))
 
 ;; (defvar +bl/ollama-host "localhost:11434"
 ;;   "The host for the ollama server.")
@@ -204,124 +204,6 @@
 ;;   (defconst +bl/github-read-only-tools (mapcar #'+bl/get-tool-name (seq-filter #'+bl/read-only-github-tool-p (+bl/get-tools "github"))))
 
 
-;;   (gptel-make-preset 'json
-;;                      :description "Inline preset to specify JSON schema on the fly"
-;;                      :pre (lambda ()
-;;                             (setq-local gptel--schema
-;;                                         (buffer-substring-no-properties
-;;                                          (point) (point-max)))
-;;                             (delete-region (point) (point-max)))
-;;                      :include-reasoning nil)
-
-;;   (gptel-make-preset 'default
-;;                      :tools '()
-;;                      :model gptel-model
-;;                      :temperature 1.0
-;;                      :description "A plain and default preset with no tools or special behavior."
-;;                      :system 'default
-;;                      :include-reasoning nil
-;;                      :context '())
-
-;;   ;; Context presets
-;;   (gptel-make-preset 'vb
-;;                      :description "A preset that provides access to visible buffers"
-;;                      :context '(:eval (+bl/visible-buffer-list)))
-
-;;   (gptel-make-preset 'ab
-;;                      :description "A preset that provides access to all buffers in the workspace"
-;;                      :context '(:eval (+bl/workspace-buffer-list)))
-
-;;   ;; Tools presets
-;;   (gptel-make-preset 'time
-;;                      :description "Provide time related tools"
-;;                      :pre (lambda () (gptel-mcp-connect '("time") 'sync))
-;;                      :tools '(:append ("mcp-time")))
-
-;;   (gptel-make-preset 'web
-;;                      :description "Provide web browsing tools"
-;;                      :tools '(:append ("WebFetch" "WebSearch")))
-
-;;   (gptel-make-preset 'buffer-readonly
-;;                      :description "Provide read-only buffer tools"
-;;                      :tools '(:append ("view_buffer" "list_buffers" "buffer_search")))
-
-;;   (gptel-make-preset 'system-readonly
-;;                      :description "Provide read-only file system tools"
-;;                      :tools '(:append ("read_file" "list_directory" "view_file" "glob" "grep" "ls")))
-
-;;   (gptel-make-preset 'project
-;;                      :description "Provide project related tools"
-;;                      :tools '(:append ("get_project_root")))
-
-;;   (gptel-make-preset 'github-readonly
-;;                      :description "Provide read-only GitHub tools"
-;;                      :pre (lambda () (gptel-mcp-connect '("github") 'sync))
-;;                      :tools `(:append ,+bl/github-read-only-tools))
-
-;;   (gptel-make-preset 'github
-;;                      :description "Provide all github tools"
-;;                      :pre (lambda () (gptel-mcp-connect '("github") 'sync))
-;;                      :tools '(:append ("mcp-github")))
-
-;;   ;; System prompt presets
-;;   (gptel-make-preset 'file
-;;                      :description "A preset that loads a system prompt from a file"
-;;                      :system 'file)
-
-;;   (gptel-make-preset 'explain
-;;                      :description "A preset that comes with a tutor tuned system prompt"
-;;                      :system (gptel-prompt-from-file-dynamic (expand-file-name "modules/user/ai/prompts/explain.md" doom-user-dir)))
-
-;;   (gptel-make-preset 'explore
-;;                      :description "A preset that comes with an exploratory tuned system prompt"
-;;                      :system (gptel-prompt-from-file-dynamic (expand-file-name "modules/user/ai/prompts/explore.md" doom-user-dir)))
-
-;;   (gptel-make-preset 'develop
-;;                      :description "A preset that comes with a developer tuned system prompt"
-;;                      :system (gptel-prompt-from-file-dynamic (expand-file-name "modules/user/ai/prompts/develop.md" doom-user-dir)))
-
-;;   (gptel-make-preset 'inline
-;;                      :description "A preset intended for inline responses"
-;;                      :system " Output only the requested content. No explanations, no preamble, no commentary, no markdown code fences unless explicitly requested. Your response will be inserted directly into a document."
-;;                      :include-reasoning nil)
-
-;;   ;; GPT models
-;;   (gptel-make-preset 'gpt-4.1
-;;                      :description "GPT-4.1 via Copilot"
-;;                      :backend "Copilot"
-;;                      :model 'gpt-4.1)
-
-;;   (gptel-make-preset 'gpt-5
-;;                      :description "GPT-5 via Copilot"
-;;                      :backend "Copilot"
-;;                      :model 'gpt-5)
-
-;;   (gptel-make-preset 'gpt-5-mini
-;;                      :description "GPT-5 Mini via Copilot"
-;;                      :backend "Copilot"
-;;                      :model 'gpt-5-mini)
-
-;;   (gptel-make-preset 'o4-mini
-;;                      :description "o4-mini (reasoning) via Copilot"
-;;                      :backend "Copilot"
-;;                      :model 'o4-mini)
-
-;;   ;; Claude models
-;;   (gptel-make-preset 'sonnet
-;;                      :description "Claude Sonnet 4 via Copilot"
-;;                      :backend "Copilot"
-;;                      :model 'claude-sonnet-4)
-
-;;   ;; Gemini models
-;;   (gptel-make-preset 'gemini-3
-;;                      :description "Gemini 3 Pro via Copilot"
-;;                      :backend "Copilot"
-;;                      :model 'gemini-3-pro-preview)
-
-;;   (gptel-make-preset 'gemini-2.5
-;;                      :description "Gemini 2.5 Pro via Copilot"
-;;                      :backend "Copilot"
-;;                      :model 'gemini-2.5-pro))
 
 (use-package! agent-shell
   :defer t

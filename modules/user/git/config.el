@@ -107,18 +107,14 @@
   ;; Show images in commit buffers
   (setq magit-revision-show-gravatars t)
 
-  (magit-wip-mode)
-
   (add-to-list 'magit-no-confirm 'stage-all-changes)
   (add-to-list 'magit-no-confirm 'trash)
-  (add-to-list 'magit-no-confirm 'safe-with-wip)
 
   (setq git-commit-style-convention-checks
         (remove 'overlong-summary-line git-commit-style-convention-checks))
 
   (setq magit-save-repository-buffers 'dontask
         magit-section-visibility-indicator nil
-        magit-wip-merge-branch 'immediately
         magit-refs-primary-column-width '(16 . 92)
         magit-process-apply-ansi-colors t)
 
