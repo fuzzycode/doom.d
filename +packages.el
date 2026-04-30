@@ -318,7 +318,7 @@
   (map! (:map org-super-agenda-header-map
               "j" nil
               "k" nil))
-  (shut-up (org-super-agenda-mode)))
+  (quiet! (org-super-agenda-mode)))
 
 (use-package! ox-gfm
   :when (modulep! :lang org)
